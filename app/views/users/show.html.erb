@@ -1,2 +1,8 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="user-profile">
+  <div class="icon text-center">
+    <img src="<%= gravatar_url(@user, size: 100) %>" alt="" class="img-circle">
+  </div>
+  <div class="name text-center">
+    <h1><%= @user.name %></h1>
+  </div>
+</div>
