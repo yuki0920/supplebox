@@ -2,19 +2,47 @@
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
       <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-left" href="/"><img src="/images/logo.png" alt="Monolist"></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-left" href="/"><img src="/images/logo.png" alt="SuppleBox"></a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to '新規登録', signup_path %></li>
-        <li><a href="#">ログイン</a></li>
-      </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                アイテムを登録
+                </a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="gravatar">
+                  <img src="<%= gravatar_url(current_user, size: 20) %>" alt="" class="img-circle">
+                </span>
+                <%= current_user.name %>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to 'マイページ', user_path(current_user) %>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to '新規登録', signup_path %></li>
+            <li><%= link_to 'ログイン', login_path %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
