@@ -1,0 +1,12 @@
+<div class='content'>
+  <div id="search-box">
+    <%= form_tag(new_product_path, method: :get) do %>
+        <%= text_field_tag :book, "",  id: "book_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+    <% end %>
+  </div>
+  <h2>検索結果</h2>
+  <div id='book_list'>
+    <!-- コメントアウトしておく -->
+    <%= render partial: 'products' %> 
+  </div>
+</div>
