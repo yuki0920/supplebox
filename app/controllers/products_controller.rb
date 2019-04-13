@@ -9,18 +9,20 @@ class ProductsController < ApplicationController
         params[:keyword],
         search_index: 'HealthPersonalCare',
         dataType: 'script',
-        response_group: 'Large',
+        response_group: 'Medium',
         country: 'jp',
       )
 
-      # 本のタイトル,画像URL, 詳細ページURLの取得
+      # 商品のタイトル,画像URL, 詳細ページURLの取得
       @products = []
       products.items.each do |item|
         product = Product.new(
-          item.get('ItemAttributes/Title'),
-          item.get('LargeImage/URL'),
-          item.get('DetailPageURL'),
-          item.get('ASIN'),
+          item.get('ItemAttributes/Title'), #商品タイトル
+          item.get('LargeImage/URL'), #商品画像URL
+          item.get('DetailPageURL'), #商品詳細URL
+          item.get('ASIN'), #商品にユニークなコード
+          item.get('ItemAttributes/Brand'), #ブランド(メーカー)
+          item.get('OfferSummary/LowestNewPrice/FormattedPrice'), #公式価格を¥表示
         )
         @products << product
       end
