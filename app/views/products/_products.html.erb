@@ -1,9 +1,30 @@
+<!--<% if @products.present? %>-->
+<!--  <% @products.each do |product| %>-->
+<!--    <div class="list">-->
+<!--      <%= link_to (image_tag(product.image_url, style: "width: 70px;height: 100px;display: inline-block;")), product.url %>-->
+<!--      <p><%= product.title %></p>-->
+<!--      <p><%= product.asin %></p>-->
+<!--    </div>-->
+<!--  <% end %>-->
+<!--<% end %>-->
+
 <% if @products.present? %>
-  <% @products.each do |product| %>
-    <div class="list">
-      <%= link_to (image_tag(product.image_url, style: "width: 70px;height: 100px;display: inline-block;")), product.url %>
-      <p><%= product.title %></p>
-      <p><%= product.asin %></p>
-    </div>
-  <% end %>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="product">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <img src="<%= product.image_url %>" alt="" >
+            </div>
+            <div class="panel-body">
+              <p class="product-title"><%= product.title %></p>
+              <p class="product-title"><%= product.brand %></p>
+              <p class="product-title"><%= product.price %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
