@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
       # 商品のタイトル,画像URL, 詳細ページURLの取得
       @products = []
       products.items.each do |item|
-        product = Product.new(
+        product = Product.find_or_initialize_by(
           title: item.get('ItemAttributes/Title'), #商品タイトル
           image_url: item.get('LargeImage/URL'), #商品画像URL
           url: item.get('DetailPageURL'), #商品詳細URL
@@ -28,8 +28,8 @@ class ProductsController < ApplicationController
       end
     end
   end
+  
   def create
-    # <%= hidden_field_tag :product_asin, product.code %>
     @product = Product.find_or_initialize_by(asin: params[:product_asin])
     unless @product.persisted?
       # @product が保存されていない場合、先に @product を保存する
@@ -51,5 +51,10 @@ class ProductsController < ApplicationController
       @product.save
       end
     end  
+  end
+  
+  def destroy
+    @product = Product.find_by(id: params[:product_id])
+    @product.destroy
   end
 end
