@@ -11,11 +11,18 @@
               <p class="product-title"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= product.title %></p>
               <p class="product-title"><%= product.price %></p>
-              <!--商品登録ボタン-->
+              <!--商品登録削除ボタン-->
               <div class="buttons text-center">
-                <%= form_tag(products_path) do %>
-                  <%= hidden_field_tag :product_asin, product.asin %>
-                  <%= submit_tag '登録', class: 'btn btn-primary' %>
+                <% if product.persisted? %>
+                  <%= form_tag(product_path(product.id), method: :delete) do %>
+                    <%= hidden_field_tag :product_id, product.id %>
+                    <%= submit_tag '削除', class: 'btn btn-danger' %>
+                  <% end %>
+                <% else %>
+                  <%= form_tag(products_path) do %>
+                    <%= hidden_field_tag :product_asin, product.asin %>
+                    <%= submit_tag '登録', class: 'btn btn-primary' %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
