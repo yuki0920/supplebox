@@ -1,13 +1,3 @@
-<!--<% if @products.present? %>-->
-<!--  <% @products.each do |product| %>-->
-<!--    <div class="list">-->
-<!--      <%= link_to (image_tag(product.image_url, style: "width: 70px;height: 100px;display: inline-block;")), product.url %>-->
-<!--      <p><%= product.title %></p>-->
-<!--      <p><%= product.asin %></p>-->
-<!--    </div>-->
-<!--  <% end %>-->
-<!--<% end %>-->
-
 <% if @products.present? %>
   <div class="row">
     <% @products.each do |product| %>
@@ -18,9 +8,16 @@
               <img src="<%= product.image_url %>" alt="" >
             </div>
             <div class="panel-body">
+              <p class="product-title"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= product.title %></p>
-              <p class="product-title"><%= product.brand %></p>
               <p class="product-title"><%= product.price %></p>
+              <!--商品登録ボタン-->
+              <div class="buttons text-center">
+                <%= form_tag(products_path) do %>
+                  <%= hidden_field_tag :product_asin, product.asin %>
+                  <%= submit_tag '登録', class: 'btn btn-primary' %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
