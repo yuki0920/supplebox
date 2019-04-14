@@ -67,3 +67,42 @@ p.product-title {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+
+/* product */
+
+/* 追加分 */
+.product .buttons form {
+  display: inline-block;
+  margin: 0 5px;
+}
+/* users */
+.user-profile .name {
+  margin-bottom: 20px;
+}
+.user-profile .name h1 {
+  text-shadow: 1px 1px 1px #fff;
+  font-weight: bold;
+}
+.user-profile .status ul {
+  margin: 0 auto 10px;
+  padding: 0;
+  display: table;
+}
+.user-profile .status ul li {
+  width: 120px;
+  padding: 5px 0;
+  border-right: 1px solid #ddd;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #777;
+}
+.user-profile .status ul li:last-child {
+  border: none;
+}
+.user-profile .status ul li .status-label {
+  font-size: 12px;
+}
+.user-profile .status ul li .status-value {
+  font-size: 18px;
+}
