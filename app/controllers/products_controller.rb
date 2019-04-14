@@ -17,15 +17,39 @@ class ProductsController < ApplicationController
       @products = []
       products.items.each do |item|
         product = Product.new(
-          item.get('ItemAttributes/Title'), #商品タイトル
-          item.get('LargeImage/URL'), #商品画像URL
-          item.get('DetailPageURL'), #商品詳細URL
-          item.get('ASIN'), #商品にユニークなコード
-          item.get('ItemAttributes/Brand'), #ブランド(メーカー)
-          item.get('OfferSummary/LowestNewPrice/FormattedPrice'), #公式価格を¥表示
+          title: item.get('ItemAttributes/Title'), #商品タイトル
+          image_url: item.get('LargeImage/URL'), #商品画像URL
+          url: item.get('DetailPageURL'), #商品詳細URL
+          asin: item.get('ASIN'), #商品にユニークなコード
+          brand_amazon_name: item.get('ItemAttributes/Brand'), #ブランド(メーカー)
+          price: item.get('OfferSummary/LowestNewPrice/Amount'), #実売価格を¥表示
         )
         @products << product
       end
     end
+  end
+  def create
+    # <%= hidden_field_tag :product_asin, product.code %>
+    @product = Product.find_or_initialize_by(asin: params[:product_asin])
+    unless @product.persisted?
+      # @product が保存されていない場合、先に @product を保存する
+      products = Amazon::Ecs.item_lookup(
+        params[:product_asin],
+        response_group: 'Medium',
+        country: 'jp'
+      )
+  
+      products.items.each do |item|
+        @product = Product.new(
+          title: item.get('ItemAttributes/Title'),
+          image_url: item.get('LargeImage/URL'),
+          url: item.get('DetailPageURL'),
+          asin: item.get('ASIN'),
+          brand_amazon_name: item.get('ItemAttributes/Brand'), 
+          price: item.get('OfferSummary/LowestNewPrice/Amount'), 
+        )
+      @product.save
+      end
+    end  
   end
 end
