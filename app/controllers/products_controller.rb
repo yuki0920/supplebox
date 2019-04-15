@@ -48,13 +48,19 @@ class ProductsController < ApplicationController
           brand_amazon_name: item.get('ItemAttributes/Brand'), 
           price: item.get('OfferSummary/LowestNewPrice/Amount'), 
         )
-      @product.save
       end
-    end  
+      if @product.save
+      flash[:success] = '商品を登録しました'
+      end
+    end
+    redirect_back(fallback_location: root_path)
   end
   
   def destroy
     @product = Product.find_by(id: params[:product_id])
-    @product.destroy
+    if @product.destroy
+      flash[:success] = '商品を削除しました'
+    end
+    redirect_back(fallback_location: root_path)
   end
 end
