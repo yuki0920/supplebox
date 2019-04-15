@@ -9,7 +9,11 @@
             </div>
             <div class="panel-body">
               <p class="product-title"><%= product.brand_amazon_name %></p>
-              <p class="product-title"><%= product.title %></p>
+              <% if product.persisted? %>
+                <p class="product-title"><%= link_to product.title, product %></p>
+              <% else %>
+                <p class="product-title"><%= product.title %></p>
+              <% end %>
               <p class="product-title"><%= product.price %></p>
               <!--商品登録削除ボタン-->
               <div class="buttons text-center">

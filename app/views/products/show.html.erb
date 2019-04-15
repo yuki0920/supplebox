@@ -1,0 +1,34 @@
+<div class="row p-3">
+  <div class="col-md-4">
+    <div class="product_detail">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <img src="<%= @product.image_url %>" alt="">
+        </div>
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3>商品詳細情報</h3>
+    <h4><%= @product.title %></h4>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>価格</th>
+          <td>¥<%= number_with_delimiter(@product.price) %></td>
+        </tr>
+        <tr>
+          <th>メーカー</th>
+          <td><%= @product.brand_amazon_name %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="buttons text-center">
+      <%= link_to 'Amazonで詳しく見る', @product.url, target: ["_blank"],class: 'btn btn-lg btn-warning' %>
+      <a href="#" class="btn btn-lg btn-success">公式サイトで詳しく見る</a>
+      <a href="#" class="btn btn-lg btn-info">お気に入り登録する</a>
+    </div>
+  </div>
+</div>

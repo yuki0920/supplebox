@@ -63,4 +63,8 @@ class ProductsController < ApplicationController
     end
     redirect_back(fallback_location: root_path)
   end
+  
+  def show
+    @product = Product.find(params[:id])
+  end
 end
