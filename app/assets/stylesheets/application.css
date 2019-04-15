@@ -70,6 +70,20 @@ p.product-title {
 
 /* product */
 
+/* product_detail */
+.product_detail .panel-body {
+  height: 30px;
+}
+.product_detail .panel-heading {
+  height: 320px;
+}
+.product_detail .panel-heading img {
+  height: 100%;
+  max-width: 100%;
+}
+/* product_detail */
+
+
 /* 追加分 */
 .product .buttons form {
   display: inline-block;
