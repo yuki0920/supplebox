@@ -9,21 +9,58 @@ class ProductsController < ApplicationController
         params[:keyword],
         search_index: 'HealthPersonalCare',
         dataType: 'script',
-        response_group: 'Large',
+        response_group: 'Medium',
         country: 'jp',
       )
 
-      # 本のタイトル,画像URL, 詳細ページURLの取得
+      # 商品のタイトル,画像URL, 詳細ページURLの取得
       @products = []
       products.items.each do |item|
-        product = Product.new(
-          item.get('ItemAttributes/Title'),
-          item.get('LargeImage/URL'),
-          item.get('DetailPageURL'),
-          item.get('ASIN'),
+        product = Product.find_or_initialize_by(
+          title: item.get('ItemAttributes/Title'), #商品タイトル
+          image_url: item.get('LargeImage/URL'), #商品画像URL
+          url: item.get('DetailPageURL'), #商品詳細URL
+          asin: item.get('ASIN'), #商品にユニークなコード
+          brand_amazon_name: item.get('ItemAttributes/Brand'), #ブランド(メーカー)
+          price: item.get('OfferSummary/LowestNewPrice/Amount'), #実売価格を¥表示
         )
         @products << product
       end
     end
+  end
+  
+  def create
+    @product = Product.find_or_initialize_by(asin: params[:product_asin])
+    unless @product.persisted?
+      # @product が保存されていない場合、先に @product を保存する
+      products = Amazon::Ecs.item_lookup(
+        params[:product_asin],
+        response_group: 'Medium',
+        country: 'jp'
+      )
+  
+      products.items.each do |item|
+        @product = Product.new(
+          title: item.get('ItemAttributes/Title'),
+          image_url: item.get('LargeImage/URL'),
+          url: item.get('DetailPageURL'),
+          asin: item.get('ASIN'),
+          brand_amazon_name: item.get('ItemAttributes/Brand'), 
+          price: item.get('OfferSummary/LowestNewPrice/Amount'), 
+        )
+      end
+      if @product.save
+      flash[:success] = '商品を登録しました'
+      end
+    end
+    redirect_back(fallback_location: root_path)
+  end
+  
+  def destroy
+    @product = Product.find_by(id: params[:product_id])
+    if @product.destroy
+      flash[:success] = '商品を削除しました'
+    end
+    redirect_back(fallback_location: root_path)
   end
 end

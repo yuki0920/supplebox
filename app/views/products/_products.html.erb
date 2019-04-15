@@ -1,9 +1,34 @@
 <% if @products.present? %>
-  <% @products.each do |product| %>
-    <div class="list">
-      <%= link_to (image_tag(product.image_url, style: "width: 70px;height: 100px;display: inline-block;")), product.url %>
-      <p><%= product.title %></p>
-      <p><%= product.asin %></p>
-    </div>
-  <% end %>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="product">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <img src="<%= product.image_url %>" alt="" >
+            </div>
+            <div class="panel-body">
+              <p class="product-title"><%= product.brand_amazon_name %></p>
+              <p class="product-title"><%= product.title %></p>
+              <p class="product-title"><%= product.price %></p>
+              <!--商品登録削除ボタン-->
+              <div class="buttons text-center">
+                <% if product.persisted? %>
+                  <%= form_tag(product_path(product.id), method: :delete) do %>
+                    <%= hidden_field_tag :product_id, product.id %>
+                    <%= submit_tag '削除', class: 'btn btn-danger' %>
+                  <% end %>
+                <% else %>
+                  <%= form_tag(products_path) do %>
+                    <%= hidden_field_tag :product_asin, product.asin %>
+                    <%= submit_tag '登録', class: 'btn btn-primary' %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
