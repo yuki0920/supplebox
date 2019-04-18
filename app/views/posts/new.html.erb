@@ -1,0 +1,50 @@
+<!-- 口コミ投稿フォーム -->
+<div class="py-3">
+  <div class="container">
+    <h3 class="mb-3">口コミ投稿フォーム</h3>
+    <!-- フォーム -->
+    <form>
+      <!-- お名前 -->
+      <div class="form-group row">
+        <label for="name" class="col-md-3 col-form-label">
+          タイトル <span class="badge badge-warning">必須</span>
+        </label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="name" required>
+        </div>
+      </div>
+      <!-- 評価 -->
+      <div class="form-group row">
+        <label for="category" class="col-md-3 col-form-label">
+          商品の評価 <span class="badge badge-warning">必須</span>
+        </label>
+        <div class="col-md-1">
+          <select class="form-control" id="category" name="category">
+            <option value="category5">5</option>
+            <option value="category4">4</option>
+            <option value="category3">3</option>
+            <option value="category2">2</option>
+            <option value="category1">1</option>
+          </select>
+        </div>
+      </div>
+      <!-- 口コミ -->
+      <div class="form-group row">
+        <label for="message" class="col-md-3 col-form-label">
+         口コミ内容 <span class="badge badge-warning">必須</span>
+        </label>
+        <div class="col-md-9">
+          <textarea class="form-control" id="message" rows="8" name="message"></textarea>
+        </div>
+      </div>
+      <!-- 確認ボタン -->
+      <div class="form-group row justify-content-end">
+        <div class="col-md-9">
+          <button type="submit" class="btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </form>
+    <!-- /フォーム -->
+  </div>
+</div>
+<!-- / 口コミ投稿フォーム -->

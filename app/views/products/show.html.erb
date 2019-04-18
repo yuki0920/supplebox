@@ -1,3 +1,4 @@
+<!--商品情報-->
 <div class="row p-3">
   <div class="col-md-4">
     <div class="product_detail">
@@ -32,3 +33,42 @@
     </div>
   </div>
 </div>
+<!--/商品情報-->
+<!-- 口コミ投稿フォーム -->
+<div class="p-3">
+  <h3 class="mb-3">口コミ投稿フォーム</h3>
+  <!-- フォーム -->
+  <%= form_for @post do |f| %>
+    <%= f.hidden_field :product_id, { value: @product.id} %>
+    <!-- タイトル -->
+    <div class="form-group row">
+      <%= f.label :title, 'タイトル ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+    <!-- 評価 -->
+    <div class="form-group row">
+      <%= f.label :rate, '評価 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-1">
+        <%= f.select :rate, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]] %>
+      </div>
+    </div>
+    <!-- 口コミ -->
+    <div class="form-group row">
+      <%= f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :content, class: "form-control", rows: "8" %>
+      </div>
+    </div>
+    <!-- 確認ボタン -->
+    <div class="form-group row justify-content-end">
+      <div class="col-md-9">
+        <%= f.submit '投稿する', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+  <!-- /フォーム -->
+</div>
+<!-- / 口コミ投稿フォーム -->
+  
