@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_021655) do
+ActiveRecord::Schema.define(version: 2019_04_15_222149) do
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "picture"
+    t.string "rate"
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_posts_on_product_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -39,4 +52,6 @@ ActiveRecord::Schema.define(version: 2019_04_14_021655) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "posts", "products"
+  add_foreign_key "posts", "users"
 end
