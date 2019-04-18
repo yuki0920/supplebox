@@ -34,6 +34,11 @@
   </div>
 </div>
 <!--/商品情報-->
+<!--口コミ一覧-->
+<% @posts.each do |post| %>
+  <%= render 'shared/posts', post: post %>
+<% end %>
+<!--/口コミ一覧-->
 <!-- 口コミ投稿フォーム -->
 <div class="p-3">
   <h3 class="mb-3">口コミ投稿フォーム</h3>

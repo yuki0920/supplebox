@@ -67,5 +67,6 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @post = Post.new
+    @posts = Post.where(product_id: @product.id)
   end
 end

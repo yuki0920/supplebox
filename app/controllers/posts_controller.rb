@@ -17,6 +17,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @product = Product.find(@post.product_id)
+    @user = User.find(@post.user_id)
   end
   
   private

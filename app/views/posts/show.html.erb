@@ -1,2 +1,8 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<!-- 口コミ詳細 -->
+<div class='py-4'>
+  <div class='container'>
+    <h2 class='mb-3'><%= @product.title %> の口コミ</h3>
+    <%= render 'shared/posts', post: @post %>
+  </div>
+</div>
+<!-- /口コミ詳細 -->

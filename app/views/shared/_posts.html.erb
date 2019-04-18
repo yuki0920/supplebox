@@ -1,0 +1,12 @@
+<div class='row mb-4'>
+  <div class='col-md-8 mb-3'>
+    <img class='media-object img-rounded' src='<%= gravatar_url(post.user, { size: 50 }) %>' alt=''>
+    <h3 class='mb-3'><%= post.user.name %></h3>
+    <h4 class='mb-3'><%= post.rate %>点 <%= post.title %></h4>
+    <p>投稿日時 <%= post.created_at %></p>
+    <p><%= post.content %></p>
+  </div>
+  <div class='col-md-4'>
+    <img src='' alt='' class='img-fluid'>
+  </div>
+</div>
