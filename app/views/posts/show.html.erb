@@ -1,2 +1,20 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<!-- 口コミ詳細 -->
+<div class='py-4'>
+  <div class='container'>
+    <h2 class='mb-3'><%= @product.title %> の口コミ</h3>
+    <div class='row mb-4'>
+      <div class='col-md-8 mb-3'>
+        <h3 class='mb-3'><%= @post.title %></h3>
+        <img class='media-object img-rounded' src='<%= gravatar_url(@user, { size: 50 }) %>' alt=''>
+        <h4 class='mb-3'><%= @post.user.name %></h4>
+        <p><%= @post.rate %> 点</p>
+        <p><%= @post.updated_at %></p>
+        <p><%= @post.content %></p>
+      </div>
+      <div class='col-md-4'>
+        <img src='' alt='' class='img-fluid'>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /口コミ詳細 -->
