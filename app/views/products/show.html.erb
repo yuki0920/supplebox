@@ -66,6 +66,13 @@
         <%= f.text_area :content, class: "form-control", rows: "8" %>
       </div>
     </div>
+    <!-- 口コミ用画像 -->
+    <div class="form-group row">
+      <%= f.label :picture, '口コミ画像 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.file_field :picture%>
+      </div>
+    </div>
     <!-- 確認ボタン -->
     <div class="form-group row justify-content-end">
       <div class="col-md-9">
@@ -76,4 +83,3 @@
   <!-- /フォーム -->
 </div>
 <!-- / 口コミ投稿フォーム -->
-  
