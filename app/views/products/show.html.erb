@@ -36,58 +36,9 @@
 <!--/商品情報-->
 <!--口コミ一覧-->
 <% @posts.each do |post| %>
-  <%= render 'shared/posts', post: post %>
+  <%= render 'posts/posts', post: post %>
 <% end %>
 <!--/口コミ一覧-->
 <!-- 口コミ投稿フォーム -->
-<div class="p-3">
-  <h3 class="mb-3">口コミ投稿フォーム</h3>
-  <!-- フォーム -->
-  <%= form_for @post do |f| %>
-    <%= f.hidden_field :product_id, { value: @product.id} %>
-    <!-- タイトル -->
-    <div class="form-group row">
-      <%= f.label :title, 'タイトル ', class:'col-md-3 col-form-label' %>
-      <div class="col-md-9">
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-    </div>
-    <!-- 評価 -->
-    <div class="form-group row">
-      <%= f.label :rate, '評価 ', class:'col-md-3 col-form-label' %>
-      <div class="col-md-1">
-        <%= f.select :rate, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]] %>
-      </div>
-    </div>
-    <!-- 口コミ -->
-    <div class="form-group row">
-      <%= f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label' %>
-      <div class="col-md-9">
-        <%= f.text_area :content, class: "form-control", rows: "8" %>
-      </div>
-    </div>
-    <!-- 口コミ用画像 -->
-    <div class="form-group row">
-      <%= f.label :picture, '口コミ画像 ', class:'col-md-3 col-form-label' %>
-      <div class="col-md-9">
-        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-      </div>
-    </div>
-    <!-- 確認ボタン -->
-    <div class="form-group row justify-content-end">
-      <div class="col-md-9">
-        <%= f.submit '投稿する', class: 'btn btn-primary' %>
-      </div>
-    </div>
-  <% end %>
-  <!-- /フォーム -->
-</div>
-<script type="text/javascript">
-  $('#post_picture').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('最大のファイルサイズは5MBです。ファイルサイズを小さくしてください。');
-    }
-  });
-</script>
+<%= render 'posts/new_post', post: @post, product: @product %>
 <!-- / 口コミ投稿フォーム -->
