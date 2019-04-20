@@ -41,11 +41,9 @@
       <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
       <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
     </ul>
-    <!--口コミ一覧-->
-    <% @posts.each do |post| %>
-      <%= render 'posts/posts', post: post %>
-    <% end %>
-    <!--/口コミ一覧-->
+    <!--フォロー一覧-->
+    <%= render 'users', users: @followings %>
+    <!--/フォローミ一覧-->
   </div>
   
 </div>
