@@ -5,4 +5,18 @@
   <div class="name text-center">
     <h1><%= @user.name %></h1>
   </div>
+  <div class="col-md-12">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>口コミ一覧<% end %></li>
+      <li><a href="#">お気に入り</a></li>
+      <li><a href="#">Followings</a></li>
+      <li><a href="#">Followers</a></li>
+    </ul>
+    <!--口コミ一覧-->
+    <% @posts.each do |post| %>
+      <%= render 'posts/posts', post: post %>
+    <% end %>
+    <!--/口コミ一覧-->
+  </div>
+  
 </div>
