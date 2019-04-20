@@ -24,6 +24,18 @@ class UsersController < ApplicationController
   
   def index
   end
+
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings
+    counts(@user)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers
+    counts(@user)
+  end  
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :nickname, :gender, :height, :weight, :comment)
