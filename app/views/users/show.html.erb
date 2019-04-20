@@ -5,6 +5,9 @@
   <div class="name text-center">
     <h1><%= @user.name %></h1>
   </div>
+  <div class="text-center">
+    <%= render 'relationships/follow_button', user: @user %>
+  </div>
   <div class="status text-center">
     <ul>
       <li>
