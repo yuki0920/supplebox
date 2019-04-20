@@ -5,9 +5,8 @@
     <h4 class='mb-3'><%= post.rate %>点 <%= post.title %></h4>
     <p>投稿日時 <%= post.created_at %></p>
     <p><%= post.content %></p>
-    <%= image_tag post.picture.url if post.picture? %>
   </div>
   <div class='col-md-4'>
-    <img src='' alt='' class='img-fluid'>
+    <%= image_tag post.picture.url class:'img-fluid' if post.picture? %>
   </div>
 </div>
