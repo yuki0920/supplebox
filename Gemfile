@@ -64,3 +64,5 @@ gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem 'amazon-ecs'
 gem 'dotenv-rails'
+gem 'carrierwave'
+gem 'mini_magick'

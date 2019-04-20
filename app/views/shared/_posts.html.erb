@@ -7,6 +7,6 @@
     <p><%= post.content %></p>
   </div>
   <div class='col-md-4'>
-    <img src='' alt='' class='img-fluid'>
+    <%= image_tag post.picture.url class:'img-fluid' if post.picture? %>
   </div>
 </div>
