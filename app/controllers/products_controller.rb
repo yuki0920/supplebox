@@ -68,4 +68,8 @@ class ProductsController < ApplicationController
     @post = Post.new
     @posts = Post.where(product_id: @product.id)
   end
+  
+  def index
+    @products = Product.all
+  end
 end
