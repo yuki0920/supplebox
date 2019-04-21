@@ -1,0 +1,55 @@
+<div class="p-3">
+  <h3 class="mb-3">プロフィール編</h3>
+  <!-- フォーム -->
+  <%= form_for @user do |f| %>
+    <!-- ニックネーム -->
+    <div class="form-group row">
+      <%= f.label :nickname, 'ニックネーム ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :nickname, class: "form-control" %>
+      </div>
+    </div>
+    <!-- ネーム -->
+    <div class="form-group row">
+      <%= f.label :name, 'ネーム ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+    <!-- 性別 -->
+    <div class="form-group row">
+      <%= f.label :gender, '性別 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-1">
+        <%= f.select :gender, [["男性", "男性"], ["女性", "女性"], ["ヒミツ", "ヒミツ"]] %>
+      </div>
+    </div>
+    <!-- 身長 -->
+    <div class="form-group row">
+      <%= f.label :height, '身長 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-1">
+        <%= f.select :height, [["〜150cm以下", "〜150cm以下"], ["150cm〜160cm", "150cm〜160cm"], ["160cm〜170cm", "160cm〜170cm"]] %>
+      </div>
+    </div>
+    <!-- 性別 -->
+    <div class="form-group row">
+      <%= f.label :weight, '体重 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-1">
+        <%= f.select :weight, [["〜40kg以下", "〜40kg以下"], ["40kg〜50kg", "女性40kg〜50kg"], ["50kg〜60kg", "50kg〜60kg"]] %>
+      </div>
+    </div>
+    <!-- 口コミ -->
+    <div class="form-group row">
+      <%= f.label :comment, '自己紹介 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :comment, class: "form-control", rows: "3" %>
+      </div>
+    </div>
+    <!-- 確認ボタン -->
+    <div class="form-group row justify-content-end">
+      <div class="col-md-9">
+        <%= f.submit '投稿する', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+  <!-- /フォーム -->
+</div>

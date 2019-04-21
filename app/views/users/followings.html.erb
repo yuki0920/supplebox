@@ -4,6 +4,9 @@
   </div>
   <div class="name text-center">
     <h1><%= @user.name %></h1>
+    <% if current_user == @user %>
+      <%= link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default' %>
+    <% end %>
   </div>
   <div class="text-center">
     <%= render 'relationships/follow_button', user: @user %>
@@ -27,12 +30,7 @@
         <div class="status-value"><%= @user.weight %></div>
       </li>
     </ul>
-    <ul>
-      <li>
-        <div class="status-label">自己紹介</div>
-        <div class="status-value"><%= @user.comment %></div>
-      </li>
-    </ul>
+    <div class="status-value">自己紹介｜<%= @user.comment %></div>
   </div>  
   <div class="col-md-12">
     <ul class="nav nav-tabs nav-justified">
