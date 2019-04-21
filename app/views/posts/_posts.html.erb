@@ -6,6 +6,7 @@
     <p>投稿日時 <%= post.created_at %></p>
     <p><%= post.content %></p>
     <% if current_user == post.user %>
+      <%= link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-default' %>
       <%= link_to '口コミを削除', post, method: :delete, class:'btn btn-default' %>
     <% end %>
   </div>
