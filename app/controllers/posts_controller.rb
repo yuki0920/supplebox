@@ -32,8 +32,8 @@ class PostsController < ApplicationController
   end
   def update
     @post = Post.find(params[:id])
-    if @post.update
-      flash[:success] = '口コミを削除しました'
+    if @post.update(post_params)
+      flash[:success] = '口コミを更新しました'
       redirect_back(fallback_location: root_path)
     end
   end
