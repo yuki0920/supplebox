@@ -14,10 +14,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:success] = '口コミを削除しました'
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
     @product = Product.find(@post.product_id)
     @user = User.find(@post.user_id)
   end
