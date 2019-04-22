@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: @user.id)
+    @posts = @user.posts
+    counts(@user)
   end
 
   def new
@@ -36,6 +37,12 @@ class UsersController < ApplicationController
     flash[:success] = 'プロフィールを更新しました'
     redirect_to @user
    end
+  end
+  
+  def like_products
+    @user = User.find(params[:id])
+    @products = @user.products
+    counts(@user)
   end
 
   def followings
