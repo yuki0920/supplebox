@@ -23,7 +23,9 @@
               <% end %>
             </li>
             <li>
-              <a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>口コミを探す</a>
+              <%= link_to posts_path do %>
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>口コミを探す
+              <% end %>
             </li>
             <li>
               <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ユーザーを探す</a>
@@ -32,8 +34,7 @@
           <% if logged_in? %>
             <li>
               <%= link_to new_product_path do %>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                商品を追加
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>商品を追加
               <% end %>
             </li>
             <li class="dropdown">
