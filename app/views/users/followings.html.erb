@@ -1,47 +1,14 @@
-<div class="user-profile">
-  <div class="icon text-center">
-    <img src="<%= gravatar_url(@user, size: 100) %>" alt="" class="img-circle">
-  </div>
-  <div class="name text-center">
-    <h1><%= @user.name %></h1>
-    <% if current_user == @user %>
-      <%= link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default' %>
-    <% end %>
-  </div>
-  <div class="text-center">
-    <%= render 'relationships/follow_button', user: @user %>
-  </div>
-  <div class="status text-center">
-    <ul>
-      <li>
-        <div class="status-label">ニックネーム</div>
-        <div class="status-value"><%= @user.nickname %></div>
-      </li>
-      <li>
-        <div class="status-label">性別</div>
-        <div class="status-value"><%= @user.gender %></div>
-      </li>
-      <li>
-        <div class="status-label">身長</div>
-        <div class="status-value"><%= @user.height %></div>
-      </li>
-      <li>
-        <div class="status-label">体重</div>
-        <div class="status-value"><%= @user.weight %></div>
-      </li>
-    </ul>
-    <div class="status-value">自己紹介｜<%= @user.comment %></div>
-  </div>  
-  <div class="col-md-12">
-    <ul class="nav nav-tabs nav-justified">
-      <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>口コミ一覧 <span class="badge"><%= @count_posts %><% end %></li>
-      <li class="<%= 'active' if current_page?(like_products_user_path(@user)) %>"><%= link_to like_products_user_path(@user) do %>お気に入り <span class="badge"><%= @count_like_products %></span><% end %></li>
-      <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
-      <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
-    </ul>
-    <!--フォロー一覧-->
-    <%= render 'users', users: @followings %>
-    <!--/フォローミ一覧-->
-  </div>
-  
+<!--ユーザープロフィール-->
+<%= render 'users/user_profile', user: @user %>
+<!--/ユーザープロフィール-->
+<div class="col-md-12">
+  <ul class="nav nav-tabs nav-justified">
+    <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>口コミ一覧 <span class="badge"><%= @count_posts %><% end %></li>
+    <li class="<%= 'active' if current_page?(like_products_user_path(@user)) %>"><%= link_to like_products_user_path(@user) do %>お気に入り <span class="badge"><%= @count_like_products %></span><% end %></li>
+    <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
+    <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
+  </ul>
+  <!--フォロー一覧-->
+  <%= render 'users', users: @followings %>
+  <!--/フォローミ一覧-->
 </div>
