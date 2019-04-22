@@ -28,7 +28,9 @@
               <% end %>
             </li>
             <li>
-              <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ユーザーを探す</a>
+              <%= link_to users_path do %>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>ユーザーを探す
+              <% end %>
             </li>
             
           <% if logged_in? %>
