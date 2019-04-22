@@ -4,16 +4,18 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-
   get 'signup', to: 'users#new'
+  get 'rankings/like', to: 'rankings#like'
+ 
   resources :users, only: [:show, :create, :index, :edit, :update] do
     member do
       get :followings
       get :followers
+      get :like_products
     end
   end
   
-  resources :products, only: [:new, :create, :destroy, :show]
+  resources :products, only: [:new, :create, :destroy, :show, :index]
   resources :posts, only: [:new, :create, :destroy, :show, :edit, :show, :update]
   resources :likes, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

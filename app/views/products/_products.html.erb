@@ -8,13 +8,12 @@
               <img src="<%= product.image_url %>" alt="" >
             </div>
             <div class="panel-body">
-              <p class="product-title"><%= product.brand_amazon_name %></p>
+              <p class="product-brand"><%= product.brand_amazon_name %></p>
               <% if product.persisted? %>
                 <p class="product-title"><%= link_to product.title, product %></p>
               <% else %>
                 <p class="product-title"><%= product.title %></p>
               <% end %>
-              <p class="product-title"><%= product.price %></p>
               <div class="buttons text-center">
                 <% if product.persisted? %>
                   <!--お気に入り登録・削除ボタン-->

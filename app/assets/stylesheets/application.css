@@ -51,7 +51,7 @@ footer {
 
 /* product */
 .product .panel-body {
-  height: 200px;
+  height: 170px;
 }
 .product .panel-heading {
   height: 250px;
@@ -65,6 +65,14 @@ p.product-title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+p.product-brand {
+  /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 

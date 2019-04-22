@@ -40,8 +40,7 @@
       <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
     </ul>
     <!--フォロー一覧-->
-    <%= render 'users', users: @followings %>
+    <%= render 'products/products', products: @products %>
     <!--/フォローミ一覧-->
   </div>
-  
 </div>
