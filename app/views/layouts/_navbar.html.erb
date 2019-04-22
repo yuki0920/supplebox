@@ -13,18 +13,20 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             <li>
-              <%= link_to products_path do %>
-                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-                商品を探す
+              <%= link_to rankings_like_path do %>
+                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>ランキング
               <% end %>
             </li>
             <li>
-              <a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-              ユーザーを探す</a>
+              <%= link_to products_path do %>
+                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>商品を探す
+              <% end %>
             </li>
             <li>
-              <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              口コミを探す</a>
+              <a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>口コミを探す</a>
+            </li>
+            <li>
+              <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ユーザーを探す</a>
             </li>
             
           <% if logged_in? %>
