@@ -1,0 +1,4 @@
+<h1>最新の口コミ</h1>
+<% @posts.each do |post| %>
+  <%= render 'posts/posts', post: post %>
+<% end %>
