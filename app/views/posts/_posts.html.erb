@@ -4,6 +4,9 @@
     <h4 class='mb-3'><%= post.user.name %> さんの ＜<%= post.product.title %>＞ の口コミ</h4>
     <h5 class='mb-3'><%= post.rate %>点 <%= post.title %></h5>
     <p>投稿日時 <%= post.created_at %></p>
+    <div class='product-picture'>
+      <%= image_tag post.product.image_url, class:'img-fluid' %>
+    </div>
     <p><%= post.content %></p>
     <% if current_user == post.user %>
       <%= link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-default' %>
