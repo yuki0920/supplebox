@@ -128,3 +128,17 @@ p.product-brand {
 .user-profile .status ul li .status-value {
   font-size: 18px;
 }
+/*post*/
+.post {
+  margin: 10px 10px;
+  border: 1px solid #000;
+  border-radius: 30px;  
+}
+.post-picture img{
+  width: 320px;
+}
+
+.post .product-picture img {
+  width: 50px;
+}
+/*post*/
