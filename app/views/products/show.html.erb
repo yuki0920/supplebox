@@ -40,5 +40,8 @@
 <% end %>
 <!--/口コミ一覧-->
 <!-- 口コミ投稿フォーム -->
-<%= render 'posts/new_post', post: @post, product: @product %>
+<div class="p-3">
+  <h3 class="mb-3">口コミ投稿フォーム</h3>
+  <%= render 'posts/new_post', post: @post, product: @product %>
+</div>  
 <!-- / 口コミ投稿フォーム -->
