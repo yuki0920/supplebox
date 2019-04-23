@@ -1,16 +1,16 @@
 <h1>商品一覧情報</h1>
 
-<!--<div class="search">-->
-<!--  <div class="row">-->
-<!--    <div class="text-center">-->
-<!--      <%= form_tag(new_product_path, method: :get, class: 'form-inline') do %>-->
-<!--        <div class="form-group">-->
-<!--          <%= text_field_tag :keyword, "",  id: "book_search", name: "keyword", class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>-->
-<!--        </div>-->
-<!--        <%= submit_tag '商品を検索', class: 'btn btn-success btn-lg' %>-->
-<!--      <% end %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="search">
+  <div class="row">
+    <div class="text-center">
+      <%= search_form_for @q, class:'form-inline' do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title_cont, class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>
+        </div>
+        <%= f.submit '商品を検索', class: "btn btn-success btn-lg" %>
+      <% end %>
+      </div>
+  </div>
+</div>
 
 <%= render 'products', producs: @products %>
