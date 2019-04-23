@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
   end
   
   def edit
@@ -42,19 +42,19 @@ class UsersController < ApplicationController
   
   def like_products
     @user = User.find(params[:id])
-    @products = @user.products
+    @products = @user.products.page(params[:page]).per(10)
     counts(@user)
   end
 
   def followings
     @user = User.find(params[:id])
-    @followings = @user.followings
+    @followings = @user.followings.page(params[:page]).per(10)
     counts(@user)
   end
   
   def followers
     @user = User.find(params[:id])
-    @followers = @user.followers
+    @followers = @user.followers.page(params[:page]).per(12)
     counts(@user)
   end  
   
