@@ -1,4 +1,5 @@
 <% if users.any? %>
+  <!--ユーザー一覧-->
   <ul class="media-list">
     <% users.each do |user| %>
       <li class="media">
@@ -16,4 +17,7 @@
       </li>
     <% end %>
   </ul>
+  <!--ページネーション-->
+  <%= paginate users %>
+  </p><%= page_entries_info users %></p>
 <% end %>
