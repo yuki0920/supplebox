@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   
   def like_products
     @user = User.find(params[:id])
-    @products = @user.products
+    @products = @user.products.page(params[:page]).per(12)
     counts(@user)
   end
 
