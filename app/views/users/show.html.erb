@@ -6,8 +6,6 @@
   <%= render 'users/user_nav', user: @user %>
   <!--/ユーザーナビバー-->
   <!--口コミ一覧-->
-  <% @posts.each do |post| %>
-    <%= render 'posts/posts', post: post %>
-  <% end %>
+  <%= render 'posts/posts', posts: @user.posts %>
   <!--/口コミ一覧-->
 </div>
