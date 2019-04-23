@@ -2,6 +2,14 @@ require_relative 'boot'
 
 require 'rails/all'
 
+Rails.application.config.generators do |g|
+  g.stylesheets false
+  g.javascripts false
+  g.helper false
+  g.skip_routes true
+  g.test_framework false  
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
