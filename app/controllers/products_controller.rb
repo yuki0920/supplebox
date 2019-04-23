@@ -70,6 +70,8 @@ class ProductsController < ApplicationController
   end
   
   def index
-    @products = Product.all.page(params[:page]).per(12)
+    # @products = Product.all.page(params[:page]).per(12)
+    @q = Product.all.ransack(params[:q])
+    @products = @q.result(distinct: true).page(params[:page]).per(12)
   end
 end
