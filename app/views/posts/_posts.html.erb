@@ -1,3 +1,4 @@
+<!--口コミ一覧-->
 <% posts.each do |post| %>
   <div class='post row mb-4'>
     <div class='col-md-8 mb-3'>
@@ -19,3 +20,6 @@
     </div>
   </div>
 <% end %>
+<!--ページネーション-->
+<%= paginate posts %>
+</p><%= page_entries_info posts %></p>
