@@ -13,4 +13,8 @@
   </div>
 </div>
 
+<!--商品一覧-->
 <%= render 'products', producs: @products %>
+<!--ページネーション-->
+<%= paginate @products %>
+</p><%= page_entries_info @products %></p>
