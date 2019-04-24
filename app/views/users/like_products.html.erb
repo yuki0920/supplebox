@@ -5,7 +5,11 @@
   <!--ユーザーナビバー-->
   <%= render 'users/user_nav', user: @user %>
   <!--/ユーザーナビバー-->
-  <!--フォロー一覧-->
+  <!--お気に入り商品ー一覧-->
   <%= render 'products/products', products: @products %>
-  <!--/フォローミ一覧-->
+  <!--/お気に入り商品一覧-->
+  <!--ページネーション-->
+  <%= paginate @products %>
+  </p><%= page_entries_info @products %></p>
+  <!--/ページネーション-->
 </div>

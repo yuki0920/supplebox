@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @post = Post.new
-    @posts = Post.where(product_id: @product.id)
+    @posts = Post.where(product_id: @product.id).page(params[:page]).per(10)
   end
   
   def index

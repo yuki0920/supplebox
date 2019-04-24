@@ -35,9 +35,7 @@
 </div>
 <!--/商品情報-->
 <!--口コミ一覧-->
-<% @posts.each do |post| %>
-  <%= render 'posts/posts', post: post %>
-<% end %>
+<%= render 'posts/posts', posts: @posts %>
 <!--/口コミ一覧-->
 <!-- 口コミ投稿フォーム -->
 <div class="p-3">
