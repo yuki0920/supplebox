@@ -1,8 +1,19 @@
 class Post < ApplicationRecord
+  # ユーザーとの関連付け
   belongs_to :user
+  
+  # 商品との関連付け
   belongs_to :product
+
+  # 画像アップローダーの指定
   mount_uploader :picture, PictureUploader
-  validate  :picture_size
+  
+  validates :title, presence: true
+  validates :rate, presence: true, numericality: true
+  validates :content, presence: true
+  
+  # 画像サイズ
+  validate :picture_size
 
   private
 
