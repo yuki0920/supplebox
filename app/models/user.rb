@@ -1,14 +1,13 @@
 class User < ApplicationRecord
   
   # ユーザー登録用
-  has_secure_password
-
   before_save { self.email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
+  validates :nickname, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
-  validates :nickname, presence: true, length: { maximum: 50 }
+  
   has_secure_password
   
   #口コミ投稿との関連付け
