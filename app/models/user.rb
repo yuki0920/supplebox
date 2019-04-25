@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  
+  # ユーザー登録用
   has_secure_password
 
   before_save { self.email.downcase! }
@@ -6,8 +8,10 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
+  validates :nickname, presence: true, length: { maximum: 50 }
   has_secure_password
   
+  #口コミ投稿との関連付け
   has_many :posts
   
   #お気に入り機能追加用中間テーブル追加

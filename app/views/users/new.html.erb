@@ -1,11 +1,14 @@
 <div class="row">
   <div class="col-xs-offset-3 col-xs-6">
     <div class="panel panel-default">
-      <div class="panel-heading">会員登録</div>
+      <div class="panel-heading">新規登録</div>
       <div class="panel-body">
         <%= form_for(@user) do |f| %>
+          <!--エラーメッセージ-->
+          <%= render 'layouts/error_messages', model: f.object %>
+          
           <div class="form-group">
-            <%= f.label :name, 'お名前' %>
+            <%= f.label :name, 'ユーザー名' %>
             <%= f.text_field :name, class: 'form-control' %>
           </div>
 
