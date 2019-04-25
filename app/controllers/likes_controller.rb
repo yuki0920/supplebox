@@ -3,7 +3,7 @@ class LikesController < ApplicationController
     product = Product.find(params[:product_id])
     current_user.like(product)
     flash[:success] = 'お気に入り登録をしました。'
-    redirect_back(fallback_location: root_path)    
+    redirect_back(fallback_location: root_path)
   end
   
   def destroy
