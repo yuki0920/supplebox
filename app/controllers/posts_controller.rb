@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = '口コミを投稿しました'
-      redirect_back(fallback_location: root_path)
+      redirect_to @product
     else
       flash.now[:danger] = '口コミの投稿に失敗しました'
       render 'products/show'
@@ -33,11 +33,12 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+  
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = '口コミを更新しました'
-      redirect_back(fallback_location: root_path)
+      redirect_to @post.product
     else
       flash.now[:danger] = '口コミの編集に失敗しました'
       render :edit
