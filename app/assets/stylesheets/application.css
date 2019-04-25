@@ -60,7 +60,7 @@ footer {
   height: 100%;
   max-width: 100%;
 }
-p.product-title {
+.product-title {
   /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -68,7 +68,7 @@ p.product-title {
   overflow: hidden;
 }
 
-p.product-brand {
+.product-brand {
   /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -90,6 +90,28 @@ p.product-brand {
   max-width: 100%;
 }
 /* product_detail */
+
+/* posts */
+.posts .panel-body {
+  height: 170px;
+}
+.posts .panel-heading {
+  height: 300px;
+}
+.posts .panel-heading img {
+  height: 100%;
+  max-width: 100%;
+}
+.posts-title {
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+
+/* posts */
 
 
 /* 追加分 */
