@@ -10,6 +10,9 @@ class PostsController < ApplicationController
     if @post.save
       flash[:success] = '口コミを投稿しました'
       redirect_back(fallback_location: root_path)
+    else
+      flash.now[:danger] = '口コミの投稿に失敗しました'
+      render 'products/show'
     end
   end
 
