@@ -1,15 +1,17 @@
-<% if current_user.like?(product) %>
-  <%= form_for(current_user.likes.find_by(product_id: product.id), html: { method: :delete }) do |f| %>
-    <%= hidden_field_tag :product_id, product.id %>
-    <%= button_tag(class: "btn btn-warning") do %>
-      <%= content_tag :span, "お気に入り済み", class: "glyphicon glyphicon-heart" %>
+<% if logged_in? %>
+  <% if current_user.like?(product) %>
+    <%= form_for(current_user.likes.find_by(product_id: product.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= button_tag(class: "btn btn-warning") do %>
+        <%= content_tag :span, "お気に入り済み", class: "glyphicon glyphicon-heart" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.likes.build) do |f| %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= button_tag(class: "btn btn-info") do %>
+        <%= content_tag :span, "お気に入り追加", class: "glyphicon glyphicon-heart-empty" %>
+      <% end %>
     <% end %>
   <% end %>
-<% else %>
-  <%= form_for(current_user.likes.build) do |f| %>
-    <%= hidden_field_tag :product_id, product.id %>
-    <%= button_tag(class: "btn btn-info") do %>
-      <%= content_tag :span, "お気に入り追加", class: "glyphicon glyphicon-heart-empty" %>
-    <% end %>
-  <% end %>
-<% end %>
+<% end %>  
