@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  
   def create
     product = Product.find(params[:product_id])
     current_user.like(product)
