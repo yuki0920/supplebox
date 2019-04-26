@@ -2,6 +2,9 @@
   <h3 class="mb-3">プロフィール編</h3>
   <!-- フォーム -->
   <%= form_for @user do |f| %>
+    <!--エラーメッセージ-->
+    <%= render 'layouts/error_messages', model: f.object %>
+  
     <!-- ニックネーム -->
     <div class="form-group row">
       <%= f.label :nickname, 'ニックネーム ', class:'col-md-3 col-form-label' %>
@@ -11,7 +14,7 @@
     </div>
     <!-- ネーム -->
     <div class="form-group row">
-      <%= f.label :name, 'ネーム ', class:'col-md-3 col-form-label' %>
+      <%= f.label :name, 'ユーザー名 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= f.text_field :name, class: "form-control" %>
       </div>

@@ -7,6 +7,40 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: ユーザー
+      post: 口コミ
+      product: 商品
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        nickname: ニックネーム
+        weight: 体重
+        height: 身長
+        gender: 性別
+        comment: 自己紹介
+        created_at: 登録日時
+        updated_at: 更新日時
+      post:
+        title: タイトル
+        content: 口コミ内容
+        picture: 写真
+        rate: 評価
+        created_at: 登録日時
+        updated_at: 更新日時
+      product:
+        title: タイトル
+        url: URL
+        image_url: 画像のURL
+        asin: 商品コード
+        price: 価格
+        brand_amazon_name: アマゾンのブランド名
+        official_url: 公式サイトのURL
+        created_at: 登録日時
+        updated_at: 更新日時
   date:
     abbr_day_names:
     - 日

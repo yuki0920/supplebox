@@ -1,7 +1,7 @@
 <div class='post row mb-4'>
   <div class='col-md-8 mb-3'>
     <img class='media-object img-rounded' src='<%= gravatar_url(post.user, { size: 50 }) %>' alt=''>
-    <h4 class='mb-3'><%= post.user.name %> さんの ＜<%= post.product.title %>＞ の口コミ</h4>
+    <h4 class='mb-3'><%= post.user.nickname %> さんの ＜<%= post.product.title %>＞ の口コミ</h4>
     <h5 class='mb-3'><%= post.rate %>点 <%= post.title %></h5>
     <p>投稿日時 <%= post.created_at %></p>
     <div class='product-picture'>

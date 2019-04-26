@@ -9,7 +9,7 @@
   <%= form_for(current_user.likes.build) do |f| %>
     <%= hidden_field_tag :product_id, product.id %>
     <%= button_tag(class: "btn btn-lg btn-info") do %>
-      <%= content_tag :span, "お気に入り登録解除", class: "glyphicon glyphicon-heart" %>
+      <%= content_tag :span, "お気に入り登録する", class: "glyphicon glyphicon-heart" %>
     <% end %>
   <% end %>
 <% end %>
