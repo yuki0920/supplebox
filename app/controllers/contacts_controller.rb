@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :require_user_logged_in
   
   def new
     @contact = Contact.new
