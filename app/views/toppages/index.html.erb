@@ -11,4 +11,14 @@
   </div>
 <% end %>
 
-<p>テスト</p>
+<h1>お気に入り商品ランキング</h1>
+<%= render 'rankings/products', {products: @products, ranking_counts: @ranking_counts } %>
+<div class='text-center'>
+  <%= link_to 'お気に入り商品をもっと見る', rankings_like_path, class: 'btn btn-success btn-lg' %>
+</div>
+
+<h1>最新の口コミ</h1>
+<%= render 'posts/posts', posts: @posts %>
+<div class='text-center'>
+  <%= link_to '最新の口コミをもっと見る', posts_path, class: 'btn btn-success btn-lg' %>
+</div>

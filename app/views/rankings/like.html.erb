@@ -1,31 +1,5 @@
 <h1>お気に入り商品ランキング</h1>
-<% if @products.present? %>
-  <div class="row">
-    <% @products.each_with_index do |product, index| %>
-      <div class="product">
-        <div class="col-md-3 col-sm-4 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-              <img src="<%= product.image_url %>" alt="" >
-            </div>
-            <div class="panel-body">
-              <p class="product-brand"><%= product.brand_amazon_name %></p>
-              <p class="product-title"><%= link_to product.title, product %></p>
-              <% if logged_in? %>
-                <div class="buttons text-center">
-                  <%= render 'likes/like_small_button', product: product %>
-                </div>
-              <% end %>
-            </div>
-            <div class="panel-footer">
-              <p class="text-center"><%= index+1 %>位 ： <%= @ranking_counts[product.id] %><span class="glyphicon glyphicon-heart"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+<%= render 'rankings/products', {products: @products, ranking_counts: @ranking_counts } %>
 <!--ページネーション-->
 <%= paginate @products %>
 </p><%= page_entries_info @products %></p>

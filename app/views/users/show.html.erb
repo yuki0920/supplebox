@@ -7,5 +7,9 @@
   <!--/ユーザーナビバー-->
   <!--口コミ一覧-->
   <%= render 'posts/posts', posts: @posts %>
+  <!--ページネーション-->
+  <%= paginate @posts %>
+  </p><%= page_entries_info @posts %></p>
+  
   <!--/口コミ一覧-->
 </div>
