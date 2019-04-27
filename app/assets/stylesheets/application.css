@@ -164,3 +164,22 @@ footer {
   width: 50px;
 }
 /*post*/
+
+/*service*/
+.features .feature {
+  margin-bottom: 30px;
+}
+.features .feature .feature-icon {
+  margin-bottom: 30px;
+  display: block;
+}
+.features .feature .feature-icon i {
+  font-size: 50px;
+  color: #7ee383;
+}
+.features .feature .feature-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+/*service*/
