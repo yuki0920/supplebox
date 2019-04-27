@@ -13,6 +13,9 @@ class User < ApplicationRecord
   #口コミ投稿との関連付け
   has_many :posts
   
+  #お問い合わせとの関連付け
+  has_many :contacts
+  
   #お気に入り機能追加用中間テーブル追加
   has_many :likes
   has_many :products, through: :likes
