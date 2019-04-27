@@ -11,9 +11,11 @@
             <div class="panel-body">
               <p class="product-brand"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= link_to product.title, product %></p>
-              <div class="buttons text-center">
-                <%= render 'likes/like_small_button', product: product %>
-              </div>
+              <% if logged_in? %>
+                <div class="buttons text-center">
+                  <%= render 'likes/like_small_button', product: product %>
+                </div>
+              <% end %>
             </div>
             <div class="panel-footer">
               <p class="text-center"><%= index+1 %>位 ： <%= @ranking_counts[product.id] %><span class="glyphicon glyphicon-heart"></span>
