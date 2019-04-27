@@ -15,19 +15,21 @@
                 <p class="product-title"><%= product.title %></p>
               <% end %>
               <div class="buttons text-center">
-                <% if product.persisted? %>
-                  <!--お気に入り登録・削除ボタン-->
-                  <%= render 'likes/like_small_button', product: product %>
-                  <!--商品登録削除ボタン-->
-                  <%= form_tag(product_path(product.id), method: :delete) do %>
-                    <%= hidden_field_tag :product_id, product.id %>
-                    <%= submit_tag '削除', class: 'btn btn-danger' %>
-                  <% end %>
-                <% else %>
-                  <!--商品登録ボタン-->
-                  <%= form_tag(products_path) do %>
-                    <%= hidden_field_tag :product_asin, product.asin %>
-                    <%= submit_tag '登録', class: 'btn btn-primary' %>
+                <% if logged_in? %>
+                  <% if product.persisted?%>
+                    <!--お気に入り登録・削除ボタン-->
+                    <%= render 'likes/like_small_button', product: product %>
+                    <!--商品登録削除ボタン-->
+                    <%= form_tag(product_path(product.id), method: :delete) do %>
+                      <%= hidden_field_tag :product_id, product.id %>
+                      <%= submit_tag '削除', class: 'btn btn-danger' %>
+                    <% end %>
+                  <% else %>
+                    <!--商品登録ボタン-->
+                    <%= form_tag(products_path) do %>
+                      <%= hidden_field_tag :product_asin, product.asin %>
+                      <%= submit_tag '登録', class: 'btn btn-primary' %>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>

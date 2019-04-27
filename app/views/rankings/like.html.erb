@@ -12,9 +12,7 @@
               <p class="product-brand"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= link_to product.title, product %></p>
               <div class="buttons text-center">
-                <% if logged_in? %>
-                  <%= render 'likes/like_small_button', product: product %>
-                <% end %>
+                <%= render 'likes/like_small_button', product: product %>
               </div>
             </div>
             <div class="panel-footer">
