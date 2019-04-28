@@ -1,2 +1,5 @@
 <h1>最新の口コミ</h1>
 <%= render 'posts/posts', posts: @posts %>
+<!--ページネーション-->
+<%= paginate @posts %>
+</p><%= page_entries_info @posts %></p>

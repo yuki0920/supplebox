@@ -6,5 +6,9 @@ class Like < ApplicationRecord
   
   def self.ranking
     self.group(:product_id).order('count_product_id DESC').count(:product_id)
-  end  
+  end
+
+  def self.ranking_top
+    self.group(:product_id).order('count_product_id DESC').limit(4).count(:product_id)
+  end    
 end

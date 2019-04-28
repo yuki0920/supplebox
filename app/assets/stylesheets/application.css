@@ -8,6 +8,10 @@ footer {
   margin-top: 40px;
 }
 
+h1,h2 {
+  text-align: center;
+}
+
 /* navbar */
 .navbar {
   background-color: #fff;
@@ -22,7 +26,7 @@ footer {
   margin-top: -20px;
   margin-bottom: 20px;
   width: 100%;
-  height: 300px;
+  height: 1000px;
   background: url("/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
 }
@@ -39,15 +43,17 @@ footer {
 }
 .cover .cover-inner .cover-contents h1 {
   margin: 0 0 20px 0;
-  color: #5cb85c;
+  color: #ffffff;
   font-weight: bold;
   letter-spacing: 0.15em;
+  font-size: 4vw;
 }
 
 /* search */
 .search {
   margin-bottom: 20px;
 }
+
 
 /* product */
 .product .panel-body {
@@ -91,27 +97,41 @@ footer {
 }
 /* product_detail */
 
-/* posts */
-.posts .panel-body {
-  height: 170px;
+/*posts*/
+.posts {
+  background-color: #ffffff;
+  margin:10px 0;
+  padding: 10px 0;
 }
-.posts .panel-heading {
-  height: 300px;
+.posts-prof {
+  font-size: 11px;
 }
-.posts .panel-heading img {
-  height: 100%;
-  max-width: 100%;
+.posts-content {
+  background-color: #e3f9e3;
+  border-radius: 25px;
 }
-.posts-title {
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
+.posts-content img {
+  max-width: 40% ;
+  margin-bottom: 10px ;
+}
+.posts-product{
+  border:solid;
+  border-color: #f4f4f4;
+  border-radius: 25px;
 }
 
+.posts-product img {
+  max-width: 25%;
+  height: auto;
+  float: left;
+  margin-right: 10px;  
+}
 
-/* posts */
+.edit-button {
+  text-align: right;
+  margin-top: 10px;
+}
+/*posts*/
 
 
 /* 追加分 */
@@ -164,3 +184,26 @@ footer {
   width: 50px;
 }
 /*post*/
+
+/*service*/
+#features {
+  background-color: #ffffff;
+}
+.features .feature {
+  margin-bottom: 30px;
+}
+.features .feature .feature-icon {
+  margin-bottom: 30px;
+  display: block;
+}
+.features .feature .feature-icon i {
+  font-size: 50px;
+  color: #7ee383;
+}
+.features .feature .feature-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+/*service*/
+

@@ -1,34 +1,26 @@
-<!--口コミ一覧-->
 <% if posts.present? %>
-  <div class="row">
-    <% posts.each do |post| %>
-      <div class="posts">
-        <div class="col-md-3 col-sm-4 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-              <img src="<%= post.product.image_url %>" alt="" >
-            </div>
-            <div class="panel-body">
-              <div class="user-profile">
-                <img class='media-object img-rounded' src='<%= gravatar_url(post.user, { size: 50 }) %>' alt=''>
-                <p class="posts-title"><%= post.product.title %></p>
-              </div>
-              <div class="content">
-                <p class="posts-title"><%= link_to post.title, post %></p>
-              </div>
-              <div class="buttons text-center">
-                <% if current_user == post.user %>
-                  <%= link_to '編集', edit_post_path(post), method: :get, class:'btn btn-default' %>
-                  <%= link_to '削除', post, method: :delete, class:'btn btn-default' %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+  <% posts.each do |post| %>
+    <div class="row posts">
+      <div class="col-md-2 posts-user">
+        <img class='media-object img-rounded' src='<%= gravatar_url(post.user, { size: 75 }) %>' alt=''>
+        <p class="posts-title"><%= link_to post.user.name, post.user %></p>
+        <p class="posts-prof"><%= post.user.gender %> <%= post.user.height %> <%= post.user.weight %></p>
       </div>
-    <% end %>
-  </div>
-  <!--ページネーション-->
-  <%= paginate posts %>
-  </p><%= page_entries_info posts %></p>
+      <div class="col-md-6 mb-3 posts-content">
+        <h4 class="mb-3">評価：<%= post.rate %>点 | <%= post.title %></h4>
+        <p><%= post.content %></p>
+        <%= image_tag post.picture.url, class:'img-fluid' if post.picture? %>
+      </div>
+      <div class="col-md-4 posts-product">
+        <img src="<%= post.product.image_url %>" alt="">
+        <p><%= link_to post.product.title, post.product %></p>
+      </div>
+      <div class="col-md-12 edit-button">
+        <% if current_user == post.user %>
+          <%= link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-default' %>
+          <%= link_to '口コミを削除', post, method: :delete, class:'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
