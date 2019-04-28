@@ -8,6 +8,10 @@ footer {
   margin-top: 40px;
 }
 
+h1,h2 {
+  text-align: center;
+}
+
 /* navbar */
 .navbar {
   background-color: #fff;
@@ -49,6 +53,7 @@ footer {
 .search {
   margin-bottom: 20px;
 }
+
 
 /* product */
 .product .panel-body {
@@ -92,27 +97,41 @@ footer {
 }
 /* product_detail */
 
-/* posts */
-.posts .panel-body {
-  height: 170px;
+/*posts*/
+.posts {
+  background-color: #ffffff;
+  margin:10px 0;
+  padding: 10px 0;
 }
-.posts .panel-heading {
-  height: 300px;
+.posts-prof {
+  font-size: 11px;
 }
-.posts .panel-heading img {
-  height: 100%;
-  max-width: 100%;
+.posts-content {
+  background-color: #e3f9e3;
+  border-radius: 25px;
 }
-.posts-title {
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
+.posts-content img {
+  max-width: 40% ;
+  margin-bottom: 10px ;
+}
+.posts-product{
+  border:solid;
+  border-color: #f4f4f4;
+  border-radius: 25px;
 }
 
+.posts-product img {
+  max-width: 25%;
+  height: auto;
+  float: left;
+  margin-right: 10px;  
+}
 
-/* posts */
+.edit-button {
+  text-align: right;
+  margin-top: 10px;
+}
+/*posts*/
 
 
 /* 追加分 */
@@ -167,6 +186,9 @@ footer {
 /*post*/
 
 /*service*/
+#features {
+  background-color: #ffffff;
+}
 .features .feature {
   margin-bottom: 30px;
 }
@@ -184,3 +206,4 @@ footer {
   font-weight: bold;
 }
 /*service*/
+
