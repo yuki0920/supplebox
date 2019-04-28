@@ -12,7 +12,7 @@ h1,h2 {
   text-align: center;
 }
 
-a:hover {
+a {
   color: #4fd2c2;
 }
 
@@ -259,14 +259,11 @@ a:hover {
   font-size: 20px;
   letter-spacing: 2px;
   color: #ccc;
-  border: 2px solid #9a9fa5;
   float: left;
   padding: 7px 10px 7px 12px;
-  text-transform: uppercase;
 }
 #footer .footer-logo a:hover, #footer .footer-logo a:active, #footer .footer-logo a:focus {
   color: #fff;
-  border-color: #fff;
   text-decoration: none;
 }
 #footer ul {
