@@ -27,3 +27,4 @@
 /config/master.key
 .env
 /config/initializers/mailer.rb
+/app/mailers/contact_mailer.rb
