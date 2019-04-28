@@ -4,14 +4,15 @@
     <% users.each do |user| %>
       <li class="media">
         <div class="media-left">
-          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 75 }) %>" alt="">
         </div>
         <div class="media-body">
           <div>
-            <%= user.name %>
+            <%= link_to user.name, user %> さん（口コミ<%= user.posts.count %>件）
           </div>
           <div>
-            <p><%= link_to 'プロフィールを確認する', user_path(user) %></p>
+            <p><%= user.gender %> <%= user.height %> <%= user.weight %></p>
+            <div><%= render 'relationships/follow_button', user: user %></div>
           </div>
         </div>
       </li>
