@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
+  get 'policy', to: 'toppages#policy'
+  get 'privacypolicy', to: 'toppages#privacypolicy'
   get 'rankings/like', to: 'rankings#like'
   get 'contacts', to: 'contacts#new'
   post 'contacts', to: 'contacts#create'
