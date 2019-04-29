@@ -1,11 +1,12 @@
 class ContactMailer < ApplicationMailer
-default from: 'yukichallenge.com@gmail.com'
+default from: 'suppleboxmanager@gmail.com'
   def creation_email(contact)
     @contact = contact
     mail(
-      subject: 'お問い合わせ',
-      to: 'ywsep20@gmail.com',
-      from: 'yukichallenge.com@gmail.com'
+      subject: 'SuppleBoxへのお問い合わせありがとうございます。',
+      to: contact.email,
+      cc: ENV['GMAIL_USERNAME'],
+      from: ENV['GMAIL_USERNAME']
       )
   end
 end
