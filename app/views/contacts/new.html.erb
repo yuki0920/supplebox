@@ -6,6 +6,22 @@
   <!--エラーメッセージ-->
   <%= render 'layouts/error_messages', model: f.object %>
   
+  <!-- お名前 -->
+  <div class="form-group row">
+    <%= f.label :name, 'お名前 ', class:'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  
+  <!-- メールアドレス -->
+  <div class="form-group row">
+    <%= f.label :email, 'メールアドレス ', class:'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+  
   <!-- タイトル -->
   <div class="form-group row">
     <%= f.label :title, 'タイトル ', class:'col-md-3 col-form-label' %>

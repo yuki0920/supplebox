@@ -1,12 +1,14 @@
 class ContactsController < ApplicationController
-  before_action :require_user_logged_in
-  
   def new
     @contact = Contact.new
   end
   
   def create
-    @contact = current_user.contacts.build(contact_params)
+    if logged_in?
+      @contact = current_user.contacts.build(contact_params)
+    else
+      @contact = Contact.new(contact_params)
+    end
     if @contact.save
       ContactMailer.creation_email(@contact).deliver_now
       flash[:success] = 'お問い合わせを送信しました'
@@ -20,6 +22,6 @@ class ContactsController < ApplicationController
   private
   
   def contact_params
-    params.require(:contact).permit(:title, :content, :user_id)
+    params.require(:contact).permit(:title, :content, :user_id, :name , :email)
   end
 end

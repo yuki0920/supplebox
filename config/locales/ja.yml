@@ -41,6 +41,11 @@ ja:
         official_url: 公式サイトのURL
         created_at: 登録日時
         updated_at: 更新日時
+      contact:
+        name: お名前
+        email: メールアドレス
+        title: 件名
+        content: お問い合わせ内容
   date:
     abbr_day_names:
     - 日
