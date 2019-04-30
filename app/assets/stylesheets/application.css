@@ -120,13 +120,39 @@ a {
 .posts-prof {
   font-size: 11px;
 }
-.posts-content {
-  background-color: #e3f9e3;
-  border-radius: 15px;
-}
+/*.posts-content {*/
+/*  background-color: #e3f9e3;*/
+/*  border-radius: 15px;*/
+/*}*/
 .posts-content img {
   max-width: 40% ;
   margin-bottom: 10px ;
+}
+.posts-content {
+  position: relative;
+  display: inline-block;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  font-size: 16px;
+  background: #e3f9e3;
+  border-radius: 15px;
+  
+}
+
+.posts-content:before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e3f9e3;
+}
+
+.posts-content p {
+  margin: 0;
+  padding: 0;
 }
 .posts-product{
   border:solid;
