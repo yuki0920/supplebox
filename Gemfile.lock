@@ -500,6 +500,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  launchy
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mini_magick
