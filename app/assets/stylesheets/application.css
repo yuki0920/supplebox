@@ -38,7 +38,7 @@ a {
   margin-top: -20px;
   margin-bottom: 20px;
   width: 100%;
-  height: 900px;
+  height: auto;
   background: url("/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
 }
@@ -61,6 +61,10 @@ a {
   font-size: 6vw;
   text-shadow: black 1px 1px 0px, black -1px 1px 0px,
              black 1px -1px 0px, black -1px -1px 0px;
+}
+
+.cover h1 {
+  padding: 3em 0;
 }
 
 /* search */
