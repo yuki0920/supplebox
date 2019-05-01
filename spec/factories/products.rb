@@ -1,12 +1,8 @@
 FactoryBot.define do
   factory :product do
     title { 'テストアイテム' }
-    url { 'URL' }
-    image_url { 'IMAGE_URL' }
-    asin { 'TEST' }
-    price { '1000' }
-    brand_amazon_name { 'テストブランド' }
-    user
-    prouct
+    url { 'testproduct@supplebox.jp' }
+    image_url { 'testproductimage@supplebox.jp' }
+    asin { 'TESTPRODUCT' }
   end
 end
