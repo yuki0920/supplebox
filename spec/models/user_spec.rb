@@ -67,5 +67,26 @@ RSpec.describe User, type: :model do
     end
     
   end
+  
+  describe 'follow/unfollow/following?メソッドを検証する場合' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:other_user) { FactoryBot.create(:user) }
+    
+    it 'followしていないとfollow状態にならないこと' do
+      expect(user.following?(other_user)).to eq false
+    end
 
+    it 'followしているとfollow状態になること' do
+      user.follow(other_user)
+      expect(other_user.followers).to include user
+      expect(user.following?(other_user)).to eq true
+    end
+
+    it 'followしてunfollowするとfollow状態にならないこと' do
+      user.follow(other_user)
+      user.unfollow(other_user)
+      expect(user.following?(other_user)).to eq false
+    end
+    
+  end
 end
