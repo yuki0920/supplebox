@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  it '新規登録できること' do
+    user = FactoryBot.build(:user)
+    expect(user).to be_valid
+  end
   
   describe 'ユーザー名を検証する場合' do
-    it '新規登録できること' do
-      user = FactoryBot.build(:user)
-      expect(user).to be_valid
-    end
 
     it 'ユーザー名が無いと新規登録できないこと' do
       user = FactoryBot.build(:user, name: nil)
