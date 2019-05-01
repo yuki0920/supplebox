@@ -11,6 +11,7 @@ ja:
       user: ユーザー
       post: 口コミ
       product: 商品
+      contact: お問い合わせ
     attributes:
       user:
         name: ユーザー名
@@ -35,7 +36,7 @@ ja:
         title: タイトル
         url: URL
         image_url: 画像のURL
-        asin: 商品コード
+        asin: アイテムコード
         price: 価格
         brand_amazon_name: アマゾンのブランド名
         official_url: 公式サイトのURL

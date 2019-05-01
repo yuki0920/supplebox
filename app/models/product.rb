@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   validates :url, presence: true
   validates :image_url, presence: true, length: { maximum: 255 }
   ## ASINコードで一意に識別
-  validates :asin, uniqueness: true, length: { maximum: 255 }
+  validates :asin, presence: true, uniqueness: true, length: { maximum: 255 }
   
   
   # 口コミ投稿との関連付け
