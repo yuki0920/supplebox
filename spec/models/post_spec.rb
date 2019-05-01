@@ -25,5 +25,23 @@ RSpec.describe Post, type: :model do
    post.valid?
    expect(post.errors[:content]).to include('を入力してください')
   end
+  
+  it '口コミ評価が整数でないと無効な状態であること' do
+    post = FactoryBot.build(:post, rate: '1.5')
+    post.valid?
+    expect(post.errors[:rate]).to include('は整数で入力してください')
+  end
+  
+  it '口コミ評価が1未満だと無効な状態であること' do
+    post = FactoryBot.build(:post, rate: '-1')
+    post.valid?
+    expect(post.errors[:rate]).to include('は1以上の値にしてください')
+  end
+  
+  it '口コミ評価が5超だと無効な状態であること' do
+    post = FactoryBot.build(:post, rate: '6')
+    post.valid?
+    expect(post.errors[:rate]).to include('は5以下の値にしてください')
+  end
 
 end
