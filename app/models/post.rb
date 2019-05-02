@@ -16,6 +16,7 @@ class Post < ApplicationRecord
     greater_than_or_equal_to: 1 
   }
   validates :content, presence: true
+  validates :user_id, uniqueness: { scope: [:product_id] }
   
   # 画像サイズ
   validate :picture_size
