@@ -32,8 +32,8 @@ RSpec.describe Product, type: :model do
   end
   
   it '重複したアイテムコードなら無効な状態であること' do
-    FactoryBot.create(:product)
-    product = FactoryBot.build(:product)
+    FactoryBot.create(:product, asin: 'TESTPRODUCT1')
+    product = FactoryBot.build(:product, asin: 'TESTPRODUCT1')
     product.valid?
     expect(product.errors[:asin]).to include('はすでに存在します')
   end
