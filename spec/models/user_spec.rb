@@ -89,4 +89,41 @@ RSpec.describe User, type: :model do
     end
     
   end
+  
+  describe 'like/unlike/like?メソッドを検証する場合' do
+    let(:user) { FactoryBot.create(:user) }
+    let(:other_user) { FactoryBot.create(:user) }
+    let(:product) { FactoryBot.create(:product) }
+    let(:other_product) { FactoryBot.create(:product) }
+    
+    context 'likeしていない状態の場合' do
+      it '有効でないこと' do
+        expect(user.like?(product)).to eq false
+      end
+    end
+    
+    context 'likeしている状態の場合' do
+      before do
+        user.like(product)
+      end
+      
+      it 'likeしたアイテムが有効であること' do
+        expect(user.like?(product)).to eq true
+      end
+      
+      it 'likeしていないアイテムが有効でないこと' do
+        expect(user.like?(other_product)).to eq false
+        expect(other_user.like?(other_product)).to eq false
+        expect(other_user.like?(product)).to eq false
+      end
+      
+      it 'unlikeするとアイテムが有効でないこと' do
+        user.unlike(product)
+        expect(user.like?(product)).to eq false
+      end
+      
+    end
+
+  end
+  
 end
