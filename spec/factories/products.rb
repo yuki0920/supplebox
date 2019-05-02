@@ -3,6 +3,6 @@ FactoryBot.define do
     title { 'テストアイテム' }
     url { 'testproduct@supplebox.jp' }
     image_url { 'testproductimage@supplebox.jp' }
-    asin { 'TESTPRODUCT' }
+    sequence(:asin) { |n| "TESTPRODUCT#{n}" }
   end
 end
