@@ -27,12 +27,20 @@ describe 'ユーザー表示機能', type: :system do
     expect(page).to have_content 'プロフィールを更新しました'
   end
   
-  it "他のユーザーの編集ページにはアクセスできない" do
+  it '他のユーザーの編集ページにはアクセスできないこと' do
     sign_in_as user
     visit edit_user_path(other_user)
     expect(page).not_to have_current_path edit_user_path(other_user)
     expect(page).to have_current_path user_path(user)
   end
+  
+  it 'アカウントを削除できること' do
+    sign_in_as user
+    expect {
+      click_on 'アカウントを削除する'
+    }.to change{ User.count }.by(-1)
+    expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
+  end  
   
   describe '一覧表示機能' do
     before do
