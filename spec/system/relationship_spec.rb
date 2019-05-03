@@ -18,11 +18,12 @@ describe 'ユーザーフォロー機能', type: :system do
 
   context '他のユーザーをフォローしている場合' do
     before do
+      FactoryBot.create(:relationship, user: user, follow: other_user)
+    end
+    
+    it 'フォロー解除できること' do
       sign_in_as user
       visit user_path(other_user)
-      click_on "Follow"
-    end
-    it 'フォロー解除できること' do
       expect {
         click_on "Unfollow"
       }.to change(Relationship, :count).by(-1)
