@@ -30,13 +30,6 @@ RSpec.describe Contact, type: :model do
       expect(user.errors[:email]).to include('を入力してください')
     end
     
-    it '重複したメールアドレスなら無効な状態であること' do
-      FactoryBot.create(:contact)
-      user = FactoryBot.build(:contact)
-      user.valid?
-      expect(user.errors[:email]).to include('はすでに存在します')
-    end
-    
     it 'メールアドレスに@が含まれていないなら無効な状態であること' do
       user = FactoryBot.build(:contact, email: 'supplebox.jp' )
       user.valid?
