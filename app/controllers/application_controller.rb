@@ -1,11 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_filter :ensure_domain
   protect_from_forgery with: :exception
+  before_filter :ensure_domain
 
-  include SessionsHelper
-
-  private
-  
   # redirect correct server from herokuapp domain for SEO
   def ensure_domain
    return unless /\.herokuapp.com/ =~ request.host
@@ -20,6 +16,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  include SessionsHelper
+
+  private
   
   def counts(user)
     @count_posts = user.posts.count
@@ -27,4 +27,5 @@ class ApplicationController < ActionController::Base
     @count_followers = user.followers.count
     @count_like_products = user.products.count
   end
+  
 end
