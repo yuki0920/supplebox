@@ -10,9 +10,9 @@ describe 'ユーザーフォロー機能', type: :system do
       sign_in_as user
       visit user_path(other_user)
       expect {
-        click_on "Follow"
+        click_on "フォローする"
       }.to change(Relationship, :count).by(1)
-      expect(page).to have_content 'ユーザーをフォローしました。'
+      expect(page).to have_content 'ユーザーをフォローしました。' 
     end
   end
 
@@ -21,11 +21,21 @@ describe 'ユーザーフォロー機能', type: :system do
       FactoryBot.create(:relationship, user: user, follow: other_user)
     end
     
+    it 'ユーザーのフォロー状況が表示されていること' do
+      visit followings_user_path(user)
+      expect(page).to have_content other_user.name
+    end
+
+    it 'ユーザーのフォロー状況が表示されていること' do
+      visit followers_user_path(other_user)
+      expect(page).to have_content user.name
+    end
+    
     it 'フォロー解除できること' do
       sign_in_as user
       visit user_path(other_user)
       expect {
-        click_on "Unfollow"
+        click_on "フォロー中"
       }.to change(Relationship, :count).by(-1)
       expect(page).to have_content 'ユーザーのフォローを解除しました。'
     end
