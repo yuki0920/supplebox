@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  
   before_filter :ensure_domain
+  FQDN = 'supplebox.jp'
 
   # redirect correct server from herokuapp domain for SEO
   def ensure_domain
@@ -8,7 +10,7 @@ class ApplicationController < ActionController::Base
   
    # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
    port = ":#{request.port}" unless [80, 443].include?(request.port)
-   redirect_to "#{request.protocol}#{supplebox.jp}#{port}#{request.path}", status: :moved_permanently
+   redirect_to "#{request.protocol}#{FQDN}#{port}#{request.path}", status: :moved_permanently
   end  
 
   def require_user_logged_in
