@@ -45,6 +45,14 @@ class UsersController < ApplicationController
    end
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:success] = 'アカウントを削除しました。またのご利用をお待ちしております。'
+      redirect_to root_url
+    end
+  end
+  
   def like_products
     @user = User.find(params[:id])
     @products = @user.products.page(params[:page]).per(10)

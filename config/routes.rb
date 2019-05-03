@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'contacts', to: 'contacts#new'
   post 'contacts', to: 'contacts#create'
  
-  resources :users, only: [:show, :create, :index, :edit, :update, :index] do
+  resources :users, only: [:show, :create, :index, :edit, :update, :destroy] do
     member do
       get :followings
       get :followers

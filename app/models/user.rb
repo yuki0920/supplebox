@@ -11,13 +11,13 @@ class User < ApplicationRecord
   has_secure_password
   
   #口コミ投稿との関連付け
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   #お問い合わせとの関連付け
-  has_many :contacts
+  has_many :contacts, dependent: :destroy
   
   #お気に入り機能追加用中間テーブル追加
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :products, through: :likes
   
   # お気に入り追加
@@ -37,9 +37,9 @@ class User < ApplicationRecord
   end
   
   #　フォロー機能追加用中間テーブル
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user
   
   # フォロー登録
