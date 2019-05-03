@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe 'ユーザー表示機能', type: :system do
-
+  let!(:user) { FactoryBot.create(:user) }
+  
   it '新しいユーザーを作成できること' do
     expect {
       visit root_path
@@ -18,15 +19,7 @@ describe 'ユーザー表示機能', type: :system do
   end
 
   it 'プロフィールを編集出来ること' do
-    # sign_in_as user
-    visit root_path
-    click_link '新規登録'
-    fill_in 'ユーザー名', with: 'TestUser'
-    fill_in 'ニックネーム', with: 'テストユーザー'
-    fill_in 'メールアドレス', with: 'tester@supplebox.jp'
-    fill_in 'パスワード', with: 'password'
-    fill_in 'パスワード（確認）', with: 'password'
-    click_on '登録する'
+    sign_in_as user
     click_on 'プロフィールを編集する'
     fill_in '自己紹介', with: 'こんにちは.'
     click_on '更新する'
