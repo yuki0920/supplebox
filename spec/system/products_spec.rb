@@ -12,8 +12,7 @@ describe 'アイテム登録機能', type: :system do
   #   expect(page).to have_content 'プロテイン'
   # end
 
-  it '登録したアイテム詳細画面を確認できること' do
-    sign_in_as user
+  it 'ログイン状態に関わらず登録したアイテム詳細画面を確認できること' do
     visit products_path
     click_link product.title
     expect(page).to have_content('Amazonで詳しく見る')

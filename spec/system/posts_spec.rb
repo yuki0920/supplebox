@@ -25,17 +25,17 @@ describe '口コミ投稿機能', type: :system do
       sign_in_as user
     end
     
-    it '一覧表示に表示される' do
+    it '一覧表示に表示されること' do
       click_on '口コミを探す'
       expect(page).to have_content 'テストタイトル' #トップページの口コミ
     end
     
-    it 'トップページに表示される' do
+    it 'トップページに表示されること' do
       click_on 'トップページ'
       expect(page).to have_content 'テストタイトル' #トップページの口コミ
     end
     
-    it 'ユーザー詳細ページに表示される' do
+    it 'ユーザー詳細ページに表示されること' do
       click_on 'マイページ'
       expect(page).to have_content 'テストタイトル' #ユーザープロフィールの口コミ
     end
