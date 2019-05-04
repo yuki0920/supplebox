@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'アイテム登録機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
+  let!(:product) { FactoryBot.create(:product) }
   
   # it 'アイテムを検索できること' do
   #   sign_in_as user
@@ -11,10 +12,7 @@ describe 'アイテム登録機能', type: :system do
   #   expect(page).to have_content 'プロテイン'
   # end
 
-  it '登録したアイテム詳細画面を確認できること' do
-    user = FactoryBot.create(:user)
-    sign_in_as user
-    product = FactoryBot.create(:product)
+  it 'ログイン状態に関わらず登録したアイテム詳細画面を確認できること' do
     visit products_path
     click_link product.title
     expect(page).to have_content('Amazonで詳しく見る')
