@@ -6,14 +6,18 @@
         <p class="posts-title"><%= link_to post.user.name, post.user %></p>
         <p class="posts-prof"><%= post.user.gender %> <%= post.user.height %> <%= post.user.weight %></p>
       </div>
-      <div class="col-md-6 mb-3 posts-content">
-        <h4 class="mb-3">評価：<%= post.rate %>点 | <%= post.title %></h4>
-        <p><%= post.content %></p>
-        <%= image_tag post.picture.url, class:'img-fluid' if post.picture? %>
+      <div class="col-md-6 mb-3">
+        <div class=" posts-content">
+          <h4 class="mb-3">評価：<%= post.rate %>点 | <%= post.title %></h4>
+          <p><%= post.content %></p>
+          <%= image_tag post.picture.url, class:'img-fluid' if post.picture? %>
+        </div>
       </div>
-      <div class="col-md-4 posts-product">
-        <img src="<%= post.product.image_url %>" alt="">
-        <p><%= link_to post.product.title, post.product %></p>
+      <div class="col-md-4">
+        <div class="posts-product">
+          <img src="<%= post.product.image_url %>" alt="">
+          <p><%= link_to post.product.title, post.product %></p>
+        </div>
       </div>
       <div class="col-md-12 edit-button">
         <% if current_user == post.user %>
