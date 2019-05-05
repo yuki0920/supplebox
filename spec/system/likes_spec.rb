@@ -27,6 +27,11 @@ describe 'アイテムお気に入り登録機能' do
       expect(page).to have_content product.title
     end
     
+    it 'お気に入りしたアイテムがトップページに表示されている' do
+      visit root_path
+      expect(page).to have_content product.title
+    end
+    
     it 'お気に入りしたアイテムがユーザープロフィールに表示されている' do
       visit like_products_user_path(user)
       expect(page).to have_content product.title
