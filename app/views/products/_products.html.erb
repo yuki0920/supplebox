@@ -19,10 +19,12 @@
                   <% if product.persisted?%>
                     <!--お気に入り登録・削除ボタン-->
                     <%= render 'likes/like_small_button', product: product %>
-                    <!--商品登録削除ボタン-->
-                    <%= form_tag(product_path(product.id), method: :delete) do %>
-                      <%= hidden_field_tag :product_id, product.id %>
-                      <%= submit_tag '削除', class: 'btn btn-danger' %>
+                    <% if current_user.admin? %>
+                      <!--商品登録削除ボタン-->
+                      <%= form_tag(product_path(product.id), method: :delete, data: { confirm: "商品を削除します。よろしいでしょうか？"}) do %>
+                        <%= hidden_field_tag :product_id, product.id %>
+                        <%= submit_tag '商品削除', class: 'btn btn-danger' %>
+                      <% end %>
                     <% end %>
                   <% else %>
                     <!--商品登録ボタン-->
