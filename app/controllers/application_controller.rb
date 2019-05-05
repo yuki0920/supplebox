@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
 
   private
   
+  # 管理者かどうか確認
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+  
   def counts(user)
     @count_posts = user.posts.count
     @count_followings = user.followings.count

@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'ユーザー登録機能', type: :system do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:other_user) { FactoryBot.create(:user) }  
+  let!(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
+  let!(:other_user) { FactoryBot.create(:user) }
+  let!(:admin_user) { FactoryBot.create(:user, admin: true) }
   
   describe '新規作成機能' do
     it '新しいユーザーを作成できること' do
@@ -41,19 +42,33 @@ describe 'ユーザー登録機能', type: :system do
   end
   
   describe '削除機能' do
-    it 'アカウントを削除できること' do
-      sign_in_as user
+    it '管理者ユーザーは一般ユーザーのアカウントを削除できること' do
+      sign_in_as admin_user
+      visit user_path(user)
       expect {
         click_on 'アカウントを削除する'
       }.to change{ User.count }.by(-1)
       expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
-    end  
+    end
+    
+    it '管理者ユーザーは管理者ユーザーのアカウントを削除できないこと' do
+      sign_in_as admin_user
+      expect(page).to_not have_content 'アカウントを削除する'
+    end
+
+    it '一般ユーザーはアカウントを削除できないこと' do
+      sign_in_as user
+      expect(page).to_not have_content 'アカウントを削除する'
+    end
+    
   end
   
   describe '一覧表示機能' do
     it 'ログイン状態に関わらずユーザーが表示されること' do
       visit users_path
-      expect(page).to have_content user.name
+      expect(page).to have_content '一般ユーザー'
+      click_link '一般ユーザー'
+      expect(page).to have_content '一般ユーザー'
     end
   end
   

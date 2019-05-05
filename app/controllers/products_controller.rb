@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: :destroy
   
   def new
     if params[:keyword].present?
