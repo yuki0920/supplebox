@@ -53,10 +53,8 @@ class ProductsController < ApplicationController
       end
       if @product.save
         flash[:success] = '商品を登録しました'
-      else
-        flash.now[:danger] = '商品の登録に失敗しました'
+        redirect_back(fallback_location: root_path)
       end
-      redirect_back(fallback_location: root_path)      
     end
   end
   
