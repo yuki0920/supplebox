@@ -34,12 +34,49 @@ a {
 }
 
 /* btn */
+.btn {
+  margin-bottom:5px;
+}
 .btn-outline-success{
   color:#5cb85c ;
   border-color:#4cae4c ;
 }
 
+.btn-outline-success:hover{
+  color:#ffffff ;
+  background-color:#4cae4c ;
+}
+
+.btn-outline-warning{
+  color:#f0ad4e;
+  border-color:#eea236;
+}
+
+.btn-outline-warning:hover{
+  color:#000;
+  background-color:#eea236;
+}
+
 /* btn */
+
+/*pagination*/
+.pagination li a {
+  color:#5cb85c;
+}
+
+.pagination .active a {
+  color:#ffffff;
+  background-color:#4cae4c ;
+  border:1px solid #ddd;
+} 
+
+.pagination .active a:hover{
+  color:#ffffff ;
+  background-color:#4cae4c ;
+}
+/*pagination*/
+
+
 
 /* cover */
 .cover {
@@ -217,10 +254,15 @@ a {
   text-align: center;
   color: #777;
 }
+
+.user-profile .status .comment ul li {
+  width: 480px;
+}
+
 .user-profile .status ul li:last-child {
   border: none;
 }
-.user-profile .status ul li .status-label {
+.user-profile .status .status-label {
   font-size: 12px;
 }
 .user-profile .status ul li .status-value {

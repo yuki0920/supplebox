@@ -45,13 +45,13 @@ RSpec.describe Post, type: :model do
     end
   end
   
-  describe '口コミ内容を検証する場合' do
-    it '口コミ内容がないと無効な状態であること' do
-     post.content = nil
-     post.valid?
-     expect(post.errors[:content]).to include('を入力してください')
-    end
-  end
+  # describe '口コミ内容を検証する場合' do
+  #   it '口コミ内容がないと無効な状態であること' do
+  #   post.content = nil
+  #   post.valid?
+  #   expect(post.errors[:content]).to include('を入力してください')
+  #   end
+  # end
   
   describe 'ユーザーを検証する場合' do
     it '1つのアイテムに対して口コミが重複すると無効な状態であること' do

@@ -1,4 +1,5 @@
 <div class="row">
+  <!--登録済みユーザー用-->
   <div class="col-xs-offset-3 col-xs-6">
     <div class="panel panel-default">
       <div class="panel-heading">ログイン</div>
@@ -14,8 +15,24 @@
             <%= f.password_field :password, class: 'form-control' %>
           </div>
 
-          <%= f.submit 'ログイン', class: 'btn btn-primary btn-block' %>
+          <%= f.submit 'ログイン', class: 'btn btn-success btn-block' %>
         <% end %>
+      </div>
+    </div>
+  </div>
+  <!--テストユーザー用-->
+  <div class="col-xs-offset-3 col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">テストアカウント</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <p>test@supplebox.jp</p>
+        </div>
+        <div class="form-group">
+          <label>パスワード</label>
+          <p>test</p>
+        </div>
       </div>
     </div>
   </div>
