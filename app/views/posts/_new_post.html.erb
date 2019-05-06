@@ -27,7 +27,9 @@
   <div class="form-group row">
     <%= f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label' %>
     <div class="col-md-9">
-      <%= f.text_area :content, class: "form-control", rows: "8" %>
+      <%= f.text_area :content, class: "form-control", rows: "8",
+        placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。
+まずは投稿してみましょう！投稿してから編集もできますよ！' %>
     </div>
   </div>
   
@@ -42,7 +44,7 @@
   <!-- 確認ボタン -->
   <div class="form-group row justify-content-end">
     <div class="col-md-9">
-      <%= f.submit '投稿する', class: 'btn btn-success' %>
+      <%= f.submit '投稿する' %>
     </div>
   </div>
   
