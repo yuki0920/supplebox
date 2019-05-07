@@ -6,7 +6,7 @@
     <h1><%= user.nickname %></h1>
   </div>
   <div class="text-center">
-    <%= render 'relationships/follow_button', user: user %>
+    <%= render 'relationships/follow_button' %>
     <% if current_user == user %>
       <%= link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default' %>
     <% end %>
