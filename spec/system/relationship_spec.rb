@@ -12,7 +12,7 @@ describe 'ユーザーフォロー機能', type: :system do
       expect {
         click_on "フォローする"
       }.to change(Relationship, :count).by(1)
-      expect(page).to have_content 'ユーザーをフォローしました。' 
+      # expect(page).to have_content 'ユーザーをフォローしました。' 
     end
   end
 
@@ -37,7 +37,7 @@ describe 'ユーザーフォロー機能', type: :system do
       expect {
         click_on "フォロー中"
       }.to change(Relationship, :count).by(-1)
-      expect(page).to have_content 'ユーザーのフォローを解除しました。'
+      # expect(page).to have_content 'ユーザーのフォローを解除しました。'
     end
   end
 end

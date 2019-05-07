@@ -1,0 +1,6 @@
+<%= form_for(current_user.relationships.find_by(follow_id: @user.id), 
+    html: { method: :delete },
+    remote: true) do |f| %>
+  <div><%= hidden_field_tag :follow_id, @user.id %></div>
+  <%= f.submit 'フォロー中', class: 'btn btn-danger' %>
+<% end %>
