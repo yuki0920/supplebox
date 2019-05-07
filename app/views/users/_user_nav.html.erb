@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs nav-justified">
-  <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>口コミ一覧 <span class="badge"><%= @count_posts %><% end %></li>
+  <li class="<%= 'active' if current_page?(user_path(@user)) %>"><%= link_to user_path(@user) do %>口コミ <span class="badge"><%= @count_posts %><% end %></li>
   <li class="<%= 'active' if current_page?(like_products_user_path(@user)) %>"><%= link_to like_products_user_path(@user) do %>お気に入り <span class="badge"><%= @count_like_products %></span><% end %></li>
-  <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>Followings <span class="badge"><%= @count_followings %></span><% end %></li>
-  <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
+  <li class="<%= 'active' if current_page?(followings_user_path(@user)) %>"><%= link_to followings_user_path(@user) do %>フォロー <span class="badge"><%= @count_followings %></span><% end %></li>
+  <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>フォロワー<span class="badge"><%= @count_followers %></span><% end %></li>
 </ul>

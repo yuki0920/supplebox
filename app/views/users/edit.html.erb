@@ -23,28 +23,31 @@
     <div class="form-group row">
       <%= f.label :gender, '性別 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-1">
-        <%= f.select :gender, [["男性", "男性"], ["女性", "女性"], ["ヒミツ", "ヒミツ"]] %>
+        <%= f.select :gender, [['-', '-'] ,['ヒミツ', 'ヒミツ'] ,['男性', '男性'] ,['女性', '女性']] %>
       </div>
     </div>
     <!-- 身長 -->
     <div class="form-group row">
       <%= f.label :height, '身長 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-1">
-        <%= f.select :height, [["〜150cm以下", "〜150cm以下"], ["150cm〜160cm", "150cm〜160cm"], ["160cm〜170cm", "160cm〜170cm"]] %>
+        <%= f.select :height, [['-', '-'], ['150cm未満', '150cm未満'], ['155〜160cm', '155〜160cm'], ['160〜165cm', '160〜165cm'], ['165〜170cm', '165〜170cm'], ['170〜175cm', '170〜175cm'], ['175〜180cm', '175〜180cm'], ['180〜185cm', '180〜185cm'], ['185〜190cm', '185〜190cm'], ['190〜195cm', '190〜195cm'], ['195〜200cm', '195〜200cm'], ['200cm超', '200cm超'] ] %>
       </div>
     </div>
     <!-- 性別 -->
     <div class="form-group row">
       <%= f.label :weight, '体重 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-1">
-        <%= f.select :weight, [["〜40kg以下", "〜40kg以下"], ["40kg〜50kg", "女性40kg〜50kg"], ["50kg〜60kg", "50kg〜60kg"]] %>
+        <%= f.select :weight, [['-', '-'], ['40kg未満', '40kg未満'], ['40〜45kg', '40〜45kg'], ['45〜50kg', '45〜50kg'], ['50〜55kg', '50〜55kg'], ['55〜60kg', '55〜60kg'], ['60〜65kg', '60〜65kg'], ['65〜70kg', '65〜70kg'], ['70〜75kg', '70〜75kg'], ['75〜80kg', '75〜80kg'], ['85〜90-kg', '85〜90-kg'], ['90〜95kg', '90〜95kg'], ['95〜100kg', '95〜100kg'], ['100kg超', '100kg超'] ] %>
       </div>
     </div>
     <!-- 口コミ -->
     <div class="form-group row">
       <%= f.label :comment, '自己紹介 ', class:'col-md-3 col-form-label' %>
       <div class="col-md-9">
-        <%= f.text_area :comment, class: "form-control", rows: "3" %>
+        <%= f.text_area :comment, class: "form-control", rows: "3", 
+          placeholder:"自己紹介を記入してみましょう。
+例）週2回ジム通い/プロテイン1日3杯/筋トレは人生！"
+            %>
       </div>
     </div>
     <!-- 確認ボタン -->
