@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :destroy, :show, :edit, :show, :update, :index]
   resources :likes, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :brands, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   
 end

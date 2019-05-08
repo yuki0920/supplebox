@@ -11,6 +11,9 @@ class Product < ApplicationRecord
   
   # 口コミ投稿との関連付け
   has_many :posts
+  
+  # ブランドとの関連付け
+  belongs_to :brand, optional: true
 
   #お気に入り機能追加用中間テーブル追加
   has_many :likes, foreign_key: 'product_id', dependent: :destroy

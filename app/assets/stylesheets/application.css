@@ -161,6 +161,27 @@ a {
 }
 /* product_detail */
 
+/* brand_detail */
+.brand_detail .panel-body {
+  height: 30px;
+}
+.brand_detail .panel-heading {
+  height: 240px;
+}
+.brand_detail .panel-heading img {
+  height: 100%;
+  max-width: 100%;
+}
+/* brand_detail */
+
+/* brands */
+.brands .posts-product{
+  border-color: #c5c5c5;
+  border-radius: 15px;
+}
+
+/* brands */
+
 /*posts*/
 .posts {
   background-color: #ffffff;

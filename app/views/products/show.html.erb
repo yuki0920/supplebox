@@ -21,8 +21,14 @@
           <td>¥<%= number_with_delimiter(@product.price) %></td>
         </tr>
         <tr>
-          <th>メーカー</th>
-          <td><%= @product.brand_amazon_name %></td>
+          <th>ブランド</th>
+          <td>
+          <% if @product.brand_id %>
+              <%= link_to @product.brand.name, @product.brand %>
+            <% else %>
+              <%= @product.brand_amazon_name %>
+            <% end %>
+          </td>  
         </tr>
       </tbody>
     </table>
