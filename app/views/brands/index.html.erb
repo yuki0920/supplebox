@@ -1,0 +1,15 @@
+<h1>ブランド一覧</h1>
+<% if @brands.present? %>
+  <div class="row">
+    <% @brands.each do |brand| %>
+      <div class="brands">
+        <div class="col-md-4 col-xs-12">
+          <div class="posts-product">
+            <%= image_tag brand.picture.url if brand.picture? %>
+            <p><%= link_to brand.name, brand %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

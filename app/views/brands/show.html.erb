@@ -4,7 +4,7 @@
     <div class="brand_detail">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <img src="" alt="">
+          <%= image_tag @brand.picture.url, class:'img-fluid' if @brand.picture? %>
         </div>
         <div class="panel-body">
         </div>
@@ -21,6 +21,12 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div>
+    <% if (( current_user.admin? && current_user != @user ) if logged_in?) %>
+      <%= link_to 'ブランドを編集する', edit_brand_path, class:'btn btn-default' %>
+      <%= link_to 'ブランドを削除する', @brand , method: :delete, data: { confirm: "ブランドを削除します。よろしいでしょうか？"} , class:'btn btn-danger' %>
+    <% end %>
   </div>
 </div>
 <!--アイテム一覧-->
