@@ -1,0 +1,28 @@
+<!--商品情報-->
+<div class="row p-3">
+  <div class="col-md-3">
+    <div class="brand_detail">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <img src="" alt="">
+        </div>
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h3>ブランド詳細情報</h3>
+    <h4><%= @brand.name %></h4>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><%= @brand.content%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--アイテム一覧-->
+<h1><%= @brand.name %>のアイテム一覧</h1>
+<%= render 'products/products', products: @products %>
