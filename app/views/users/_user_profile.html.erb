@@ -1,6 +1,6 @@
 <div class="user-profile">
   <div class="icon text-center">
-    <img src="<%= gravatar_url(user, size: 100) %>" alt="" class="img-circle">
+    <img src="<%= user.picture.url %>" alt="" class="img-circle" width="100px">
   </div>
   <div class="name text-center">
     <h1><%= user.nickname %></h1>
