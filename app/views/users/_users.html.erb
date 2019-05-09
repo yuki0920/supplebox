@@ -1,22 +1,19 @@
-<% if users.any? %>
+<% if users.present? %>
   <!--ユーザー一覧-->
-  <ul class="media-list">
+  <div class="row">
     <% users.each do |user| %>
-      <li class="media">
-        <div class="media-left">
-          <%= image_tag user.picture.url ,width: '84px' %>
-        </div>
-        <div class="media-body">
-          <div>
-            <%= link_to user.name, user %> さん（口コミ<%= user.posts.count %>件）
-          </div>
-          <div>
-            <p><%= user.gender %> <%= user.height %> <%= user.weight %></p>
+      <div class>
+        <div class="col-md-4 col-xs-12">
+          <div class="users">
+            <%= image_tag user.picture.url %>
+            <%= link_to user.name, user %></br>
+            <%= user.gender %>/<%= user.height %>/<%= user.weight %></br>
+            <div class="comment"><%= user.comment %></div>
           </div>
         </div>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
   <!--ページネーション-->
   <%= paginate users %>
   </p><%= page_entries_info users %></p>
