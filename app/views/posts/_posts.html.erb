@@ -2,7 +2,7 @@
   <% posts.each do |post| %>
     <div class="row posts">
       <div class="col-md-2 posts-user">
-        <img class='media-object img-rounded' src='<%= gravatar_url(post.user, { size: 75 }) %>' alt=''>
+        <%= image_tag post.user.picture.url ,width: '100px' %>
         <p class="posts-title"><%= link_to post.user.name, post.user %></p>
         <p class="posts-prof"><%= post.user.gender %> <%= post.user.height %> <%= post.user.weight %></p>
       </div>
