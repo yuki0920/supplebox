@@ -1,11 +1,19 @@
 <div class="p-3">
-  <h3 class="mb-3">プロフィール編</h3>
+  <h3 class="mb-3">プロフィール編集</h3>
   <!-- フォーム -->
   <%= form_for @user do |f| %>
     <!--エラーメッセージ-->
     <%= render 'layouts/error_messages', model: f.object %>
   
-    <!-- ニックネーム -->
+     <!-- プロフィール画像 -->
+    <div class="form-group row">
+      <%= f.label :picture, 'プロフィール画像 ', class:'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= image_tag @user.picture.url, class:'img-fluid' if @user.picture? %>
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </div>
+    </div>
+   <!-- ニックネーム -->
     <div class="form-group row">
       <%= f.label :nickname, 'ニックネーム ', class:'col-md-3 col-form-label' %>
       <div class="col-md-9">
@@ -56,6 +64,15 @@
         <%= f.submit '更新する', class: 'btn btn-primary' %>
       </div>
     </div>
+    <!--画像チェック-->
+    <script type="text/javascript">
+      $('#post_picture').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+          alert('最大のファイルサイズは5MBです。ファイルサイズを小さくしてください。');
+        }
+      });
+    </script>  
   <% end %>
   <!-- /フォーム -->
 </div>

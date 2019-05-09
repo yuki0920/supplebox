@@ -4,7 +4,7 @@
     <% users.each do |user| %>
       <li class="media">
         <div class="media-left">
-          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 84 }) %>" alt="">
+          <%= image_tag user.picture.url ,width: '84px' %>
         </div>
         <div class="media-body">
           <div>
