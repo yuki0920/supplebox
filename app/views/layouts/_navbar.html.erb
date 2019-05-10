@@ -47,7 +47,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="gravatar">
-                  <img src="<%= gravatar_url(current_user, size: 20) %>" alt="" class="img-circle">
+                  <%= image_tag current_user.picture.url, width:"20px", class:"img-circle" %>
                 </span>
                 <%= current_user.name %>
                 <span class="caret"></span>

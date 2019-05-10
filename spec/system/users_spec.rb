@@ -28,7 +28,7 @@ describe 'ユーザー登録機能', type: :system do
       visit edit_user_path(user)
       sign_in_as user
       click_on 'プロフィールを編集する'
-      # attach_file 'プロフィール画像', 'tmp/test/test_normal_image.jpg'
+      attach_file 'プロフィール画像', 'tmp/test/test_normal_image.jpg'
       fill_in '自己紹介', with: 'こんにちは.'
       click_on '更新する'
       expect(page).to have_content 'プロフィールを更新しました'
