@@ -175,10 +175,10 @@ a {
 /* brand_detail */
 
 /* brands */
-.brands .posts-product{
-  border-color: #c5c5c5;
-  border-radius: 15px;
-}
+/*.brands .posts-product{*/
+/*  border-color: #c5c5c5;*/
+/*  border-radius: 15px;*/
+/*}*/
 
 /* brands */
 
@@ -293,8 +293,8 @@ a {
 .users{
   width: 100%;
   margin: 10px 0;
-  border-color: #f4f4f4;
-  border-radius: 15px;
+  /*border-color: #f4f4f4;*/
+  /*border-radius: 15px;*/
   display: inline-block;
 }
 
