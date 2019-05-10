@@ -31,5 +31,25 @@ describe 'アイテム登録機能', type: :system do
     visit products_path
     expect(page).to_not have_content '商品削除'
   end
+  
+  describe '編集機能' do
+    it '管理者は商品を編集できること' do
+      sign_in_as admin_user
+      visit edit_product_path(product)
+      fill_in 'アイテムタイトル', with: 'アップデートアイテム'
+      fill_in 'ブランドID', with: '1'
+      fill_in '公式サイトのURL', with: 'officialproduct@supplebox.jp'
+      click_on '更新する'
+      expect(page).to have_content 'アイテムを更新しました'
+      expect(page).to have_content 'アップデートアイテム'
+    end
+    
+    it '一般ユーザーは商品を編集できないこと' do
+      sign_in_as user
+      visit edit_product_path(product)
+      expect(page).to have_content 'プロテイン選びで失敗したくないあなたへ'
+    end
+  
+  end
 
 end
