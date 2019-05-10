@@ -175,10 +175,10 @@ a {
 /* brand_detail */
 
 /* brands */
-.brands .posts-product{
-  border-color: #c5c5c5;
-  border-radius: 15px;
-}
+/*.brands .posts-product{*/
+/*  border-color: #c5c5c5;*/
+/*  border-radius: 15px;*/
+/*}*/
 
 /* brands */
 
@@ -289,6 +289,32 @@ a {
 .user-profile .status ul li .status-value {
   font-size: 18px;
 }
+
+.users{
+  width: 100%;
+  margin: 10px 0;
+  /*border-color: #f4f4f4;*/
+  /*border-radius: 15px;*/
+  display: inline-block;
+}
+
+.users img {
+  max-width: 25%;
+  height: auto;
+  float: left;
+  margin-right: 10px;  
+}
+
+.users .comment{
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/*users*/
+
 /*post*/
 .post {
   margin: 10px 10px;
