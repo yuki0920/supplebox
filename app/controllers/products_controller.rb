@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:edit, :update, :destroy]
   
   def new
     if params[:keyword].present?
@@ -58,6 +58,21 @@ class ProductsController < ApplicationController
     end
   end
   
+  def edit
+    @product = Product.find(params[:id])
+  end
+  
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+        flash[:success] = 'アイテムを更新しました'
+        redirect_to @product
+    else
+        render :edit
+        flash.now[:danger] = 'アイテムの更新に失敗しました'
+    end
+  end
+  
   def destroy
     @product = Product.find_by(id: params[:product_id])
     if @product.destroy
@@ -76,5 +91,11 @@ class ProductsController < ApplicationController
     # @products = Product.all.page(params[:page]).per(12)
     @q = Product.all.ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page]).per(12)
+  end
+  
+  private
+  
+  def product_params
+    params.require(:product).permit(:title, :url, :image_url, :asin, :price, :brand_amazon_name, :official_url, :brand_id, :category_id)
   end
 end
