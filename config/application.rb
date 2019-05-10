@@ -8,6 +8,8 @@ module Supplebox
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    # 日本時間対応
+    config.time_zone = 'Asia/Tokyo'
     
     #不要ファイルを作成しないよう設定を追加
     config.generators do |g|
