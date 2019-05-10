@@ -208,14 +208,14 @@ a {
   width: 100%;
   font-size: 16px;
   background: #e3f9e3;
-  border-radius: 0 15px 15px 15px ;
+  border-radius: 15px ;
   
 }
 
 .posts-content:before {
   content: "";
   position: absolute;
-  top: 20%;
+  top: 35px;
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
