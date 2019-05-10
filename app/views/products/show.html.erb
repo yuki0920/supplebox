@@ -23,7 +23,7 @@
         <tr>
           <th>ブランド</th>
           <td>
-          <% if @product.brand_id %>
+          <% if @product.brand_id = nil %>
               <%= link_to @product.brand.name, @product.brand %>
             <% else %>
               <%= @product.brand_amazon_name %>
