@@ -1,4 +1,4 @@
-<h2>商品一覧情報</h2>
+<h2>アイテム一覧情報</h2>
 
 <div class="search">
   <div class="row">
@@ -7,13 +7,13 @@
         <div class="form-group">
           <%= f.text_field :title_cont, class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>
         </div>
-        <%= f.submit '商品を検索', class: "btn btn-success btn-lg" %>
+        <%= f.submit 'アイテムを検索', class: "btn btn-success btn-lg" %>
       <% end %>
       </div>
   </div>
 </div>
 
-<!--商品一覧-->
+<!--アイテム一覧-->
 <%= render 'products', producs: @products %>
 <!--ページネーション-->
 <%= paginate @products %>

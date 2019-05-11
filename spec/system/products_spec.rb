@@ -10,7 +10,7 @@ describe 'アイテム登録機能', type: :system do
     #   sign_in_as user
     #   visit new_product_path
     #   fill_in 'keyword', with: 'プロテイン'
-    #   click_on '商品を検索'
+    #   click_on 'アイテムを検索'
     #   expect(page).to have_content 'プロテイン'
     # end
   # end
@@ -25,22 +25,22 @@ describe 'アイテム登録機能', type: :system do
   
   describe '削除機能' do
     
-    it '管理者は商品を削除できること' do
+    it '管理者はアイテムを削除できること' do
       sign_in_as admin_user
       visit products_path
-      expect{click_on '商品削除'}.to change{ Product.count}.by(-1)
-      expect(page).to have_content '商品を削除しました'
+      expect{click_on 'アイテム削除'}.to change{ Product.count}.by(-1)
+      expect(page).to have_content 'アイテムを削除しました'
     end
   
-    it '一般ユーザーは商品を削除できないこと' do
+    it '一般ユーザーはアイテムを削除できないこと' do
       sign_in_as user
       visit products_path
-      expect(page).to_not have_content '商品削除'
+      expect(page).to_not have_content 'アイテム削除'
     end
   end
   
   describe '編集機能' do
-    xit '管理者は商品を編集できること' do
+    xit '管理者はアイテムを編集できること' do
       sign_in_as admin_user
       visit product_path(product)
       visit edit_product_path(product)
@@ -52,7 +52,7 @@ describe 'アイテム登録機能', type: :system do
       expect(page).to have_content 'アップデートアイテム'
     end
     
-    it '一般ユーザーは商品を編集できないこと' do
+    it '一般ユーザーはアイテムを編集できないこと' do
       sign_in_as user
       visit edit_product_path(product)
       expect(page).to have_content 'プロテイン選びで失敗したくないあなたへ'
