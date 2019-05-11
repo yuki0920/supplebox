@@ -1,5 +1,6 @@
 <!--商品情報-->
 <div class="row p-3">
+  <h2>ブランド詳細情報</h2>
   <div class="col-md-3">
     <div class="brand_detail">
       <div class="panel panel-default">
@@ -12,7 +13,6 @@
     </div>
   </div>
   <div class="col-md-9">
-    <h3>ブランド詳細情報</h3>
     <h4><%= @brand.name %></h4>
     <table class="table">
       <tbody>
@@ -30,5 +30,5 @@
   </div>
 </div>
 <!--アイテム一覧-->
-<h1><%= @brand.name %>のアイテム一覧</h1>
+<h2><%= @brand.name %>のアイテム一覧</h2>
 <%= render 'products/products', products: @products %>
