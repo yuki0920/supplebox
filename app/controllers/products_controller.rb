@@ -16,13 +16,13 @@ class ProductsController < ApplicationController
         country: 'jp',
       )
 
-      # 商品のタイトル,画像URL, 詳細ページURLの取得
+      # アイテムのタイトル,画像URL, 詳細ページURLの取得
       @products = []
       products.items.each do |item|
-        product = Product.find_or_initialize_by(asin: item.get('ASIN')) #商品にユニークなコードで探索
-        product.title = item.get('ItemAttributes/Title') #商品タイトル
-        product.image_url = item.get('LargeImage/URL') #商品画像URL
-        product.url =  item.get('DetailPageURL') #商品詳細URL
+        product = Product.find_or_initialize_by(asin: item.get('ASIN')) #アイテムにユニークなコードで探索
+        product.title = item.get('ItemAttributes/Title') #アイテムタイトル
+        product.image_url = item.get('LargeImage/URL') #アイテム画像URL
+        product.url =  item.get('DetailPageURL') #アイテム詳細URL
         product.brand_amazon_name = item.get('ItemAttributes/Brand') #ブランド(メーカー)
         product.price = item.get('OfferSummary/LowestNewPrice/Amount') #実売価格を¥表示
 
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
         )
       end
       if @product.save
-        flash[:success] = '商品を登録しました'
+        flash[:success] = 'アイテムを登録しました'
         redirect_back(fallback_location: root_path)
       end
     end
@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find_by(id: params[:product_id])
     if @product.destroy
-      flash[:success] = '商品を削除しました'
+      flash[:success] = 'アイテムを削除しました'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -85,6 +85,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @post = Post.new
     @posts = Post.where(product_id: @product.id).page(params[:page]).per(10)
+    if @product.brand_id?
+      @brand = Brand.find(@product.brand_id)
+    end
+
   end
   
   def index

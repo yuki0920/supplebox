@@ -1,5 +1,6 @@
-<!--商品情報-->
+<!--アイテム情報-->
 <div class="row p-3">
+  <h2>アイテム詳細情報</h2>
   <div class="col-md-4">
     <div class="product_detail">
       <div class="panel panel-default">
@@ -12,7 +13,6 @@
     </div>
   </div>
   <div class="col-md-8">
-    <h3>商品詳細情報</h3>
     <h4><%= @product.title %></h4>
     <table class="table">
       <tbody>
@@ -23,11 +23,8 @@
         <tr>
           <th>ブランド</th>
           <td>
-          <% if @product.brand_id = nil %>
-              <%= link_to @product.brand.name, @product.brand %>
-            <% else %>
-              <%= @product.brand_amazon_name %>
-            <% end %>
+            <%= link_to @brand.name, @brand if @brand %>
+            <%= @product.brand_amazon_name unless @brand %>
           </td>  
         </tr>
       </tbody>
@@ -39,13 +36,13 @@
     </div>
   </div>
 </div>
-<!--/商品情報-->
+<!--/アイテム情報-->
 <!--口コミ一覧-->
 <%= render 'posts/posts', posts: @posts %>
 <!--/口コミ一覧-->
 <!-- 口コミ投稿フォーム -->
 <div class="p-3">
-  <h3 class="mb-3">口コミ投稿フォーム</h3>
+  <h2 class="mb-3">口コミ投稿する</h2>
   <%= render 'posts/new_post', post: @post, product: @product %>
 </div>  
 <!-- / 口コミ投稿フォーム -->

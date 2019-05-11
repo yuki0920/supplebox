@@ -10,7 +10,7 @@ ja:
     models:
       user: ユーザー
       post: 口コミ
-      product: 商品
+      product: アイテム
       contact: お問い合わせ
     attributes:
       user:
