@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   # 画像アップローダーの指定
   mount_uploader :picture, PictureUploader
   
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 50 }
   validates :rate, presence: true
   validates :rate, numericality: { 
     only_integer: true, 
@@ -16,6 +16,7 @@ class Post < ApplicationRecord
     greater_than_or_equal_to: 1 
   }
   # validates :content, presence: true
+  validates :content, length: { maximum: 300 }
   validates :user_id, uniqueness: { scope: [:product_id] }
   
   # 画像サイズ

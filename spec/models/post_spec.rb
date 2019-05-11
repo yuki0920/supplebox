@@ -16,6 +16,12 @@ RSpec.describe Post, type: :model do
      post.valid?
      expect(post.errors[:title]).to include('を入力してください')
     end
+    
+    it 'タイトルが50文字超だと無効な状態であること' do
+      post.title = "a" * 51
+      post.valid?
+     expect(post.errors[:title]).to include('は50文字以内で入力してください')
+    end
   end
   
   describe '口コミ評価を検証する場合' do
@@ -45,13 +51,20 @@ RSpec.describe Post, type: :model do
     end
   end
   
-  # describe '口コミ内容を検証する場合' do
-  #   it '口コミ内容がないと無効な状態であること' do
-  #   post.content = nil
-  #   post.valid?
-  #   expect(post.errors[:content]).to include('を入力してください')
-  #   end
-  # end
+  describe '口コミ内容を検証する場合' do
+    xit '口コミ内容がないと無効な状態であること' do
+    post.content = nil
+    post.valid?
+    expect(post.errors[:content]).to include('を入力してください')
+    end
+    
+    it '口コミ内容が300文字超だと無効な状態であること' do
+      post.content = "a" * 301
+      post.valid?
+     expect(post.errors[:content]).to include('は300文字以内で入力してください')
+    end
+    
+  end
   
   describe 'ユーザーを検証する場合' do
     it '1つのアイテムに対して口コミが重複すると無効な状態であること' do

@@ -67,6 +67,14 @@ RSpec.describe User, type: :model do
     end
   end
   
+  describe '自己紹介を検証する場合' do
+    it '100文字超だと無効な状態であること' do
+      user.comment = "a" * 101
+      user.valid?
+      expect(user.errors[:comment]).to include('は100文字以内で入力してください')
+    end
+  end
+  
   describe 'follow/unfollow/following?メソッドを検証する場合' do
     context 'followしていない状態の場合' do
       it '無効な状態であること' do
