@@ -4,5 +4,6 @@ FactoryBot.define do
     url { 'testproduct@supplebox.jp' }
     image_url { 'testproductimage@supplebox.jp' }
     sequence(:asin) { |n| "TESTPRODUCT#{n}" }
+    association :brand
   end
 end

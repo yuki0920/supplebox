@@ -4,7 +4,7 @@ describe 'アイテム登録機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, admin: true) }
   let!(:product) { FactoryBot.create(:product) }
-  
+
   # describe '検索機能' do
     # it 'アイテムを検索できること' do
     #   sign_in_as user
@@ -40,8 +40,9 @@ describe 'アイテム登録機能', type: :system do
   end
   
   describe '編集機能' do
-    it '管理者は商品を編集できること' do
+    xit '管理者は商品を編集できること' do
       sign_in_as admin_user
+      visit product_path(product)
       visit edit_product_path(product)
       fill_in 'アイテムタイトル', with: 'アップデートアイテム'
       fill_in 'ブランドID', with: '1'
