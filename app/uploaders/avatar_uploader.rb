@@ -13,9 +13,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   ## テスト環境時のみ保存先を変更
   def store_dir
     if Rails.env.test?
-      "Myfile/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
-      "Myfile/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
   
