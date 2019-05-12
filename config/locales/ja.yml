@@ -12,6 +12,7 @@ ja:
       post: 口コミ
       product: アイテム
       contact: お問い合わせ
+      brand: ブランド
     attributes:
       user:
         name: ユーザー名
@@ -47,6 +48,9 @@ ja:
         email: メールアドレス
         title: 件名
         content: お問い合わせ内容
+      brand:
+        name: ブランド名
+        content: ブランド紹介
   date:
     abbr_day_names:
     - 日
