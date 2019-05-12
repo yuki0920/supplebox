@@ -1,4 +1,18 @@
 <h2>最新の口コミ</h2>
+<!--口コミ検索-->
+<div class="search">
+  <div class="row">
+    <div class="text-center">
+      <%= search_form_for @q, class:'form-inline' do |f| %>
+        <div class="form-group">
+          <%= f.text_field :content_or_product_title_cont, class: 'form-control input-lg', placeholder: "口コミ内容やアイテム名を検索", size: 40 %>
+        </div>
+        <%= f.submit '口コミを検索', class: "btn btn-success btn-lg" %>
+      <% end %>
+      </div>
+  </div>
+</div>
+<!--口コミ一覧-->
 <%= render 'posts/posts', posts: @posts %>
 <!--ページネーション-->
 <%= paginate @posts %>
