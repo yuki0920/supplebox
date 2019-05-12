@@ -3,7 +3,8 @@ class BrandsController < ApplicationController
   before_action :admin_user , only: [:new, :ceate, :edit, :update, :destroy ]
   
   def index
-    @brands = Brand.page(params[:page]).per(9)
+    @q = Brand.ransack(params[:q])
+    @brands = @q.result(distinct: true).page(params[:page]).per(9)
   end
   
   def show

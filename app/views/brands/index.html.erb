@@ -1,4 +1,19 @@
 <h2>ブランド一覧</h2>
+<!--ブランド検索-->
+<div class="search">
+  <div class="row">
+    <div class="text-center">
+      <%= search_form_for @q, class:'form-inline' do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name_cont, class: 'form-control input-lg', placeholder: "例）SAVAS や ザバス", size: 40 %>
+        </div>
+        <%= f.submit 'ブランドを検索', class: "btn btn-success btn-lg" %>
+      <% end %>
+      </div>
+  </div>
+</div>
+
+<!--ブランド一覧-->
 <% if @brands.present? %>
   <div class="row">
     <% @brands.each do |brand| %>
