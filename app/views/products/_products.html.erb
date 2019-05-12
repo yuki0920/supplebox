@@ -14,7 +14,6 @@
               <% else %>
                 <p class="product-title"><%= product.title %></p>
               <% end %>
-              <!--<p>口コミ評価 <%= product.posts.average(:rate) %>(<%= product.posts.count %>件)</p>-->
               <div class="buttons text-center">
                 <% if logged_in? %>
                   <% if product.persisted?%>
