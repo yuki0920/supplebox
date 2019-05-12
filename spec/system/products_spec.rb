@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'アイテム登録機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, admin: true) }
-  let!(:product) { FactoryBot.create(:product) }
+  let!(:product) { FactoryBot.create(:product, title: '一般アイテム') }
+  let!(:other_product) { FactoryBot.create(:product, title: 'その他のアイテム') }
 
   # describe '検索機能' do
     # it 'アイテムを検索できること' do
@@ -28,7 +29,7 @@ describe 'アイテム登録機能', type: :system do
     it '管理者はアイテムを削除できること' do
       sign_in_as admin_user
       visit products_path
-      expect{click_on 'アイテム削除'}.to change{ Product.count}.by(-1)
+      expect{click_on 'アイテム削除', match: :first}.to change{ Product.count}.by(-1)
       expect(page).to have_content 'アイテムを削除しました'
     end
   
