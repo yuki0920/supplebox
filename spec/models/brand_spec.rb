@@ -14,11 +14,19 @@ RSpec.describe Brand, type: :model do
   end
   
   describe 'ブランドネームを検証する場合' do
+    
     it 'ブランドネームが無いと無効な状態であること' do
       brand.name = nil
       brand.valid?
       expect(brand.errors[:name]).to include('を入力してください')
     end
+
+    it '50文字超だと無効な状態であること' do
+      brand.name = "a" * 101
+      brand.valid?
+      expect(brand.errors[:name]).to include('は50文字以内で入力してください')
+    end
+    
   end
   
   describe 'ブランド内容を検証する場合' do

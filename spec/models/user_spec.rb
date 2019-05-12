@@ -67,6 +67,31 @@ RSpec.describe User, type: :model do
     end
   end
   
+  describe 'パスワードを検証する場合' do
+    
+    it 'パスワードと確認用パスワードが一致していないと無効な状態であること' do
+      user.password = "password"
+      user.password_confirmation = "invalid_password"
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
+    end
+    
+    it 'パスワードが6文字未満なら無効な状態であること' do
+      user.password = user.password_confirmation = "a" * 5
+      user.valid?
+      expect(user.errors[:password]).to include('は6文字以上で入力してください')
+    end
+      
+  end
+  
+  describe '自己紹介を検証する場合' do
+    it '100文字超だと無効な状態であること' do
+      user.comment = "a" * 101
+      user.valid?
+      expect(user.errors[:comment]).to include('は100文字以内で入力してください')
+    end
+  end
+  
   describe 'follow/unfollow/following?メソッドを検証する場合' do
     context 'followしていない状態の場合' do
       it '無効な状態であること' do
