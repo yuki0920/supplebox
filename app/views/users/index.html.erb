@@ -6,7 +6,7 @@
     <div class="text-center">
       <%= search_form_for @q, class:'form-inline' do |f| %>
         <div class="form-group">
-          <%= f.text_field :name_or_nickname_cont, class: 'form-control input-lg', placeholder: "ユーザー名・ニックネームを入力", size: 40 %>
+          <%= f.text_field :name_or_nickname_cont, class: 'form-control input-lg', placeholder: "ユーザー名やニックネームを入力", size: 40 %>
         </div>
         <%= f.submit 'ユーザーを検索', class: "btn btn-success btn-lg" %>
       <% end %>

@@ -5,7 +5,7 @@
     <div class="text-center">
       <%= search_form_for @q, class:'form-inline' do |f| %>
         <div class="form-group">
-          <%= f.text_field :content_or_product_title_cont, class: 'form-control input-lg', placeholder: "口コミ内容やアイテム名を検索", size: 40 %>
+          <%= f.text_field :content_or_product_title_cont, class: 'form-control input-lg', placeholder: "口コミ内容やアイテム名を入力", size: 40 %>
         </div>
         <%= f.submit '口コミを検索', class: "btn btn-success btn-lg" %>
       <% end %>
