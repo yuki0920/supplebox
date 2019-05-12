@@ -3,7 +3,7 @@ class BrandsController < ApplicationController
   before_action :admin_user , only: [:new, :ceate, :edit, :update, :destroy ]
   
   def index
-    @brands = Brand.all
+    @brands = Brand.page(params[:page]).per(9)
   end
   
   def show
