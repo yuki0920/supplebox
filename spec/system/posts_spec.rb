@@ -4,7 +4,8 @@ describe '口コミ投稿機能', type: :system do
   
   let(:user) { FactoryBot.create(:user) }
   let(:product) { FactoryBot.create(:product) }
-  let!(:post) { FactoryBot.create(:post, user: user, product: product)}
+  let!(:post) { FactoryBot.create(:post, user: user, product: product, content: '一般の口コミ')}
+  let!(:other_post) { FactoryBot.create(:post, content: 'その他の口コミ')}
   
   describe '新規作成機能' do
     it '口コミ投稿できる場合' do
@@ -42,6 +43,29 @@ describe '口コミ投稿機能', type: :system do
     end
     
   end
+
+  describe '一覧検索機能' do
+    context '一致する口コミが存在する場合' do
+      it '口コミが表示されること' do
+        visit posts_path
+        fill_in 'q_content_or_product_title_cont', with: post.content
+        click_on '口コミを検索'
+        expect(page).to have_content post.content
+        expect(page).to_not have_content other_post.content
+      end
+    end
+    
+    context '一致する口コミが存在しない場合' do
+      it '口コミが表示されないこと' do
+        visit posts_path
+        fill_in 'q_content_or_product_title_cont', with: "架空の口コミ"
+        click_on '口コミを検索'
+        expect(page).to_not have_content post.content
+        expect(page).to_not have_content other_post.content
+      end
+    end
+  end
+
     
   describe '削除機能' do  
     it '口コミを削除できること' do

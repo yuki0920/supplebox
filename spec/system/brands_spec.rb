@@ -4,7 +4,8 @@ describe 'ブランド投稿機能', type: :system do
   
   let(:user) { FactoryBot.create(:user) }
   let(:admin_user) { FactoryBot.create(:user, admin: true) }
-  let!(:brand){ FactoryBot.create(:brand) }
+  let!(:brand){ FactoryBot.create(:brand, name: '一般ブランド') }
+  let!(:other_brand){ FactoryBot.create(:brand, name: 'その他のブランド') }
   
   describe '新規作成機能' do
     it '管理者はブランド登録できること' do
@@ -46,6 +47,28 @@ describe 'ブランド投稿機能', type: :system do
     it '一般ユーザーはブランド一覧を確認できること' do
       visit brands_path
       expect(page).to have_content(brand.name)
+    end
+  end
+  
+  describe '一覧検索機能' do
+    context '一致するブランド名が存在する場合' do
+      it 'ブランド名が表示されること' do
+        visit brands_path
+        fill_in 'q_name_cont', with: brand.name
+        click_on 'ブランドを検索'
+        expect(page).to have_content brand.name
+        expect(page).to_not have_content other_brand.name
+      end
+    end
+    
+    context '一致するブランド名が存在しない場合' do
+      it 'ブランド名が表示されないこと' do
+        visit brands_path
+        fill_in 'q_name_cont', with: "架空のブランド"
+        click_on 'ブランドを検索'
+        expect(page).to_not have_content brand.name
+        expect(page).to_not have_content other_brand.name
+      end
     end
   end
   
