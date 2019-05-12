@@ -10,6 +10,7 @@
             <div class="panel-body">
               <p class="product-brand"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= link_to product.title, product %></p>
+              <p>口コミ評価 <%= product.posts.average(:rate).to_f %> ( <%= product.posts.count %> 件)</p>
               <% if logged_in? %>
                 <div class="buttons text-center">
                   <%= render 'likes/like_small_button', product: product %>
