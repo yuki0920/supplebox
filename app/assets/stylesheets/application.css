@@ -49,11 +49,12 @@ a {
 
 .btn-outline-warning{
   color:#f0ad4e;
+  background-color:#ffffff;
   border-color:#eea236;
 }
 
 .btn-outline-warning:hover{
-  color:#000;
+  color:#ffffff ;
   background-color:#eea236;
 }
 
