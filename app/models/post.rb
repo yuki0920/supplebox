@@ -5,6 +5,9 @@ class Post < ApplicationRecord
   # 商品との関連付け
   belongs_to :product
 
+  # ページネーションの表示件数追加
+  paginates_per 10
+
   # 画像アップローダーの指定
   mount_uploader :picture, PictureUploader
   

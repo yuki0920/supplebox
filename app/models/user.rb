@@ -13,6 +13,9 @@ class User < ApplicationRecord
   
   has_secure_password
   
+  # ページネーションの表示件数追加
+  paginates_per 9
+  
   #口コミ投稿との関連付け
   has_many :posts, dependent: :destroy
   

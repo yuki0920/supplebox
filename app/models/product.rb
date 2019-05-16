@@ -8,6 +8,8 @@ class Product < ApplicationRecord
   ## ASINコードで一意に識別
   validates :asin, presence: true, uniqueness: true, length: { maximum: 255 }
   
+  # ページネーションの表示件数追加
+  paginates_per 12
   
   # 口コミ投稿との関連付け
   has_many :posts
