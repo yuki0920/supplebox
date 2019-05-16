@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @post = Post.new
-    @posts = Post.where(product_id: @product.id).page(params[:page]).per(10)
+    @posts = Post.where(product_id: @product.id).page(params[:page])
     if @product.brand_id?
       @brand = Brand.find(@product.brand_id)
     end
@@ -92,9 +92,8 @@ class ProductsController < ApplicationController
   end
   
   def index
-    # @products = Product.all.page(params[:page]).per(12)
     @q = Product.all.ransack(params[:q])
-    @products = @q.result(distinct: true).page(params[:page]).per(12)
+    @products = @q.result(distinct: true).page(params[:page])
   end
   
   private

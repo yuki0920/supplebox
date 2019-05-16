@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(10)
+    @posts = @user.posts.page(params[:page])
     counts(@user)
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(9)
+    @users = @q.result(distinct: true).page(params[:page])
   end
   
   def edit
@@ -57,19 +57,19 @@ class UsersController < ApplicationController
   
   def like_products
     @user = User.find(params[:id])
-    @products = @user.products.page(params[:page]).per(12)
+    @products = @user.products.page(params[:page])
     counts(@user)
   end
 
   def followings
     @user = User.find(params[:id])
-    @followings = @user.followings.page(params[:page]).per(9)
+    @followings = @user.followings.page(params[:page])
     counts(@user)
   end
   
   def followers
     @user = User.find(params[:id])
-    @followers = @user.followers.page(params[:page]).per(9)
+    @followers = @user.followers.page(params[:page])
     counts(@user)
   end  
   
