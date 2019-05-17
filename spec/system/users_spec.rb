@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'ユーザー登録機能', type: :system do
-  let!(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
-  let!(:other_user) { FactoryBot.create(:user, name: 'その他ユーザー') }
+  let!(:user) { FactoryBot.create(:user, nickname: '一般ユーザー') }
+  let!(:other_user) { FactoryBot.create(:user, nickname: 'その他ユーザー') }
   let!(:admin_user) { FactoryBot.create(:user, admin: true) }
   
   describe '新規作成機能' do
@@ -77,10 +77,10 @@ describe 'ユーザー登録機能', type: :system do
     context '一致するユーザー名が存在する場合' do
       it 'ユーザー名が表示されること' do
         visit users_path
-        fill_in 'q_name_or_nickname_cont', with: user.name
+        fill_in 'q_name_or_nickname_cont', with: user.nickname
         click_on 'ユーザーを検索'
-        expect(page).to have_content user.name
-        expect(page).to_not have_content other_user.name
+        expect(page).to have_content user.nickname
+        expect(page).to_not have_content other_user.nickname
       end
     end
     
