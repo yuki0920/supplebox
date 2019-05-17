@@ -2,7 +2,9 @@
   <% posts.each do |post| %>
     <div class="row posts">
       <div class="col-md-2 posts-user">
+        <%= link_to post.user do %>
         <%= image_tag post.user.picture.url ,width: '100px' %>
+        <% end %>
         <p class="posts-title"><%= link_to post.user.name, post.user %></p>
         <p class="posts-prof"><%= post.user.gender %> <%= post.user.height %> <%= post.user.weight %></p>
       </div>
@@ -15,10 +17,12 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="posts-product">
-          <img src="<%= post.product.image_url %>" alt="">
-          <p><%= link_to post.product.title, post.product %></p>
-        </div>
+        <%= link_to post.product do %>
+          <div class="posts-product">
+            <img src="<%= post.product.image_url %>" alt="">
+            <p><%=  post.product.title %></p>
+          </div>
+        <%end %>
       </div>
       <div class="col-md-12 edit-button">
         <% if current_user == post.user %>
