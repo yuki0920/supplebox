@@ -48,7 +48,7 @@ describe '口コミ投稿機能', type: :system do
     context '一致する口コミが存在する場合' do
       it '口コミが表示されること' do
         visit posts_path
-        fill_in 'q_content_or_product_title_cont', with: post.content
+        fill_in 'q_title_or_content_or_product_title_cont', with: post.content
         click_on '口コミを検索'
         expect(page).to have_content post.content
         expect(page).to_not have_content other_post.content
@@ -58,7 +58,7 @@ describe '口コミ投稿機能', type: :system do
     context '一致する口コミが存在しない場合' do
       it '口コミが表示されないこと' do
         visit posts_path
-        fill_in 'q_content_or_product_title_cont', with: "架空の口コミ"
+        fill_in 'q_title_or_content_or_product_title_cont', with: "架空の口コミ"
         click_on '口コミを検索'
         expect(page).to_not have_content post.content
         expect(page).to_not have_content other_post.content
