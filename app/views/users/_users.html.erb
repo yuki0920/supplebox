@@ -5,8 +5,10 @@
       <div class>
         <div class="col-md-4 col-xs-12">
           <div class="users">
-            <%= image_tag user.picture.url, width:"100px" %>
-            <%= link_to user.name, user %></br>
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.picture.url, width:"100px" %>
+              <%= user.nickname %></br>
+            <% end %>
             <%= user.gender %>/<%= user.height %>/<%= user.weight %></br>
             <div class="comment"><%= user.comment %></div>
           </div>
