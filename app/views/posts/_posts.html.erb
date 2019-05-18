@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-6 mb-3">
         <div class=" posts-content">
-          <p><%= simple_time(post.updated_at) %></p>
+          <p><%= simple_time(post.created_at) %></p>
           <h4 class="mb-3">評価：<%= post.rate %>点 | <%= post.title %></h4>
           <p><%= post.content %></p>
           <%= image_tag post.picture.url, class:'img-fluid' if post.picture? %>
