@@ -32,10 +32,12 @@
             <%= f.password_field :password_confirmation, class: 'form-control' %>
           </div>
 
-          <div class="text-right">
-            <%= f.submit '登録する', class: 'btn btn-success' %>
+          <div>
+            <%= f.submit '登録する', class: 'btn btn-success btn-block' %>
           </div>
+          
         <% end %>
+        <p>アカウントをお持ちの方はこちらから<%= link_to 'ログイン', login_path %>してください</p>
       </div>
     </div>
   </div>
