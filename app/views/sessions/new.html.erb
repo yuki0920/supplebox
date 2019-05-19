@@ -14,9 +14,13 @@
             <%= f.label :password, 'パスワード' %>
             <%= f.password_field :password, class: 'form-control' %>
           </div>
-
-          <%= f.submit 'ログイン', class: 'btn btn-success btn-block' %>
+          
+          <div>
+            <%= f.submit 'ログイン', class: 'btn btn-success btn-block' %>
+          </div>
+          
         <% end %>
+        <p>アカウントをお持ちでない方はこちらから<%= link_to '新規登録', signup_path %>してください</p>
       </div>
     </div>
   </div>
