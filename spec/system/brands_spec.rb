@@ -14,7 +14,7 @@ describe 'ブランド投稿機能', type: :system do
       expect{
         fill_in 'ブランドネーム', with: 'テストブランド'
         fill_in 'ブランド内容', with: 'テストブランド紹介文'
-        attach_file 'ブランド画像', 'tmp/test/test_normal_image.jpg'
+        attach_file 'ブランド画像', 'spec/images/test_normal_image.jpg'
         click_on '投稿する'
       }.to change{ Brand.count }.by(+1)
       expect(page).to have_content 'ブランドを登録しました'

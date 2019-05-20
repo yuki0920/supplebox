@@ -15,7 +15,7 @@ describe '口コミ投稿機能', type: :system do
       expect{
         fill_in 'タイトル', with: 'テストタイトル'
         fill_in '口コミ内容', with: 'テストコンテント'
-        attach_file '口コミ画像', 'tmp/test/test_normal_image.jpg'
+        attach_file '口コミ画像', 'spec/images/test_normal_image.jpg'
         click_on '投稿する'
       }.to change{ Post.count }.by(+1)
       expect(page).to have_content '口コミを投稿しました'
