@@ -6,7 +6,7 @@
         <div class="col-md-4 col-xs-12">
           <div class="users">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.picture.url, width:"100px" %>
+              <%= image_tag user.picture.url %>
               <%= user.nickname %></br>
             <% end %>
             <%= user.gender %>/<%= user.height %>/<%= user.weight %></br>
