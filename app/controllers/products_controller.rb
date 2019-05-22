@@ -93,7 +93,7 @@ class ProductsController < ApplicationController
   
   def index
     @q = Product.all.ransack(params[:q])
-    @products = @q.result(distinct: true).page(params[:page])
+    @products = @q.result(distinct: true).order(:brand_id).page(params[:page])
   end
   
   private
