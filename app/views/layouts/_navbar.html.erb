@@ -14,34 +14,34 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
               <%= link_to rankings_like_path do %>
-                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>ランキング
+                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span> ランキング
               <% end %>
             </li>
             <li>
               <%= link_to products_path do %>
-                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>アイテムを探す
+                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> アイテムを探す
               <% end %>
             </li>
             <li>
               <%= link_to brands_path do %>
-                <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>ブランドを探す
+                <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> ブランドを探す
               <% end %>
             </li>
             <li>
               <%= link_to posts_path do %>
-                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>口コミを探す
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 口コミを探す
               <% end %>
             </li>
             <li>
               <%= link_to users_path do %>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>ユーザーを探す
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> ユーザーを探す
               <% end %>
             </li>
             
           <% if logged_in? %>
             <li>
               <%= link_to new_product_path do %>
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>アイテムを追加
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> アイテムを追加
               <% end %>
             </li>
             <li class="dropdown">
