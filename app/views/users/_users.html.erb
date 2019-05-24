@@ -2,16 +2,14 @@
   <!--ユーザー一覧-->
   <div class="row">
     <% users.each do |user| %>
-      <div class>
-        <div class="col-md-4 col-xs-12">
-          <div class="users">
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.picture.url %>
-              <%= user.nickname %></br>
-            <% end %>
-            <%= user.gender %>/<%= user.height %>/<%= user.weight %></br>
-            <div class="comment"><%= user.comment %></div>
-          </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="users">
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.picture.url %>
+            <%= user.nickname %></br>
+          <% end %>
+          <%= user.gender %>/<%= user.height %>/<%= user.weight %></br>
+          <div class="comment"><%= user.comment %></div>
         </div>
       </div>
     <% end %>

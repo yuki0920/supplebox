@@ -175,24 +175,6 @@ a {
 }
 /* brand_detail */
 
-.brands .posts-product img {
-  max-width: 100px;
-  height: 100px;
-  float: left;
-  margin-right: 10px;  
-  }
-  
-.brands{
-  width: 100%;
-  height: 120px;
-  margin: 10px 0;
-  display: inline-block;
-}
-
-
-
-/* brands */
-
 /*posts*/
 .posts {
   background-color: #ffffff;
