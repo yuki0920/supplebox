@@ -12,6 +12,20 @@
         <div class=" posts-content">
           <p><%= simple_time(post.created_at) %></p>
           <h4 class="mb-3">評価：<%= post.rate %>点 | <%= post.title %></h4>
+          <!--星評価-->
+         <div  id="star-rate-<%= post.id %>"></div>
+          <script>
+          $('#star-rate-<%= post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= post.rate %>,
+          });
+          </script>  
+        <!--/星評価-->
           <p><%= post.content %></p>
           <%= image_tag post.picture.url, class:'img-fluid' if post.picture? %>
         </div>
@@ -33,3 +47,4 @@
     </div>
   <% end %>
 <% end %>
+
