@@ -21,8 +21,14 @@ RSpec.describe Brand, type: :model do
       expect(brand.errors[:name]).to include('を入力してください')
     end
 
+    it '50文字だと有効な状態であること' do
+      brand.name = "a" * 50
+      brand.valid?
+      expect(brand).to be_valid
+    end
+
     it '50文字超だと無効な状態であること' do
-      brand.name = "a" * 101
+      brand.name = "a" * 51
       brand.valid?
       expect(brand.errors[:name]).to include('は50文字以内で入力してください')
     end

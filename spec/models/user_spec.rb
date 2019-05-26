@@ -19,6 +19,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:name]).to include('を入力してください')
     end
 
+    it 'ユーザー名が50文字なら有効な状態であること' do
+      user.name = 'a' * 50
+      user.valid?
+      expect(user).to be_valid
+    end
+
     it 'ユーザー名が50文字超なら無効な状態であること' do
       user.name = 'a' * 51
       user.valid?
@@ -33,6 +39,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:nickname]).to include('を入力してください')
     end
   
+    it 'ニックネームが50文字なら有効な状態であること' do
+      user.nickname = 'a' * 50
+      user.valid?
+      expect(user).to be_valid
+    end
+
     it 'ニックネームが50文字超なら無効な状態であること' do
       user.nickname = 'a' * 51
       user.valid?
