@@ -27,37 +27,55 @@ RSpec.describe Post, type: :model do
   describe '口コミ評価を検証する場合' do
     
     it '口コミ評価がないと無効な状態であること' do
-     post.rate = nil
-     post.valid?
-     expect(post.errors[:rate]).to include('を入力してください')
+      post.rate = nil
+      post.valid?
+      expect(post.errors[:rate]).to include('を入力してください')
     end
     
-    xit '口コミ評価が整数でないと無効な状態であること' do
-      post.rate = '1.5'
-      post.valid?
-      expect(post.errors[:rate]).to include('は整数で入力してください')
-    end
+    # it '口コミ評価が整数でないと無効な状態であること' do
+    #   post.rate = '1.5'
+    #   post.valid?
+    #   expect(post.errors[:rate]).to include('は整数で入力してください')
+    # end
     
     it '口コミ評価が1未満だと無効な状態であること' do
-      post.rate = '-1'
+      post.rate = -1
       post.valid?
       expect(post.errors[:rate]).to include('は1以上の値にしてください')
     end
     
+    it '口コミ評価が1.0だと有効な状態であること' do
+      post.rate = 1.0
+      post.valid?
+      expect(post).to be_valid
+    end
+
+    it '口コミ評価が5.0だと有効な状態であること' do
+      post.rate = 5.0
+      post.valid?
+      expect(post).to be_valid
+    end
+    
     it '口コミ評価が5超だと無効な状態であること' do
-      post.rate = '6'
+      post.rate = 6
       post.valid?
       expect(post.errors[:rate]).to include('は5以下の値にしてください')
     end
   end
   
   describe '口コミ内容を検証する場合' do
-    xit '口コミ内容がないと無効な状態であること' do
-    post.content = nil
-    post.valid?
-    expect(post.errors[:content]).to include('を入力してください')
-    end
+    # it '口コミ内容がないと無効な状態であること' do
+    #   post.content = nil
+    #   post.valid?
+    #   expect(post.errors[:content]).to include('を入力してください')
+    # end
     
+    it '口コミ内容が300文字だと有効な状態であること' do
+      post.content = "a" * 300
+      post.valid?
+     expect(post).to be_valid
+    end
+
     it '口コミ内容が300文字超だと無効な状態であること' do
       post.content = "a" * 301
       post.valid?

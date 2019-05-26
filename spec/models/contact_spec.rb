@@ -16,7 +16,13 @@ RSpec.describe Contact, type: :model do
       expect(user.errors[:name]).to include('を入力してください')
     end
   
-    it 'お名前が50文字超なら無効な状態であること' do
+     it 'お名前が50文字なら有効な状態であること' do
+      user = FactoryBot.build(:contact, name: 'a' * 50 )
+      user.valid?
+      expect(user).to be_valid
+    end
+
+   it 'お名前が50文字超なら無効な状態であること' do
       user = FactoryBot.build(:contact, name: 'a' * 51 )
       user.valid?
       expect(user.errors[:name]).to include('は50文字以内で入力してください')
