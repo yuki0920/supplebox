@@ -10,7 +10,23 @@
             <div class="panel-body">
               <p class="product-brand"><%= product.brand_amazon_name %></p>
               <p class="product-title"><%= link_to product.title, product %></p>
-              <p>口コミ評価 <%= product.posts.average(:rate).to_f.round(1) %> ( <%= product.posts.count %> 件)</p>
+               <!--星評価-->
+               <div class='star'>
+                 <span style='float-left' id="star-rate-<%= product.id %>"></span>
+                  <script>
+                  $('#star-rate-<%= product.id  %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= product.posts.average(:rate).to_f.round(1) %>,
+                  });
+                  </script>
+                （口コミ <%= product.posts.count %> 件）
+              　</div>
+              <!--/星評価-->
               <% if logged_in? %>
                 <div class="buttons text-center">
                   <%= render 'likes/like_small_button', product: product %>
