@@ -5,7 +5,9 @@
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading text-center">
-              <img src="<%= product.image_url %>" alt="" >
+              <%= link_to product do %>
+                <img src="<%= product.image_url %>" alt="" >
+              <% end %>
             </div>
             <div class="panel-body">
               <p class="product-brand"><%= product.brand_amazon_name %></p>
