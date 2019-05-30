@@ -64,5 +64,11 @@ class User < ApplicationRecord
   # フォロー判定
   def following?(other_user)
     self.followings.include?(other_user)
-  end  
+  end
+
+  # お気に入り数表示
+  def self.ranking
+    self.group(:user.product_id).order('brand_id').count(:user.product_id)
+  end
+  
 end

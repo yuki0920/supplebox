@@ -59,6 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @products = @user.products.page(params[:page])
     counts(@user)
+    @ranking_counts = Product.ranking
   end
 
   def followings

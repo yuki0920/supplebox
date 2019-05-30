@@ -5,7 +5,7 @@ class Like < ApplicationRecord
   validates :product_id, presence: true
   
   def self.ranking
-    self.group(:product_id).order('count_product_id DESC').count(:product_id)
+    self.group(:product_id).order('count_product_id DESC').limit(12).count(:product_id)
   end
 
   def self.ranking_top

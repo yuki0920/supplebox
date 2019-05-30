@@ -20,4 +20,9 @@ class Product < ApplicationRecord
   #お気に入り機能追加用中間テーブル追加
   has_many :likes, foreign_key: 'product_id', dependent: :destroy
   has_many :users, through: :likes  
+  
+  # お気に入り数表示
+  def self.ranking
+    self.group(:id).order('brand_id').count(:id)
+  end
 end
