@@ -6,7 +6,7 @@
   <%= render 'users/user_nav', user: @user %>
   <!--/ユーザーナビバー-->
   <!--お気に入り商品ー一覧-->
-  <%= render 'products/products', products: @products %>
+  <%= render 'products/products', { products: @products, ranking_counts: @ranking_counts } %>
   <!--/お気に入り商品一覧-->
   <!--ページネーション-->
   <%= paginate @products %>

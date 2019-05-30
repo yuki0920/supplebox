@@ -137,6 +137,7 @@ a {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  height: 3.0em;
 }
 
 .product-brand {
@@ -145,6 +146,9 @@ a {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+}
+.star {
+  margin-bottom:10px;
 }
 
 /* product */

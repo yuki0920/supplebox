@@ -1,20 +1,34 @@
-<% if @products.present? %>
+<% if products.present? %>
   <div class="row">
-    <% @products.each do |product| %>
+    <% products.each do |product| %>
       <div class="product">
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading text-center">
-              <img src="<%= product.image_url %>" alt="" >
+              <%= link_to product do %>
+                <img src="<%= product.image_url %>" alt="" >
+              <% end %>
             </div>
             <div class="panel-body">
               <p class="product-brand"><%= product.brand_amazon_name %></p>
-              <% if product.persisted? %>
-                <p class="product-title"><%= link_to product.title, product %></p>
-              <% else %>
-                <p class="product-title"><%= product.title %></p>
-              <% end %>
-              <p>口コミ評価 <%= product.posts.average(:rate).to_f.round(1) %> ( <%= product.posts.count %> 件)</p>
+              <p class="product-title"><%= link_to product.title, product %></p>
+               <!--星評価-->
+               <div class='star'>
+                 <span style='float-left' id="star-rate-<%= product.id %>"></span>
+                  <script>
+                  $('#star-rate-<%= product.id  %>').raty({
+                    size: 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= product.posts.average(:rate).to_f.round(1) %>,
+                  });
+                  </script>
+                （口コミ <%= product.posts.count %> 件）
+              　</div>
+              <!--/星評価-->
               <div class="buttons text-center">
                 <% if logged_in? %>
                   <% if product.persisted?%>
@@ -36,6 +50,9 @@
                   <% end %>
                 <% end %>
               </div>
+            </div>
+            <div class="panel-footer">
+              <p class="text-center"><%= ranking_counts[product.id] %> <span class="glyphicon glyphicon-heart"></span>
             </div>
           </div>
         </div>
