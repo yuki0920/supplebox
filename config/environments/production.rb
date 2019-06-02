@@ -93,6 +93,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # トラッキングIDを記載
-  GA.tracker = "UA-118701335-2"
+  GA.tracker = "UA-118701335-3"
 
 end
