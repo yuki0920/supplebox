@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_05_18_130406) do
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "brands", force: :cascade do |t|
     t.string "name"
     t.text "content"
     t.string "picture"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.bigint "user_id"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "product_id"
     t.datetime "created_at", null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "picture"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "title"
     t.text "url"
     t.string "image_url"
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "relationships", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "follow_id"
     t.datetime "created_at", null: false
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_130406) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
