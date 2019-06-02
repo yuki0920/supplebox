@@ -58,6 +58,18 @@ a {
   background-color:#eea236;
 }
 
+.btn-outline-danger{
+  color:#d9534f;
+  background-color:#ffffff;
+  border-color:#d9534f;
+}
+
+.btn-outline-danger:hover{
+  color:#ffffff ;
+  background-color:#d9534f ;
+}
+
+
 /* btn */
 
 /*pagination*/

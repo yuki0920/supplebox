@@ -31,6 +31,7 @@
     </table>
     <div class="buttons text-center">
       <%= link_to 'Amazonで詳しく見る', @product.url, target: ["_blank"],class: 'btn btn-lg btn-outline-warning' %>
+      <%= link_to '楽天で詳しく見る', "https://search.rakuten.co.jp/search/mall/#{@product.brand_amazon_name}+プロテイン/?f=1&grp=product", target: ["_blank"],class: 'btn btn-lg btn-outline-danger' %>
       <!--<a href="#" class="btn btn-lg btn-success">公式サイトで詳しく見る</a>-->
       <%= render 'likes/like_button', product: @product %>
     </div>
