@@ -3,6 +3,7 @@ require 'rails_helper'
 describe '口コミ投稿機能', type: :system do
   
   let(:user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:user, nickname: 'その他ユーザー') }
   let(:product) { FactoryBot.create(:product) }
   let!(:post) { FactoryBot.create(:post, user: user, product: product, content: '一般の口コミ')}
   let!(:other_post) { FactoryBot.create(:post, content: 'その他の口コミ')}
@@ -67,7 +68,6 @@ describe '口コミ投稿機能', type: :system do
     end
   end
 
-    
   describe '削除機能' do  
     it '口コミを削除できること' do
       sign_in_as user
@@ -86,6 +86,13 @@ describe '口コミ投稿機能', type: :system do
       click_on '投稿する'
       expect(page).to have_content '口コミを更新しました'
       expect(page).to have_content 'アップデートタイトル'
+    end
+    
+    it '他のユーザーの口コミを編集できないこと' do
+     sign_in_as other_user
+     visit edit_post_path(post)
+     expect(page).to_not have_content '口コミ編集フォーム'
+     expect(page).to have_content '最新の口コミ'
     end
   end
 end
