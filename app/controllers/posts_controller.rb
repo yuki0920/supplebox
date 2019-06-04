@@ -24,12 +24,6 @@ class PostsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
-  def show
-    @post = Post.find(params[:id])
-    @product = Product.find(@post.product_id)
-    @user = User.find(@post.user_id)
-  end
   
   def edit
     @post = Post.find(params[:id])
