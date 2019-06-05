@@ -31,4 +31,4 @@
 </div>
 <!--アイテム一覧-->
 <h2><%= @brand.name %>のアイテム一覧</h2>
-<%= render 'products/products', products: @products %>
+<%= render 'products/products', {products: @products, ranking_counts: @ranking_counts} %>

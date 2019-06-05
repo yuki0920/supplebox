@@ -10,6 +10,7 @@ class BrandsController < ApplicationController
   def show
     @brand = Brand.find(params[:id])
     @products = Product.where(brand_id: @brand.id)
+    @ranking_counts = Product.ranking
   end
   
   def new
