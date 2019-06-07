@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'rankings/like', to: 'rankings#like'
   get 'contacts', to: 'contacts#new'
   post 'contacts', to: 'contacts#create'
- 
+  get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/supplebox/sitemaps/sitemap.xml.gz') 
   resources :users, only: [:show, :create, :index, :edit, :update, :destroy] do
     member do
       get :followings
