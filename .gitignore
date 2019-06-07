@@ -64,3 +64,7 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+# サイトマップ
+public/sitemap.xml
+public/sitemap.xml.gz
