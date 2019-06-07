@@ -14,9 +14,5 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
 )
 
 SitemapGenerator::Sitemap.create do
-  add for_customer_articles_path, priority: 0.7, changefreq: 'daily'
-
-  Article.where(status: 1).find_each do |product|
-    add product_path(produc), priority: 0.7, lastmod: product.updated_at, changefreq: 'daily'
-  end
+  add product_path, priority: 0.7, changefreq: 'daily'
 end
