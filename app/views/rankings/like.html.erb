@@ -1,5 +1,2 @@
 <h2>お気に入り商品ランキング</h2>
 <%= render 'rankings/products', {products: @products, ranking_counts: @ranking_counts } %>
-<!--ページネーション-->
-<%= paginate @products %>
-</p><%= page_entries_info @products %></p>
