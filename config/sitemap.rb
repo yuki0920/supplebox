@@ -14,5 +14,5 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
 )
 
 SitemapGenerator::Sitemap.create do
-  add product_path(product, post, user, brand), priority: 1, changefreq: 'daily'
+  add root_path, priority: 1, changefreq: 'daily'
 end
