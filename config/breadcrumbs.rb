@@ -92,6 +92,12 @@ crumb :ranking_like do
   parent :root
 end
 
+# login
+crumb :login do
+  link "ログイン", login_path
+  parent :root
+end
+
 # toppage#contacts
 crumb :contact do
   link "お問い合わせ", contacts_path
