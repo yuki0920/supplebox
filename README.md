@@ -21,6 +21,10 @@
 - お問い合わせメール送信(ActionMailer)  
 - アイテム情報取得(Amazon Product API, amazon-ecs)
 - 検索(ransack)
+- アクセス解析(google-analytics-rails)
+- サイトマップ(sitemap_generator)
+- メタタグ(meta-tags)
+- パンくずリスト(gretel)
 - デザイン(Bootstrap)  
 - 認証関連(ログイン, 管理者ユーザー)
 - ユーザー関連（フォロー・フォロワー）
