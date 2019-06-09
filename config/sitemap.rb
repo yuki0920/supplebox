@@ -16,8 +16,14 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
 SitemapGenerator::Sitemap.create do
   # 'root'
   add root_path, priority: 1, changefreq: 'daily'
+  # '/posts'
+  add posts_path, priority: 0.9, changefreq: 'daily'
   # '/product/id'
   Product.find_each do |product|
     add product_path(product), :lastmod => product.updated_at
+  end
+  # '/brand/id' 
+  Brand.find_each do |brand|
+    add brand_path(brand), :lastmod => brand.updated_at
   end
 end
