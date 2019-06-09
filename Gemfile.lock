@@ -1010,6 +1010,8 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (~> 0.7)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -1229,6 +1231,7 @@ DEPENDENCIES
   factory_bot_rails
   fog
   google-analytics-rails
+  gretel
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails
