@@ -25,8 +25,7 @@ class ProductsController < ApplicationController
         product.url =  item.get('DetailPageURL') #アイテム詳細URL
         product.brand_amazon_name = item.get('ItemAttributes/Brand') #ブランド(メーカー)
         product.price = item.get('OfferSummary/LowestNewPrice/Amount') #実売価格を¥表示
-
-        @products << product
+      @products << product
       end
     end
   end
@@ -51,10 +50,9 @@ class ProductsController < ApplicationController
           price: item.get('OfferSummary/LowestNewPrice/Amount'), 
         )
       end
-      if @product.save
-        flash[:success] = 'アイテムを登録しました'
-        redirect_back(fallback_location: root_path)
-      end
+      @product.save
+      flash[:success] = 'アイテムを登録しました'
+      redirect_back(fallback_location: root_path)
     end
   end
   
