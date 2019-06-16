@@ -1,3 +1,5 @@
+require 'vcr'
+
 RSpec.configure do |config|
   
   require 'capybara/rspec'
@@ -16,4 +18,11 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
+end
+
+# VCRの設定追加
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/vcr'
+  c.hook_into :webmock
+  c.allow_http_connections_when_no_cassette = false
 end

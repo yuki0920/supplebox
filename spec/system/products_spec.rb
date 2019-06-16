@@ -5,6 +5,8 @@ describe 'アイテム登録機能', type: :system do
   let(:admin_user) { FactoryBot.create(:user, admin: true) }
   let!(:product) { FactoryBot.create(:product, title: '一般アイテム') }
   let!(:other_product) { FactoryBot.create(:product, title: 'その他のアイテム') }
+  let!(:brand) { FactoryBot.create(:brand) }
+  
 
   # describe '検索機能' do
     # it 'アイテムを検索できること' do
@@ -41,13 +43,13 @@ describe 'アイテム登録機能', type: :system do
   end
   
   describe '編集機能' do
-    xit '管理者はアイテムを編集できること' do
+    it '管理者はアイテムを編集できること' do
       sign_in_as admin_user
       visit product_path(product)
       visit edit_product_path(product)
       fill_in 'アイテムタイトル', with: 'アップデートアイテム'
-      fill_in 'ブランドID', with: '1'
       fill_in '公式サイトのURL', with: 'officialproduct@supplebox.jp'
+      fill_in 'ブランドID', with: brand.id
       click_on '更新する'
       expect(page).to have_content 'アイテムを更新しました'
       expect(page).to have_content 'アップデートアイテム'
