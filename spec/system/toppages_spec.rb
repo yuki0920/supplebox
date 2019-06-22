@@ -23,7 +23,7 @@ describe 'リンク確認' do
   it 'ヘッダーリンクログイン後確認' do
     sign_in_as user
     within 'header' do
-      expect(page).to have_link('アイテムを追加', href: '/products/new')
+      expect(page).to have_link('アイテムを登録', href: '/products/new')
     end
   end
   
