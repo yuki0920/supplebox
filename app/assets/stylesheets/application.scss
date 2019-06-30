@@ -40,33 +40,30 @@ a {
 .btn-outline-success{
   color:#5cb85c ;
   border-color:#4cae4c ;
-}
-
-.btn-outline-success:hover{
-  color:#ffffff ;
-  background-color:#4cae4c ;
+  &:hover{
+    color:#ffffff ;
+    background-color:#4cae4c ;
+  }
 }
 
 .btn-outline-warning{
   color:#f0ad4e;
   background-color:#ffffff;
   border-color:#eea236;
-}
-
-.btn-outline-warning:hover{
-  color:#ffffff ;
-  background-color:#eea236;
+  &:hover{
+    color:#ffffff ;
+    background-color:#eea236;
+  }
 }
 
 .btn-outline-danger{
   color:#d9534f;
   background-color:#ffffff;
   border-color:#d9534f;
-}
-
-.btn-outline-danger:hover{
+  &:hover {
   color:#ffffff ;
   background-color:#d9534f ;
+  }
 }
 
 
@@ -81,12 +78,12 @@ a {
   color:#ffffff;
   background-color:#4cae4c ;
   border:1px solid #ddd;
+  &:hover{
+    color:#ffffff ;
+    background-color:#4cae4c ;
+  }
 } 
 
-.pagination .active a:hover{
-  color:#ffffff ;
-  background-color:#4cae4c ;
-}
 /*pagination*/
 
 
@@ -368,24 +365,27 @@ a {
   padding: 4em 0;
   background: #323a45;
   color: #878c93;
-  /*position: fixed;*/
   bottom: 0;
-  /*font-family: 'Open Sans', Arial, sans-serif;*/
   font-weight: 300;
 }
+
 #footer .footer-content {
   position: relative;
   z-index: 9;
 }
+
 #footer .container .row > div {
   margin-bottom: 30px;
 }
+
 #footer p {
   display: block;
 }
+
 #footer .fh5co-copyright small {
   font-size: 12px;
 }
+
 #footer .lead {
   font-size: 13px;
   text-transform: uppercase;
@@ -393,41 +393,46 @@ a {
   color: #fff;
   margin-bottom: 20px;
 }
+
 #footer a {
   color: #9a9fa5;
+  &:hover, &:active, &:focus {
+    color: #4fd2c2;
+  }
 }
-#footer a:hover, #footer a:active, #footer a:focus {
-  color: #4fd2c2;
-}
+
 #footer .footer-logo {
   display: block;
   float: left;
   width: 100%;
   margin-bottom: 10px;
+  a {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #ccc;
+    float: left;
+    padding: 7px 10px 7px 12px;
+    &:hover, &:active, &:focus{
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 }
-#footer .footer-logo a {
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #ccc;
-  float: left;
-  padding: 7px 10px 7px 12px;
-}
-#footer .footer-logo a:hover, #footer .footer-logo a:active, #footer .footer-logo a:focus {
-  color: #fff;
-  text-decoration: none;
-}
+
 #footer ul {
   padding: 0;
   margin: 0;
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px 0;
+    line-height: 16px;
+  }
 }
-#footer ul li {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 14px 0;
-  line-height: 16px;
-}
+
 .social-icons > a {
   margin-right: 10px;
   color: #4fd2c2;
 }
+
 /*footer*/
