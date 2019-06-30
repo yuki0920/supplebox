@@ -300,24 +300,20 @@ a {
   width: 100%;
   height: 90px;
   margin: 10px 0;
-  /*border-color: #f4f4f4;*/
-  /*border-radius: 15px;*/
   display: inline-block;
-}
-
-.users img {
-  max-width: 25%;
-  height: 100%;
-  float: left;
-  margin-right: 10px;  
-}
-
-.users .comment{
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  img {
+    max-width: 25%;
+    height: 100%;
+    float: left;
+    margin-right: 10px;  
+  }
+  .comment {
+    /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 
 /*users*/
@@ -327,14 +323,14 @@ a {
   margin: 10px 10px;
   border: 1px solid #000;
   border-radius: 30px;  
+  .product-picture img {
+    width: 50px;
+  }
 }
 .post-picture img{
   width: 320px;
 }
 
-.post .product-picture img {
-  width: 50px;
-}
 /*post*/
 
 /*service*/
