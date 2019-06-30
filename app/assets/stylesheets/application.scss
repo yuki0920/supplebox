@@ -338,26 +338,22 @@ a {
 /*post*/
 
 /*service*/
-#features {
-  background-color: #ffffff;
-}
 .features .feature {
   margin-bottom: 30px;
+  .feature-icon{
+    margin-bottom: 30px;
+    display: block;
+    .i {
+      font-size: 50px;
+      color: #7ee383;
+    }
+  }
+  .feature-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
 }
-.features .feature .feature-icon {
-  margin-bottom: 30px;
-  display: block;
-}
-.features .feature .feature-icon i {
-  font-size: 50px;
-  color: #7ee383;
-}
-.features .feature .feature-title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
 
 /*footer*/
 
