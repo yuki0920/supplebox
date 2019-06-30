@@ -194,17 +194,11 @@ a {
   margin:10px 0;
   padding: 10px 0;
 }
+
 .posts-prof {
   font-size: 11px;
 }
-/*.posts-content {*/
-/*  background-color: #e3f9e3;*/
-/*  border-radius: 15px;*/
-/*}*/
-.posts-content img {
-  max-width: 40% ;
-  margin-bottom: 10px ;
-}
+
 .posts-content {
   position: relative;
   display: inline-block;
@@ -215,36 +209,37 @@ a {
   font-size: 16px;
   background: #e3f9e3;
   border-radius: 15px ;
-  
+  &:before {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: -30px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-right: 15px solid #e3f9e3;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    max-width: 40% ;
+    margin-bottom: 10px ;
+  }
 }
 
-.posts-content:before {
-  content: "";
-  position: absolute;
-  top: 35px;
-  left: -30px;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-right: 15px solid #e3f9e3;
-}
-
-.posts-content p {
-  margin: 0;
-  padding: 0;
-}
 .posts-product{
   border:solid;
   border-color: #f4f4f4;
   border-radius: 15px;
   display: inline-block;
   padding: 10px;
-}
-
-.posts-product img {
-  max-width: 25%;
-  height: auto;
-  float: left;
-  margin-right: 10px;  
+  img {
+    max-width: 25%;
+    height: auto;
+    float: left;
+    margin-right: 10px;  
+  }
 }
 
 .edit-button {
