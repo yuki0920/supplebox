@@ -26,7 +26,7 @@ a {
 
 /* navbar */
 .navbar {
-  background-color: #fff;
+  background-color: white;
 }
 .navbar-header img {
   margin-top: 5px;
@@ -41,27 +41,27 @@ a {
   color:#5cb85c ;
   border-color:#4cae4c ;
   &:hover{
-    color:#ffffff ;
+    color:white ;
     background-color:#4cae4c ;
   }
 }
 
 .btn-outline-warning{
   color:#f0ad4e;
-  background-color:#ffffff;
+  background-color:white;
   border-color:#eea236;
   &:hover{
-    color:#ffffff ;
+    color:white ;
     background-color:#eea236;
   }
 }
 
 .btn-outline-danger{
   color:#d9534f;
-  background-color:#ffffff;
+  background-color:white;
   border-color:#d9534f;
   &:hover {
-  color:#ffffff ;
+  color:white ;
   background-color:#d9534f ;
   }
 }
@@ -75,18 +75,16 @@ a {
 }
 
 .pagination .active a {
-  color:#ffffff;
+  color:white;
   background-color:#4cae4c ;
   border:1px solid #ddd;
   &:hover{
-    color:#ffffff ;
+    color:white ;
     background-color:#4cae4c ;
   }
 } 
 
 /*pagination*/
-
-
 
 /* cover */
 .cover {
@@ -96,27 +94,27 @@ a {
   height: auto;
   background: url("/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
-}
-.cover .cover-inner {
-  height: 100%;
-  margin: auto;
-  display: table;
-}
-.cover .cover-inner .cover-contents {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  position: relative;
-}
-.cover .cover-inner .cover-contents h1 {
-  margin: 0 0 20px 0;
-  padding: 3em 0;
-  color: #ffffff;
-  font-weight: bold;
-  letter-spacing: 0.15em;
-  font-size: 6vw;
-  text-shadow: black 1px 1px 0px, black -1px 1px 0px,
-             black 1px -1px 0px, black -1px -1px 0px;
+  .cover-inner {
+    height: 100%;
+    margin: auto;
+    display: table;
+    .cover-contents {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+      h1 {
+        margin: 0 0 20px 0;
+        padding: 3em 0;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 0.15em;
+        font-size: 6vw;
+        text-shadow: black 1px 1px 0px, black -1px 1px 0px,
+                   black 1px -1px 0px, black -1px -1px 0px;
+      }      
+    }    
+  }
 }
 
 .cover-button {
@@ -130,16 +128,19 @@ a {
 
 
 /* product */
-.product .panel-body {
-  height: 170px;
+.product {
+  .panel-body {
+    height: 170px;
+  }
+  .panel-heading {
+    height: 250px;
+    img {
+      height: 100%;
+      max-width: 100%;      
+    }
+  }  
 }
-.product .panel-heading {
-  height: 250px;
-}
-.product .panel-heading img {
-  height: 100%;
-  max-width: 100%;
-}
+
 .product-title {
   /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
   display: -webkit-box;
@@ -156,6 +157,7 @@ a {
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
+
 .star {
   margin-bottom:10px;
 }
@@ -163,34 +165,40 @@ a {
 /* product */
 
 /* product_detail */
-.product_detail .panel-body {
-  height: 30px;
+.product_detail {
+  .panel-body {
+    height: 30px;
+  }
+  .panel-heading {
+    height: 320px;
+    img {
+      height: 100%;
+      max-width: 100%;
+    }
+  }
 }
-.product_detail .panel-heading {
-  height: 320px;
-}
-.product_detail .panel-heading img {
-  height: 100%;
-  max-width: 100%;
-}
+
 /* product_detail */
 
 /* brand_detail */
-.brand_detail .panel-body {
-  height: 30px;
+.brand_detail {
+  .panel-body {
+    height: 30px;
+  }
+  .panel-heading {
+    height: 240px;
+    img {
+      height: 100%;
+      max-width: 100%;
+    }  
+  }
 }
-.brand_detail .panel-heading {
-  height: 240px;
-}
-.brand_detail .panel-heading img {
-  height: 100%;
-  max-width: 100%;
-}
+
 /* brand_detail */
 
 /*posts*/
 .posts {
-  background-color: #ffffff;
+  background-color: white;
   margin:10px 0;
   padding: 10px 0;
 }
