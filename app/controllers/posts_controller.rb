@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_post, only: [:edit, :update, :destroy]
   
   def new
   end
@@ -18,7 +19,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     if @post.destroy
       flash[:success] = '口コミを削除しました'
       redirect_back(fallback_location: root_path)
@@ -26,11 +26,9 @@ class PostsController < ApplicationController
   end
   
   def edit
-    @post = Post.find(params[:id])
   end
   
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = '口コミを更新しました'
       redirect_to @post.product
@@ -54,5 +52,9 @@ class PostsController < ApplicationController
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to posts_path if @post.nil?
+  end
+  
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

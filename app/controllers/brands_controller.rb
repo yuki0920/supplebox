@@ -1,6 +1,7 @@
 class BrandsController < ApplicationController
   before_action :require_user_logged_in , only: [:new, :ceate, :edit, :update, :destroy ]
   before_action :admin_user , only: [:new, :ceate, :edit, :update, :destroy ]
+  before_action :set_brand, only: [:show, :edit, :update, :destroy]
   
   def index
     @q = Brand.ransack(params[:q])
@@ -8,7 +9,6 @@ class BrandsController < ApplicationController
   end
   
   def show
-    @brand = Brand.find(params[:id])
     @products = Product.where(brand_id: @brand.id)
     @ranking_counts = Product.ranking
   end
@@ -29,11 +29,9 @@ class BrandsController < ApplicationController
   end
   
   def edit
-    @brand = Brand.find(params[:id])
   end
   
   def update
-    @brand = Brand.find(params[:id])
     if @brand.update(brand_params)
       flash[:success] = 'ブランドを更新しました'
       redirect_to @brand
@@ -44,7 +42,6 @@ class BrandsController < ApplicationController
   end
   
   def destroy
-    @brand = Brand.find(params[:id])
     if @brand.destroy
       flash[:success] = 'ブランドを削除しました'
       redirect_to root_url
@@ -56,6 +53,10 @@ class BrandsController < ApplicationController
   
   def brand_params
     params.require(:brand).permit(:name, :content, :picture)
+  end
+  
+  def set_brand
+    @brand = Brand.find(params[:id])
   end
   
 end
