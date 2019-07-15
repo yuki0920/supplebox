@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.find_or_initialize_by(asin: params[:product_asin])
-    lookup_amazon(@product)
+    lookup_amazon
     @product.save
     flash[:success] = 'アイテムを登録しました'
     redirect_back(fallback_location: root_path)
@@ -89,8 +89,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  def lookup_amazon(product)
-    unless product.persisted?
+  def lookup_amazon
+    unless @product.persisted?
       # @product が保存されていない場合、先に @product を保存する
       products = Amazon::Ecs.item_lookup(
         params[:product_asin],
@@ -99,7 +99,7 @@ class ProductsController < ApplicationController
       )
   
       products.items.each do |item|
-        product = Product.new(
+        @product = Product.new(
           title: item.get('ItemAttributes/Title'),
           image_url: item.get('LargeImage/URL'),
           url: item.get('DetailPageURL'),
