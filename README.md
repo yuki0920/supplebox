@@ -1,4 +1,6 @@
 # SuppleBox
+<a href="https://img.shields.io/github/issues-raw/yuki0920/supplebox.svg"><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/yuki0920/supplebox.svg"></a>
+<a href="https://img.shields.io/github/issues-closed-raw/yuki0920/supplebox.svg"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/yuki0920/supplebox.svg"></a>
 
 「プロテイン選びで失敗したくない」方に向けたプロテイン特化型口コミ共有サービスです。
 
