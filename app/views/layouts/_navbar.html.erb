@@ -37,7 +37,6 @@
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> ユーザーを探す
               <% end %>
             </li>
-            
           <% if logged_in? %>
             <li>
               <%= link_to new_product_path do %>
@@ -65,6 +64,13 @@
           <% else %>
             <li><%= link_to '新規登録', signup_path %></li>
             <li><%= link_to 'ログイン', login_path %></li>
+            <li>
+              <%= form_for(:session, url: login_path) do |f| %>
+                <%= f.hidden_field :email, value: 'test@supplebox.jp' %>
+                <%= f.hidden_field :password, value: 'testsupple' %>
+                <%= f.submit 'テストログイン', class: 'btn btn-success' %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
