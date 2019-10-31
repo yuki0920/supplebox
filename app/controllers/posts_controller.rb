@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+    @posts = @q.result(distinct: true).includes(:user, :product).order(created_at: :desc).page(params[:page])
   end
   
   private
