@@ -41,11 +41,11 @@ end
 
 # リレーションシップ
 users = User.all
-user  = users.first
+first_user  = users.first
 following = users[2..30]
 followers = users[3..20]
 following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+followers.each { |follower| follower.follow(first_user) }
 
 # お気に入り登録
 users = User.order(:created_at).take(6)
