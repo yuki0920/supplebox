@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ContactMailer < ApplicationMailer
-default from: 'suppleboxmanager@gmail.com'
+  default from: 'suppleboxmanager@gmail.com'
   def creation_email(contact)
     @contact = contact
     mail(
@@ -7,6 +9,6 @@ default from: 'suppleboxmanager@gmail.com'
       to: contact.email,
       cc: ENV['GMAIL_USERNAME'],
       from: ENV['GMAIL_USERNAME']
-      )
+    )
   end
 end

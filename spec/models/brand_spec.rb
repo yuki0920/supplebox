@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Brand, type: :model do
-  
-  let(:brand){ FactoryBot.create(:brand) }
-  let(:product){ FactoryBot.create(:product) }
-  
+  let(:brand) { FactoryBot.create(:brand) }
+  let(:product) { FactoryBot.create(:product) }
+
   describe 'ブランド作成が有効な場合' do
     it '新規登録できること' do
       brand = FactoryBot.build(:brand)
@@ -12,9 +13,8 @@ RSpec.describe Brand, type: :model do
       expect(brand).to be_valid
     end
   end
-  
+
   describe 'ブランドネームを検証する場合' do
-    
     it 'ブランドネームが無いと無効な状態であること' do
       brand.name = nil
       brand.valid?
@@ -22,19 +22,18 @@ RSpec.describe Brand, type: :model do
     end
 
     it '50文字だと有効な状態であること' do
-      brand.name = "a" * 50
+      brand.name = 'a' * 50
       brand.valid?
       expect(brand).to be_valid
     end
 
     it '50文字超だと無効な状態であること' do
-      brand.name = "a" * 51
+      brand.name = 'a' * 51
       brand.valid?
       expect(brand.errors[:name]).to include('は50文字以内で入力してください')
     end
-    
   end
-  
+
   describe 'ブランド内容を検証する場合' do
     it 'ブランド内容が無いと無効な状態であること' do
       brand.content = nil

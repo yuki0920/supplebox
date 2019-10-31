@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_limit: [400, 400]
@@ -20,12 +22,12 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   # デフォルト画像の設定
-  def default_url(*args)
+  def default_url(*_args)
     'default_product.png'
   end
 
   # アップロード可能な拡張子のリスト
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 end
