@@ -1,1 +1,8 @@
 require: rubocop-rails
+
+Rails:
+  Enabled: true
+
+# Use only ascii symbols in comments.
+AsciiComments:
+  Enabled: false
