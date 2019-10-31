@@ -1,3 +1,4 @@
+# ユーザー登録
 User.create!(name:  "Admin User",
             email: "admin@supplebox.jp",
             password: "admin0",
@@ -15,6 +16,7 @@ User.create!(name:  "Admin User",
             nickname: name)
 end
 
+# アイテム登録
 30.times do |n|
   Product.create!(title: "NO.#{n}プロテイン",
                   url: "sample#{n}@supplebox.jp",
@@ -32,3 +34,30 @@ users = User.order(:created_at).take(6)
                                         rate: [1, 2, 3, 4, 5].sample,
                                         product_id: product_id )}
 end
+
+# リレーションシップ
+users = User.all
+user  = users.first
+following = users[2..30]
+followers = users[3..20]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+# お気に入り登録
+users = User.order(:created_at).take(6)
+products = Product.all
+users.each do |user|
+  products.each do |product|
+    user.like(product)
+  end
+end
+
+# ブランド登録
+(1..5).each do
+  Brand.create!(
+    name: Faker::Coffee.blend_name,
+    content:Faker::Coffee.notes
+  )
+end
+products = Product.all
+products.each { |product| product.brand_id = [1, 2, 3, 4, 5].sample }
