@@ -34,9 +34,18 @@
 # end
 
 # リレーションシップ
-users = User.all
-user  = users.first
-following = users[2..30]
-followers = users[3..20]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+# users = User.all
+# user  = users.first
+# following = users[2..30]
+# followers = users[3..20]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }
+
+# お気に入り登録
+users = User.order(:created_at).take(6)
+products = Product.all
+users.each do |user|
+  products.each do |product|
+    user.like(product)
+  end
+end
