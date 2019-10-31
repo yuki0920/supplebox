@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   
   def show
     @post = Post.new
-    @posts = Post.where(product_id: @product.id).page(params[:page])
+    @posts = Post.includes(:user, :product).where(product_id: @product.id).page(params[:page])
     if @product.brand_id?
       @brand = Brand.find(@product.brand_id)
     end
