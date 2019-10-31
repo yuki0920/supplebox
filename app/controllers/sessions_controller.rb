@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     email = params[:session][:email].downcase
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
 
   def login(email, password)
     @user = User.find_by(email: email)
-    if @user && @user.authenticate(password)
+    if @user&.authenticate(password)
       # ログイン成功
       session[:user_id] = @user.id
       return true

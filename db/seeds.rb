@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 # ユーザー登録
-User.create!(name:  "Admin User",
-            email: "admin@supplebox.jp",
-            password: "admin0",
-            password_confirmation: "admin0",
-            nickname: "管理者",
-            admin: true)
-29.times do |n|
+User.create!(name: 'Admin User',
+             email: 'admin@supplebox.jp',
+             password: 'admin0',
+             password_confirmation: 'admin0',
+             nickname: '管理者',
+             admin: true)
+29.times do |_n|
   name     = Faker::Name.name
   email    = Faker::Internet.email
-  password = "password"
+  password = 'password'
   User.create!(name: name,
-            email: email,
-            password: password,
-            password_confirmation: password,
-            nickname: name)
+               email: email,
+               password: password,
+               password_confirmation: password,
+               nickname: name)
 end
 
 # アイテム登録
@@ -29,19 +31,21 @@ users = User.order(:created_at).take(6)
   title = Faker::Lorem.sentence(5)
   content = Faker::Lorem.sentence
   product_id = n.to_i
-  users.each { |user| user.posts.create!(title: title,
-                                        content: content,
-                                        rate: [1, 2, 3, 4, 5].sample,
-                                        product_id: product_id )}
+  users.each do |user|
+    user.posts.create!(title: title,
+                       content: content,
+                       rate: [1, 2, 3, 4, 5].sample,
+                       product_id: product_id)
+  end
 end
 
 # リレーションシップ
 users = User.all
-user  = users.first
+first_user  = users.first
 following = users[2..30]
 followers = users[3..20]
 following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+followers.each { |follower| follower.follow(first_user) }
 
 # お気に入り登録
 users = User.order(:created_at).take(6)
@@ -53,10 +57,10 @@ users.each do |user|
 end
 
 # ブランド登録
-(1..5).each do
+5.times do
   Brand.create!(
     name: Faker::Coffee.blend_name,
-    content:Faker::Coffee.notes
+    content: Faker::Coffee.notes
   )
 end
 products = Product.all

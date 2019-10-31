@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLikes < ActiveRecord::Migration[5.2]
   def change
     create_table :likes do |t|
@@ -5,7 +7,7 @@ class CreateLikes < ActiveRecord::Migration[5.2]
       t.references :product, foreign_key: true
 
       t.timestamps
-      t.index [:user_id, :product_id], unique: true
+      t.index %i[user_id product_id], unique: true
     end
   end
 end

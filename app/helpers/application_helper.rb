@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
-  
   # 日時をスラッシュ区切りで表示するメソッド
   def simple_time(time)
-    time.strftime("%Y/%m/%d %H:%M")
+    time.strftime('%Y/%m/%d %H:%M')
   end
-  
+
   # メタタグを表示するメソッド
   def default_meta_tags
     {
@@ -27,13 +28,12 @@ module ApplicationHelper
         type: 'website',
         url: request.original_url,
         # image: image_url('ogp.png'),
-        locale: 'ja_JP',
+        locale: 'ja_JP'
       },
       twitter: {
         card: 'summary',
-        site: '@YukiWebTech',
+        site: '@YukiWebTech'
       }
     }
-  end  
-  
+  end
 end

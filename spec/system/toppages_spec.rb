@@ -1,13 +1,14 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
 
 describe 'リンク確認' do
   let!(:user) { FactoryBot.create(:user, nickname: '一般ユーザー') }
-  
+
   before do
     visit root_path
   end
-  
+
   it 'ヘッダーリンクログイン前確認' do
     within 'header' do
       expect(page).to have_link('ランキング', href: '/rankings/like')
@@ -19,14 +20,14 @@ describe 'リンク確認' do
       expect(page).to have_link('ログイン', href: '/login')
     end
   end
-  
+
   it 'ヘッダーリンクログイン後確認' do
     sign_in_as user
     within 'header' do
       expect(page).to have_link('アイテムを登録', href: '/products/new')
     end
   end
-  
+
   it 'フッターリンクログイン前確認' do
     within 'footer' do
       expect(page).to have_link('SuppleBox', href: '/')
@@ -39,7 +40,7 @@ describe 'リンク確認' do
       expect(page).to have_link('ユーザー一覧を見る', href: '/users')
     end
   end
-  
+
   it 'フッターリンクログイン後確認' do
     sign_in_as user
     within 'footer' do
