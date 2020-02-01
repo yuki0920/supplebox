@@ -68,3 +68,6 @@ yarn-debug.log*
 # サイトマップ
 public/sitemap.xml
 public/sitemap.xml.gz
+
+# カバレッジ計測
+/coverage
