@@ -18,7 +18,7 @@
 
 - インフラ(Heroku)
 - 単体・統合テスト(RSpec, factory_bot, capybara)
-- データベース(MySQL,PostgreSQ)
+- データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer)  
