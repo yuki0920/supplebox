@@ -71,3 +71,6 @@ public/sitemap.xml.gz
 
 # カバレッジ計測
 /coverage
+
+# VCR 用のカセット
+/spec/vcr

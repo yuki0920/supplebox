@@ -7,7 +7,7 @@ RSpec.describe Product, type: :model do
   let(:other_product) { FactoryBot.build(:product) }
 
   it '商品検索apiが作動すること' do
-    VCR.use_cassette('model/api_response', record: :new_episodes) do
+    VCR.use_cassette('model/api_response') do
       products = Amazon::Ecs.item_search(
         'プロテイン',
         search_index: 'HealthPersonalCare',
