@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.find_or_initialize_by(asin: params[:product_asin])
+    @product = Product.find_by(asin: params[:product_asin])
     lookup_amazon
     @product.save
     flash[:success] = 'アイテムを登録しました'
@@ -56,7 +56,6 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
   def search_amazon(keyword)
     if keyword.present?
       # 　デバックログ出力するために記述
@@ -86,24 +85,32 @@ class ProductsController < ApplicationController
   end
 
   def lookup_amazon
-    unless @product.persisted?
-      # @product が保存されていない場合、先に @product を保存する
-      products = Amazon::Ecs.item_lookup(
-        params[:product_asin],
-        response_group: 'Medium',
-        country: 'jp'
-      )
+    return if @product.present?
 
-      products.items.each do |item|
-        @product = Product.new(
-          title: item.get('ItemAttributes/Title'),
-          image_url: item.get('LargeImage/URL'),
-          url: item.get('DetailPageURL'),
-          asin: item.get('ASIN'),
-          brand_amazon_name: item.get('ItemAttributes/Brand'),
-          price: item.get('OfferSummary/LowestNewPrice/Amount')
-        )
-      end
-    end
+    response = Amazon::Ecs.item_lookup(
+      params[:product_asin],
+      response_group: 'Medium',
+      country: 'jp'
+    )
+    item = response.get_element('Item')
+    @product = Product.new(load_product(item))
+  end
+
+  def load_product(item)
+      title =             item.get('ItemAttributes/Title')
+      image_url =         item.get('LargeImage/URL')
+      url =               item.get('DetailPageURL')
+      asin =              item.get('ASIN')
+      brand_amazon_name = item.get('ItemAttributes/Brand')
+      price =             item.get('OfferSummary/LowestNewPrice/Amount')
+
+      {
+        title:             title,
+        image_url:         image_url,
+        url:               url,
+        asin:              asin,
+        brand_amazon_name: brand_amazon_name,
+        price:             price
+      }
   end
 end
