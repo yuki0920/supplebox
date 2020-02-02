@@ -56,31 +56,24 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
   def search_amazon(keyword)
-    if keyword.present?
-      # 　デバックログ出力するために記述
-      Amazon::Ecs.debug = true
+    # 　デバックログ出力するために記述
+    Amazon::Ecs.debug = true
 
-      # Amazon::Ecs::Responceオブジェクトの取得
-      products = Amazon::Ecs.item_search(
-        keyword,
-        search_index: 'HealthPersonalCare',
-        dataType: 'script',
-        response_group: 'Medium',
-        country: 'jp'
-      )
+    # Amazon::Ecs::Responceオブジェクトの取得
+    response = Amazon::Ecs.item_search(
+      keyword,
+      search_index: 'HealthPersonalCare',
+      dataType: 'script',
+      response_group: 'Medium',
+      country: 'jp'
+    )
 
-      # アイテムのタイトル,画像URL, 詳細ページURLの取得
-      @products = []
-      products.items.each do |item|
-        product = Product.find_or_initialize_by(asin: item.get('ASIN')) # アイテムにユニークなコードで探索
-        product.title = item.get('ItemAttributes/Title') # アイテムタイトル
-        product.image_url = item.get('LargeImage/URL') # アイテム画像URL
-        product.url = item.get('DetailPageURL') # アイテム詳細URL
-        product.brand_amazon_name = item.get('ItemAttributes/Brand') # ブランド(メーカー)
-        product.price = item.get('OfferSummary/LowestNewPrice/Amount') # 実売価格を¥表示
-        @products << product
-      end
+    @products = response.items.each_with_object([]) do |item, result|
+      product = Product.find_by(asin: item.get('ASIN'))
+      product = Product.new(load_product(item)) unless product.present?
+      result << product
     end
   end
 
@@ -97,12 +90,12 @@ class ProductsController < ApplicationController
   end
 
   def load_product(item)
-      title =             item.get('ItemAttributes/Title')
-      image_url =         item.get('LargeImage/URL')
-      url =               item.get('DetailPageURL')
-      asin =              item.get('ASIN')
-      brand_amazon_name = item.get('ItemAttributes/Brand')
-      price =             item.get('OfferSummary/LowestNewPrice/Amount')
+      title =             item.get('ItemAttributes/Title') # アイテムタイトル
+      image_url =         item.get('LargeImage/URL') # アイテム画像URL
+      url =               item.get('DetailPageURL') # アイテム詳細URL
+      asin =              item.get('ASIN') # アイテム詳細URL
+      brand_amazon_name = item.get('ItemAttributes/Brand') # ブランド(メーカー)
+      price =             item.get('OfferSummary/LowestNewPrice/Amount') # 実売価格を¥表示
 
       {
         title:             title,
