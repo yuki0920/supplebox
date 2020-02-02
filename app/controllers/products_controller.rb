@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.find_by(asin: params[:product_asin])
-    lookup_amazon
+    lookup_amazon(params[:product_asin])
     @product.save
     flash[:success] = 'アイテムを登録しました'
     redirect_back(fallback_location: root_path)
@@ -77,11 +77,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  def lookup_amazon
+  def lookup_amazon(keyword)
     return if @product.present?
 
     response = Amazon::Ecs.item_lookup(
-      params[:product_asin],
+      keyword,
       response_group: 'Medium',
       country: 'jp'
     )
