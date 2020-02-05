@@ -6,12 +6,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[edit update show]
 
   def new
-    search_amazon(params[:keyword])
+    @products = Product.search_products(params[:keyword])
   end
 
   def create
-    @product = Product.find_or_initialize_by(asin: params[:product_asin])
-    lookup_amazon
+    @product = Product.search_product(params[:product_asin])
+
     @product.save
     flash[:success] = 'アイテムを登録しました'
     redirect_back(fallback_location: root_path)
@@ -55,55 +55,5 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
-  end
-
-  def search_amazon(keyword)
-    if keyword.present?
-      # 　デバックログ出力するために記述
-      Amazon::Ecs.debug = true
-
-      # Amazon::Ecs::Responceオブジェクトの取得
-      products = Amazon::Ecs.item_search(
-        keyword,
-        search_index: 'HealthPersonalCare',
-        dataType: 'script',
-        response_group: 'Medium',
-        country: 'jp'
-      )
-
-      # アイテムのタイトル,画像URL, 詳細ページURLの取得
-      @products = []
-      products.items.each do |item|
-        product = Product.find_or_initialize_by(asin: item.get('ASIN')) # アイテムにユニークなコードで探索
-        product.title = item.get('ItemAttributes/Title') # アイテムタイトル
-        product.image_url = item.get('LargeImage/URL') # アイテム画像URL
-        product.url = item.get('DetailPageURL') # アイテム詳細URL
-        product.brand_amazon_name = item.get('ItemAttributes/Brand') # ブランド(メーカー)
-        product.price = item.get('OfferSummary/LowestNewPrice/Amount') # 実売価格を¥表示
-        @products << product
-      end
-    end
-  end
-
-  def lookup_amazon
-    unless @product.persisted?
-      # @product が保存されていない場合、先に @product を保存する
-      products = Amazon::Ecs.item_lookup(
-        params[:product_asin],
-        response_group: 'Medium',
-        country: 'jp'
-      )
-
-      products.items.each do |item|
-        @product = Product.new(
-          title: item.get('ItemAttributes/Title'),
-          image_url: item.get('LargeImage/URL'),
-          url: item.get('DetailPageURL'),
-          asin: item.get('ASIN'),
-          brand_amazon_name: item.get('ItemAttributes/Brand'),
-          price: item.get('OfferSummary/LowestNewPrice/Amount')
-        )
-      end
-    end
   end
 end

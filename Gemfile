@@ -71,6 +71,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'rspec-rails'
   gem 'simplecov', require: false
+  gem 'launchy'
 end
 
 group :production do
