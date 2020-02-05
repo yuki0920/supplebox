@@ -10,17 +10,15 @@ describe 'アイテム登録機能', type: :system do
   let!(:brand) { FactoryBot.create(:brand) }
 
   describe '検索機能' do
-    it 'アイテムを検索できること' do
+    it 'アイテムを検索し登録できること' do
       sign_in_as user
       VCR.use_cassette('system/api_response') do
         visit new_product_path
         fill_in 'keyword', with: 'プロテイン'
         click_on 'アイテムを検索'
         expect(page).to have_content '口コミ評価'
-        # click_on '登録', match: :first
-        # expect { click_on '登録', match: :first }.to change { Product.count }.by(1)
-        # binding.pry
-        # expect(page).to have_content 'アイテムを登録しました'
+        expect { click_on 'アイテム登録', match: :first }.to change { Product.count }.by(1)
+        expect(page).to have_content 'アイテムを登録しました'
       end
     end
   end
