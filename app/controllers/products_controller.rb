@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  include SearchAmazon
-
   before_action :require_user_logged_in, only: %i[new create edit update destroy]
   before_action :admin_user, only: %i[edit update destroy]
   before_action :set_product, only: %i[edit update show]
 
   def new
-    @products = search_products(params[:keyword])
+    @products = Product.search_products(params[:keyword])
   end
 
   def create
-    @product = search_product(params[:product_asin])
+    @product = Product.search_product(params[:product_asin])
+
     @product.save
     flash[:success] = 'アイテムを登録しました'
     redirect_back(fallback_location: root_path)
