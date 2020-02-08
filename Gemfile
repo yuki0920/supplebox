@@ -94,3 +94,4 @@ gem 'mini_magick'
 gem 'ransack'
 gem 'sitemap_generator'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'haml-rails'
