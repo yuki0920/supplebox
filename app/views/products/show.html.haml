@@ -1,0 +1,38 @@
+- set_meta_tags title: @product.title, description: "#{@product.title}の口コミです。", keywords: "#{@product.title},味,口コミ,評判,レビュー,おいしい,おすすめ"
+- breadcrumb :show_product, @product
+/ アイテム情報
+.row.p-3
+  %h2 アイテム詳細情報
+  .col-md-4
+    .product_detail
+      .panel.panel-default
+        .panel-heading.text-center
+          %img{:alt => "", :src => "#{@product.image_url}"}/
+        .panel-body
+  .col-md-8
+    %h4= @product.title
+    %table.table
+      %tbody
+        %tr
+          %th 価格
+          %td
+            ¥#{number_with_delimiter(@product.price)}
+        %tr
+          %th ブランド
+          %td
+            = link_to @brand.name, @brand if @brand
+            = @product.brand_amazon_name unless @brand
+    .buttons.text-center
+      = link_to 'Amazonで詳しく見る', "https://www.amazon.co.jp/s?k=#{@product.title}&tag=maftracking242574-22&linkCode=ure&creative=6339", target: ["_blank"],class: 'btn btn-lg btn-outline-warning'
+      = link_to '楽天で詳しく見る', "https://search.rakuten.co.jp/search/mall/#{@product.brand_amazon_name} プロテイン?scid=af_pc_etc&sc2id=af_103_1_10000645", target: ["_blank"],class: 'btn btn-lg btn-outline-danger'
+      / <a href="#" class="btn btn-lg btn-success">公式サイトで詳しく見る</a>
+      = render 'likes/like_button', product: @product
+/ /アイテム情報
+/ 口コミ一覧
+= render 'posts/posts', posts: @posts, user: @user
+/ /口コミ一覧
+/ 口コミ投稿フォーム
+.p-3
+  %h2.mb-3 口コミ投稿する
+  = render 'posts/new_post', post: @post, product: @product
+/ / 口コミ投稿フォーム

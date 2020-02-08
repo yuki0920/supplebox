@@ -1,0 +1,7 @@
+- if logged_in?
+  - unless current_user == @user
+    %div{:id => "follow_form_#{@user.id}"}
+      - if current_user.following?(@user)
+        = render 'relationships/unfollow'
+      - else
+        = render 'relationships/follow'

@@ -1,0 +1,10 @@
+/ ユーザープロフィール
+= render 'users/user_profile', user: @user
+/ /ユーザープロフィール
+.col-md-12
+  / ユーザーナビバー
+  = render 'users/user_nav', user: @user
+  / /ユーザーナビバー
+  / フォロワー一覧
+  = render 'users', users: @followers
+  / /フォロワ一覧

@@ -1,0 +1,30 @@
+- breadcrumb :edit_product, @product
+/ アイテム入力フォーム
+= form_for @product do |f|
+  / エラーメッセージ
+  = render 'layouts/error_messages', model: f.object
+  / アイテムタイトル
+  .form-group.row
+    = f.label :title, 'アイテムタイトル ', class:'col-md-3 col-form-label'
+    .col-md-9
+      = f.text_field :title, class: "form-control"
+  / アマゾンのブランド名
+  .row
+    = label :brand_amazon_name, 'アマゾンのブランド名 ', class:'col-md-3 col-form-label'
+    .col-md-9
+      %p= @product.brand_amazon_name
+  / 公式サイトのURL
+  .form-group.row
+    = f.label :official_url, '公式サイトのURL ', class:'col-md-3 col-form-label'
+    .col-md-9
+      = f.text_field :official_url, class: "form-control"
+  / ブランド ID
+  .form-group.row
+    = f.label :brand_id, 'ブランドID ', class:'col-md-3 col-form-label'
+    .col-md-9
+      = f.text_field :brand_id, class: "form-control"
+  / 確認ボタン
+  .form-group.row.justify-content-end
+    .col-md-9
+      = f.submit '更新する', class: 'btn btn-success'
+/ /アイテム入力フォーム
