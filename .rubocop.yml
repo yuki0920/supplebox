@@ -1,8 +1,83 @@
-require: rubocop-rails
+inherit_gem:
+  deka_eiwakun: "config/rubocop.yml"
 
-Rails:
-  Enabled: true
+AllCops:
+  TargetRubyVersion: 2.5
 
-# Use only ascii symbols in comments.
-AsciiComments:
+  Exclude:
+    - 'db/schema.rb'
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BlockDelimiters:
+  FunctionalMethods:
+    - let
+    - let!
+    - subject
+  Exclude:
+    - 'spec/factories/*.rb'
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Style/TernaryParentheses:
+  Enabled: false
+
+Style/YodaCondition:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/update'
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 16
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'spec/**/*.rb'
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+Layout/IndentHeredoc:
+  Enabled: false
+
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/UnneededSplatExpansion:
   Enabled: false
