@@ -1,0 +1,28 @@
+- breadcrumb :new_user
+.row
+  .col-xs-offset-2.col-xs-8.col-md-offset-3.col-md-6
+    .panel.panel-default
+      .panel-heading 新規登録
+      .panel-body
+        = form_for(@user) do |f|
+          / エラーメッセージ
+          = render 'layouts/error_messages', model: f.object
+          .form-group
+            = f.label :name, 'ユーザー名'
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :nickname, 'ニックネーム'
+            = f.text_field :nickname, class: 'form-control'
+          .form-group
+            = f.label :email, 'メールアドレス'
+            = f.email_field :email, class: 'form-control'
+          .form-group
+            = f.label :password, 'パスワード'
+            = f.password_field :password, class: 'form-control'
+          .form-group
+            = f.label :password_confirmation, 'パスワード（確認）'
+            = f.password_field :password_confirmation, class: 'form-control'
+          %div
+            = f.submit '登録する', class: 'btn btn-success btn-block'
+        %p
+          アカウントをお持ちの方はこちらから#{link_to 'ログイン', login_path}してください

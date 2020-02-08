@@ -1,0 +1,40 @@
+- if posts.present?
+  - posts.each do |post|
+    .row.posts
+      .col-md-2.posts-user
+        = link_to post.user do
+          = image_tag post.user.picture.url ,width: '100px'
+        %p.posts-title= link_to post.user.name, post.user
+        %p.posts-prof
+          = post.user.gender
+          = post.user.height
+          = post.user.weight
+      .col-md-6.mb-3
+        .posts-content
+          %p= simple_time(post.created_at)
+          %h4.mb-3
+            評価：#{post.rate}点 | #{post.title}
+          / 星評価
+          %div{:id => "star-rate-#{post.id}"}
+          :javascript
+            $('#star-rate-#{post.id}').raty({
+              size: 36,
+              starOff:  '#{asset_path('star-off.png')}',
+              starOn : '#{asset_path('star-on.png')}',
+              starHalf: '#{asset_path('star-half.png')}',
+              half: true,
+              readOnly: true,
+              score: #{post.rate},
+            });
+          / /星評価
+          %p= post.content
+          = image_tag post.picture.url, class:'img-fluid' if post.picture?
+      .col-md-4
+        = link_to post.product do
+          .posts-product
+            %img{:alt => "", :src => "#{post.product.image_url}"}/
+            %p= post.product.title
+      .col-md-12.edit-button
+        - if current_user == post.user
+          = link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-default'
+          = link_to '口コミを削除', post, method: :delete, class:'btn btn-default'

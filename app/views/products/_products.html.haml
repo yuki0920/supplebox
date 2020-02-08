@@ -1,0 +1,47 @@
+- if products.present?
+  .row
+    - products.each do |product|
+      .product
+        .col-md-3.col-sm-4.col-xs-12
+          .panel.panel-default
+            .panel-heading.text-center
+              = link_to product do
+                %img{:alt => "", :src => "#{product.image_url}"}/
+            .panel-body
+              %p.product-brand= product.brand_amazon_name
+              %p.product-title= link_to product.title, product
+              / 星評価
+              .star
+                %span{:id => "star-rate-#{product.id}", :style => "float-left"}
+                :javascript
+                  $('#star-rate-#{product.id}').raty({
+                    size: 36,
+                    starOff:  '#{asset_path('star-off.png')}',
+                    starOn : '#{asset_path('star-on.png')}',
+                    starHalf: '#{asset_path('star-half.png')}',
+                    half: true,
+                    readOnly: true,
+                    score: #{product.posts.average(:rate).to_f.round(1)},
+                  });
+                （口コミ #{product.posts.count} 件）
+                　
+              / /星評価
+              .buttons.text-center
+                - if logged_in?
+                  - if product.persisted?
+                    / お気に入り登録・削除ボタン
+                    = render 'likes/like_small_button', product: product
+                    - if current_user.admin?
+                      / アイテム登録削除ボタン
+                      = form_tag(product_path(product.id), method: :delete, data: { confirm: "アイテムを削除します。よろしいでしょうか？"}) do
+                        = hidden_field_tag :product_id, product.id
+                        = submit_tag 'アイテム削除', class: 'btn btn-success'
+                  - else
+                    / アイテム登録ボタン
+                    = form_tag(products_path) do
+                      = hidden_field_tag :product_asin, product.asin
+                      = submit_tag '登録', class: 'btn btn-outline-success'
+            .panel-footer
+              %p.text-center
+                = ranking_counts[product.id]
+                %span.glyphicon.glyphicon-heart

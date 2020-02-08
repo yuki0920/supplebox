@@ -1,0 +1,16 @@
+- breadcrumb :products
+%h2 アイテム一覧情報
+.search
+  .row
+    .text-center
+      = search_form_for @q, class:'form-inline' do |f|
+        .form-group
+          = f.text_field :title_or_brand_amazon_name_cont, class: 'form-control input-lg', placeholder: "ブランドやアイテム名を入力", size: 40
+        = f.submit 'アイテムを検索', class: "btn btn-success btn-lg"
+%p.text-center
+  アイテムがない場合はこちらから#{link_to 'アイテムを追加', new_product_path}をしてください
+/ アイテム一覧
+= render 'products', { products: @products, ranking_counts: @ranking_counts }
+/ ページネーション
+= paginate @products
+= page_entries_info @products

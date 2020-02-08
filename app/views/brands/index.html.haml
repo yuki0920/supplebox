@@ -1,0 +1,22 @@
+- breadcrumb :brands
+%h2 ブランド一覧
+/ ブランド検索
+.search
+  .row
+    .text-center
+      = search_form_for @q, class:'form-inline' do |f|
+        .form-group
+          = f.text_field :name_cont, class: 'form-control input-lg', placeholder: "例）SAVAS や ザバス", size: 40
+        = f.submit 'ブランドを検索', class: "btn btn-success btn-lg"
+/ ブランド一覧
+- if @brands.present?
+  .row
+    - @brands.each do |brand|
+      .col-md-4.col-xs-12
+        .users
+          = link_to brand do
+            = image_tag brand.picture.url if brand.picture?
+          %p= link_to brand.name, brand
+  / ページネーション
+  = paginate @brands
+  = page_entries_info @brands

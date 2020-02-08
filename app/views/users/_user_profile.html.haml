@@ -1,0 +1,31 @@
+.user-profile
+  .icon.text-center
+    = image_tag user.picture.url ,width: '100px'
+  .name.text-center
+    %h1= user.nickname
+  .text-center
+    = render 'relationships/follow_button'
+    - if current_user == user
+      = link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default'
+    - if (( current_user.admin? && current_user != user ) if logged_in?)
+      = link_to 'アカウントを削除する', user , method: :delete, data: { confirm: "アカウントを削除します。よろしいでしょうか？"} , class:'btn btn-danger'
+  .status.text-center
+    %ul
+      %li
+        .status-label ユーザー名
+        .status-value
+          @#{user.name}
+      %li
+        .status-label 性別
+        .status-value= user.gender
+      %li
+        .status-label 身長
+        .status-value= user.height
+      %li
+        .status-label 体重
+        .status-value= user.weight
+    .status.comment.text-center
+      %ul
+        %li
+          .status-label 自己紹介
+          .status-value= user.comment
