@@ -7,7 +7,7 @@ class ContactMailer < ApplicationMailer
     mail(
       subject: 'SuppleBoxへのお問い合わせありがとうございます。',
       to: contact.email,
-      cc: ENV['GMAIL_USERNAME'],
+      bcc: ENV['GMAIL_USERNAME'],
       from: ENV['GMAIL_USERNAME']
     )
   end
