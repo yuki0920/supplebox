@@ -44,7 +44,7 @@ users = User.all
 first_user  = users.first
 following = users[2..30]
 followers = users[3..20]
-following.each { |followed| user.follow(followed) }
+following.each { |followed| first_user.follow(followed) }
 followers.each { |follower| follower.follow(first_user) }
 
 # お気に入り登録

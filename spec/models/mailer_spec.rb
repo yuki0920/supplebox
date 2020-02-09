@@ -19,7 +19,6 @@ RSpec.describe ContactMailer, type: :mailer do
       expect(mail.to).to eq ['test@supplebox.jp']
     end
 
-
     it 'From が管理用メールアドレスになること' do
       expect(mail.from).to eq ['suppleboxmanager@gmail.com']
     end
