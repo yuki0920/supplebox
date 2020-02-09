@@ -23,8 +23,8 @@
             = link_to @brand.name, @brand if @brand
             = @product.brand_amazon_name unless @brand
     .buttons.text-center
-      = link_to 'Amazonで詳しく見る', "https://www.amazon.co.jp/s?k=#{@product.title}&tag=maftracking242574-22&linkCode=ure&creative=6339", target: ["_blank"],class: 'btn btn-lg btn-outline-warning'
-      = link_to '楽天で詳しく見る', "https://search.rakuten.co.jp/search/mall/#{@product.brand_amazon_name} プロテイン?scid=af_pc_etc&sc2id=af_103_1_10000645", target: ["_blank"],class: 'btn btn-lg btn-outline-danger'
+      = link_to 'Amazonで詳しく見る', @product.url, target: ["_blank"],class: 'btn btn-lg btn-outline-warning'
+      = link_to '楽天で詳しく見る', "https://search.rakuten.co.jp/search/mall/#{@product.brand_amazon_name}+プロテイン/?f=1&grp=product", target: ["_blank"],class: 'btn btn-lg btn-outline-danger'
       / <a href="#" class="btn btn-lg btn-success">公式サイトで詳しく見る</a>
       = render 'likes/like_button', product: @product
 / /アイテム情報
