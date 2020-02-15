@@ -49,15 +49,16 @@ class Product < ApplicationRecord
       )
     end
 
-    def search_product(keyword)
-      response = Amazon::Ecs.item_lookup(
-        keyword,
-        response_group: 'Medium',
-        country: 'jp'
-      )
+    def item(asin)
+      formatted_item(Amazon::Ecs.item_lookup(
+                      asin,
+                      response_group: 'Medium',
+                      country: 'jp'
+                    ).get_element('Item'))
+    end
 
-      item = response.get_element('Item')
-      Product.new(formatted_item(item))
+    def build_with_item(asin)
+      Product.new(item(asin))
     end
 
     def formatted_item(item)

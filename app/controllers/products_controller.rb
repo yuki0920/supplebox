@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.search_product(params[:product_asin])
+    @product = Product.build_with_item(params[:product_asin])
 
     @product.save
     flash[:success] = 'アイテムを登録しました'
