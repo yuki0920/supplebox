@@ -31,7 +31,7 @@ class Product < ApplicationRecord
     def search_products(keyword)
       load_products(keyword).items.each_with_object([]) do |item, result|
         product = Product.find_by(asin: item.get('ASIN'))
-        product = Product.new(load_product_params(item)) if product.blank?
+        product = Product.new(formatted_item(item)) if product.blank?
         result << product
       end
     end
@@ -57,10 +57,10 @@ class Product < ApplicationRecord
       )
 
       item = response.get_element('Item')
-      Product.new(load_product_params(item))
+      Product.new(formatted_item(item))
     end
 
-    def load_product_params(item)
+    def formatted_item(item)
       {
         title: item.get('ItemAttributes/Title'),
         image_url: item.get('LargeImage/URL'),
