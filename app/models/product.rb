@@ -29,6 +29,8 @@ class Product < ApplicationRecord
     end
 
     def build_with_items(keyword)
+      return unless keyword
+
       items(keyword).items.each_with_object([]) do |item, products|
         product = Product.find_by(asin: item.get('ASIN'))
         product ||= Product.new(formatted_item(item))
