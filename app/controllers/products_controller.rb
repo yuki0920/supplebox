@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[edit update show]
 
   def new
-    @products = Product.search_products(params[:keyword])
+    @products = Product.build_with_items(params[:keyword])
   end
 
   def create

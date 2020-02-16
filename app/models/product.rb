@@ -28,15 +28,15 @@ class Product < ApplicationRecord
       group(:id).order('brand_id').count(:id)
     end
 
-    def search_products(keyword)
-      load_products(keyword).items.each_with_object([]) do |item, result|
+    def build_with_items(keyword)
+      items(keyword).items.each_with_object([]) do |item, products|
         product = Product.find_by(asin: item.get('ASIN'))
-        product = Product.new(formatted_item(item)) if product.blank?
-        result << product
+        product ||= Product.new(formatted_item(item))
+        products << product
       end
     end
 
-    def load_products(keyword)
+    def items(keyword)
       # 　デバックログ出力するために記述
       Amazon::Ecs.debug = true
       # Amazon::Ecs::Responceオブジェクトの取得
