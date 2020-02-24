@@ -9,7 +9,7 @@ module ApplicationHelper
   # メタタグを表示するメソッド
   def default_meta_tags
     {
-      site: 'サイト名',
+      site: 'サプリボックス',
       title: 'SuppleBox プロテイン口コミ・評判サイト',
       reverse: true,
       charset: 'utf-8',
