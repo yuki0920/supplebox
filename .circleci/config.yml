@@ -1,0 +1,66 @@
+version: 2.1
+jobs:
+  rspec:
+    docker:
+      - image: circleci/ruby:2.5.3-node-browsers
+        environment:
+          RAILS_ENV: test
+          POSTGRES_HOST: 127.0.0.1
+      - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_HOST_AUTH_METHOD: trust
+
+    working_directory: ~/supplebox
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: gem install bundler:2.0.2
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:schema:load
+      - run:
+          name: RSpec
+          command: bundle exec rspec
+
+  rubocop:
+    docker:
+      - image: circleci/ruby:2.5.3-node-browsers
+        environment:
+          RAILS_ENV: test
+          POSTGRES_HOST: 127.0.0.1
+      - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_HOST_AUTH_METHOD: trust
+
+    working_directory: ~/supplebox
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: gem install bundler:2.0.2
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: RuboCop
+          command: bundle exec rubocop
+
+workflows:
+  version: 2.1
+  rspec_and_rubocop:
+    jobs:
+      - rspec
+      - rubocop
