@@ -1,8 +1,8 @@
-inherit_gem:
-  deka_eiwakun: "config/rubocop.yml"
+require:
+  - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.5.3
 
   Exclude:
     - 'db/schema.rb'
@@ -69,7 +69,7 @@ Metrics/BlockLength:
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 
 Layout/SpaceInLambdaLiteral:
@@ -79,5 +79,5 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*.rb'
 
-Lint/UnneededSplatExpansion:
+Lint/RedundantSplatExpansion:
   Enabled: false
