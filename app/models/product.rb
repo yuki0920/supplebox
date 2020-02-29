@@ -28,15 +28,17 @@ class Product < ApplicationRecord
       group(:id).order('brand_id').count(:id)
     end
 
-    def search_products(keyword)
-      load_products(keyword).items.each_with_object([]) do |item, result|
+    def build_with_items(keyword)
+      return unless keyword
+
+      items(keyword).items.each_with_object([]) do |item, products|
         product = Product.find_by(asin: item.get('ASIN'))
-        product = Product.new(load_product_params(item)) if product.blank?
-        result << product
+        product ||= Product.new(formatted_item(item))
+        products << product
       end
     end
 
-    def load_products(keyword)
+    def items(keyword)
       # 　デバックログ出力するために記述
       Amazon::Ecs.debug = true
       # Amazon::Ecs::Responceオブジェクトの取得
@@ -49,18 +51,19 @@ class Product < ApplicationRecord
       )
     end
 
-    def search_product(keyword)
-      response = Amazon::Ecs.item_lookup(
-        keyword,
-        response_group: 'Medium',
-        country: 'jp'
-      )
-
-      item = response.get_element('Item')
-      Product.new(load_product_params(item))
+    def item(asin)
+      formatted_item(Amazon::Ecs.item_lookup(
+                      asin,
+                      response_group: 'Medium',
+                      country: 'jp'
+                    ).get_element('Item'))
     end
 
-    def load_product_params(item)
+    def build_with_item(asin)
+      Product.new(item(asin))
+    end
+
+    def formatted_item(item)
       {
         title: item.get('ItemAttributes/Title'),
         image_url: item.get('LargeImage/URL'),

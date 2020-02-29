@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[edit update show]
 
   def new
-    @products = Product.search_products(params[:keyword])
+    @products = Product.build_with_items(params[:keyword])
   end
 
   def create
-    @product = Product.search_product(params[:product_asin])
+    @product = Product.build_with_item(params[:product_asin])
 
     @product.save
     flash[:success] = 'アイテムを登録しました'
