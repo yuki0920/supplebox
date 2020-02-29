@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def show
-    @posts = @user.posts.page(params[:page])
+    @posts = Post.includes(:user, :product).where(user_id: @user.id).page(params[:page])
     counts(@user)
   end
 
