@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BrandsController < ApplicationController
-  before_action :require_user_logged_in, only: %i[new ceate edit update destroy]
-  before_action :admin_user, only: %i[new ceate edit update destroy]
+  before_action :require_user_logged_in, only: %i[new create edit update destroy]
+  before_action :admin_user, only: %i[new create edit update destroy]
   before_action :set_brand, only: %i[show edit update destroy]
 
   def index
@@ -43,10 +43,10 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    if @brand.destroy
-      flash[:success] = 'ブランドを削除しました'
-      redirect_to root_url
-    end
+    return unless @brand.destroy
+
+    flash[:success] = 'ブランドを削除しました'
+    redirect_to root_url
   end
 
   private

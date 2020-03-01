@@ -20,10 +20,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.destroy
-      flash[:success] = '口コミを削除しました'
-      redirect_back(fallback_location: root_path)
-    end
+    return unless @post.destroy
+
+    flash[:success] = '口コミを削除しました'
+    redirect_back(fallback_location: root_path)
   end
 
   def edit; end

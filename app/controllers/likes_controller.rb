@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :require_user_logged_in, only: %i[new create edit update destroy]
+  before_action :require_user_logged_in, only: %i[create destroy]
 
   def create
     product = Product.find(params[:product_id])

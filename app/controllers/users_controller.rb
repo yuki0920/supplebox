@@ -45,10 +45,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
-      flash[:success] = 'アカウントを削除しました。またのご利用をお待ちしております。'
-      redirect_to root_url
-    end
+    return unless @user.destroy
+
+    flash[:success] = 'アカウントを削除しました。またのご利用をお待ちしております。'
+    redirect_to root_url
   end
 
   def like_products
@@ -70,7 +70,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :nickname, :gender, :height, :weight, :comment, :picture)
+    params.require(:user).permit(
+      :name, :email, :password, :password_confirmation, :nickname,
+      :gender, :height, :weight, :comment, :picture
+    )
   end
 
   def correct_user

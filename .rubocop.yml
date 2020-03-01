@@ -2,82 +2,49 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5.3
+  TargetRubyVersion: 2.5
 
   Exclude:
+    - 'bin/bundle'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/setup'
+    - 'bin/update'
     - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'log/**/*'
+    - 'vendor/bundle/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
 
-Bundler/OrderedGems:
-  Enabled: false
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+    - 'config/routes.rb'
+    - 'spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 125
+
+Naming/VariableName:
+  EnforcedStyle: snake_case
+  Enabled: true
 
 Style/BlockDelimiters:
   FunctionalMethods:
     - let
     - let!
     - subject
-  Exclude:
-    - 'spec/factories/*.rb'
 
-Style/EmptyMethod:
+Style/Documentation:
   Enabled: false
 
-Style/GuardClause:
-  Enabled: false
-
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-Style/SymbolArray:
-  Enabled: false
-
-Style/ExpandPathArguments:
+Style/AsciiComments:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/RescueStandardError:
-  Enabled: false
-
-Style/TernaryParentheses:
-  Enabled: false
-
-Style/YodaCondition:
-  Enabled: false
-
-Style/MixinUsage:
-  Exclude:
-    - 'bin/update'
-
-Metrics/MethodLength:
-  Max: 15
-
-Metrics/AbcSize:
-  Max: 16
-
-Metrics/BlockLength:
-  Exclude:
-    - 'config/routes.rb'
-    - 'spec/**/*.rb'
-
-Naming/HeredocDelimiterNaming:
-  Enabled: false
-
-Layout/HeredocIndentation:
-  Enabled: false
-
-Layout/SpaceInLambdaLiteral:
-  Enabled: false
-
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Lint/RedundantSplatExpansion:
   Enabled: false

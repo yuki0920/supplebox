@@ -69,9 +69,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov', require: false
-  gem 'launchy'
 end
 
 group :production do
@@ -86,6 +86,7 @@ gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'gretel'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
@@ -94,4 +95,3 @@ gem 'mini_magick'
 gem 'ransack'
 gem 'sitemap_generator'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'haml-rails'

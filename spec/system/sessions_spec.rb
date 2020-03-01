@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 describe 'セッション管理機能', type: :system do
-  let!(:user) {
+  let!(:user) do
     create(:user,
            email: 'test@supplebox.jp',
-           password: 'password')}
+           password: 'password')
+  end
 
   it '登録済みユーザーがログインとログアウトできること' do
     visit login_path

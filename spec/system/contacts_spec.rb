@@ -31,7 +31,7 @@ describe '問い合わせ機能', type: :system do
   it 'お問い合わせが失敗すること' do
     sign_in_as user
     visit contacts_path
-    expect{click_on '送信する'}.to change(Contact, :count).by(0)
+    expect { click_on '送信する' }.to change(Contact, :count).by(0)
     expect(page).to have_content 'お問い合わせの送信に失敗しました'
   end
 end
