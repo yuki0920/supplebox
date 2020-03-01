@@ -2,18 +2,18 @@
 
 class Product < ApplicationRecord
   # 商品登録用
-  validates :title, presence: true, length: { maximum: 255 }
+  validates :title, presence: true, length: {maximum: 255}
   ## urlは255字以上のためデータ型が'text
   validates :url, presence: true
-  validates :image_url, presence: true, length: { maximum: 255 }
+  validates :image_url, presence: true, length: {maximum: 255}
   ## ASINコードで一意に識別
-  validates :asin, presence: true, uniqueness: true, length: { maximum: 255 }
+  validates :asin, presence: true, uniqueness: true, length: {maximum: 255}
 
   # ページネーションの表示件数追加
   paginates_per 12
 
   # 口コミ投稿との関連付け
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   # ブランドとの関連付け
   belongs_to :brand, optional: true
@@ -53,10 +53,10 @@ class Product < ApplicationRecord
 
     def item(asin)
       formatted_item(Amazon::Ecs.item_lookup(
-                      asin,
-                      response_group: 'Medium',
-                      country: 'jp'
-                    ).get_element('Item'))
+        asin,
+        response_group: 'Medium',
+        country: 'jp'
+      ).get_element('Item'))
     end
 
     def build_with_item(asin)

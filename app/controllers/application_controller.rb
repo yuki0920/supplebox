@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   # end
 
   def require_user_logged_in
-    unless logged_in?
-      store_location
-      redirect_to login_url
-    end
+    return if logged_in?
+
+    store_location
+    redirect_to login_url
   end
 
   include SessionsHelper

@@ -41,7 +41,7 @@ end
 
 # リレーションシップ
 users = User.all
-first_user  = users.first
+first_user = users.first
 following = users[2..30]
 followers = users[3..20]
 following.each { |followed| first_user.follow(followed) }

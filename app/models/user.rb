@@ -3,14 +3,14 @@
 class User < ApplicationRecord
   # ユーザー登録用
   before_save { email.downcase! }
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :nickname, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: {maximum: 50}
+  validates :nickname, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :comment, length: { maximum: 100 }
+  validates :email, presence: true, length: {maximum: 255},
+                    format: {with: VALID_EMAIL_REGEX},
+                    uniqueness: {case_sensitive: false}
+  validates :password, length: {minimum: 6}, allow_nil: true
+  validates :comment, length: {maximum: 100}
   mount_uploader :picture, AvatarUploader
 
   has_secure_password
@@ -52,9 +52,7 @@ class User < ApplicationRecord
 
   # フォロー登録
   def follow(other_user)
-    unless self == other_user
-      relationships.find_or_create_by(follow_id: other_user.id)
-    end
+    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
   end
 
   # フォロー削除

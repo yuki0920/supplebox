@@ -50,7 +50,10 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :url, :image_url, :asin, :price, :brand_amazon_name, :official_url, :brand_id, :category_id)
+    params.require(:product).permit(
+      :title, :url, :image_url, :asin, :price, :brand_amazon_name,
+      :official_url, :brand_id, :category_id
+    )
   end
 
   def set_product

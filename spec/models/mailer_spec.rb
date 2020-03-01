@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe ContactMailer, type: :mailer do
-  let(:contact) { create(:contact,
-                          name: 'TestUser',
-                          email: 'test@supplebox.jp',
-                          title: 'テストタイトル',
-                          content: 'テストコンテント' )}
+  let(:contact) do
+    create(:contact,
+           name: 'TestUser',
+           email: 'test@supplebox.jp',
+           title: 'テストタイトル',
+           content: 'テストコンテント')
+  end
   let(:mail) { ContactMailer.creation_email(contact) }
 
   describe '#creation_email' do
