@@ -41,7 +41,11 @@ class Product < ApplicationRecord
     def items(keyword)
       request.search_items(
         keywords: keyword,
+        # MEMO: 日本対応のインデックス
+        # https://webservices.amazon.com/paapi5/documentation/locale-reference/japan.html
         search_index: 'HealthPersonalCare',
+        # MEMO: 親のノードを指定すると子のノードを取得できる
+        # シナリオごとのノード https://webservices.amazon.com/paapi5/documentation/use-cases.html
         resources: [
           'ItemInfo.Title',
           'ItemInfo.ByLineInfo',
