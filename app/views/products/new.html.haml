@@ -5,7 +5,7 @@
     .text-center
       = form_tag(new_product_path, method: :get, class: 'form-inline') do
         .form-group
-          = text_field_tag :keyword, "",  id: "book_search", name: "keyword", class: 'form-control input-lg', placeholder: "例）ザバス プロテイン", size: 40
+          = text_field_tag :keyword, nil,  id: "book_search", name: "keyword", class: 'form-control input-lg', placeholder: "例）ザバス プロテイン", size: 40
         = submit_tag 'アイテムを検索', class: 'btn btn-success btn-lg'
 - if @products.present?
   .row
