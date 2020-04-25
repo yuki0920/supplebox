@@ -4,6 +4,7 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 require 'vcr'
+require 'vacuum/matcher'
 
 RSpec.configure do |config|
   require 'capybara/rspec'

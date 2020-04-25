@@ -31,32 +31,46 @@ class Product < ApplicationRecord
     def build_with_items(keyword)
       return unless keyword
 
-      items(keyword).items.each_with_object([]) do |item, products|
-        product = Product.find_by(asin: item.get('ASIN'))
+      items(keyword).each_with_object([]) do |item, products|
+        product = Product.find_by(asin: item.dig('ASIN'))
         product ||= Product.new(formatted_item(item))
         products << product
       end
     end
 
     def items(keyword)
-      # 　デバックログ出力するために記述
-      Amazon::Ecs.debug = true
-      # Amazon::Ecs::Responceオブジェクトの取得
-      Amazon::Ecs.item_search(
-        keyword,
+      request.search_items(
+        keywords: keyword,
         search_index: 'HealthPersonalCare',
-        dataType: 'script',
-        response_group: 'Medium',
-        country: 'jp'
+        resources: [
+          'ItemInfo.Title',
+          'ItemInfo.ByLineInfo',
+          'Images.Primary.Large',
+          'Offers.Listings.Price'
+        ]
+      ).to_h.dig('SearchResult', 'Items')
+    end
+
+    def request
+      @request ||= Vacuum.new(
+        marketplace: 'JP',
+        access_key: ENV['AWS_ACCESS_KEY_ID'],
+        secret_key: ENV['AWS_SECRET_KEY'],
+        partner_tag: ENV['ASSOCIATE_TAG'],
       )
     end
 
     def item(asin)
-      formatted_item(Amazon::Ecs.item_lookup(
-        asin,
-        response_group: 'Medium',
-        country: 'jp'
-      ).get_element('Item'))
+      product = request.get_items(
+        item_ids: [asin],
+        resources: [
+          'ItemInfo.Title',
+          'ItemInfo.ByLineInfo',
+          'Images.Primary.Large',
+          'Offers.Listings.Price',
+        ]
+      ).to_h.dig('ItemsResult', 'Items')[0]
+      formatted_item(product)
     end
 
     def build_with_item(asin)
@@ -65,12 +79,12 @@ class Product < ApplicationRecord
 
     def formatted_item(item)
       {
-        title: item.get('ItemAttributes/Title'),
-        image_url: item.get('LargeImage/URL'),
-        url: item.get('DetailPageURL'),
-        asin: item.get('ASIN'),
-        brand_amazon_name: item.get('ItemAttributes/Brand'),
-        price: item.get('OfferSummary/LowestNewPrice/Amount')
+        title: item.dig('ItemInfo', 'Title', 'DisplayValue'),
+        image_url: item.dig('Images', 'Primary', 'Large', 'URL'),
+        url: item.dig('DetailPageURL'),
+        asin: item.dig('ASIN'),
+        brand_amazon_name: item.dig('ItemInfo', 'ByLineInfo', 'Brand', 'DisplayValue'),
+        price: item.dig('Offers', 'Listings', 0, 'Price', 'Amount'),
       }
     end
   end

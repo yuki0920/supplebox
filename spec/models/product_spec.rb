@@ -6,19 +6,6 @@ RSpec.describe Product, type: :model do
   let(:product) { FactoryBot.build(:product) }
   let(:other_product) { FactoryBot.build(:product) }
 
-  it '商品検索apiが作動すること' do
-    VCR.use_cassette('model/api_response') do
-      products = Amazon::Ecs.item_search(
-        'プロテイン',
-        search_index: 'HealthPersonalCare',
-        dataType: 'script',
-        response_group: 'Medium',
-        country: 'jp'
-      )
-      expect(products.is_valid_request?).to eq true
-    end
-  end
-
   it '商品登録できること' do
     expect(product).to be_valid
   end
