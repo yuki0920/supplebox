@@ -36,5 +36,10 @@
                   - else
                     / アイテム登録ボタン
                     = form_tag(products_path) do
-                      = hidden_field_tag :product_asin, product.asin
+                      = hidden_field_tag :title, product.title
+                      = hidden_field_tag :image_url, product.image_url
+                      = hidden_field_tag :url, product.url
+                      = hidden_field_tag :asin, product.asin
+                      = hidden_field_tag :brand_amazon_name, product.brand_amazon_name
+                      = hidden_field_tag :price, product.price
                       = submit_tag 'アイテム登録', class: 'btn btn-outline-success'

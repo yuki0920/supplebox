@@ -60,23 +60,6 @@ class Product < ApplicationRecord
       )
     end
 
-    def item(asin)
-      product = request.get_items(
-        item_ids: [asin],
-        resources: [
-          'ItemInfo.Title',
-          'ItemInfo.ByLineInfo',
-          'Images.Primary.Large',
-          'Offers.Listings.Price',
-        ]
-      ).to_h.dig('ItemsResult', 'Items')[0]
-      formatted_item(product)
-    end
-
-    def build_with_item(asin)
-      Product.new(item(asin))
-    end
-
     def formatted_item(item)
       {
         title: item.dig('ItemInfo', 'Title', 'DisplayValue'),
