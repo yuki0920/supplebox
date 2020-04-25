@@ -17,6 +17,8 @@ services:
       - '3000:3000'
     environment:
       DATABASE_HOST: 'db'
+    tty: true
+    stdin_open: true
     volumes:
       - .:/myapp
 volumes:

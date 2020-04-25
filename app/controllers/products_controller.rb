@@ -10,7 +10,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.build_with_item(params[:product_asin])
+    @product = Product.new(
+      title: params[:title],
+      image_url: params[:image_url],
+      url: params[:url],
+      asin: params[:asin],
+      brand_amazon_name: params[:brand_amazon_name],
+      price: params[:price],
+    )
 
     @product.save
     flash[:success] = 'アイテムを登録しました'
@@ -50,10 +57,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(
-      :title, :url, :image_url, :asin, :price, :brand_amazon_name,
-      :official_url, :brand_id, :category_id
-    )
+    params.require(:product).permit(:title, :url, :image_url, :asin, :price, :brand_amazon_name)
   end
 
   def set_product
