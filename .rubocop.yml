@@ -34,6 +34,9 @@ Naming/VariableName:
   EnforcedStyle: snake_case
   Enabled: true
 
+Rails/HelperInstanceVariable:
+  Enabled: false
+
 Style/BlockDelimiters:
   FunctionalMethods:
     - let
