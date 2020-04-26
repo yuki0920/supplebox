@@ -11,7 +11,7 @@ describe '問い合わせ機能', type: :system do
     sign_in_as user
     visit contacts_path
     perform_enqueued_jobs do
-      expect{
+      expect {
         fill_in 'お名前', with: 'テストユーザー'
         fill_in 'メールアドレス', with: 'test@supplebox.jp'
         fill_in 'タイトル', with: 'テストタイトル'

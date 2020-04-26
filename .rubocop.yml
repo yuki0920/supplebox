@@ -20,6 +20,9 @@ AllCops:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+Metrics/AbcSize:
+  Max: 20
+
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/development.rb'
@@ -28,17 +31,27 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
 
 Metrics/LineLength:
-  Max: 125
+  Max: 130
+
+Metrics/MethodLength:
+  Max: 12
+  Exclude:
+    - 'app/helpers/application_helper.rb'
 
 Naming/VariableName:
   EnforcedStyle: snake_case
   Enabled: true
+
+Rails/HelperInstanceVariable:
+  Enabled: false
 
 Style/BlockDelimiters:
   FunctionalMethods:
     - let
     - let!
     - subject
+  Exclude:
+      - "spec/**/*_spec.rb"
 
 Style/Documentation:
   Enabled: false
@@ -48,3 +61,6 @@ Style/AsciiComments:
 
 Style/PercentLiteralDelimiters:
   Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
