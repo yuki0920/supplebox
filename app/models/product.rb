@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   belongs_to :brand, optional: true
 
   # お気に入り機能追加用中間テーブル追加
-  has_many :likes, foreign_key: 'product_id', dependent: :destroy
+  has_many :likes, foreign_key: 'product_id', dependent: :destroy, inverse_of: :product
   has_many :users, through: :likes
 
   class << self

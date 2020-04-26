@@ -47,7 +47,7 @@ class User < ApplicationRecord
   # 　フォロー機能追加用中間テーブル
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', inverse_of: :user, dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user
 
   # フォロー登録
