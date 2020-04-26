@@ -50,6 +50,8 @@ Style/BlockDelimiters:
     - let
     - let!
     - subject
+  Exclude:
+      - "spec/**/*_spec.rb"
 
 Style/Documentation:
   Enabled: false
