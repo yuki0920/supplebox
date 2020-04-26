@@ -68,3 +68,13 @@ $ docker-compose up
 ```
 $ docker-compose exec rails bundle exec rails db:create db:migrate db:seed
 ```
+
+4. RSpecを実行する
+```
+$ docker-compose run rails rspec
+```
+
+5. RuboCopを実行する
+```
+$ docker-compose run rails rubocop
+```
