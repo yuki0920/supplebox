@@ -51,7 +51,7 @@ class Product < ApplicationRecord
           'ItemInfo.ByLineInfo',
           'Images.Primary.Large',
           'Offers.Listings.Price'
-        ]
+        ],
       ).to_h.dig('SearchResult', 'Items')
     end
 
@@ -71,7 +71,7 @@ class Product < ApplicationRecord
         url: item.dig('DetailPageURL'),
         asin: item.dig('ASIN'),
         brand_amazon_name: item.dig('ItemInfo', 'ByLineInfo', 'Brand', 'DisplayValue'),
-        price: item.dig('Offers', 'Listings', 0, 'Price', 'Amount'),
+        price: item.dig('Offers', 'Listings', 0, 'Price', 'Amount')
       }
     end
   end

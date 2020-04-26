@@ -51,3 +51,6 @@ Style/AsciiComments:
 
 Style/PercentLiteralDelimiters:
   Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
