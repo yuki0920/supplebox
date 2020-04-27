@@ -1545,7 +1545,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   turbolinks
-  tzinfo-data
   uglifier
   vacuum
   vcr
