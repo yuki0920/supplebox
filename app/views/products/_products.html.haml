@@ -1,31 +1,20 @@
 - if products.present?
   .row
-    - products.each do |product|
+    - products.each_with_index do |product, index|
       .product
         .col-md-3.col-sm-4.col-xs-12
           .panel.panel-default
             .panel-heading.text-center
               = link_to product do
-                %img{:alt => "", :src => "#{product.image_url}"}/
+                %img{:alt => "#{product.title}", :src => "#{product.image_url}"}/
             .panel-body
               %p.product-brand= product.brand_amazon_name
               %p.product-title= link_to product.title, product
               / 星評価
               .star
                 %span{:id => "star-rate-#{product.id}", :style => "float-left"}
-                :javascript
-                  $('#star-rate-#{product.id}').raty({
-                    size: 36,
-                    starOff:  '#{asset_path('star-off.png')}',
-                    starOn : '#{asset_path('star-on.png')}',
-                    starHalf: '#{asset_path('star-half.png')}',
-                    half: true,
-                    readOnly: true,
-                    score: #{product.posts.average(:rate).to_f.round(1)},
-                  });
+                = render 'products/read_rate', product: product
                 （口コミ #{product.posts.count} 件）
-                　
-              / /星評価
               .buttons.text-center
                 - if logged_in?
                   - if product.persisted?
@@ -43,5 +32,8 @@
                       = submit_tag '登録', class: 'btn btn-outline-success'
             .panel-footer
               %p.text-center
+                - if controller_name == 'rankings'
+                  = index + 1
+                  位
                 = ranking_counts[product.id]
                 %span.glyphicon.glyphicon-heart

@@ -26,7 +26,7 @@ describe 'アイテム登録機能', type: :system do
   describe '詳細表示機能' do
     it 'ログイン状態に関わらず登録したアイテム詳細画面を確認できること' do
       visit products_path
-      click_link product.title
+      click_link product.title, match: :first
       expect(page).to have_content('Amazonで詳しく見る')
     end
   end

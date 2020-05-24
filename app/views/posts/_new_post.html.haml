@@ -11,6 +11,7 @@
       = f.text_field :title, class: "form-control"
   / 評価
   #star.form-group.row
+    = render 'posts/write_rate'
     = f.label :rate,'評価 ', class:'col-md-3 col-form-label'
     = f.hidden_field :rate, id: :review_star
   / 口コミ
@@ -38,13 +39,3 @@
       }
     });
 / /口コミ入力フォーム
-/ 星評価
-:javascript
-  $('#star').raty({
-    size     : 36,
-    starOff:  '#{asset_path('star-off.png')}',
-    starOn : '#{asset_path('star-on.png')}',
-    starHalf: '#{asset_path('star-half.png')}',
-    scoreName: 'post[rate]',
-    half: true,
-  });
