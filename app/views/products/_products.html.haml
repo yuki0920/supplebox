@@ -6,7 +6,7 @@
           .panel.panel-default
             .panel-heading.text-center
               = link_to product do
-                %img{:alt => "", :src => "#{product.image_url}"}/
+                %img{:alt => "#{product.title}", :src => "#{product.image_url}"}/
             .panel-body
               %p.product-brand= product.brand_amazon_name
               %p.product-title= link_to product.title, product
