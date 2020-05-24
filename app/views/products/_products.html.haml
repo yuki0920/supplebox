@@ -13,19 +13,8 @@
               / 星評価
               .star
                 %span{:id => "star-rate-#{product.id}", :style => "float-left"}
-                :javascript
-                  $('#star-rate-#{product.id}').raty({
-                    size: 36,
-                    starOff:  '#{asset_path('star-off.png')}',
-                    starOn : '#{asset_path('star-on.png')}',
-                    starHalf: '#{asset_path('star-half.png')}',
-                    half: true,
-                    readOnly: true,
-                    score: #{product.posts.average(:rate).to_f.round(1)},
-                  });
+                = render 'products/read_rate', product: product
                 （口コミ #{product.posts.count} 件）
-                　
-              / /星評価
               .buttons.text-center
                 - if logged_in?
                   - if product.persisted?
