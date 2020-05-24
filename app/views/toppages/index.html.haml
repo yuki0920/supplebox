@@ -26,7 +26,7 @@
         %p ✔	PCやスマートフォンどちらからでも見やすい設計
 / サービス紹介
 %h2 お気に入りアイテムランキング
-= render 'rankings/products', {products: @products, ranking_counts: @ranking_counts }
+= render 'products/products', {products: @products, ranking_counts: @ranking_counts }
 .text-center
   = link_to 'お気に入りアイテムをもっと見る', rankings_like_path, class: 'btn btn-success btn-lg'
 %h2 最新の口コミ

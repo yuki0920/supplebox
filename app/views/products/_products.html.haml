@@ -1,6 +1,6 @@
 - if products.present?
   .row
-    - products.each do |product|
+    - products.each_with_index do |product, index|
       .product
         .col-md-3.col-sm-4.col-xs-12
           .panel.panel-default
@@ -43,5 +43,8 @@
                       = submit_tag '登録', class: 'btn btn-outline-success'
             .panel-footer
               %p.text-center
+                - if controller_name == 'rankings'
+                  = index + 1
+                  位
                 = ranking_counts[product.id]
                 %span.glyphicon.glyphicon-heart
