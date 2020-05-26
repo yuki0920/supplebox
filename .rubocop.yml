@@ -2,7 +2,7 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
 
   Exclude:
     - 'bin/bundle'
@@ -64,3 +64,6 @@ Style/PercentLiteralDelimiters:
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false

@@ -18,10 +18,6 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
-  config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
-  end
 end
 
 # VCRの設定追加
