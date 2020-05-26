@@ -995,13 +995,6 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     coderay (1.1.2)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -1513,7 +1506,6 @@ DEPENDENCIES
   capybara
   carrierwave
   chromedriver-helper
-  coffee-rails
   dotenv-rails
   factory_bot_rails
   faker
