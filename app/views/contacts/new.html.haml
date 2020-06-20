@@ -29,3 +29,11 @@
     .col-md-9
       = f.submit '送信する', class: 'btn btn-success'
 / /お問い合わせ入力フォーム
+
+:erb
+  <div id='hello'>
+    {{message}}
+    <app></app>
+  </div>
+
+= javascript_pack_tag 'hello_vue'
