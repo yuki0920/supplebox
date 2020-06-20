@@ -58,10 +58,15 @@ $ docker-compose build
 ```
 
 
-2. コンテナを起動する
+2-a. コンテナを起動する
 データベースセットアップ前にコンテナを起動していないとデータベースのセットアップコマンドが失敗する
 ```
 $ docker-compose up
+```
+
+2-b. JavaScriptファイルをコンパイルする
+```
+$ docker-compose run rails bin/webpack
 ```
 
 3. データベースをセットアップする
