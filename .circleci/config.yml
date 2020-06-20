@@ -16,16 +16,19 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
             - v1-dependencies-
       - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: yarn install
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - ./node_modules
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
       - run: bundle exec rails db:create RAILS_ENV=test
       - run: bundle exec rails db:schema:load RAILS_ENV=test
+      - run: bundle exec bin/webpack
       - run:
           name: RSpec
           command: bundle exec rspec
@@ -53,6 +56,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
+            - ./node_modules
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: RuboCop
