@@ -10,6 +10,14 @@ User.create!(
   admin: true,
 )
 
+User.create!(
+  name: 'テストアカウント',
+  email: 'test@supplebox.jp',
+  password: 'testsupple',
+  password_confirmation: 'testsupple',
+  nickname: 'テスト',
+)
+
 29.times do |_n|
   name     = Faker::Name.name
   email    = Faker::Internet.email

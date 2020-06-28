@@ -65,4 +65,27 @@ describe 'アイテム登録機能', type: :system do
       expect(page).to have_content 'プロテイン選びで失敗したくないあなたへ'
     end
   end
+
+  describe '一覧機能' do
+    before do
+      create_list(:product, 13)
+    end
+
+    it 'ユーザーはアイテム一覧を閲覧できること' do
+      visit products_path
+      expect(page).to have_content 'Home › アイテム一覧'
+      expect(page).to_not have_content 'Home › アイテム一覧 › 1ページ目'
+      expect(page).to have_selector '.pagination'
+      Product.page.each do |product|
+        expect(page).to have_link product.title, href: product_path(product)
+      end
+      within '.pagination' do
+        click_link '2'
+      end
+      expect(page).to have_content 'Home › アイテム一覧 › 2ページ目'
+      within '.breadcrumbs' do
+        expect(page).to have_link 'アイテム一覧', href: products_path
+      end
+    end
+  end
 end
