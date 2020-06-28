@@ -34,6 +34,11 @@ crumb :products do
   parent :root
 end
 
+crumb :products_pagination do |page|
+  link "#{page}ページ目"
+  parent :products
+end
+
 # product#show
 crumb :show_product do |product|
   link product.title.to_s, product
