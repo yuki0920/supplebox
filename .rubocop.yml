@@ -16,6 +16,7 @@ AllCops:
     - 'vendor/bundle/**/*'
     - 'public/**/*'
     - 'tmp/**/*'
+    - 'node_modules/**/*'
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
