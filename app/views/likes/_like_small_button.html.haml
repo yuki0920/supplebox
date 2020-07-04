@@ -1,10 +1,10 @@
-- if current_user.like?(product)
-  = form_for(current_user.likes.find_by(product_id: product.id), html: { method: :delete }) do |f|
-    = hidden_field_tag :product_id, product.id
-    = button_tag(class: "btn btn-success") do
-      = content_tag :span, "お気に入り登録中", class: "glyphicon glyphicon-heart"
-- else
-  = form_for(current_user.likes.build) do |f|
+- unless current_user.like?(product)
+  = form_with(model: current_user.likes.build) do |f|
     = hidden_field_tag :product_id, product.id
     = button_tag(class: "btn btn-outline-success") do
       = content_tag :span, "お気に入り登録", class: "glyphicon glyphicon-heart-empty"
+- else
+  = form_with(model: current_user.likes.find_by(product_id: product.id), html: { method: :delete }) do |f|
+    = hidden_field_tag :product_id, product.id
+    = button_tag(class: "btn btn-success") do
+      = content_tag :span, "お気に入り登録中", class: "glyphicon glyphicon-heart"
