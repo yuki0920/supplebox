@@ -68,6 +68,6 @@ class User < ApplicationRecord
 
   # お気に入り数表示
   def self.ranking
-    group(:user.product_id).order('brand_id').count(:user.product_id)
+    group(:user.product_id).count(:user.product_id)
   end
 end

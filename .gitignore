@@ -75,4 +75,7 @@ public/sitemap.xml.gz
 # VCR 用のカセット
 /spec/vcr
 
+# 失敗したテストの記録
+/spec/tmp
+
 TODO

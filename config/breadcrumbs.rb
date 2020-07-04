@@ -29,14 +29,16 @@ crumb :new_user do
 end
 
 # product#index
-crumb :products do
-  link 'アイテム一覧', products_path
+crumb :products do |query_params = nil|
+  link 'アイテム一覧', query_params ? products_path(query_params) : products_path
   parent :root
 end
 
-crumb :products_pagination do |page|
+crumb :products_pagination do |query_params|
+  page = query_params.delete(:page)
+
   link "#{page}ページ目"
-  parent :products
+  parent :products, query_params
 end
 
 # product#show

@@ -38,10 +38,10 @@ module ApplicationHelper
   end
 
   def breadcrumb_pagination
-    if params[:page].nil? || params[:page] == 1
+    if @query_params[:page].nil? || @query_params[:page] == 1
       breadcrumb :products
     else
-      breadcrumb :products_pagination, params[:page]
+      breadcrumb :products_pagination, @query_params
     end
   end
 end

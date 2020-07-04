@@ -18,8 +18,9 @@
               .buttons.text-center
                 - if logged_in?
                   - if product.persisted?
-                    / お気に入り登録・削除ボタン
-                    = render 'likes/like_small_button', product: product
+                    %div.new_like{id: "product-#{product.id}"}
+                      / お気に入り登録・削除ボタン
+                      = render 'likes/like_small_button', product: product
                     - if current_user.admin?
                       / アイテム登録削除ボタン
                       = form_tag(product_path(product.id), method: :delete, data: { confirm: "アイテムを削除します。よろしいでしょうか？"}) do

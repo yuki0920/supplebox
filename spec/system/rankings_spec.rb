@@ -9,8 +9,8 @@ RSpec.describe 'ランキング表示機能' do
   it '1位から12位での順位が表示されていること' do
     sign_in_as user
     visit products_path
-    12.times do
-      all('#new_like')[0].click_on 'お気に入り登録'
+    12.times do |n|
+      all('.new_like')[n].click_on 'お気に入り登録'
     end
     visit rankings_like_path
     products.each do |product|
