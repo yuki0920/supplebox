@@ -52,6 +52,7 @@ class ProductsController < ApplicationController
     @q = Product.all.ransack(params[:q])
     @products = @q.result(distinct: true).order(:brand_id).page(params[:page])
     @ranking_counts = Product.ranking
+    @query_params = request.query_parameters
   end
 
   private
