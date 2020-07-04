@@ -16,9 +16,14 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    product = Product.find(params[:product_id])
-    current_user.unlike(product)
-    flash[:success] = 'お気に入り登録を解除しました。'
-    redirect_back(fallback_location: root_path)
+    @product = Product.find(params[:product_id])
+    current_user.unlike(@product)
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'お気に入り登録を解除しました。'
+        redirect_back(fallback_location: root_path)
+      end
+      format.js
+    end
   end
 end
