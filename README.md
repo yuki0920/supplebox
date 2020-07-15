@@ -78,3 +78,15 @@ $ docker-compose run rails rspec
 ```
 $ docker-compose run rails rubocop
 ```
+
+## コンテンツ更新手順
+1. サイトマップ `config/sitemap.rb` を修正する
+
+修正後GitHubへPush
+
+2. Herokuインタンス上のサイトマップを更新する
+```
+$ heroku run rails sitemap:refresh
+```
+
+定期的なサイトマップ更新はHerokuSchedulerでやっている

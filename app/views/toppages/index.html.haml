@@ -28,7 +28,7 @@
 %h2 お気に入りアイテムランキング
 = render 'products/products', {products: @products, ranking_counts: @ranking_counts }
 .text-center
-  = link_to 'お気に入りアイテムをもっと見る', rankings_like_path, class: 'btn btn-success btn-lg'
+  = link_to 'お気に入りアイテムをもっと見る', rankings_path, class: 'btn btn-success btn-lg'
 %h2 最新の口コミ
 = render 'posts/posts', posts: @posts
 .text-center
