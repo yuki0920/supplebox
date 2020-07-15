@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'policy', to: 'toppages#policy'
   get 'privacypolicy', to: 'toppages#privacypolicy'
-  get 'rankings/like', to: 'rankings#like'
+  get 'rankings', to: 'rankings#like'
   get 'contacts', to: 'contacts#new'
   post 'contacts', to: 'contacts#create'
   get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/supplebox/sitemaps/sitemap.xml.gz')

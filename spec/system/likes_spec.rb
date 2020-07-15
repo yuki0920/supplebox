@@ -25,7 +25,7 @@ describe 'アイテムお気に入り登録機能' do
     end
 
     it 'お気に入りしたアイテムがランキングに表示されている' do
-      visit rankings_like_path
+      visit rankings_path
       expect(page).to have_content product.title
     end
 

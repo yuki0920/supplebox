@@ -97,7 +97,7 @@ end
 
 # ranking#like
 crumb :ranking_like do
-  link 'お気に入りランキング', rankings_like_path
+  link 'お気に入りランキング', rankings_path
   parent :root
 end
 

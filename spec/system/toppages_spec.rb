@@ -11,7 +11,7 @@ describe 'リンク確認' do
 
   it 'ヘッダーリンクログイン前確認' do
     within 'header' do
-      expect(page).to have_link('ランキング', href: '/rankings/like')
+      expect(page).to have_link('ランキング', href: '/rankings')
       expect(page).to have_link('アイテムを探す', href: '/products')
       expect(page).to have_link('ブランドを探す', href: '/brands')
       expect(page).to have_link('口コミを探す', href: '/posts')
@@ -35,7 +35,7 @@ describe 'リンク確認' do
       expect(page).to have_link('利用基準', href: '/policy')
       expect(page).to have_link('プライバシーポリシー', href: '/privacypolicy')
       expect(page).to have_link('お問い合わせ', href: '/contacts')
-      expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings/like')
+      expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings')
       expect(page).to have_link('アイテム一覧を見る', href: '/products')
       expect(page).to have_link('ユーザー一覧を見る', href: '/users')
     end
