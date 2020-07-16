@@ -1,2 +1,7 @@
 log
 tmp
+node_modules
+coverage/
+spec/tmp
+README.md
+.env.sample
