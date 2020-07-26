@@ -13,31 +13,34 @@
 メールアドレス:test@supplebox.jp
 パスワード:test
 ```
-  
+
 ## 機能と使用技術
 
 - インフラ(Heroku)
+- Linter(RuboCop)
+- CI(CircleCI)
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
-- お問い合わせメール送信(ActionMailer)  
-- アイテム情報取得(Amazon Product API, amazon-ecs)
+- お問い合わせメール送信(ActionMailer, ActiveJob)
+- アイテム情報取得(Amazon Product API, vacuum)
 - 検索(ransack)
 - アクセス解析(google-analytics-rails)
-- サイトマップ(sitemap_generator)
+- サイトマップ(sitemap_generator, Heroku Scheduler)
 - メタタグ(meta-tags)
 - パンくずリスト(gretel)
-- デザイン(Bootstrap)  
+- 星評価機能(jQuery Raty)
+- デザイン(Bootstrap, Sass)
 - 認証関連(ログイン, 管理者ユーザー)
 - ユーザー関連（フォロー・フォロワー）
 - アイテム関連（お気に入り登録, ランキング表示）
 
 ## 環境
 
-- 言語(Ruby 2.5.3)
-- フレームワーク(Rails 5.2.3) 
-- 開発(Cloud9)
+- 言語(Ruby 2.7.1)
+- フレームワーク(Rails 6.0.3.1)
+- 開発(Docker for Mac)
 
 ## プロモーション
 
@@ -48,6 +51,12 @@
 こうしたプロテイン選びのミスは、金額面の損失に加えてトレーニングへのモチベーションにも直結するため、健康面にもデメリットとなります。
 
 当サービスは、リアルなプロテインの口コミを集中させることで、初心者から上級者まで、自分にあったプロテイン選びができるようサポートします。
+
+## 開発しながら得たTips
+
+- [レビュー用の星★の評価を実装する（入力、保存、表示） - Qiita](https://qiita.com/yuki_0920/items/a966d9fa2bdb621f805d)
+- [RailsでAmazonAPIを使ってみよう！ - Qiita](https://qiita.com/yuki_0920/items/7e7e9dcd955fed777bc1)
+- [Dockerの環境構築で`could not connect to server: Connection refused`のエラーが出た時の対処法 - Qiita](https://qiita.com/yuki_0920/items/84e2ca260bfe13cf3072)
 
 ## 環境構築手順
 
