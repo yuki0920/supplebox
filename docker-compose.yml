@@ -20,6 +20,6 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - .:/myapp
+      - .:/myapp:delegated
 volumes:
   pgdata:
