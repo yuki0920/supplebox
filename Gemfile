@@ -58,6 +58,7 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov', require: false
+  gem 'brakeman'
 end
 
 group :production do
