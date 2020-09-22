@@ -54,6 +54,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'brakeman'
   gem 'chromedriver-helper'
   gem 'launchy'
   gem 'rspec-rails'

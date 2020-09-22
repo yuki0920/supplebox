@@ -14,19 +14,13 @@
 パスワード:test
 ```
 
-## 機能と使用技術
+## 使用機能と技術
 
-- インフラ(Heroku)
-- Linter(RuboCop)
-- CI(CircleCI)
-- 単体・統合テスト(RSpec, factory_bot, capybara)
-- データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer, ActiveJob)
 - アイテム情報取得(Amazon Product API, vacuum)
 - 検索(ransack)
-- アクセス解析(google-analytics-rails)
 - サイトマップ(sitemap_generator, Heroku Scheduler)
 - メタタグ(meta-tags)
 - パンくずリスト(gretel)
@@ -36,11 +30,22 @@
 - ユーザー関連（フォロー・フォロワー）
 - アイテム関連（お気に入り登録, ランキング表示）
 
+## テスト・解析
+
+- 単体・統合テスト(RSpec, factory_bot, capybara)
+- カバレッジ計測(SimpleCov)
+- 静的解析(RuboCop, Brakeman)
+- N+1(Bullet)
+- CI(CircleCI)
+- アクセス解析(google-analytics-rails)
+
 ## 環境
 
 - 言語(Ruby 2.7.1)
 - フレームワーク(Rails 6.0.3.1)
-- 開発(Docker for Mac)
+- 本番環境インフラ(Heroku)
+- 開発開発(Docker for Mac)
+- データベース(PostgreSQL)
 
 ## プロモーション
 
