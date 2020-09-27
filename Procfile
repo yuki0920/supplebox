@@ -1,1 +1,1 @@
-web: supplebox
+web: bundle exec puma -C config/puma.rb
