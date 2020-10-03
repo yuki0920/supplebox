@@ -17,7 +17,6 @@
           / 星評価
           %div{:id => "star-rate-#{post.id}"}
           = render 'posts/read_rate', post: post
-          / /星評価
           %p= post.content
           = image_tag post.picture.url, class:'img-fluid' if post.picture?
       .col-md-4
