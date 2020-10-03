@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.3.1'
+gem 'rails', '6.0.3.3'
 
 gem 'pg'
 # Use Puma as the app server
@@ -40,8 +40,8 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen'
   gem 'web-console'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'better_errors'
+  # NOTE: 2.8.2でリグレッションが生じていたため See: https://github.com/BetterErrors/better_errors/issues/483
+  gem 'better_errors', '2.8.1'
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'rubocop-rails'
