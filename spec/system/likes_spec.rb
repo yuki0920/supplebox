@@ -10,9 +10,9 @@ describe 'アイテムお気に入り登録機能' do
     it 'お気に入り登録できる' do
       sign_in_as user
       visit product_path(product)
-      expect do
+      expect {
         click_on 'お気に入り登録'
-      end .to change { Like.count }.by(+1)
+      }.to change { Like.count }.by(+1)
       expect(page).to have_content 'お気に入り登録をしました。'
     end
   end
@@ -40,9 +40,9 @@ describe 'アイテムお気に入り登録機能' do
     end
 
     it 'お気に入り登録を解除できる' do
-      expect do
+      expect {
         click_on 'お気に入り登録中'
-      end .to change { Like.count }.by(-1)
+      }.to change { Like.count }.by(-1)
       expect(page).to have_content 'お気に入り登録を解除しました。'
     end
   end
