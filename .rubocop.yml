@@ -66,6 +66,11 @@ Style/AsciiComments:
 Style/PercentLiteralDelimiters:
   Enabled: false
 
+# NOTE: 商品情報の属性値の取得はdigで統一したい
+Style/SingleArgumentDig:
+  Exclude:
+    - 'app/models/product.rb'
+
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 

@@ -73,7 +73,7 @@ describe '口コミ投稿機能', type: :system do
     it '口コミを削除できること' do
       sign_in_as user
       visit user_path(user)
-      expect { click_on '口コミを削除' }.to change { Post.count }. by(-1)
+      expect { click_on '口コミを削除' }.to change { Post.count }.by(-1)
       expect(page).to have_content '口コミを削除しました'
     end
   end
