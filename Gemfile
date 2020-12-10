@@ -40,8 +40,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen'
   gem 'web-console'
-  # NOTE: 2.8.2でリグレッションが生じていたため See: https://github.com/BetterErrors/better_errors/issues/483
-  gem 'better_errors', '2.8.1'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'rubocop-rails'
