@@ -1,2 +1,1 @@
-var product_id = <%= @product.id %>
-$(`#product-${product_id}`).html("<%= escape_javascript(render('likes/like_small_button', product: @product)) %>")
+document.getElementById("product-<%= @product.id %>").innerHTML = "<%= escape_javascript(render('likes/like_small_button', product: @product)) %>"
