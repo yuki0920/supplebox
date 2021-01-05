@@ -1,0 +1,1 @@
+document.getElementById("follow_form_<%= @user.id %>").innerHTML = "<%= escape_javascript(render('follow',locals: {user: @user})) %>"
