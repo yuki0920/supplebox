@@ -1,1 +1,1 @@
-document.getElementById("follow_form_<%= @user.id %>").innerHTML = "<%= escape_javascript(render('unfollow',locals: {user: @user})) %>"
+document.getElementById("follow_form_<%= @user.id %>").innerHTML = "<%= escape_javascript(render('unfollow', user: @user)) %>"
