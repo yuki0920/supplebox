@@ -3,13 +3,13 @@
     %nav.navbar.navbar-default.navbar-static-top
       .container
         .navbar-header
-          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
           %a.navbar-left{:href => "/"}
-            %img{:alt => "SuppleBox", :src => "/images/logo.png"}/
+            %img{alt: "SuppleBox", src: "/images/logo.png"}/
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li
@@ -38,7 +38,7 @@
                   %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
                   アイテムを登録
               %li.dropdown
-                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
                   %span.gravatar
                     = image_tag current_user.picture.url, width:"20px", class:"img-circle"
                   = current_user.name
@@ -46,7 +46,7 @@
                 %ul.dropdown-menu
                   %li
                     = link_to 'マイページ', user_path(current_user)
-                  %li.divider{:role => "separator"}
+                  %li.divider{role: "separator"}
                   %li
                   %li= link_to 'ログアウト', logout_path, method: :delete
             - else

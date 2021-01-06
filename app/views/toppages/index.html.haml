@@ -13,18 +13,17 @@
       %h4.title プロテイン選びで失敗したく無い方に向けた、プロテイン特化型の口コミ共有サービスです。
     .row
       .col-md-4.col-sm-6.feature.text-center
-        %span.glyphicon.glyphicon-check{"aria-hidden" => "true", :style => "font-size: 40px"}
+        %span.glyphicon.glyphicon-check{"aria-hidden" => "true", style: "font-size: 40px"}
         %h3.feature-title リアルな口コミ
         %p ✔	実際の購入者によるリアルな口コミで失敗しないプロテイン選びをサポート
       .col-md-4.col-sm-6.feature.text-center
-        %span.glyphicon.glyphicon-zoom-in{"aria-hidden" => "true", :style => "font-size: 40px"}
+        %span.glyphicon.glyphicon-zoom-in{"aria-hidden" => "true", style: "font-size: 40px"}
         %h3.feature-title 探しやすい
         %p ✔	気になるアイテムをお気に入りランキングや最新の口コミから検索可能
       .col-md-4.col-sm-6.feature.text-center
-        %span.glyphicon.glyphicon-thumbs-up{"aria-hidden" => "true", :style => "font-size: 40px"}
+        %span.glyphicon.glyphicon-thumbs-up{"aria-hidden" => "true", style: "font-size: 40px"}
         %h3.feature-title 見やすいレイアウト
         %p ✔	PCやスマートフォンどちらからでも見やすい設計
-/ サービス紹介
 %h2 お気に入りアイテムランキング
 = render 'products/products', {products: @products, ranking_counts: @ranking_counts }
 .text-center

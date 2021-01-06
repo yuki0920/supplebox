@@ -7,7 +7,7 @@
     .product_detail
       .panel.panel-default
         .panel-heading.text-center
-          %img{:alt => "", :src => "#{@product.image_url}"}/
+          %img{alt: "", src: "#{@product.image_url}"}/
         .panel-body
   .col-md-8
     %h4= @product.title
@@ -27,10 +27,8 @@
       = link_to 'Amazonで詳しく見る', @product.url.html_safe, target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-warning'
 
       = render 'likes/like_button', product: @product
-/ /アイテム情報
 / 口コミ一覧
 = render 'posts/posts', posts: @posts, user: @user
-/ /口コミ一覧
 / 口コミ投稿フォーム
 .p-3
   %h2.mb-3 口コミ投稿する
