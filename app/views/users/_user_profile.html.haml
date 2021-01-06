@@ -4,7 +4,10 @@
   .name.text-center
     %h1= user.nickname
   .text-center
-    = render 'relationships/follow_button'
+    - if logged_in?
+      - unless current_user == user
+        %div{id: "follow_form_#{user.id}"}
+          = render 'relationships/follow_button', user: user
     - if current_user == user
       = link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default'
     - if (( current_user.admin? && current_user != user ) if logged_in?)

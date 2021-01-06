@@ -22,7 +22,7 @@
       .col-md-4
         = link_to post.product do
           .posts-product
-            %img{:alt => "", :src => "#{post.product.image_url}"}/
+            %img{alt: "", src: "#{post.product.image_url}"}/
             %p= post.product.title
       .col-md-12.edit-button
         - if current_user == post.user

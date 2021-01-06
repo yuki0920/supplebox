@@ -6,13 +6,13 @@
           .panel.panel-default
             .panel-heading.text-center
               = link_to product do
-                %img{:alt => "#{product.title}", :src => "#{product.image_url}"}/
+                %img{alt: "#{product.title}", src: "#{product.image_url}"}/
             .panel-body
               %p.product-brand= product.brand_amazon_name
               %p.product-title= link_to product.title, product
               / 星評価
               .star
-                %span{:id => "star-rate-#{product.id}", :style => "float-left"}
+                %span{id: "star-rate-#{product.id}", style: "float-left"}
                 = render 'products/read_rate', product: product
                 （口コミ #{product.posts.count} 件）
               .buttons.text-center
