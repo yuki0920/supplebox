@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show new create edit update destroy]
-  resources :posts, only: %i[new create destroy show edit update index]
+  resources :posts, only: %i[create destroy show edit update index]
   resources :likes, only: %i[create destroy]
   resources :relationships, only: %i[create destroy]
   resources :brands, only: %i[index show new create edit update destroy]
