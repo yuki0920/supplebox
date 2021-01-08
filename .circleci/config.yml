@@ -58,9 +58,47 @@ jobs:
           name: RuboCop
           command: bundle exec rubocop
 
+  bundle_update:
+    docker:
+      - image: circleci/ruby:2.7.2-node-browsers
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: gem install bundler:2.0.2
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: bundle update
+      - run: git checkout -b bundle-update-$CIRCLE_BUILD_NUM
+      - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
+      - run: git config user.name "yuki0920"
+      - run: git add Gemfile Gemfile.lock
+      - run: git commit -am '今月のGemfile更新用の自動作成PR'
+      - run: git push origin bundle-update-$CIRCLE_BUILD_NUM
+      - run:
+          name: Create a pull request
+          command: |
+            curl \
+              --header "Accept: application/vnd.github.v3+json" \
+              --data "{\"title\": \"今月のbundle-update\", \"head\": \"handsshare:bundle-update-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
+              https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 workflows:
   version: 2.1
   rspec_and_rubocop:
     jobs:
       - rspec
       - rubocop
+  monthly-bundle-update:
+    triggers:
+      - schedule:
+          # UTC記述。毎月1日に動作させるよう記述
+          # cron: "0 9 1 * *"
+          cron: "0,15,30,45 * * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - bundle_update
