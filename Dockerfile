@@ -4,5 +4,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends build-essential
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-RUN gem install bundler:2.0.2 && bundle install
+RUN gem install bundler:2.0.2
 COPY . /myapp
