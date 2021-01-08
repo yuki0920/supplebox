@@ -16,10 +16,13 @@ services:
     ports:
       - '3000:3000'
     environment:
-      DATABASE_HOST: 'db'
+      DATABASE_HOST: db
+      BUNDLE_PATH: '/bundle'
     tty: true
     stdin_open: true
     volumes:
       - .:/myapp:delegated
+      - bundle:/bundle
 volumes:
   pgdata:
+  bundle:
