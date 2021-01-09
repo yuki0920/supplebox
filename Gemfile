@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.3.3'
+gem 'rails', '6.1.1'
 
 gem 'pg'
 # Use Puma as the app server
@@ -38,15 +38,14 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen'
-  gem 'web-console'
-  # NOTE: 2.8.2でリグレッションが生じていたため See: https://github.com/BetterErrors/better_errors/issues/483
-  gem 'better_errors', '2.8.1'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
+  gem 'listen'
   gem 'rubocop-rails'
   gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do

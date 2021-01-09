@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   rspec:
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: circleci/ruby:3.0.0-node-browsers
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: 127.0.0.1
@@ -35,7 +35,7 @@ jobs:
 
   rubocop:
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: circleci/ruby:3.0.0-node-browsers
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: 127.0.0.1
@@ -63,7 +63,7 @@ jobs:
 
   bundle_update:
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: circleci/ruby:3.0.0-node-browsers
 
     steps:
       - checkout
