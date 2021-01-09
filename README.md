@@ -71,26 +71,30 @@
 $ docker-compose build
 ```
 
+2. Bundle Install
+```
+$ docker-compose run --rm bundle install
+```
 
-2. コンテナを起動する
+3. コンテナを起動する
 データベースセットアップ前にコンテナを起動していないとデータベースのセットアップコマンドが失敗する
 ```
 $ docker-compose up
 ```
 
-3. データベースをセットアップする
+4. データベースをセットアップする
 ```
 $ docker-compose exec rails bundle exec rails db:create db:migrate db:seed
 ```
 
-4. RSpecを実行する
+5. RSpecを実行する
 ```
-$ docker-compose run rails rspec
+$ docker-compose run --rm bundle exec rails rspec
 ```
 
-5. RuboCopを実行する
+6. RuboCopを実行する
 ```
-$ docker-compose run rails rubocop
+$ docker-compose run --rm bundle exec rails rubocop
 ```
 
 ## コンテンツ更新手順
