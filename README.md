@@ -32,17 +32,17 @@
 
 ## テスト・解析
 
-- 単体・統合テスト(RSpec, factory_bot, capybara)
+- 単体・統合テスト(RSpec, Capybara)
 - カバレッジ計測(SimpleCov)
 - 静的解析(RuboCop, Brakeman)
 - N+1(Bullet)
-- CI(CircleCI)
+- CI/CD(CircleCI, Heroku Pipeline)
 - アクセス解析(google-analytics-rails)
 
 ## 環境
 
-- 言語(Ruby 2.7.1)
-- フレームワーク(Rails 6.0.3.1)
+- 言語(Ruby 3.0.0)
+- フレームワーク(Rails 6.1.0)
 - 本番環境インフラ(Heroku)
 - 開発開発(Docker for Mac)
 - データベース(PostgreSQL)
@@ -62,6 +62,7 @@
 - [レビュー用の星★の評価を実装する（入力、保存、表示） - Qiita](https://qiita.com/yuki_0920/items/a966d9fa2bdb621f805d)
 - [RailsでAmazonAPIを使ってみよう！ - Qiita](https://qiita.com/yuki_0920/items/7e7e9dcd955fed777bc1)
 - [Dockerの環境構築で`could not connect to server: Connection refused`のエラーが出た時の対処法 - Qiita](https://qiita.com/yuki_0920/items/84e2ca260bfe13cf3072)
+- [Herokuでデプロイに失敗するときの対処法(Ruby app detected されない問題) - Qiita](https://qiita.com/yuki_0920/items/b1065777edf090351052)
 
 ## 環境構築手順
 
