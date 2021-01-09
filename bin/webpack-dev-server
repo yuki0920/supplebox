@@ -1,18 +1,20 @@
 #!/usr/bin/env ruby
 
-ENV["RAILS_ENV"] ||= ENV["RACK_ENV"] || "development"
-ENV["NODE_ENV"]  ||= "development"
+# frozen_string_literal: true
 
-require "pathname"
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
-  Pathname.new(__FILE__).realpath)
+ENV['RAILS_ENV'] ||= ENV['RACK_ENV'] || 'development'
+ENV['NODE_ENV']  ||= 'development'
 
-require "bundler/setup"
+require 'pathname'
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile',
+                                           Pathname.new(__FILE__).realpath)
 
-require "webpacker"
-require "webpacker/dev_server_runner"
+require 'bundler/setup'
 
-APP_ROOT = File.expand_path("..", __dir__)
+require 'webpacker'
+require 'webpacker/dev_server_runner'
+
+APP_ROOT = File.expand_path('..', __dir__)
 Dir.chdir(APP_ROOT) do
   Webpacker::DevServerRunner.run(ARGV)
 end
