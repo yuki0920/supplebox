@@ -377,26 +377,24 @@ a {
 
 /*footer*/
 
-#footer {
+footer {
   padding: 4em 0;
   background: #323a45;
   color: #878c93;
   bottom: 0;
   font-weight: 300;
-}
-
-#footer p {
-  display: block;
-}
-
-#footer a {
-  color: #9a9fa5;
-  &:hover, &:active, &:focus {
-    color: $green;
+  p {
+    display: block;
+  }
+  a {
+    color: #9a9fa5;
+    &:hover, &:active, &:focus {
+      color: $green;
+    }
   }
 }
 
-#footer .footer-logo {
+.footer-logo {
   display: block;
   float: left;
   width: 100%;
@@ -414,20 +412,15 @@ a {
   }
 }
 
-#footer ul {
+.footer-list {
   padding: 0;
   margin: 0;
-  li {
+  &__item {
     list-style: none;
     padding: 0;
     margin: 0 0 14px 0;
     line-height: 16px;
   }
-}
-
-.social-icons > a {
-  margin-right: 10px;
-  color: $green;
 }
 
 /*footer*/

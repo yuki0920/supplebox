@@ -3,19 +3,19 @@
     .container
       .row
         .col-md-3.col-sm-4.col-md-push-3
-          %ul
-            %li= link_to 'トップページ', root_path
-            %li= link_to '利用基準', policy_path
-            %li= link_to 'プライバシーポリシー', privacypolicy_path
-            %li= link_to 'お問い合わせ', contacts_path
+          %ul.footer-list
+            %li.footer-list__item= link_to 'トップページ', root_path
+            %li.footer-list__item= link_to '利用基準', policy_path
+            %li.footer-list__item= link_to 'プライバシーポリシー', privacypolicy_path
+            %li.footer-list__item= link_to 'お問い合わせ', contacts_path
         .col-md-3.col-sm-4.col-md-push-3
-          %ul
-            %li= link_to '人気アイテムランキングを見る', rankings_path
-            %li= link_to 'アイテム一覧を見る', products_path
-            %li= link_to 'アイテムを登録する', new_product_path
+          %ul.footer-list
+            %li.footer-list__item= link_to '人気アイテムランキングを見る', rankings_path
+            %li.footer-list__item= link_to 'アイテム一覧を見る', products_path
+            %li.footer-list__item= link_to 'アイテムを登録する', new_product_path
         .col-md-3.col-sm-4.col-md-push-3
-          %ul
-            %li= link_to 'ユーザー一覧を見る', users_path
+          %ul.footer-list
+            %li.footer-list__item= link_to 'ユーザー一覧を見る', users_path
         .col-md-3.col-sm-12.col-md-pull-9
           .footer-logo= link_to 'SuppleBox', root_path
           %p
