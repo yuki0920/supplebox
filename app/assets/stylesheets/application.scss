@@ -38,11 +38,11 @@ a {
   margin:5px 0;
 }
 .btn-outline-success{
-  color:#5cb85c ;
-  border-color:#4cae4c ;
+  color:#5cb85c;
+  border-color:#4cae4c;
   &:hover{
-    color:white ;
-    background-color:#4cae4c ;
+    color:white;
+    background-color:#4cae4c;
   }
 }
 
@@ -51,7 +51,7 @@ a {
   background-color:white;
   border-color:#eea236;
   &:hover{
-    color:white ;
+    color:white;
     background-color:#eea236;
   }
 }
@@ -61,8 +61,8 @@ a {
   background-color:white;
   border-color:#d9534f;
   &:hover {
-  color:white ;
-  background-color:#d9534f ;
+  color:white;
+  background-color:#d9534f;
   }
 }
 
@@ -76,13 +76,13 @@ a {
 
 .pagination .active a {
   color:white;
-  background-color:#4cae4c ;
+  background-color:#4cae4c;
   border:1px solid #ddd;
   &:hover{
-    color:white ;
-    background-color:#4cae4c ;
+    color:white;
+    background-color:#4cae4c;
   }
-} 
+}
 
 /*pagination*/
 
@@ -110,10 +110,11 @@ a {
         font-weight: bold;
         letter-spacing: 0.15em;
         font-size: 6vw;
-        text-shadow: black 1px 1px 0px, black -1px 1px 0px,
-                   black 1px -1px 0px, black -1px -1px 0px;
-      }      
-    }    
+        text-shadow:
+          black 1px 1px 0px, black -1px 1px 0px,
+          black 1px -1px 0px, black -1px -1px 0px;
+      }
+    }
   }
 }
 
@@ -136,9 +137,9 @@ a {
     height: 250px;
     img {
       height: 100%;
-      max-width: 100%;      
+      max-width: 100%;
     }
-  }  
+  }
 }
 
 .product-title {
@@ -190,7 +191,7 @@ a {
     img {
       height: 100%;
       max-width: 100%;
-    }  
+    }
   }
 }
 
@@ -216,7 +217,7 @@ a {
   width: 100%;
   font-size: 16px;
   background: #e3f9e3;
-  border-radius: 15px ;
+  border-radius: 15px;
   &:before {
     content: "";
     position: absolute;
@@ -231,8 +232,8 @@ a {
     padding: 0;
   }
   img {
-    max-width: 40% ;
-    margin-bottom: 10px ;
+    max-width: 40%;
+    margin-bottom: 10px;
   }
 }
 
@@ -246,7 +247,7 @@ a {
     max-width: 25%;
     height: auto;
     float: left;
-    margin-right: 10px;  
+    margin-right: 10px;
   }
 }
 
@@ -290,14 +291,14 @@ a {
         .status-label {
           font-size: 12px;
         }
-         &:last-child {
+        &:last-child {
           border: none;
-         }
+        }
       }
     }
     .comment ul li {
       width: 480px;
-    }    
+    }
   }
 }
 
@@ -314,7 +315,7 @@ a {
     max-width: 25%;
     height: 100%;
     float: left;
-    margin-right: 10px;  
+    margin-right: 10px;
   }
   .comment {
     /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
@@ -331,7 +332,7 @@ a {
 .post {
   margin: 10px 10px;
   border: 1px solid #000;
-  border-radius: 30px;  
+  border-radius: 30px;
   .product-picture img {
     width: 50px;
   }
