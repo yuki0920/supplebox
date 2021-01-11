@@ -3,6 +3,10 @@
 $green: #4fd2c2;
 $light_gray: #ddd;
 $dark_gray: #f2f2f2;
+$success_green: #5cb85c;
+$success_light_green: #4cae4c;
+$warning_yellow: #f0ad4e;
+$danger_red: #d9534f;
 
 /* body */
 body {
@@ -42,31 +46,37 @@ a {
   margin:5px 0;
 }
 .btn-outline-success{
-  color:#5cb85c;
-  border-color:#4cae4c;
+  color:$success_green;
+  border-color:$success_light_green;
   &:hover{
     color:white;
-    background-color:#4cae4c;
+    background-color:$success_light_green;
   }
 }
 
 .btn-outline-warning{
   color:#f0ad4e;
   background-color:white;
-  border-color:#eea236;
+  border-color:#f0ad4e;
+  &:focus {
+    color: #f0ad4e;
+  }
   &:hover{
     color:white;
-    background-color:#eea236;
+    background-color:#f0ad4e;
   }
 }
 
 .btn-outline-danger{
-  color:#d9534f;
+  color: $danger_red;
   background-color:white;
-  border-color:#d9534f;
+  border-color: $danger_red;
+  &:focus {
+    color:  $danger_red;
+  }
   &:hover {
   color:white;
-  background-color:#d9534f;
+  background-color: $danger_red;
   }
 }
 
@@ -75,16 +85,16 @@ a {
 
 /*pagination*/
 .pagination li a {
-  color:#5cb85c;
+  color:$success_green;
 }
 
 .pagination .active a {
   color:white;
-  background-color:#4cae4c;
+  background-color:$success_light_green;
   border:1px solid $light_gray;
   &:hover{
     color:white;
-    background-color:#4cae4c;
+    background-color:$success_light_green;
   }
 }
 
