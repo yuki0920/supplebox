@@ -29,7 +29,7 @@ a {
 }
 
 .media-list {
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 /* navbar */
@@ -43,39 +43,39 @@ a {
 
 /* btn */
 .btn {
-  margin:5px 0;
+  margin: 5px 0;
 }
 .btn-outline-success{
   color:$success_green;
   border-color:$success_light_green;
   &:hover{
-    color:white;
+    color: white;
     background-color:$success_light_green;
   }
 }
 
 .btn-outline-warning{
   color:#f0ad4e;
-  background-color:white;
+  background-color: white;
   border-color:#f0ad4e;
   &:focus {
     color: #f0ad4e;
   }
   &:hover{
-    color:white;
+    color: white;
     background-color:#f0ad4e;
   }
 }
 
 .btn-outline-danger{
   color: $danger_red;
-  background-color:white;
+  background-color: white;
   border-color: $danger_red;
   &:focus {
-    color:  $danger_red;
+    color: $danger_red;
   }
   &:hover {
-  color:white;
+  color: white;
   background-color: $danger_red;
   }
 }
@@ -89,11 +89,11 @@ a {
 }
 
 .pagination .active a {
-  color:white;
+  color: white;
   background-color:$success_light_green;
-  border:1px solid $light_gray;
+  border: 1px solid $light_gray;
   &:hover{
-    color:white;
+    color: white;
     background-color:$success_light_green;
   }
 }
@@ -174,7 +174,7 @@ a {
 }
 
 .star {
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 /* product */
@@ -214,7 +214,7 @@ a {
 /*posts*/
 .posts {
   background-color: white;
-  margin:10px 0;
+  margin: 10px 0;
   padding: 10px 0;
 }
 
@@ -252,7 +252,7 @@ a {
 }
 
 .posts-product{
-  border:solid;
+  border: solid;
   border-color: #f4f4f4;
   border-radius: 15px;
   display: inline-block;
