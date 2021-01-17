@@ -1,40 +1,35 @@
 - if products.present?
   .row
-    - products.each_with_index do |product, index|
-      .product
+    .card-deck
+      - products.each_with_index do |product, index|
         .col-md-3.col-sm-4.col-xs-12
-          .panel.panel-default
-            .panel-heading.text-center
-              = link_to product do
-                %img{alt: "#{product.title}", src: "#{product.image_url}"}/
-            .panel-body
-              %p.product-brand= product.brand_amazon_name
-              %p.product-title= link_to product.title, product
-              / 星評価
+          .card
+            %card-img-top{alt: "#{product.title}", src: "#{product.image_url}"}
+              %title Placeholder
+              %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
+            .card-body
+              %p.card-title= product.brand_amazon_name
+              %p.card-text= link_to product.title, product
               .star
                 %span{id: "star-rate-#{product.id}", style: "float-left"}
                 = render 'products/read_rate', product: product
                 （口コミ #{product.posts.count} 件）
-              .buttons.text-center
+              .text-center
                 - if logged_in?
                   - if product.persisted?
-                    %div.new_like{id: "product-#{product.id}"}
-                      / お気に入り登録・削除ボタン
+                    %div{id: "product-#{product.id}"}
                       = render 'likes/like_small_button', product: product
                     - if current_user.admin?
-                      / アイテム登録削除ボタン
                       = form_tag(product_path(product.id), method: :delete, data: { confirm: "アイテムを削除します。よろしいでしょうか？"}) do
                         = hidden_field_tag :product_id, product.id
                         = submit_tag 'アイテム削除', class: 'btn btn-success'
                   - else
-                    / アイテム登録ボタン
                     = form_tag(products_path) do
                       = hidden_field_tag :product_asin, product.asin
                       = submit_tag '登録', class: 'btn btn-outline-success'
-            .panel-footer
-              %p.text-center
+            .card-footer
+              %small.text-muted.text-center
                 - if controller_name == 'rankings'
                   = index + 1
                   位
-                = ranking_counts[product.id]
-                %span.glyphicon.glyphicon-heart
+                = "#{ranking_counts[product.id]} Likes"
