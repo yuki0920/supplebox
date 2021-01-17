@@ -17,7 +17,7 @@
               .text-center
                 - if logged_in?
                   - if product.persisted?
-                    %div{id: "product-#{product.id}"}
+                    .product-card__like-button{id: "product-#{product.id}"}
                       = render 'likes/like_small_button', product: product
                     - if current_user.admin?
                       = form_tag(product_path(product.id), method: :delete, data: { confirm: "アイテムを削除します。よろしいでしょうか？"}) do

@@ -32,7 +32,7 @@ describe '口コミ投稿機能', type: :system do
     end
 
     it '一覧表示に表示されること' do
-      click_on '口コミを探す'
+      click_on '口コミ'
       expect(page).to have_content 'テストタイトル' # トップページの口コミ
     end
 

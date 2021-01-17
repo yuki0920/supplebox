@@ -12,10 +12,10 @@ describe 'リンク確認' do
   it 'ヘッダーリンクログイン前確認' do
     within 'header' do
       expect(page).to have_link('ランキング', href: '/rankings')
-      expect(page).to have_link('アイテムを探す', href: '/products')
-      expect(page).to have_link('ブランドを探す', href: '/brands')
-      expect(page).to have_link('口コミを探す', href: '/posts')
-      expect(page).to have_link('ユーザーを探す', href: '/users')
+      expect(page).to have_link('プロテイン', href: '/products')
+      expect(page).to have_link('ブランド', href: '/brands')
+      expect(page).to have_link('口コミ', href: '/posts')
+      expect(page).to have_link('ユーザー', href: '/users')
       expect(page).to have_link('新規登録', href: '/signup')
       expect(page).to have_link('ログイン', href: '/login')
     end
@@ -24,7 +24,7 @@ describe 'リンク確認' do
   it 'ヘッダーリンクログイン後確認' do
     sign_in_as user
     within 'header' do
-      expect(page).to have_link('アイテムを登録', href: '/products/new')
+      expect(page).to have_link('プロテイン登録', href: '/products/new')
     end
   end
 
