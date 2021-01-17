@@ -7,13 +7,11 @@
     = display_meta_tags(default_meta_tags)
     = csrf_meta_tags
     / Bootstrap CSS
-    %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", rel: "stylesheet"}/
     / app/assets/stylesheets
     = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
     / app/assets/javascripts
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    / Bootstrap JavaScript
-    %script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
     / GoogleAnalytics
     = analytics_init if Rails.env.production?
   %body
@@ -24,3 +22,7 @@
       %p= breadcrumbs separator: " &rsaquo; "
       = yield
     = render 'layouts/footer'
+    / Bootstrap JavaScript
+    %script{src: "https://code.jquery.com/jquery-3.5.1.slim.min.js"}
+    %script{src: "hhttps://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"}
+    %script{src: "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"}
