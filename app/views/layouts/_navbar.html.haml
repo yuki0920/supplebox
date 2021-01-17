@@ -1,59 +1,43 @@
 %body
   %header
-    %nav.navbar.navbar-default.navbar-static-top
-      .container
-        .navbar-header
-          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-left{:href => "/"}
-            %img{alt: "SuppleBox", src: "/images/logo.png"}/
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              = link_to rankings_path do
-                %span.glyphicon.glyphicon-signal{"aria-hidden" => "true"}
-                ランキング
-            %li
-              = link_to products_path do
-                %span.glyphicon.glyphicon-zoom-in{"aria-hidden" => "true"}
-                アイテムを探す
-            %li
-              = link_to brands_path do
-                %span.glyphicon.glyphicon-glass{"aria-hidden" => "true"}
-                ブランドを探す
-            %li
-              = link_to posts_path do
-                %span.glyphicon.glyphicon-comment{"aria-hidden" => "true"}
-                口コミを探す
-            %li
-              = link_to users_path do
-                %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
-                ユーザーを探す
-            - if logged_in?
-              %li
-                = link_to new_product_path do
-                  %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
-                  アイテムを登録
-              %li.dropdown
-                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-                  %span.gravatar
-                    = image_tag current_user.picture.url, width:"20px", class:"img-circle"
-                  = current_user.name
-                  %span.caret
-                %ul.dropdown-menu
-                  %li
-                    = link_to 'マイページ', user_path(current_user)
-                  %li.divider{role: "separator"}
-                  %li
-                  %li= link_to 'ログアウト', logout_path, method: :delete
-            - else
-              %li= link_to '新規登録', signup_path
-              %li= link_to 'ログイン', login_path
-              %li
-                = form_for(:session, url: login_path) do |f|
-                  = f.hidden_field :email, value: 'test@supplebox.jp'
-                  = f.hidden_field :password, value: 'testsupple'
-                  = f.submit 'テストログイン', class: 'btn btn-success'
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      = link_to root_path do
+        %img{alt: "SuppleBox", src: "/images/logo.png", height: 30}/
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item
+            = link_to rankings_path, class: 'nav-link' do
+              ランキング
+          %li.nav-item
+            = link_to products_path, class: 'nav-link' do
+              プロテイン
+          %li.nav-item
+            = link_to brands_path, class: 'nav-link' do
+              ブランド
+          %li.nav-item
+            = link_to posts_path, class: 'nav-link' do
+              口コミ
+          %li.nav-item
+            = link_to users_path, class: 'nav-link' do
+              ユーザー
+          - if logged_in?
+            %li.nav-item
+              = link_to new_product_path, class: 'nav-link' do
+                プロテイン登録
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+                %span.gravatar
+                  = image_tag current_user.picture.url, width:"20px", class:"img-circle"
+                = current_user.name
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
+                .dropdown-divider
+                = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
+        = link_to '新規登録', signup_path, class: 'btn btn-outline-success'
+        = link_to 'ログイン', login_path, class: 'btn btn-outline-success'
+        = form_for(:session, url: login_path) do |f|
+          = f.hidden_field :email, value: 'test@supplebox.jp'
+          = f.hidden_field :password, value: 'testsupple'
+          = f.submit 'テストログイン', class: 'btn btn-success'
