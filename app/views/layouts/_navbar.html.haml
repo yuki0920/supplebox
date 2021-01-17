@@ -26,15 +26,17 @@
             %li.nav-item
               = link_to new_product_path, class: 'nav-link' do
                 プロテイン登録
-            %li.nav-item.dropdown
-              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-                %span.gravatar
-                  = image_tag current_user.picture.url, width:"20px", class:"img-circle"
-                = current_user.name
-              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-                = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
-                .dropdown-divider
-                = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
+      - if logged_in?
+        .dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+            %span.gravatar
+              = image_tag current_user.picture.url, width:"20px", class:"img-circle"
+            = current_user.name
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
+            .dropdown-divider
+            = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
+      - else
         = link_to '新規登録', signup_path, class: 'btn btn-outline-success'
         = link_to 'ログイン', login_path, class: 'btn btn-outline-success'
         = form_for(:session, url: login_path) do |f|
