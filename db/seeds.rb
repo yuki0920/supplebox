@@ -18,7 +18,7 @@ User.create!(
   nickname: 'テスト',
 )
 
-29.times do |_n|
+29.times do
   name     = Faker::Name.name
   email    = Faker::Internet.email
   password = 'password'
