@@ -36,7 +36,7 @@ end
   Product.create!(
     title: "NO.#{n}プロテイン",
     url: "sample#{n}@supplebox.jp",
-    image_url: "sample_image#{n}@supplebox.jp",
+    image_url: '/assets/default.png',
     asin: "code#{n}",
   )
 end
