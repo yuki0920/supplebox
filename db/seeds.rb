@@ -80,5 +80,9 @@ end
     content: Faker::Coffee.notes,
   )
 end
-products = Product.all
-products.each { |product| product.brand_id = [1, 2, 3, 4, 5].sample }
+
+Product.all.each do |product|
+  product.brand_id = [1, 2, 3, 4, 5].sample
+
+  product.save!
+end
