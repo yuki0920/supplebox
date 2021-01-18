@@ -23,7 +23,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # デフォルト画像の設定
   def default_url(*_args)
-    'default_product.png'
+    'default.png'
   end
 
   # アップロード可能な拡張子のリスト

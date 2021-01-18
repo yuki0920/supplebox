@@ -18,7 +18,7 @@ User.create!(
   nickname: 'テスト',
 )
 
-29.times do |_n|
+29.times do
   name     = Faker::Name.name
   email    = Faker::Internet.email
   password = 'password'
@@ -36,7 +36,7 @@ end
   Product.create!(
     title: "NO.#{n}プロテイン",
     url: "sample#{n}@supplebox.jp",
-    image_url: "sample_image#{n}@supplebox.jp",
+    image_url: '/assets/default.png',
     asin: "code#{n}",
   )
 end
@@ -80,5 +80,9 @@ end
     content: Faker::Coffee.notes,
   )
 end
-products = Product.all
-products.each { |product| product.brand_id = [1, 2, 3, 4, 5].sample }
+
+Product.all.each do |product|
+  product.brand_id = [1, 2, 3, 4, 5].sample
+
+  product.save!
+end
