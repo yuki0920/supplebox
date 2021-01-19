@@ -84,17 +84,18 @@ a {
 /* btn */
 
 /*pagination*/
-.pagination li a {
-  color:$success_green;
-}
-
-.pagination .active a {
-  color: white;
-  background-color:$success_light_green;
-  border: 1px solid $light_gray;
-  &:hover{
-    color: white;
-    background-color:$success_light_green;
+.pagination {
+  .page-item {
+    .page-link {
+      color: $success_light_green;
+    }
+  }
+  .page-item.active {
+    .page-link {
+      color: white;
+      background-color: $success_light_green;
+      border: 1px solid $light_gray;
+    }
   }
 }
 
