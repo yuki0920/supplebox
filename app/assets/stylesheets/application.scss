@@ -149,6 +149,13 @@ a {
 }
 
 /* product_detail */
+.product_detail {
+  height: 320px;
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
+}
 
 /* brand_detail */
 .brand_detail {
