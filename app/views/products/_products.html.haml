@@ -2,7 +2,7 @@
   .row
     .card-deck
       - products.each_with_index do |product, index|
-        .col-md-3.col-sm-4.col-xs-12
+        .product-item.col-md-3.col-sm-4.col-xs-12
           .card
             %img.card-img-top{alt: product.title, src: product.image_url}
               %title Placeholder
