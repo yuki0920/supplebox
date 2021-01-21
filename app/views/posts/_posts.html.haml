@@ -26,5 +26,5 @@
             %p= post.product.title
       .col-md-12.edit-button
         - if current_user == post.user
-          = link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-default'
-          = link_to '口コミを削除', post, method: :delete, class:'btn btn-default'
+          = link_to '口コミを編集', edit_post_path(post), method: :get, class:'btn btn-success'
+          = link_to '口コミを削除', post, method: :delete, class:'btn btn-danger'

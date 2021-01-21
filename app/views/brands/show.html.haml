@@ -16,7 +16,7 @@
           %td= @brand.content
   %div
     - if (( current_user.admin? && current_user != @user ) if logged_in?)
-      = link_to 'ブランドを編集する', edit_brand_path, class:'btn btn-default'
+      = link_to 'ブランドを編集する', edit_brand_path, class:'btn btn-success'
       = link_to 'ブランドを削除する', @brand , method: :delete, data: { confirm: "ブランドを削除します。よろしいでしょうか？"} , class:'btn btn-danger'
 / アイテム一覧
 %h2
