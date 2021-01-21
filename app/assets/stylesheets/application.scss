@@ -144,54 +144,8 @@ a {
 
 
 /* product */
-.product {
-  .panel-body {
-    height: 170px;
-  }
-  .panel-heading {
-    height: 250px;
-    img {
-      height: 100%;
-      max-width: 100%;
-    }
-  }
-}
-
-.product-title {
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  height: 3.0em;
-}
-
-.product-brand {
-  /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-}
-
-.star {
-  margin-bottom: 10px;
-}
-
-/* product */
-
-/* product_detail */
-.product_detail {
-  .panel-body {
-    height: 30px;
-  }
-  .panel-heading {
-    height: 320px;
-    img {
-      height: 100%;
-      max-width: 100%;
-    }
-  }
+.product-item {
+  padding: 10px 0;
 }
 
 /* product_detail */
