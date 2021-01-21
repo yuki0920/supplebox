@@ -2,4 +2,4 @@
   html: { method: :delete },                                        |
   remote: true) do |f|                                              |
   %div= hidden_field_tag :follow_id, @user.id
-  = f.submit 'フォロー中', class: 'btn btn-danger'
+  = f.submit 'フォロー解除', class: 'btn btn-danger'

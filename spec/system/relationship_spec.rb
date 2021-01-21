@@ -36,7 +36,7 @@ describe 'ユーザーフォロー機能', type: :system do
       sign_in_as user
       visit user_path(other_user)
       expect do
-        click_on 'フォロー中'
+        click_on 'フォロー解除'
       end.to change(Relationship, :count).by(-1)
       # expect(page).to have_content 'ユーザーのフォローを解除しました。'
     end
