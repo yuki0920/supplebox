@@ -11,9 +11,9 @@
       = f.text_field :title, class: "form-control"
   / 評価
   #star.form-group.row
-    = render 'posts/write_rate'
     = f.label :rate,'評価 ', class:'col-md-3 col-form-label'
     = f.hidden_field :rate, id: :review_star
+    = render 'posts/write_rate'
   / 口コミ
   .form-group.row
     = f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label'

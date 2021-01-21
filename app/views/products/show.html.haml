@@ -1,14 +1,11 @@
 - set_meta_tags title: @product.title, description: "#{@product.title}の口コミです。", keywords: "#{@product.title},味,口コミ,評判,レビュー,おいしい,おすすめ"
 - breadcrumb :show_product, @product
 / アイテム情報
-.row.p-3
-  %h2 アイテム詳細情報
+%h2 アイテム詳細情報
+.row
   .col-md-4
-    .product_detail
-      .panel.panel-default
-        .panel-heading.text-center
-          %img{alt: "", src: "#{@product.image_url}"}/
-        .panel-body
+    .product_detail.card.mb-3
+      %img{alt: "", src: "#{@product.image_url}"}/
   .col-md-8
     %h4= @product.title
     %table.table

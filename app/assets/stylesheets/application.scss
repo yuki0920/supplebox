@@ -41,6 +41,14 @@ a {
   height: 40px;
 }
 
+/* user-nav */
+.user-nav {
+  .nav-link.active {
+    color: $green;
+    background-color: white;
+  }
+}
+
 /* btn */
 .btn {
   margin: 5px 0;
@@ -149,6 +157,13 @@ a {
 }
 
 /* product_detail */
+.product_detail {
+  height: 320px;
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
+}
 
 /* brand_detail */
 .brand_detail {
