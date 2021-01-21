@@ -41,6 +41,14 @@ a {
   height: 40px;
 }
 
+/* user-nav */
+.user-nav {
+  .nav-link.active {
+    color: $green;
+    background-color: white;
+  }
+}
+
 /* btn */
 .btn {
   margin: 5px 0;
