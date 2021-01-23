@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: SuppleBox API Document
+  version: 1.0.0
+paths:
+  /api/products/{id}:
+    get:
+      tags:
+        - API
+      summary: Get Product
+      parameters:
+        - $ref: '#components/parameters/Id'
+      responses:
+        200:
+          description: get product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+  schemas:
+    Product:
+      type: object
+      # NOTE: required は保留
+      properties:
+        title:
+          type: string
+          # NOTE: 空文字 は保留項目
+          description: ''
+          example: ''
+        url:
+          type: string
+        image_url:
+          type: string
+        asin:
+          type: string
+        price:
+          type: string
+        brand_amazon_name:
+          type: string
+        official_url:
+          type: string
+        brand_id:
+          type: string
+        category_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
