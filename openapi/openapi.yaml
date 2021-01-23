@@ -3,13 +3,13 @@ info:
   title: SuppleBox API Document
   version: 1.0.0
 paths:
-  /api/products/{id}:
+  /api/products/{product_id}:
     get:
       tags:
         - API
       summary: Get Product
       parameters:
-        - $ref: '#components/parameters/Id'
+        - $ref: '#/components/parameters/product_id'
       responses:
         200:
           description: get product
@@ -19,8 +19,8 @@ paths:
                 $ref: '#/components/schemas/Product'
 components:
   parameters:
-    Id:
-      name: id
+    product_id:
+      name: product_id
       in: path
       required: true
       schema:
@@ -50,8 +50,10 @@ components:
           type: string
         brand_id:
           type: string
+          nullable: true
         category_id:
           type: string
+          nullable: true
         created_at:
           type: string
         updated_at:
