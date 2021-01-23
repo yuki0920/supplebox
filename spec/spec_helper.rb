@@ -20,6 +20,12 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.example_status_persistence_file_path = 'spec/tmp/examples'
+
+  config.add_setting :committee_options
+  config.committee_options = {
+    schema_path: Rails.root.join("openapi/openapi.yaml").to_s,
+    parse_response_by_content_type: false
+  }
 end
 
 # VCRの設定追加
