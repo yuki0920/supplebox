@@ -23,6 +23,14 @@ services:
     volumes:
       - .:/myapp:delegated
       - bundle:/bundle
+  swagger:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./openapi:/usr/share/nginx/html/openapi
+    environment:
+      API_URL: ./openapi/openapi.yaml
+    ports:
+      - '8080:8080'
 volumes:
   pgdata:
   bundle:

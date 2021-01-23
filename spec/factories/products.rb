@@ -6,6 +6,9 @@ FactoryBot.define do
     url { 'testproduct@supplebox.jp' }
     image_url { 'testproductimage@supplebox.jp' }
     sequence(:asin) { |n| "TESTPRODUCT#{n}" }
+    price { 100 }
+    brand_amazon_name { 'テストブランド' }
+    official_url { 'official_url' }
     association :brand
   end
 end

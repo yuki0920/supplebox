@@ -61,6 +61,14 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # NOE: `spec_helper` では読み込めなかった
+  config.include Committee::Rails::Test::Methods, type: :request
+  config.add_setting :committee_options
+  config.committee_options = {
+    schema_path: Rails.root.join('openapi/openapi.yaml').to_s,
+    parse_response_by_content_type: false
+  }
+
   # RSpecによる画像はテスト後に削除する設定を追加
   config.after(:all) do
     FileUtils.rm_rf(Dir[Rails.root.join("public/uploads/#{Rails.env}/").to_s]) if Rails.env.test?
