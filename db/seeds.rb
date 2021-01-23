@@ -33,7 +33,8 @@ end
 
 # アイテム登録
 30.times do |n|
-  Product.create!(
+  FactoryBot.create!(
+    :product,
     title: "NO.#{n}プロテイン",
     url: "sample#{n}@supplebox.jp",
     image_url: '/assets/default.png',
