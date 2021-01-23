@@ -65,6 +65,7 @@ group :production do
   gem 'google-analytics-rails'
 end
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk'
 gem 'carrierwave'
 gem 'dotenv-rails'
