@@ -41,6 +41,14 @@ a {
   height: 40px;
 }
 
+/* user-nav */
+.user-nav {
+  .nav-link.active {
+    color: $green;
+    background-color: white;
+  }
+}
+
 /* btn */
 .btn {
   margin: 5px 0;
@@ -84,17 +92,18 @@ a {
 /* btn */
 
 /*pagination*/
-.pagination li a {
-  color:$success_green;
-}
-
-.pagination .active a {
-  color: white;
-  background-color:$success_light_green;
-  border: 1px solid $light_gray;
-  &:hover{
-    color: white;
-    background-color:$success_light_green;
+.pagination {
+  .page-item {
+    .page-link {
+      color: $success_light_green;
+    }
+  }
+  .page-item.active {
+    .page-link {
+      color: white;
+      background-color: $success_light_green;
+      border: 1px solid $light_gray;
+    }
   }
 }
 
@@ -143,57 +152,28 @@ a {
 
 
 /* product */
-.product {
-  .panel-body {
-    height: 170px;
+.product-item {
+  padding: 10px 0;
+  .product-header {
+    text-align: center;
+    height: 220px;
   }
-  .panel-heading {
-    height: 250px;
-    img {
-      height: 100%;
-      max-width: 100%;
-    }
+  .card-img-top {
+    height: 100%;
+    width: auto;
+    padding-top: 10px;
   }
-}
 
-.product-title {
-  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  height: 3.0em;
 }
-
-.product-brand {
-  /* 文の行数を1行に保ち、最後に ... を追加するスタイル */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-}
-
-.star {
-  margin-bottom: 10px;
-}
-
-/* product */
 
 /* product_detail */
 .product_detail {
-  .panel-body {
-    height: 30px;
-  }
-  .panel-heading {
-    height: 320px;
-    img {
-      height: 100%;
-      max-width: 100%;
-    }
+  height: 320px;
+  img {
+    height: 100%;
+    max-width: 100%;
   }
 }
-
-/* product_detail */
 
 /* brand_detail */
 .brand_detail {

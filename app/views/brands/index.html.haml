@@ -1,13 +1,11 @@
 - breadcrumb :brands
 %h2 ブランド一覧
 / ブランド検索
-.search
-  .row
-    .text-center
-      = search_form_for @q, class:'form-inline' do |f|
-        .form-group
-          = f.text_field :name_cont, class: 'form-control input-lg', placeholder: "例）SAVAS や ザバス", size: 40
-        = f.submit 'ブランドを検索', class: "btn btn-success btn-lg"
+.row.justify-content-center
+  = search_form_for @q, class:'form-inline' do |f|
+    .form-group
+      = f.text_field :name_cont, class: 'form-control', placeholder: "例）SAVAS や ザバス", size: 40
+      = f.submit 'ブランドを検索', class: "btn btn-success"
 / ブランド一覧
 - if @brands.present?
   .row

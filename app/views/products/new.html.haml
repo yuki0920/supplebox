@@ -1,28 +1,24 @@
 - breadcrumb :new_product
 %h2 アイテムを登録する
-.search
-  .row
-    .text-center
-      = form_tag(new_product_path, method: :get, class: 'form-inline') do
-        .form-group
-          = text_field_tag :keyword, nil,  id: "book_search", name: "keyword", class: 'form-control input-lg', placeholder: "例）ザバス プロテイン", size: 40
-        = submit_tag 'アイテムを検索', class: 'btn btn-success btn-lg'
+.row.justify-content-center
+  .text-center
+    = form_tag(new_product_path, method: :get, class: 'form-inline') do
+      .form-group
+        = text_field_tag :keyword, nil,  id: "book_search", name: "keyword", class: 'form-control', placeholder: "例）ザバス プロテイン", size: 40
+      = submit_tag 'アイテムを検索', class: 'btn btn-success'
 - if @products.present?
   .row
-    - @products.each do |product|
-      .product
-        .col-md-3.col-sm-4.col-xs-12
-          .panel.panel-default
-            .panel-heading.text-center
-              %img{alt: "", src: "#{product.image_url}"}/
-            .panel-body
+    .card-deck
+      - @products.each do |product|
+        .product-item.col-md-3.col-sm-4.col-xs-12
+          .card
+            .product-header
+              %img.card-img-top{alt: "", src: product.image_url}
+                %title Placeholder
+                %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
+            .card-body
               %p.product-brand= product.brand_amazon_name
-              - if product.persisted?
-                %p.product-title= link_to product.title, product
-              - else
-                %p.product-title= product.title
-              %p
-                口コミ評価 #{product.posts.average(:rate).to_f.round(1)} ( #{product.posts.count} 件)
+              %p.product-title= product.title
               .buttons.text-center
                 - if logged_in?
                   - if product.persisted?

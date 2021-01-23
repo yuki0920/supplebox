@@ -1,10 +1,9 @@
 - breadcrumb :login
-.row
-  / 登録済みユーザー用
+.row.justify-content-center
   .col-xs-offset-2.col-xs-8.col-md-offset-3.col-md-6
-    .panel.panel-default
-      .panel-heading ログイン
-      .panel-body
+    .card
+      .card-header ログイン
+      .card-body
         = form_for(:session, url: login_path) do |f|
           .form-group
             = f.label :email, 'メールアドレス'
@@ -17,10 +16,11 @@
         %p
           アカウントをお持ちでない方はこちらから#{link_to '新規登録', signup_path}してください
   / テストユーザー用
+.row.justify-content-center
   .col-xs-offset-2.col-xs-8.col-md-offset-3.col-md-6
-    .panel.panel-default
-      .panel-heading テストアカウント
-      .panel-body
+    .card
+      .card-header テストアカウント
+      .card-body
         .form-group
           %label メールアドレス
           %p test@supplebox.jp

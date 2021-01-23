@@ -10,7 +10,7 @@ RSpec.describe 'ランキング表示機能' do
     sign_in_as user
     visit products_path
     12.times do |n|
-      all('.new_like')[n].click_on 'お気に入り登録'
+      all('.product-card__like-button')[n].click_on 'お気に入り登録'
     end
     visit rankings_path
     products.each do |product|

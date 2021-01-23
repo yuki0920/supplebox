@@ -9,7 +9,7 @@
         %div{id: "follow_form_#{user.id}"}
           = render 'relationships/follow_button', user: user
     - if current_user == user
-      = link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-default'
+      = link_to 'プロフィールを編集する', edit_user_path, class:'btn btn-success'
     - if (( current_user.admin? && current_user != user ) if logged_in?)
       = link_to 'アカウントを削除する', user , method: :delete, data: { confirm: "アカウントを削除します。よろしいでしょうか？"} , class:'btn btn-danger'
   .status.text-center

@@ -11,9 +11,9 @@
       = f.text_field :title, class: "form-control"
   / 評価
   #star.form-group.row
-    = render 'posts/write_rate'
     = f.label :rate,'評価 ', class:'col-md-3 col-form-label'
     = f.hidden_field :rate, id: :review_star
+    = render 'posts/write_rate'
   / 口コミ
   .form-group.row
     = f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label'
@@ -25,7 +25,7 @@
   .form-group.row
     = f.label :picture, '口コミ画像 ', class:'col-md-3 col-form-label'
     .col-md-9
-      = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'btn btn-default'
+      = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'btn'
   / 確認ボタン
   .form-group.row.justify-content-end
     .col-md-9

@@ -7,7 +7,7 @@
       = f.label :picture, 'プロフィール画像 ', class:'col-md-3 col-form-label'
       .col-md-9
         = image_tag @user.picture.url, class:'img-fluid' if @user.picture?
-        = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'btn btn-default'
+        = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'btn'
     .form-group.row
       = f.label :nickname, 'ニックネーム ', class:'col-md-3 col-form-label'
       .col-md-9
