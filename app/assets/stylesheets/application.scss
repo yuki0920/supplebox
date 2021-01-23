@@ -154,6 +154,16 @@ a {
 /* product */
 .product-item {
   padding: 10px 0;
+  .product-header {
+    text-align: center;
+    height: 220px;
+  }
+  .card-img-top {
+    height: 100%;
+    width: auto;
+    padding-top: 10px;
+  }
+
 }
 
 /* product_detail */

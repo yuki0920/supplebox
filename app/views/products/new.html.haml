@@ -8,20 +8,17 @@
       = submit_tag 'アイテムを検索', class: 'btn btn-success'
 - if @products.present?
   .row
-    - @products.each do |product|
-      .product
-        .col-md-3.col-sm-4.col-xs-12
-          .panel.panel-default
-            .panel-heading.text-center
-              %img{alt: "", src: "#{product.image_url}"}/
-            .panel-body
+    .card-deck
+      - @products.each do |product|
+        .product-item.col-md-3.col-sm-4.col-xs-12
+          .card
+            .product-header
+              %img.card-img-top{alt: "", src: product.image_url}
+                %title Placeholder
+                %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
+            .card-body
               %p.product-brand= product.brand_amazon_name
-              - if product.persisted?
-                %p.product-title= link_to product.title, product
-              - else
-                %p.product-title= product.title
-              %p
-                口コミ評価 #{product.posts.average(:rate).to_f.round(1)} ( #{product.posts.count} 件)
+              %p.product-title= product.title
               .buttons.text-center
                 - if logged_in?
                   - if product.persisted?

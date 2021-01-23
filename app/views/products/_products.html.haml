@@ -4,9 +4,10 @@
       - products.each_with_index do |product, index|
         .product-item.col-md-3.col-sm-4.col-xs-12
           .card
-            %img.card-img-top{alt: product.title, src: product.image_url}
-              %title Placeholder
-              %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
+            .product-header
+              %img.card-img-top{alt: product.title, src: product.image_url}
+                %title Placeholder
+                %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
             .card-body
               %p.card-title= product.brand_amazon_name
               %p.card-text= link_to product.title, product
