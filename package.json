@@ -9,6 +9,16 @@
     "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-essentials": "^6.1.15",
+    "@storybook/addon-links": "^6.1.15",
+    "@storybook/vue": "^6.1.15",
+    "babel-loader": "^8.2.2",
     "webpack-dev-server": "^3.11.1"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
