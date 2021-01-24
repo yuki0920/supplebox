@@ -36,8 +36,10 @@
 - カバレッジ計測(SimpleCov)
 - 静的解析(RuboCop, Brakeman)
 - N+1(Bullet)
-- CI/CD(CircleCI, Heroku Pipeline)
+- CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
 - アクセス解析(google-analytics-rails)
+- APIスキーマ定義(OpenAPI, committee-rails)
+- UI検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
 
 ## 環境
 
