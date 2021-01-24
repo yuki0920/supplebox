@@ -109,3 +109,20 @@ $ heroku run rails sitemap:refresh
 ```
 
 定期的なサイトマップ更新はHerokuSchedulerでやっている
+
+## その他
+
+### Swagger起動
+
+docker-compose で起動している
+
+http://localhost:8080 で確認可能。
+
+
+### StoryBook起動
+
+```
+$ yarn run storybook
+```
+
+http://localhost:6006 で確認可能。
