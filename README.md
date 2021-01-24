@@ -119,10 +119,12 @@ docker-compose で起動している
 http://localhost:8080 で確認可能。
 
 
-### StoryBook起動
+### StoryBook起動 & デプロイ
 
 ```
 $ yarn run storybook
 ```
 
 http://localhost:6006 で確認可能。
+
+https://www.chromatic.com/builds?appId=600cbad853382200215b7275 で確認可能。
