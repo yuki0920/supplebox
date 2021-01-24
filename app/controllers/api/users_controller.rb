@@ -3,9 +3,12 @@
 module Api
   class UsersController < ApplicationController
     def index
-      users = User.all
+      page = (params[:page] || 1).to_i
+      next_page = page + 1
+      pagination = {next: users_path(page: next_page)}
+      users = User.page(page)
 
-      render json: users, each_serializer: UsersSerializer
+      render json: users, root: :users, each_serializer: UsersSerializer, meta: pagination, meta_key: :pagination
     end
   end
 end

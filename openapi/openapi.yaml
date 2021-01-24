@@ -22,14 +22,28 @@ paths:
       tags:
         - API
       summary: Get Users
+      parameters:
+        - $ref: '#/components/parameters/page'
       responses:
         200:
           description: get users
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Users'
-                # NOTE: pagination用のlinksを追加する
+                type: object
+                required:
+                  - pagination
+                  - users
+                properties:
+                  pagination:
+                    type: object
+                    required:
+                      - next
+                    properties:
+                      next:
+                        type: string
+                  users:
+                    $ref: '#/components/schemas/Users'
 components:
   parameters:
     product_id:
@@ -38,6 +52,13 @@ components:
       required: true
       schema:
         type: integer
+        minimum: 1
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
         minimum: 1
   schemas:
     Product:
