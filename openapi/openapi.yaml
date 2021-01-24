@@ -17,6 +17,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+  /api/users:
+    get:
+      tags:
+        - API
+      summary: Get Users
+      responses:
+        200:
+          description: get users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+                # NOTE: pagination用のlinksを追加する
 components:
   parameters:
     product_id:
@@ -58,3 +71,31 @@ components:
           type: string
         updated_at:
           type: string
+    Users:
+      type: array
+      items:
+        type: object
+        required:
+          - nickname
+          - user_link
+          - picture_url
+        properties:
+          nickname:
+            type: string
+          gender:
+            type: string
+            nullable: true
+          height:
+            type: string
+            nullable: true
+          weight:
+            type: string
+            nullable: true
+          comment:
+            type: string
+            nullable: true
+          # TODO: links に入れる
+          user_link:
+            type: string
+          picture_url:
+            type: string
