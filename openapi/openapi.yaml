@@ -17,6 +17,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+  /api/users:
+    get:
+      tags:
+        - API
+      summary: Get Users
+      parameters:
+        - $ref: '#/components/parameters/page'
+      responses:
+        200:
+          description: get users
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - pagination
+                  - users
+                properties:
+                  pagination:
+                    type: object
+                    required:
+                      - next
+                    properties:
+                      next:
+                        type: string
+                  users:
+                    $ref: '#/components/schemas/Users'
 components:
   parameters:
     product_id:
@@ -25,6 +52,13 @@ components:
       required: true
       schema:
         type: integer
+        minimum: 1
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
         minimum: 1
   schemas:
     Product:
@@ -58,3 +92,31 @@ components:
           type: string
         updated_at:
           type: string
+    Users:
+      type: array
+      items:
+        type: object
+        required:
+          - nickname
+          - user_link
+          - picture_url
+        properties:
+          nickname:
+            type: string
+          gender:
+            type: string
+            nullable: true
+          height:
+            type: string
+            nullable: true
+          weight:
+            type: string
+            nullable: true
+          comment:
+            type: string
+            nullable: true
+          # TODO: links に入れる
+          user_link:
+            type: string
+          picture_url:
+            type: string
