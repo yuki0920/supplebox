@@ -3,6 +3,14 @@ info:
   title: SuppleBox API Document
   version: 1.0.0
 paths:
+  /contacts:
+    post:
+      tags:
+        - API
+      summary: Post Contact
+      responses:
+        200:
+          description: post contact
   /api/products/{product_id}:
     get:
       tags:
