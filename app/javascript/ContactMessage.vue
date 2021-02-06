@@ -92,6 +92,10 @@ export default {
 </script>
 
 <style scoped>
+[v-cloak] {
+  display:none;
+}
+
 p {
   font-size: 1em;
   text-align: center;
