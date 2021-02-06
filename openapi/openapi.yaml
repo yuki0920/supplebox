@@ -44,6 +44,26 @@ paths:
                         type: string
                   users:
                     $ref: '#/components/schemas/Users'
+  /api/contacts:
+    post:
+      tags:
+        - API
+      summary: Post Contact
+      requestBody:
+          $ref: '#/components/requestBodies/contact'
+      responses:
+        200:
+          description: post contact
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                type: object
 components:
   parameters:
     product_id:
@@ -120,3 +140,30 @@ components:
             type: string
           picture_url:
             type: string
+
+  requestBodies:
+    contact:
+      description: 問い合わせに必要なパラメータ
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - contact
+            properties:
+              contact:
+                type: object
+                required:
+                  - name
+                  - email
+                  - title
+                  - content
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string

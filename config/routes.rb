@@ -30,5 +30,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :products, only: %i(show)
     resources :users, only: %i(index)
+    resources :contacts, only: %i(create)
   end
 end
