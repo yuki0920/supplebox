@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
+  skip_forgery_protection only: :create
+
   def new
-    @contact = Contact.new
+    # @contact = Contact.new
   end
 
   def create
-    @contact = current_user.contacts.build(contact_params)
+    binding.pry
+    if current_user
+      @contact = current_user.contacts.build(contact_params)
+    else
+      @contact = Contact.new(contact_params)
+    end
 
     if @contact.save
       ContactMailer.creation_email(@contact).deliver_now

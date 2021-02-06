@@ -8,30 +8,28 @@
         <div class="col-sm-9">
           <input v-model="name" type="text" class="form-control" id="contact_name">
         </div>
-        <!-- NOTE: 双方向バインディング検証用 -->
-        <p>名前: {{ name }}</p>
       </div>
       <div class="form-group row">
         <label for="contact_email" class="col-sm-3 col-form-label">メールアドレス</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" id="contact_email">
+          <input v-model="email" type="email" class="form-control" id="contact_email">
         </div>
       </div>
       <div class="form-group row">
         <label for="contact_title" class="col-sm-3 col-form-label">タイトル</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" id="contact_title">
+          <input v-model="title" type="text" class="form-control" id="contact_title">
         </div>
       </div>
       <div class="form-group row">
         <label for="contact_content" class="col-sm-3 col-form-label">お問い合わせ内容</label>
         <div class="col-sm-9">
-          <textarea class="form-control" id="contact_content" rows="3"></textarea>
+          <textarea v-model="content" class="form-control" id="contact_content" rows="3"></textarea>
         </div>
       </div>
       <div class="form-group row justify-content-end">
         <div class="col-sm-9">
-          <button type="submit" class="btn btn-success">送信する</button>
+          <button type="submit" class="btn btn-success" @click="submitForm">送信する</button>
         </div>
       </div>
     </form>
@@ -39,6 +37,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -46,6 +46,18 @@ export default {
       email: "",
       title: "",
       content: ""
+    }
+  },
+  methods: {
+    submitForm() {
+      const formData = {
+        'name':  this.name,
+        'email':  this.email,
+        'title':  this.title,
+        'content':  this.content
+      }
+
+      axios.post('/contacts', formData )
     }
   }
 }

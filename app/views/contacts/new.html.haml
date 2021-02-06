@@ -4,31 +4,31 @@
 
 #contact_message
 
-/ お問い合わせ入力フォーム
-= form_for @contact do |f|
-  / エラーメッセージ
-  = render 'layouts/error_messages', model: f.object
-  / お名前
-  .form-group.row
-    = f.label :name, 'お名前 ', class:'col-md-3 col-form-label'
-    .col-md-9
-      = f.text_field :name, class: "form-control"
-  / メールアドレス
-  .form-group.row
-    = f.label :email, 'メールアドレス ', class:'col-md-3 col-form-label'
-    .col-md-9
-      = f.text_field :email, class: "form-control"
-  / タイトル
-  .form-group.row
-    = f.label :title, 'タイトル ', class:'col-md-3 col-form-label'
-    .col-md-9
-      = f.text_field :title, class: "form-control"
-  / お問い合わせ
-  .form-group.row
-    = f.label :content, 'お問い合わせ内容 ', class:'col-md-3 col-form-label'
-    .col-md-9
-      = f.text_area :content, class: "form-control", rows: "8"
-  / 確認ボタン
-  .form-group.row.justify-content-end
-    .col-md-9
-      = f.submit '送信する', class: 'btn btn-success'
+-# / お問い合わせ入力フォーム
+-# = form_for @contact do |f|
+-#   / エラーメッセージ
+-#   = render 'layouts/error_messages', model: f.object
+-#   / お名前
+-#   .form-group.row
+-#     = f.label :name, 'お名前 ', class:'col-md-3 col-form-label'
+-#     .col-md-9
+-#       = f.text_field :name, class: "form-control"
+-#   / メールアドレス
+-#   .form-group.row
+-#     = f.label :email, 'メールアドレス ', class:'col-md-3 col-form-label'
+-#     .col-md-9
+-#       = f.text_field :email, class: "form-control"
+-#   / タイトル
+-#   .form-group.row
+-#     = f.label :title, 'タイトル ', class:'col-md-3 col-form-label'
+-#     .col-md-9
+-#       = f.text_field :title, class: "form-control"
+-#   / お問い合わせ
+-#   .form-group.row
+-#     = f.label :content, 'お問い合わせ内容 ', class:'col-md-3 col-form-label'
+-#     .col-md-9
+-#       = f.text_area :content, class: "form-control", rows: "8"
+-#   / 確認ボタン
+-#   .form-group.row.justify-content-end
+-#     .col-md-9
+-#       = f.submit '送信する', class: 'btn btn-success'
