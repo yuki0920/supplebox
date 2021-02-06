@@ -88,8 +88,14 @@ a {
   }
 }
 
-
 /* btn */
+
+/* global-nav */
+.global-nav {
+  &__button {
+    margin-right: 4px;
+  }
+}
 
 /*pagination*/
 .pagination {
