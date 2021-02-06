@@ -6,25 +6,25 @@
       <div class="form-group row">
         <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
         <div class="col-sm-9">
-          <input v-model="name" type="text" class="form-control" id="contact_name">
+          <input v-model="formData.name" type="text" class="form-control" id="contact_name">
         </div>
       </div>
       <div class="form-group row">
         <label for="contact_email" class="col-sm-3 col-form-label">メールアドレス</label>
         <div class="col-sm-9">
-          <input v-model="email" type="email" class="form-control" id="contact_email">
+          <input v-model="formData.email" type="email" class="form-control" id="contact_email">
         </div>
       </div>
       <div class="form-group row">
         <label for="contact_title" class="col-sm-3 col-form-label">タイトル</label>
         <div class="col-sm-9">
-          <input v-model="title" type="text" class="form-control" id="contact_title">
+          <input v-model="formData.title" type="text" class="form-control" id="contact_title">
         </div>
       </div>
       <div class="form-group row">
         <label for="contact_content" class="col-sm-3 col-form-label">お問い合わせ内容</label>
         <div class="col-sm-9">
-          <textarea v-model="content" class="form-control" id="contact_content" rows="3"></textarea>
+          <textarea v-model="formData.content" class="form-control" id="contact_content" rows="3"></textarea>
         </div>
       </div>
       <div class="form-group row justify-content-end">
@@ -52,22 +52,17 @@ export default {
   },
   data() {
     return {
-      name: "",
-      email: "",
-      title: "",
-      content: ""
+      formData: {
+        name: "",
+        email: "",
+        title: "",
+        content: ""
+      }
     }
   },
   methods: {
     submitForm() {
-      const formData = {
-        'name':  this.name,
-        'email':  this.email,
-        'title':  this.title,
-        'content':  this.content
-      }
-
-      axios.post('/contacts', formData )
+      axios.post('/contacts', this.formData )
     }
   }
 }
