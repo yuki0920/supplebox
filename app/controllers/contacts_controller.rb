@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
-  skip_forgery_protection only: :create
-
-  def new
-    # @contact = Contact.new
-  end
+  def new; end
 
   def create
-    binding.pry
     if current_user
       @contact = current_user.contacts.build(contact_params)
     else
