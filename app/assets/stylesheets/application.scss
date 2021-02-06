@@ -53,43 +53,13 @@ a {
 .btn {
   margin: 5px 0;
 }
-.btn-outline-success{
-  color:$success_green;
-  border-color:$success_light_green;
-  &:hover{
-    color: white;
-    background-color:$success_light_green;
+
+/* global-nav */
+.global-nav {
+  &__button {
+    margin-right: 4px;
   }
 }
-
-.btn-outline-warning{
-  color:#f0ad4e;
-  background-color: white;
-  border-color:#f0ad4e;
-  &:focus {
-    color: #f0ad4e;
-  }
-  &:hover{
-    color: white;
-    background-color:#f0ad4e;
-  }
-}
-
-.btn-outline-danger{
-  color: $danger_red;
-  background-color: white;
-  border-color: $danger_red;
-  &:focus {
-    color: $danger_red;
-  }
-  &:hover {
-  color: white;
-  background-color: $danger_red;
-  }
-}
-
-
-/* btn */
 
 /*pagination*/
 .pagination {

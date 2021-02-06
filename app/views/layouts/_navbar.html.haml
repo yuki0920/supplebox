@@ -1,6 +1,6 @@
 %body
   %header
-    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light.global-nav
       = link_to root_path do
         %img{alt: "SuppleBox", src: "/images/logo.png", height: 30}/
       %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
@@ -37,9 +37,9 @@
               .dropdown-divider
               = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
         - else
-          = link_to '新規登録', signup_path, class: 'btn btn-outline-success'
-          = link_to 'ログイン', login_path, class: 'btn btn-outline-success'
+          = link_to '新規登録', signup_path, class: 'global-nav__button btn btn-outline-success'
+          = link_to 'ログイン', login_path, class: 'global-nav__button btn btn-outline-success'
           = form_for(:session, url: login_path) do |f|
             = f.hidden_field :email, value: 'test@supplebox.jp'
             = f.hidden_field :password, value: 'testsupple'
-            = f.submit 'テストログイン', class: 'btn btn-success'
+            = f.submit 'テストログイン', class: 'global-nav__button btn btn-success'
