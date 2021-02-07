@@ -15,10 +15,7 @@
     "@storybook/addon-links": "^6.1.15",
     "@storybook/vue": "^6.1.15",
     "babel-loader": "^8.2.2",
-    "bootstrap": "^4.6.0",
     "chromatic": "^5.6.1",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1",
     "webpack-dev-server": "^3.11.1"
   },
   "scripts": {
