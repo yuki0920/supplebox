@@ -1,42 +1,61 @@
 <template>
-  <div id="app">
+  <div class="contact">
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
-    <form>
-      <div class="form-group row">
-        <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
-        <div class="col-sm-9">
-          <input v-model="formData.name" type="text" class="form-control" id="contact_name">
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit="handleSubmit(submitForm)">
+        <div class="form-group row">
+          <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
+          <ValidationProvider v-slot="{ errors }" rules="required" name="お名前" class="col-sm-9">
+            <input v-model="formData.name" type="text" class="form-control" id="contact_name">
+            <span class="error text-danger">{{ errors[0] }}</span>
+          </ValidationProvider>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="contact_email" class="col-sm-3 col-form-label">メールアドレス</label>
-        <div class="col-sm-9">
-          <input v-model="formData.email" type="email" class="form-control" id="contact_email">
+        <div class="form-group row">
+          <label for="contact_email" class="col-sm-3 col-form-label">メールアドレス</label>
+          <ValidationProvider v-slot="{ errors }" rules="required|email" name="メールアドレス" class="col-sm-9">
+            <input v-model="formData.email" type="email" class="form-control" id="contact_email">
+            <span class="error text-danger">{{ errors[0] }}</span>
+          </ValidationProvider>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="contact_title" class="col-sm-3 col-form-label">タイトル</label>
-        <div class="col-sm-9">
-          <input v-model="formData.title" type="text" class="form-control" id="contact_title">
+        <div class="form-group row">
+          <label for="contact_title" class="col-sm-3 col-form-label">タイトル</label>
+          <ValidationProvider v-slot="{ errors }" rules="required" name="タイトル" class="col-sm-9">
+            <input v-model="formData.title" type="text" class="form-control" id="contact_title">
+            <span class="error text-danger">{{ errors[0] }}</span>
+          </ValidationProvider>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="contact_content" class="col-sm-3 col-form-label">お問い合わせ内容</label>
-        <div class="col-sm-9">
-          <textarea v-model="formData.content" class="form-control" id="contact_content" rows="3"></textarea>
+        <div class="form-group row">
+          <label for="contact_content" class="col-sm-3 col-form-label">お問い合わせ内容</label>
+          <ValidationProvider v-slot="{ errors }" rules="required" name="お問い合わせ内容" class="col-sm-9">
+            <textarea v-model="formData.content" class="form-control" id="contact_content" rows="3"></textarea>
+            <span class="error text-danger">{{ errors[0] }}</span>
+          </ValidationProvider>
         </div>
-      </div>
-      <div class="form-group row justify-content-end">
-        <div class="col-sm-9">
-          <button type="submit" class="btn btn-success" @click="submitForm">送信する</button>
+
+        <div class="form-group row justify-content-end">
+          <div class="col-sm-9">
+            <button type="submit" class="btn btn-success">送信する</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
 <script>
+import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-validate'
+import { required, email } from 'vee-validate/dist/rules'
+import ja from 'vee-validate/dist/locale/ja.json'
+
+// バリデーションルール
+extend('required', required);
+extend('email', email);
+
+// メッセージのローカライズ
+localize('ja', ja);
+
+// axios
 import axios from 'axios'
 const addCsrfToken = () => {
   axios.defaults.headers.common = {
@@ -47,6 +66,10 @@ const addCsrfToken = () => {
   }
 }
 export default {
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   mounted() {
     addCsrfToken()
   },
