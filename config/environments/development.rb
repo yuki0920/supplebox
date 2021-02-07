@@ -64,6 +64,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # NOTE: `Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1` のエラー抑制
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
+
   config.after_initialize do
     Bullet.enable = true # Bulletプラグインを有効
     Bullet.alert = true # JavaScriptでの通知
