@@ -1,13 +1,13 @@
 import Vue from 'vue/dist/vue.esm'
 import TurbolinksAdapter from 'vue-turbolinks'
-import ContactMessage from '../ContactMessage.vue'
+import ContactForm from '../components/ContactForm'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#contact_message',
-    components: { ContactMessage },
-    render: h => h(ContactMessage)
+    el: '#contact_form',
+    components: { ContactForm },
+    render: h => h(ContactForm)
   })
 })
