@@ -1,3 +1,4 @@
+// NOTE: Storybook用のStore
 import Vue from 'vue'
 import Vuex from 'vuex'
 

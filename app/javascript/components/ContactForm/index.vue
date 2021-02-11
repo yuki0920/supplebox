@@ -1,9 +1,12 @@
 <template>
   <div class="contact">
+    <div v-if="isFlashMessage" :class="flashClass()" role="alert">
+      {{ messageText }}
+    </div>
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
     <ValidationObserver v-slot="{ handleSubmit }">
-      <form @submit="handleSubmit(submitForm)">
+      <form @submit.prevent="handleSubmit(submitForm)">
         <div class="form-group row">
           <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
           <ValidationProvider v-slot="{ errors }" rules="required" name="お名前" class="col-sm-9">
@@ -47,6 +50,7 @@
 import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-validate'
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
+import FlashMessage from '../FlashMessage'
 
 // バリデーションルール
 extend('required', required);
@@ -65,8 +69,10 @@ const addCsrfToken = () => {
       .getAttribute("content"),
   }
 }
+
 export default {
   components: {
+    FlashMessage,
     ValidationObserver,
     ValidationProvider
   },
@@ -77,14 +83,35 @@ export default {
         email: "",
         title: "",
         content: ""
-      }
+      },
+      isFlashMessage: false,
+      messageText: "",
+      messageType: ""
     }
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       addCsrfToken()
 
-      axios.post('/contacts', this.formData )
+      const { status } = await axios.post('/api/contacts', this.formData )
+
+      if (status === 200) {
+        this.flashMessage("お問い合わせを送信しました", "primary")
+      } else {
+        this.flashMessage("お問い合わせの送信に失敗しました", "danger")
+      }
+    },
+    flashClass() {
+      return `alert alert-${this.messageType}`
+    },
+    flashMessage(text, type) {
+      this.messageText = text
+      this.messageType = type
+      this.isFlashMessage = true
+
+      setTimeout(() => {
+        this.isFlashMessage = false
+      }, 5000);
     }
   }
 }
