@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'privacypolicy', to: 'toppages#privacypolicy'
   get 'rankings', to: 'rankings#like'
   get 'contacts', to: 'contacts#new'
-  post 'contacts', to: 'contacts#create'
   get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/supplebox/sitemaps/sitemap.xml.gz')
   resources :users, only: %i[show create index edit update destroy] do
     member do

@@ -84,7 +84,7 @@ export default {
     submitForm() {
       addCsrfToken()
 
-      axios.post('/contacts', this.formData )
+      axios.post('/api/contacts', this.formData )
     }
   }
 }
