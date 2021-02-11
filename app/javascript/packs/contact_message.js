@@ -4,7 +4,7 @@ import ContactMessage from '../ContactMessage.vue'
 
 Vue.use(TurbolinksAdapter)
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#contact_message',
     components: { ContactMessage },
