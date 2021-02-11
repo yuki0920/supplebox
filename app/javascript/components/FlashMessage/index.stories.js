@@ -1,5 +1,5 @@
-import FlashMessage from './FlashMessage'
-import store from './store'
+import FlashMessage from './index'
+import store from './sample_store'
 import { mapMutations } from 'vuex'
 
 export default {

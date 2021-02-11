@@ -1,4 +1,4 @@
-import ContactForm from './ContactForm'
+import ContactForm from './index'
 
 export default {
   title: 'Components/ContactForm/Default',
