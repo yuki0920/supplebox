@@ -9,6 +9,9 @@ export default {
 const Template = () => ({
   components: { ContactForm },
   template: '<ContactForm />',
+  computed: {
+    message: {text: '送信が完了しました。', type: 'primary'}
+  },
   store
 });
 

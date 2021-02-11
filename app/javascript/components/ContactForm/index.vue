@@ -1,10 +1,9 @@
 <template>
   <div class="contact">
-    <FlashMessage />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
     <ValidationObserver v-slot="{ handleSubmit }">
-      <form @submit="handleSubmit(submitForm)">
+      <form @submit.prevent="handleSubmit(submitForm)">
         <div class="form-group row">
           <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
           <ValidationProvider v-slot="{ errors }" rules="required" name="お名前" class="col-sm-9">
@@ -48,7 +47,6 @@
 import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-validate'
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
-import { mapMutations } from 'vuex'
 import FlashMessage from '../FlashMessage'
 
 // バリデーションルール
@@ -81,17 +79,14 @@ export default {
         email: "",
         title: "",
         content: ""
-      }
+      },
     }
   },
   methods: {
-    ...mapMutations(['setMessage']),
-    submitForm() {
+    async submitForm() {
       addCsrfToken()
 
-      axios.post('/api/contacts', this.formData )
-
-      this.setMessage({ text: '送信に成功しました', type: 'primary' })
+      await axios.post('/api/contacts', this.formData )
     },
   }
 }

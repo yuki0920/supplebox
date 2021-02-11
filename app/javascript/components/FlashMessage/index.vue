@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <div v-if="message" :class="flashClass()" role="alert">
-        {{ message.text }}
-    </div>
+  <div :class="flashClass()" role="alert">
+    {{ messageText }}
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 
 export default {
   name: 'FlashMessage',
-  computed: {
-    ...mapState(['message'])
+  props: {
+    messageText: {
+      type: String,
+      required: true
+    },
+    messageType: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     flashClass() {
-      return `alert alert-${this.message.type}`
+      return `alert alert-${this.messageType}`
     }
   }
 }

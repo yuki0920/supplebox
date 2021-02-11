@@ -1,3 +1,4 @@
+// NOTE: Storybook用のStore
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -5,14 +6,18 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    message: null
+    outputMessage: false,
+    messageText: null,
+    messageType: null
   },
   mutations: {
-    setMessage(state, message) {
-      state.message = message
+    setMessage(state, payload) {
+      state.outputMessage = true
+      state.messageText = payload.text
+      state.messageType = payload.type
 
       setTimeout(() => {
-        state.message = null
+        state.outputMessage = true
       }, 5000);
     }
   }
