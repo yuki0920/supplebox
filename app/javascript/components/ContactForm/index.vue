@@ -1,5 +1,8 @@
 <template>
   <div class="contact">
+    <div v-if="isFlashMessage" :class="flashClass()" role="alert">
+      {{ messageText }}
+    </div>
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
     <ValidationObserver v-slot="{ handleSubmit }">
@@ -66,6 +69,7 @@ const addCsrfToken = () => {
       .getAttribute("content"),
   }
 }
+
 export default {
   components: {
     FlashMessage,
@@ -80,14 +84,35 @@ export default {
         title: "",
         content: ""
       },
+      isFlashMessage: false,
+      messageText: "",
+      messageType: ""
     }
   },
   methods: {
     async submitForm() {
       addCsrfToken()
 
-      await axios.post('/api/contacts', this.formData )
+      const { status } = await axios.post('/api/contacts', this.formData )
+
+      if (status === 200) {
+        this.flashMessage("お問い合わせを送信しました", "primary")
+      } else {
+        this.flashMessage("お問い合わせの送信に失敗しました", "danger")
+      }
     },
+    flashClass() {
+      return `alert alert-${this.messageType}`
+    },
+    flashMessage(text, type) {
+      this.messageText = text
+      this.messageType = type
+      this.isFlashMessage = true
+
+      setTimeout(() => {
+        this.isFlashMessage = false
+      }, 5000);
+    }
   }
 }
 </script>
