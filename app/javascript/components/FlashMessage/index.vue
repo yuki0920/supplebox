@@ -11,16 +11,6 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'FlashMessage',
-  props: {
-    text: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      required: true
-    }
-  },
   computed: {
     ...mapState(['message'])
   },

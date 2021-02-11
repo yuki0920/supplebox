@@ -16,7 +16,7 @@ const Template = (args, { argTypes }) => ({
   components: { FlashMessage },
   template: `
     <div>
-      <FlashMessage :text="text" :type="type" />
+      <FlashMessage />
       <button class="btn btn-success" @click="flashMessage()">
         送信する
       </button>

@@ -1,5 +1,6 @@
 <template>
   <div class="contact">
+    <FlashMessage />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
     <ValidationObserver v-slot="{ handleSubmit }">
@@ -47,6 +48,8 @@
 import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-validate'
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
+import { mapMutations } from 'vuex'
+import FlashMessage from '../FlashMessage'
 
 // バリデーションルール
 extend('required', required);
@@ -67,6 +70,7 @@ const addCsrfToken = () => {
 }
 export default {
   components: {
+    FlashMessage,
     ValidationObserver,
     ValidationProvider
   },
@@ -81,11 +85,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setMessage']),
     submitForm() {
       addCsrfToken()
 
       axios.post('/api/contacts', this.formData )
-    }
+
+      this.setMessage({ text: '送信に成功しました', type: 'primary' })
+    },
   }
 }
 </script>
