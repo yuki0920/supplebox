@@ -5,11 +5,13 @@ import ContactForm from '../components/ContactForm'
 
 Vue.use(TurbolinksAdapter)
 
-document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '#contact_form',
-    components: { ContactForm },
-    store,
-    render: h => h(ContactForm)
+if (document.getElementById('contact_form')) {
+  document.addEventListener('turbolinks:load', () => {
+    const app = new Vue({
+      el: '#contact_form',
+      components: { ContactForm },
+      store,
+      render: h => h(ContactForm)
+    })
   })
-})
+}
