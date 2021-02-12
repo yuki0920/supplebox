@@ -57,16 +57,7 @@ extend('email', email);
 // メッセージのローカライズ
 localize('ja', ja);
 
-// axios
-import axios from 'axios'
-const addCsrfToken = () => {
-  axios.defaults.headers.common = {
-    "X-Requested-With": "XMLHttpRequest",
-    "X-CSRF-TOKEN": document
-      .querySelector('meta[name="csrf-token"]')
-      .getAttribute("content"),
-  }
-}
+import axios from "@axios"
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -91,8 +82,6 @@ export default {
   methods: {
     ...mapMutations(["setMessage"]),
     async submitForm() {
-      addCsrfToken()
-
       try {
         await axios.post('/api/contacts', this.formData )
         this.setMessage({text: "お問い合わせを送信しました", type: "primary"})
