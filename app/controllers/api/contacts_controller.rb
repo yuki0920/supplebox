@@ -14,7 +14,7 @@ module Api
 
         render json: {}, status: :ok
       else
-        render json: {data: @contact.errors}, status: :bad_request
+        render json: {message: @contact.errors.full_messages.join('、')}, status: :bad_request
       end
     end
 

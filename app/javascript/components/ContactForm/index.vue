@@ -93,12 +93,13 @@ export default {
     async submitForm() {
       addCsrfToken()
 
-      const { status } = await axios.post('/api/contacts', this.formData )
-
-      if (status === 200) {
+      try {
+        await axios.post('/api/contacts', this.formData )
         this.flashMessage("お問い合わせを送信しました", "primary")
-      } else {
-        this.flashMessage("お問い合わせの送信に失敗しました", "danger")
+      } catch(error) {
+        const { message } = error.response.data
+        console.log(message)
+        this.flashMessage(`お問い合わせの送信に失敗しました 「${message}」`, "danger")
       }
     },
     flashClass() {
