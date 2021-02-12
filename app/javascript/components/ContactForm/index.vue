@@ -3,7 +3,7 @@
     <FlashMessage :isDisplay="outputMessage" :messageText="messageText" :messageType="messageType" />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
-    <ValidationObserver v-slot="{ handleSubmit }">
+    <ValidationObserver v-slot="{ handleSubmit, invalid }">
       <form @submit.prevent="handleSubmit(submitForm)">
         <div class="form-group row">
           <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
@@ -36,7 +36,7 @@
 
         <div class="form-group row justify-content-end">
           <div class="col-sm-9">
-            <button type="submit" class="btn btn-success">送信する</button>
+            <button :disabled="invalid" type="submit" class="btn btn-success">送信する</button>
           </div>
         </div>
       </form>
