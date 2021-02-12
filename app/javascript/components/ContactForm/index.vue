@@ -49,16 +49,11 @@ import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-va
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
 import FlashMessage from '../FlashMessage'
-
-// バリデーションルール
-extend('required', required);
-extend('email', email);
-
-// メッセージのローカライズ
-localize('ja', ja);
-
 import axios from "@axios"
 import { mapState, mapMutations } from 'vuex'
+extend('required', required);
+extend('email', email);
+localize('ja', ja);
 
 export default {
   components: {
@@ -95,10 +90,6 @@ export default {
 </script>
 
 <style scoped>
-[v-cloak] {
-  display:none;
-}
-
 p {
   font-size: 1em;
   text-align: center;
