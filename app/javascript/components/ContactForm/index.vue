@@ -1,8 +1,6 @@
 <template>
   <div class="contact">
-    <div v-if="isFlashMessage" :class="flashClass()" role="alert">
-      {{ messageText }}
-    </div>
+    <FlashMessage :isDisplay="outputMessage" :messageText="messageText" :messageType="messageType" />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
     <ValidationObserver v-slot="{ handleSubmit }">
@@ -69,6 +67,7 @@ const addCsrfToken = () => {
       .getAttribute("content"),
   }
 }
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -84,36 +83,24 @@ export default {
         title: "",
         content: ""
       },
-      isFlashMessage: false,
-      messageText: "",
-      messageType: ""
     }
   },
+  computed: {
+    ...mapState(["messageText", "messageType", "outputMessage"])
+  },
   methods: {
+    ...mapMutations(["setMessage"]),
     async submitForm() {
       addCsrfToken()
 
       try {
         await axios.post('/api/contacts', this.formData )
-        this.flashMessage("お問い合わせを送信しました", "primary")
+        this.setMessage({text: "お問い合わせを送信しました", type: "primary"})
       } catch(error) {
         const { message } = error.response.data
-        console.log(message)
-        this.flashMessage(`お問い合わせの送信に失敗しました 「${message}」`, "danger")
+        this.setMessage({text: `お問い合わせの送信に失敗しました 「${message}」`, type: "danger"})
       }
     },
-    flashClass() {
-      return `alert alert-${this.messageType}`
-    },
-    flashMessage(text, type) {
-      this.messageText = text
-      this.messageType = type
-      this.isFlashMessage = true
-
-      setTimeout(() => {
-        this.isFlashMessage = false
-      }, 5000);
-    }
   }
 }
 </script>

@@ -15,10 +15,6 @@ const store = new Vuex.Store({
       state.outputMessage = true
       state.messageText = payload.text
       state.messageType = payload.type
-
-      setTimeout(() => {
-        state.outputMessage = true
-      }, 5000);
     }
   }
 })
