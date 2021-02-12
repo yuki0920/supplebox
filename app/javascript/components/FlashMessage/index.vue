@@ -1,5 +1,5 @@
 <template>
-  <div :class="flashClass()" role="alert">
+  <div v-if="isDisplay" :class="flashClass()" role="alert">
     {{ messageText }}
   </div>
 </template>
@@ -9,6 +9,10 @@
 export default {
   name: 'FlashMessage',
   props: {
+    isDisplay: {
+      type: Boolean,
+      required: true
+    },
     messageText: {
       type: String,
       required: true
@@ -16,7 +20,7 @@ export default {
     messageType: {
       type: String,
       required: true
-    }
+    },
   },
   methods: {
     flashClass() {
