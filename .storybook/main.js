@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   "stories": [
     "../stories/**/*.stories.mdx",
@@ -7,5 +9,5 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials"
-  ]
+  ],
 }

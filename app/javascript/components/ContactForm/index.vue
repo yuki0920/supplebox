@@ -49,11 +49,12 @@ import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-va
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
 import FlashMessage from '../FlashMessage'
-import axios from "@axios"
+import axios from '@axios'
 import { mapState, mapMutations } from 'vuex'
 extend('required', required);
 extend('email', email);
 localize('ja', ja);
+console.log(process.env.NODE_ENV)
 
 export default {
   components: {
