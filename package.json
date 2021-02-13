@@ -8,6 +8,7 @@
     "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
+    "vue-star-rating": "^1.7.0",
     "vue-template-compiler": "^2.6.12",
     "vuex": "^3.6.2"
   },
