@@ -8,7 +8,7 @@
       <p class="card-title">{{ product.brand_name }}</p>
       <p class="card-text"><a href="/products/2">{{ product.title }}</a></p>
       <div class="star">
-        <StarRating :increment="0.1" :rating="product.rate" :star-size="18" read-only />
+        <StarRating :increment="0.1" :rating="product.rate" :star-size="14" :show-rating="false" read-only />
         <small>(口コミ {{ product.post_count }} 件)</small>
       </div>
     </div>

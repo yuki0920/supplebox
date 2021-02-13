@@ -24,6 +24,6 @@ Default.args = {
     path: "/products/2",
     brand_name: "SAVAS(ザバス)",
     post_count: "6",
-    rate: "3.2"
+    rate: "3.4"
   }
 }
