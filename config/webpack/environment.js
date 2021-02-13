@@ -18,3 +18,5 @@ environment.config.resolve.alias = {
   'vue$': 'vue/dist/vue.esm.js',
   '@axios': path.resolve(__dirname, '../../app/javascript/packs/initializers/axios.js')
 }
+
+module.exports = environment
