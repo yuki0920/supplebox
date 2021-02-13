@@ -23,6 +23,7 @@ Default.args = {
     picture: "https://images-fe.ssl-images-amazon.com/images/I/51MRScMCrKL.jpg",
     path: "/products/2",
     brand_name: "SAVAS(ザバス)",
-    post_count: "6"
+    post_count: "6",
+    rate: "3.2"
   }
 }
