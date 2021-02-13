@@ -3,7 +3,7 @@
     <FlashMessage :isDisplay="outputMessage" :messageText="messageText" :messageType="messageType" />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
-    <ValidationObserver v-slot="{ handleSubmit }">
+    <ValidationObserver v-slot="{ handleSubmit, invalid }">
       <form @submit.prevent="handleSubmit(submitForm)">
         <div class="form-group row">
           <label for="contact_name" class="col-sm-3 col-form-label">お名前</label>
@@ -36,7 +36,7 @@
 
         <div class="form-group row justify-content-end">
           <div class="col-sm-9">
-            <button type="submit" class="btn btn-success">送信する</button>
+            <button :disabled="invalid" type="submit" class="btn btn-success">送信する</button>
           </div>
         </div>
       </form>
@@ -49,25 +49,12 @@ import { extend, localize, ValidationObserver, ValidationProvider } from 'vee-va
 import { required, email } from 'vee-validate/dist/rules'
 import ja from 'vee-validate/dist/locale/ja.json'
 import FlashMessage from '../FlashMessage'
-
-// バリデーションルール
+import axios from '@axios'
+import { mapState, mapMutations } from 'vuex'
 extend('required', required);
 extend('email', email);
-
-// メッセージのローカライズ
 localize('ja', ja);
-
-// axios
-import axios from 'axios'
-const addCsrfToken = () => {
-  axios.defaults.headers.common = {
-    "X-Requested-With": "XMLHttpRequest",
-    "X-CSRF-TOKEN": document
-      .querySelector('meta[name="csrf-token"]')
-      .getAttribute("content"),
-  }
-}
-import { mapState, mapMutations } from 'vuex'
+console.log(process.env.NODE_ENV)
 
 export default {
   components: {
@@ -91,8 +78,6 @@ export default {
   methods: {
     ...mapMutations(["setMessage"]),
     async submitForm() {
-      addCsrfToken()
-
       try {
         await axios.post('/api/contacts', this.formData )
         this.setMessage({text: "お問い合わせを送信しました", type: "primary"})
@@ -106,10 +91,6 @@ export default {
 </script>
 
 <style scoped>
-[v-cloak] {
-  display:none;
-}
-
 p {
   font-size: 1em;
   text-align: center;

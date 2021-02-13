@@ -1,11 +1,8 @@
-import Vue from 'vue/dist/vue.esm'
-import TurbolinksAdapter from 'vue-turbolinks'
+import Vue from 'vue'
 import store from '../store/index'
 import ContactForm from '../components/ContactForm'
 
-Vue.use(TurbolinksAdapter)
-
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#contact_form',
     components: { ContactForm },

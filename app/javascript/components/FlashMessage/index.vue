@@ -15,11 +15,13 @@ export default {
     },
     messageText: {
       type: String,
-      required: true
+      required: false,
+      default: null
     },
     messageType: {
       type: String,
-      required: true
+      required: false,
+      default: null
     },
   },
   methods: {
