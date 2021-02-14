@@ -17,6 +17,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
       - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
