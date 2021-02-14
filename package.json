@@ -28,6 +28,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token v3qurz6te0j",
-    "lint": "./node_modules/.bin/eslint --ext .js,.vue app/"
+    "lint": "./node_modules/.bin/eslint --ext .js,.vue app/",
+    "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.vue app/"
   }
 }

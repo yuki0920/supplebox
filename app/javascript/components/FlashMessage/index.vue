@@ -1,5 +1,9 @@
 <template>
-  <div v-if="isDisplay" :class="flashClass()" role="alert">
+  <div
+    v-if="isDisplay"
+    :class="flashClass()"
+    role="alert"
+  >
     {{ messageText }}
   </div>
 </template>
