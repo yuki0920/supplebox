@@ -5,7 +5,12 @@ module Api
     before_action :set_product, only: %i(show)
 
     def index
-      products = Product.page(params[:page])
+      products =
+        if params[:q].present?
+          Product.where(['title LIKE ?', "%#{params[:q]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:q]}%"])).page(params[:page])
+        else
+          Product.page(params[:page])
+        end
 
       render json: products
     end
