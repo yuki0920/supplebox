@@ -7,12 +7,14 @@ module Api
     def index
       products =
         if params[:q].present?
-          Product.where(['title LIKE ?', "%#{params[:q]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:q]}%"])).page(params[:page])
+          Product.where(['title LIKE ?', "%#{params[:q]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:q]}%"]))
         else
-          Product.page(params[:page])
+          Product.all
         end
 
-      render json: products
+      result = products.includes(:posts, :likes).page(params[:page])
+
+      render json: result, each_serializer: ProductSerializer
     end
 
     def show

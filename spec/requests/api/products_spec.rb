@@ -23,8 +23,8 @@ RSpec.describe '/api/products', type: :request do
   it '検索条件に合致したレスポンスを返却すること' do
     get api_products_path(q: 'プロテイン')
 
-    data = JSON.parse(response.body)
+    products = JSON.parse(response.body).to_h['products']
 
-    expect(data.count).to eq 1
+    expect(products.count).to eq 1
   end
 end
