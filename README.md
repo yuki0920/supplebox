@@ -14,6 +14,25 @@
 パスワード:test
 ```
 
+## 環境
+
+- サーバーサイド(Ruby 3.0.0, Rails 6.1.0)
+- フロントエンド(JavaScript, Vue.js, jQuery)
+- 本番環境インフラ(Heroku)
+- 開発開発(Docker, Docker Compose)
+- データベース(PostgreSQL)
+
+## テスト・解析
+
+- 単体・統合テスト(RSpec, Capybara)
+- カバレッジ計測(SimpleCov)
+- 静的解析(RuboCop, Brakeman, ESLint)
+- N+1(Bullet)
+- CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
+- アクセス解析(google-analytics-rails)
+- APIスキーマ定義(OpenAPI, committee-rails)
+- UI検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
+
 ## 使用機能と技術
 
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
@@ -29,25 +48,6 @@
 - 認証関連(ログイン, 管理者ユーザー)
 - ユーザー関連（フォロー・フォロワー）
 - アイテム関連（お気に入り登録, ランキング表示）
-
-## テスト・解析
-
-- 単体・統合テスト(RSpec, Capybara)
-- カバレッジ計測(SimpleCov)
-- 静的解析(RuboCop, Brakeman)
-- N+1(Bullet)
-- CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
-- アクセス解析(google-analytics-rails)
-- APIスキーマ定義(OpenAPI, committee-rails)
-- UI検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
-
-## 環境
-
-- 言語(Ruby 3.0.0)
-- フレームワーク(Rails 6.1.0)
-- 本番環境インフラ(Heroku)
-- 開発開発(Docker for Mac)
-- データベース(PostgreSQL)
 
 ## プロモーション
 
