@@ -5,6 +5,8 @@
     "@rails/webpacker": "5.2.1",
     "@storybook/cli": "^6.1.15",
     "axios": "^0.21.1",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.5.0",
     "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
@@ -25,6 +27,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token v3qurz6te0j"
+    "chromatic": "npx chromatic --project-token v3qurz6te0j",
+    "lint": "./node_modules/.bin/eslint --ext .js,.vue app/"
   }
 }
