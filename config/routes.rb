@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :brands, only: %i[index show new create edit update destroy]
 
   namespace :api do
-    resources :products, only: %i(show)
+    resources :products, only: %i(index show)
     resources :users, only: %i(index)
     resources :contacts, only: %i(create)
   end

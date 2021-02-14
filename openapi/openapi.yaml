@@ -17,6 +17,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+  /api/products:
+    get:
+      tags:
+        - API
+      summary: Get and Search Products
+      parameters:
+        - $ref: '#/components/parameters/product_id'
+      responses:
+        200:
+          description: get products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
   /api/users:
     get:
       tags:
