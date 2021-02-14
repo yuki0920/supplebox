@@ -4,7 +4,7 @@
       <img
         :alt="product.title"
         class="card-img-top"
-        :src="product.picture"
+        :src="product.image_url"
       >
       <rect
         fill="#868e96"
@@ -14,7 +14,7 @@
     </div>
     <div class="card-body">
       <p class="card-title">
-        {{ product.brand_name }}
+        {{ product.brand_amazon_name }}
       </p>
       <p class="card-text">
         <a href="/products/2">{{ product.title }}</a>

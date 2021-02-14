@@ -17,6 +17,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+  /api/products:
+    get:
+      tags:
+        - API
+      summary: Get and Search Products
+      parameters:
+        - $ref: '#/components/parameters/product_id'
+      responses:
+        200:
+          description: get products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    $ref: '#/components/schemas/Products'
+
   /api/users:
     get:
       tags:
@@ -140,6 +158,25 @@ components:
             type: string
           picture_url:
             type: string
+    Products:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          image_url:
+            type: string
+          brand_amazon_name:
+            type: string
+          product_link:
+            type: string
+          post_count:
+            type: integer
+          rate:
+            type: number
+          likes:
+            type: integer
 
   requestBodies:
     contact:
