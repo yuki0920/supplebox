@@ -21,10 +21,10 @@
             class="col-sm-9"
           >
             <input
+              id="contact_name"
               v-model="formData.name"
               type="text"
               class="form-control"
-              id="contact_name"
             >
             <span class="error text-danger">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -41,10 +41,10 @@
             class="col-sm-9"
           >
             <input
+              id="contact_email"
               v-model="formData.email"
               type="email"
               class="form-control"
-              id="contact_email"
             >
             <span class="error text-danger">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -61,10 +61,10 @@
             class="col-sm-9"
           >
             <input
+              id="contact_title"
               v-model="formData.title"
               type="text"
               class="form-control"
-              id="contact_title"
             >
             <span class="error text-danger">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -81,9 +81,9 @@
             class="col-sm-9"
           >
             <textarea
+              id="contact_content"
               v-model="formData.content"
               class="form-control"
-              id="contact_content"
               rows="3"
             />
             <span class="error text-danger">{{ errors[0] }}</span>
