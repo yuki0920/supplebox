@@ -9,13 +9,13 @@ RSpec.describe '/api/products', type: :request do
   end
 
   it 'スキーマ定義とAPIの挙動が同じであること' do
-    get "/api/products"
+    get '/api/products'
 
     assert_schema_conform
   end
 
   it 'スキーマ定義とAPIの挙動が同じであること' do
-    get "/api/products?page=2"
+    get '/api/products?page=2'
 
     assert_schema_conform
   end
