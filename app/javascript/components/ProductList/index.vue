@@ -42,8 +42,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.product-list__header {
-  text-align: center;
+<style lang="scss" scoped>
+.product-list{
+  &__header {
+    text-align: center;
+  }
 }
 </style>
