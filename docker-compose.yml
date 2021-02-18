@@ -3,18 +3,18 @@ services:
   db:
     image: postgres
     ports:
-      - '5432:5432'
+      - 5433:5433
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
   web:
     build: .
-    command: bundle exec rails server -p 3000 -b '0.0.0.0'
+    command: bundle exec rails server -p 3001 -b '0.0.0.0'
     depends_on:
       - db
     ports:
-      - '3000:3000'
+      - 3001:3001
     environment:
       DATABASE_HOST: db
       BUNDLE_PATH: '/bundle'
