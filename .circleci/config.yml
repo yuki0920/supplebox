@@ -111,19 +111,19 @@ jobs:
               https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 workflows:
   version: 2
-  rspec_and_rubocop_and_eslint:
-    jobs:
-      - rspec
-      - rubocop
-      - eslint
+  # rspec_and_rubocop_and_eslint:
+  #   jobs:
+  #     - rspec
+  #     - rubocop
+  #     - eslint
   monthly-bundle-update:
-    triggers:
-      - schedule:
-          # UTC記述。毎月1日に動作する
-          cron: "0 9 1 * *"
-          filters:
-            branches:
-              only:
-                - master
+    # triggers:
+    #   - schedule:
+    #       # UTC記述。毎月1日に動作する
+    #       cron: "0 9 1 * *"
+    #       filters:
+    #         branches:
+    #           only:
+    #             - master
     jobs:
       - bundle_update
