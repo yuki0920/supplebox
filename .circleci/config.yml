@@ -85,7 +85,6 @@ jobs:
   bundle_update:
     docker:
       - image: circleci/ruby:3.0.0-node-browsers
-
     steps:
       - checkout
       - restore_cache:
@@ -96,6 +95,10 @@ jobs:
       - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: bundle update
+      - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
       - run: git checkout -b bundle-update-$CIRCLE_BUILD_NUM
       - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
       - run: git config user.name "yuki0920"
