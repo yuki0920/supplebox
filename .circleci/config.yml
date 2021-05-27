@@ -113,7 +113,7 @@ jobs:
               --data "{\"title\": \"今月のbundle-update\", \"head\": \"handsshare:bundle-update-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
               https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 
-  yarn_update:
+  yarn_upgrade:
     docker:
       - image: circleci/ruby:3.0.0-node-browsers
     steps:
@@ -124,23 +124,23 @@ jobs:
             - v1-dependencies-
       - checkout
       - run: yarn install
-      - run: yarn update
+      - run: yarn upgrade
       - save_cache:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: git checkout -b yarn-update-$CIRCLE_BUILD_NUM
+      - run: git checkout -b yarn-upgrade-$CIRCLE_BUILD_NUM
       - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
       - run: git config user.name "yuki0920"
       - run: git package.json yarn.lock
       - run: git commit -am '今月のGemfile更新用の自動作成PR'
-      - run: git push origin yarn-update-$CIRCLE_BUILD_NUM
+      - run: git push origin yarn-upgrade-$CIRCLE_BUILD_NUM
       - run:
           name: Create a pull request
           command: |
             curl \
               --header "Accept: application/vnd.github.v3+json" \
-              --data "{\"title\": \"今月のyarn-update\", \"head\": \"handsshare:yarn-update-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
+              --data "{\"title\": \"今月のyarn-upgrade\", \"head\": \"handsshare:yarn-upgrade-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
               https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 workflows:
   version: 2
@@ -160,7 +160,7 @@ workflows:
                 - master
     jobs:
       - bundle_update
-  monthly-yarn-update:
+  monthly-yarn-upgrade:
     triggers:
       - schedule:
           # UTC記述。毎月1日に動作する
@@ -170,4 +170,4 @@ workflows:
               only:
                 - master
     jobs:
-      - yarn_update
+      - yarn_upgrade
