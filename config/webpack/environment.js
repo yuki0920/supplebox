@@ -4,9 +4,11 @@ const vue = require("./loaders/vue");
 const path = require('path')
 const webpack = require('webpack')
 const { DefinePlugin } = require('webpack')
+const ts = require("./loaders/ts")
 
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 environment.loaders.prepend('vue', vue)
+environment.loaders.prepend("ts", ts);
 
 environment.config.resolve.alias = {
   '@axios': path.resolve(__dirname, '../../app/javascript/packs/initializers/axios.js'),
