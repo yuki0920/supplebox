@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   "stories": [
     "../stories/**/*.stories.mdx",
@@ -7,5 +9,10 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials"
-  ]
+  ],
+
+  webpackFinal: async (config) => {
+    config.resolve.alias['@axios'] = path.resolve(__dirname, '../app/javascript/packs/initializers/axios.js');
+    return config;
+  },
 }
