@@ -8,12 +8,17 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-        "*": ["node_modules/*", "app/javascript/*"]
+      "*": ["node_modules/*", "app/javascript/*"],
+      "@/*": ["app/javascript/*"]
     },
     "sourceMap": true,
     "target": "es5",
     "noEmit": true
   },
+  "include": [
+    "app/javascript/**/*.ts",
+    "app/javascript/**/*.vue",
+  ],
   "exclude": [
     "**/*.spec.ts",
     "node_modules",

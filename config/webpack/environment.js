@@ -1,16 +1,14 @@
 const { environment } = require('@rails/webpacker')
 const { VueLoaderPlugin } = require('vue-loader')
-const vue = require("./loaders/vue");
 const path = require('path')
 const webpack = require('webpack')
 const { DefinePlugin } = require('webpack')
-
-environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
-environment.loaders.prepend('vue', vue)
+const vue = require("./loaders/vue")
+const ts = require("./loaders/ts")
 
 environment.config.resolve.alias = {
   '@axios': path.resolve(__dirname, '../../app/javascript/packs/initializers/axios.js'),
-  '@': path.resolve(__dirname, "..", "..", "app/javascript/src")
+  '@': path.resolve(__dirname, "..", "..", "app/javascript/")
 }
 
 environment.plugins.prepend(
@@ -22,6 +20,7 @@ environment.plugins.prepend(
   })
 )
 
+environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 // NOE: 実行時にWarningが出ないための設定
 environment.plugins.prepend(
   'Define',
@@ -31,5 +30,7 @@ environment.plugins.prepend(
     __VUE_PROD_DEVTOOLS__: false
   })
 )
+environment.loaders.prepend("ts", ts)
+environment.loaders.prepend('vue', vue)
 
 module.exports = environment
