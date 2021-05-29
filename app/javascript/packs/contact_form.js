@@ -1,12 +1,9 @@
-import Vue from 'vue'
-import store from '../store/index'
+import { createApp } from 'vue'
 import ContactForm from '../components/ContactForm'
 
+
+// NOTE: export default () => {}にすると表示できない
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: '#contact_form',
-    components: { ContactForm },
-    store,
-    render: h => h(ContactForm)
-  })
+  const app = createApp(ContactForm)
+  app.mount('#contact_form')
 })

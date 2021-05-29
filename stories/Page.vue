@@ -2,9 +2,9 @@
   <article>
     <my-header
       :user="user"
-      @onLogin="onLogin"
-      @onLogout="onLogout"
-      @onCreateAccount="onCreateAccount"
+      @login="$emit('login')"
+      @logout="$emit('logout')"
+      @createAccount="$emit('createAccount')"
     />
 
     <section>
@@ -33,8 +33,8 @@
       </ul>
       <p>
         Get a guided tutorial on component-driven development at
-        <a href="https://www.learnstorybook.com" target="_blank" rel="noopener noreferrer"
-          >Learn Storybook</a
+        <a href="https://storybook.js.org/tutorials/" target="_blank" rel="noopener noreferrer"
+          >Storybook tutorials</a
         >
         . Read more in the
         <a href="https://storybook.js.org/docs" target="_blank" rel="noopener noreferrer">docs</a>
@@ -73,16 +73,6 @@ export default {
     },
   },
 
-  methods: {
-    onLogin() {
-      this.$emit('onLogin');
-    },
-    onLogout() {
-      this.$emit('onLogout');
-    },
-    onCreateAccount() {
-      this.$emit('onCreateAccount');
-    },
-  },
+  emits: ['login', 'logout', 'createAccount'],
 };
 </script>
