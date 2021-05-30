@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { reactive } from 'vue'
-import axios from 'axios'
+import axios from '@axios'
 import FlashMessage from '../FlashMessage/index.vue'
 
 export default {

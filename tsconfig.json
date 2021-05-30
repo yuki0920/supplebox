@@ -9,7 +9,8 @@
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules/*", "app/javascript/*"],
-      "@/*": ["app/javascript/*"]
+      "@/*": ["app/javascript/*"],
+      "@axios": ["app/javascript/packs/initializers/axios.js"]
     },
     "sourceMap": true,
     "target": "es5",
