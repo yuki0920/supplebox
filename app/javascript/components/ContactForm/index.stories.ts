@@ -1,7 +1,7 @@
 import ContactForm from './index.vue'
 
 export default {
-  title: 'Components/ContactForm/Default',
+  title: 'Components/ContactForm',
   component: ContactForm,
 };
 

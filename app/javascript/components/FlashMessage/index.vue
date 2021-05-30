@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
 export default {
   name: 'FlashMessage',
@@ -28,9 +28,14 @@ export default {
       default: null
     },
   },
-  methods: {
-    flashClass() {
-      return `alert alert-${this.messageType}`
+
+  setup(props) {
+    const flashClass = () => {
+      return `alert alert-${props.messageType}`
+    }
+
+    return {
+      flashClass,
     }
   }
 }
