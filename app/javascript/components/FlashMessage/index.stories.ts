@@ -18,7 +18,7 @@ const Template = (args) => ({
   setup() {
     return { args }
   }
-});
+})
 
 export const Primary = Template.bind({})
 Primary.args = {

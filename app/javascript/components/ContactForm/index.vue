@@ -1,8 +1,13 @@
 <template>
   <div class="contact">
+    <FlashMessage
+      :is-display="message.isDisplay"
+      :message-text="message.text"
+      :message-type="message.type"
+    />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="form-group row">
         <label
           for="contact_name"
@@ -57,7 +62,6 @@
           <button
             type="submit"
             class="btn btn-success"
-            @submit="submit"
           >
             送信する
           </button>
@@ -68,14 +72,19 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import axios from 'axios'
-
+import FlashMessage from '../FlashMessage/index.vue'
 
 export default {
   name: 'ContactForm',
+  components: { FlashMessage },
   setup() {
-    const message = ref('Hello World')
+    const message = reactive({
+      isDisplay: false,
+      text: "",
+      type: ""
+    })
     const formData = reactive(
       {
         name: "",
@@ -86,10 +95,21 @@ export default {
     )
     const submitForm = async () => {
       try {
-        await axios.post('/api/contacts', formData )
+        await axios.post('/api/contacts', {
+            name: formData.name,
+            email: formData.email,
+            title: formData.title,
+            content: formData.content
+          })
+
+          message.isDisplay = true
+          message.text = "お問い合わせを送信しました"
+          message.type = "primary"
       } catch(error) {
-        const { message } = error.response.data
-        console.log(message)
+        const { data } = error.response
+          message.isDisplay = true
+          message.text = `お問い合わせの送信に失敗しました 「${data.message}」`
+          message.type = "danger"
       }
     }
     return {
