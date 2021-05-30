@@ -1,4 +1,4 @@
-import FlashMessage from './index'
+import FlashMessage from './index.vue'
 
 export default {
   title: 'Components/FlashMessage',
@@ -10,14 +10,14 @@ export default {
   },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args) => ({
   components: { FlashMessage },
-  template: `<FlashMessage
-    :isDisplay="isDisplay"
-    :messageText="messageText"
-    :messageType="messageType"
-    />`,
+  template: `
+    <FlashMessage v-bind="args" />
+  `,
+  setup() {
+    return { args }
+  }
 });
 
 export const Primary = Template.bind({})
