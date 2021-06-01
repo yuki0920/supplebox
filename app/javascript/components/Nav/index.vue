@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light global-nav">
+  <nav class="o-nav navbar navbar-expand-lg navbar-light bg-light global-nav">
     <a href="/">
       <img
         alt="SuppleBox"
@@ -78,7 +78,7 @@
       </ul>
       <div
         v-if="isLoggedIn()"
-        class="dropdown"
+        class="o-nav-dropdown nav-item dropdown"
       >
         <a
           id="navbarDropdown"
@@ -91,8 +91,7 @@
         >
           <span class="gravatar">
             <img
-              width="20px"
-              class="img-circle"
+              class="o-nav-gravatar-img img-circle"
               :src="user.pictureUrl"
             >
           </span>
@@ -141,7 +140,9 @@ export default {
     user: {
       type: Object,
       required: false,
-      default: null
+      default: () => {
+        return { name: 'yuki', pictureUrl: 'https://supplebox.s3.amazonaws.com/uploads/user/picture/2/kaisya_man.png' }
+      }
     },
   },
 
@@ -149,8 +150,6 @@ export default {
     const isLoggedIn = () => {
       return !!props.user
     }
-
-    console.log('loggein?', isLoggedIn())
 
     return {
       isLoggedIn
@@ -160,4 +159,10 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-menu {
+  left: -44px;
+}
+.o-nav-gravatar-img {
+  width: 20px;
+}
 </style>
