@@ -132,7 +132,7 @@ jobs:
       - run: git checkout -b yarn-upgrade-$CIRCLE_BUILD_NUM
       - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
       - run: git config user.name "yuki0920"
-      - run: git package.json yarn.lock
+      - run: git add package.json yarn.lock
       - run: git commit -am '今月のGemfile更新用の自動作成PR'
       - run: git push origin yarn-upgrade-$CIRCLE_BUILD_NUM
       - run:
@@ -163,8 +163,8 @@ workflows:
   monthly-yarn-upgrade:
     triggers:
       - schedule:
-          # UTC記述。毎月1日に動作する
-          cron: "0 9 1 * *"
+          # UTC記述。毎月3日に動作する
+          cron: "3 9 1 * *"
           filters:
             branches:
               only:
