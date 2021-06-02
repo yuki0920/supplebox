@@ -89,12 +89,6 @@
           href="#"
           role="button"
         >
-          <span class="gravatar">
-            <img
-              class="o-nav-gravatar-img img-circle"
-              :src="user.pictureUrl"
-            >
-          </span>
           {{ user.name }}
         </a>
         <div
@@ -141,7 +135,7 @@ export default {
       type: Object,
       required: false,
       default: () => {
-        return { name: 'yuki', pictureUrl: 'https://supplebox.s3.amazonaws.com/uploads/user/picture/2/kaisya_man.png' }
+        return { name: 'yuki'}
       }
     },
   },
