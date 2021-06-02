@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     resources :products, only: %i(index show)
     resources :users, only: %i(index)
     resources :contacts, only: %i(create)
+    resource :sessions, only: %i(show)
   end
 end
