@@ -76,3 +76,6 @@ Style/TrailingCommaInArguments:
 
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
+
+Rails/EnvironmentVariableAccess:
+  AllowReads: true
