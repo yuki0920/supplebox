@@ -89,7 +89,7 @@
           href="#"
           role="button"
         >
-          {{ user.name }}
+          {{ currentUser.name }}
         </a>
         <div
           aria-labelledby="navbarDropdown"
@@ -127,25 +127,28 @@
 </template>
 
 <script lang="ts">
+import axios from '@axios'
+import { ref } from 'vue'
 
 export default {
   name: 'Nav',
-  props: {
-    user: {
-      type: Object,
-      required: false,
-      default: () => {
-        return { name: 'yuki'}
-      }
-    },
-  },
 
-  setup(props) {
+  setup() {
+    const currentUser = ref(null)
+    const getCurrentUser = async () => {
+      const { data } = await axios.get('/api/sessions')
+      console.log("data", data)
+      currentUser.value = data.user
+      console.log("user", currentUser.value)
+      console.log("user.name", currentUser.value)
+    }
     const isLoggedIn = () => {
-      return !!props.user
+      return !!currentUser.value
     }
 
+    getCurrentUser()
     return {
+      currentUser,
       isLoggedIn
     }
   }
