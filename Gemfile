@@ -66,7 +66,7 @@ end
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk'
-gem 'bootstrap'
+gem 'bootstrap', '< 5.0'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'faker'
