@@ -1,4 +1,5 @@
 # SuppleBox
+
 <a href="https://img.shields.io/github/issues-raw/yuki0920/supplebox.svg"><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/yuki0920/supplebox.svg"></a>
 <a href="https://img.shields.io/github/issues-closed-raw/yuki0920/supplebox.svg"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/yuki0920/supplebox.svg"></a>
 <a href="https://img.shields.io/github/languages/top/yuki0920/supplebox"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/yuki0920/supplebox"></a>
@@ -30,11 +31,12 @@
 - N+1(Bullet)
 - CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
 - アクセス解析(google-analytics-rails)
-- APIスキーマ定義(OpenAPI, committee-rails)
-- UI検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
+- API スキーマ定義(OpenAPI, committee-rails)
+- UI 検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
 
 ## 使用機能と技術
 
+- フロントエンド(Vuejs 3, Composition API, TypeScript)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer, ActiveJob)
@@ -45,13 +47,13 @@
 - パンくずリスト(gretel)
 - 星評価機能(jQuery Raty)
 - デザイン(Bootstrap, Sass)
-- 認証関連(ログイン, 管理者ユーザー)
+- 認証(Gem を使わず実装)
 - ユーザー関連（フォロー・フォロワー）
 - アイテム関連（お気に入り登録, ランキング表示）
 
 ## プロモーション
 
-プロテインを買う方が、1人あたりかけるお金は1ヶ月3,000円から10,000円ほど。
+プロテインを買う方が、1 人あたりかけるお金は 1 ヶ月 3,000 円から 10,000 円ほど。
 送料がかかるため、まとめ買いをするケースも多いです。
 
 それだけ大きな買い物にも関わらず、「思っていた味と違った」、「前飲んでいたプロテインの方が安いしおいしかった」などど、失敗しまうケースがよく生じてしまいます。
@@ -59,12 +61,13 @@
 
 当サービスは、リアルなプロテインの口コミを集中させることで、初心者から上級者まで、自分にあったプロテイン選びができるようサポートします。
 
-## 開発しながら得たTips
+## 開発しながら得た Tips
 
-- [レビュー用の星★の評価を実装する（入力、保存、表示） - Qiita](https://qiita.com/yuki_0920/items/a966d9fa2bdb621f805d)
-- [RailsでAmazonAPIを使ってみよう！ - Qiita](https://qiita.com/yuki_0920/items/7e7e9dcd955fed777bc1)
-- [Dockerの環境構築で`could not connect to server: Connection refused`のエラーが出た時の対処法 - Qiita](https://qiita.com/yuki_0920/items/84e2ca260bfe13cf3072)
-- [Herokuでデプロイに失敗するときの対処法(Ruby app detected されない問題) - Qiita](https://qiita.com/yuki_0920/items/b1065777edf090351052)
+- [レビュー用の星 ★ の評価を実装する（入力、保存、表示） - Qiita](https://qiita.com/yuki_0920/items/a966d9fa2bdb621f805d)
+- [Rails で AmazonAPI を使ってみよう！ - Qiita](https://qiita.com/yuki_0920/items/7e7e9dcd955fed777bc1)
+- [Docker の環境構築で`could not connect to server: Connection refused`のエラーが出た時の対処法 - Qiita](https://qiita.com/yuki_0920/items/84e2ca260bfe13cf3072)
+- [Heroku でデプロイに失敗するときの対処法(Ruby app detected されない問題) - Qiita](https://qiita.com/yuki_0920/items/b1065777edf090351052)
+- [Rails×Vue.js(2 系)×Webpacker のアプリの Vue 2 -> 3 アップデートと TypeScript 導入の手順 - Qiita](https://qiita.com/yuki_0920/items/2eab16aadbe2f3a8d73e)
 
 ## 環境構築手順
 
@@ -75,51 +78,57 @@ $ docker-compose build
 ```
 
 2. Bundle Install
+
 ```
 $ docker-compose run --rm bundle install
 ```
 
 3. コンテナを起動する
-データベースセットアップ前にコンテナを起動していないとデータベースのセットアップコマンドが失敗する
+   データベースセットアップ前にコンテナを起動していないとデータベースのセットアップコマンドが失敗する
+
 ```
 $ docker-compose up
 ```
 
 4. データベースをセットアップする
+
 ```
 $ docker-compose exec rails bundle exec rails db:create db:migrate db:seed
 ```
 
-5. RSpecを実行する
+5. RSpec を実行する
+
 ```
 $ docker-compose run --rm bundle exec rails rspec
 ```
 
-6. RuboCopを実行する
+6. RuboCop を実行する
+
 ```
 $ docker-compose run --rm bundle exec rails rubocop
 ```
 
 ## コンテンツ更新手順
+
 1. サイトマップ `config/sitemap.rb` を修正する
 
-修正後GitHubへPush
+修正後 GitHub へ Push
 
-2. Herokuインタンス上のサイトマップを更新する
+2. Heroku インタンス上のサイトマップを更新する
+
 ```
 $ heroku run rails sitemap:refresh
 ```
 
-定期的なサイトマップ更新はHerokuSchedulerでやっている
+定期的なサイトマップ更新は HerokuScheduler でやっている
 
 ## その他
 
-### Swagger起動
+### Swagger 起動
 
 docker-compose で起動している
 
 http://localhost:8080 で確認可能。
-
 
 ### StoryBook
 
@@ -130,7 +139,6 @@ $ yarn run storybook
 ```
 
 http://localhost:6006 で確認可能。
-
 
 #### デプロイ
 
