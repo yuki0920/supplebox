@@ -97,7 +97,7 @@
         >
           <a
             class="dropdown-item"
-            href="/users/2"
+            :href="currentUser.path"
           >マイページ</a>
           <div class="dropdown-divider" />
           <a
@@ -127,20 +127,17 @@
 </template>
 
 <script lang="ts">
-import axios from '@axios'
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useStore } from '../../store/index'
 
 export default {
   name: 'Nav',
 
   setup() {
-    const currentUser = ref(null)
+    const store = useStore()
+    const currentUser = computed(() => store.state.currentUser)
     const getCurrentUser = async () => {
-      const { data } = await axios.get('/api/sessions')
-      console.log("data", data)
-      currentUser.value = data.user
-      console.log("user", currentUser.value)
-      console.log("user.name", currentUser.value)
+      store.dispatch('fetchCurrentUser')
     }
     const isLoggedIn = () => {
       return !!currentUser.value
