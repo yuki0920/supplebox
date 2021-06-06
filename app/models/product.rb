@@ -15,9 +15,6 @@ class Product < ApplicationRecord
   # 口コミ投稿との関連付け
   has_many :posts, dependent: :destroy
 
-  # ブランドとの関連付け
-  belongs_to :brand, optional: true
-
   # お気に入り機能追加用中間テーブル追加
   has_many :likes, dependent: :destroy, inverse_of: :product
   has_many :users, through: :likes
@@ -25,7 +22,7 @@ class Product < ApplicationRecord
   class << self
     # お気に入り数表示
     def ranking
-      group(:id).order('brand_id').count(:id)
+      group(:id).count(:id)
     end
 
     def build_with_items(keyword)

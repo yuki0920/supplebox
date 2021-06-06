@@ -45,12 +45,11 @@ class ProductsController < ApplicationController
   def show
     @post = Post.new
     @posts = Post.includes(:user, :product).where(product_id: @product.id).page(params[:page])
-    @brand = Brand.find(@product.brand_id) if @product.brand_id?
   end
 
   def index
     @q = Product.all.ransack(params[:q])
-    @products = @q.result(distinct: true).order(:brand_id).page(params[:page])
+    @products = @q.result(distinct: true).page(params[:page])
     @ranking_counts = Product.ranking
     @query_params = request.query_parameters
   end

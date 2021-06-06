@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :posts, only: %i[create destroy show edit update index]
   resources :likes, only: %i[create destroy]
   resources :relationships, only: %i[create destroy]
-  resources :brands, only: %i[index show new create edit update destroy]
 
   namespace :api do
     resources :products, only: %i(index show)
