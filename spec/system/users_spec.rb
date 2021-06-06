@@ -11,7 +11,8 @@ describe 'ユーザー登録機能', type: :system do
     it '新しいユーザーを作成できること' do
       expect do
         visit root_path
-        click_link '新規登録'
+        # click_link '新規登録'
+        visit signup_path
         fill_in 'ユーザー名', with: 'TestUser'
         fill_in 'ニックネーム', with: 'テストユーザー'
         fill_in 'メールアドレス', with: 'tester@supplebox.jp'
