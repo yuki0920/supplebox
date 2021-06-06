@@ -120,9 +120,6 @@ components:
           type: string
         official_url:
           type: string
-        brand_id:
-          type: string
-          nullable: true
         category_id:
           type: string
           nullable: true

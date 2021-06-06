@@ -17,8 +17,7 @@
         %tr
           %th ブランド
           %td
-            = link_to @brand.name, @brand if @brand
-            = @product.brand_amazon_name unless @brand
+            = @product.brand_amazon_name
     .buttons.text-center
       = link_to '楽天で詳しく見る', 'https://hb.afl.rakuten.co.jp/hgc/169cb48b.e76a4cfb.169cb48c.b496683c/?pc=http://search.rakuten.co.jp/search/mall?sitem=#{@product.brand_amazon_name}+プロテイン&m=http://m.rakuten.co.jp/', target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-danger'
       = link_to 'Amazonで詳しく見る', @product.url.html_safe, target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-warning'

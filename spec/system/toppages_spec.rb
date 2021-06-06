@@ -14,7 +14,6 @@ describe 'リンク確認' do
       aggregate_failures do
         expect(page).to have_link('ランキング', href: '/rankings')
         expect(page).to have_link('プロテイン', href: '/products')
-        expect(page).to have_link('ブランド', href: '/brands')
         expect(page).to have_link('口コミ', href: '/posts')
         expect(page).to have_link('ユーザー', href: '/users')
         expect(page).to have_link('新規登録', href: '/signup')

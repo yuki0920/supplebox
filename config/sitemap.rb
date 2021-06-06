@@ -26,11 +26,6 @@ SitemapGenerator::Sitemap.create do
     add product_path(product), lastmod: product.updated_at
   end
 
-  add brands_path
-  Brand.find_each do |brand|
-    add brand_path(brand), lastmod: brand.updated_at
-  end
-
   add rankings_path, changefreq: 'daily'
   add posts_path, changefreq: 'daily'
   add contacts_path

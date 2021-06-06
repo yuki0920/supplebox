@@ -71,30 +71,6 @@ crumb :edit_post do |post|
   parent :posts
 end
 
-# brand#index
-crumb :brands do
-  link 'ブランド一覧', brands_path
-  parent :root
-end
-
-# brand#show
-crumb :show_brand do |brand|
-  link brand.name.to_s, brand
-  parent :brands
-end
-
-# brand#edit
-crumb :edit_brand do |brand|
-  link '編集', edit_brand_path(brand)
-  parent :show_brand, brand
-end
-
-# brand#new
-crumb :new_brand do
-  link 'ブランド登録', new_brand_path
-  parent :root
-end
-
 # ranking#like
 crumb :ranking_like do
   link 'お気に入りランキング', rankings_path

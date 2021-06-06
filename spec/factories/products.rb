@@ -9,6 +9,5 @@ FactoryBot.define do
     price { 100 }
     brand_amazon_name { 'テストブランド' }
     official_url { 'official_url' }
-    association :brand
   end
 end

@@ -43,14 +43,6 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            href="/brands"
-          >
-            ブランド
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
             href="/posts"
           >
             口コミ
