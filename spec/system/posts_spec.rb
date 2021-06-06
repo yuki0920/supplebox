@@ -32,7 +32,7 @@ describe '口コミ投稿機能', type: :system do
     end
 
     it '一覧表示に表示されること' do
-      click_on '口コミ'
+      visit posts_path
       expect(page).to have_content 'テストタイトル' # トップページの口コミ
     end
 
@@ -42,7 +42,7 @@ describe '口コミ投稿機能', type: :system do
     end
 
     it 'ユーザー詳細ページに表示されること' do
-      click_on 'マイページ'
+      visit user_path(user)
       expect(page).to have_content 'テストタイトル' # ユーザープロフィールの口コミ
     end
   end

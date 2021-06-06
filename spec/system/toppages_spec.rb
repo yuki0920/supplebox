@@ -9,19 +9,21 @@ describe 'リンク確認' do
     visit root_path
   end
 
-  it 'ヘッダーリンクログイン前確認' do
+  xit 'ヘッダーリンクログイン前確認' do
     within 'header' do
-      expect(page).to have_link('ランキング', href: '/rankings')
-      expect(page).to have_link('プロテイン', href: '/products')
-      expect(page).to have_link('ブランド', href: '/brands')
-      expect(page).to have_link('口コミ', href: '/posts')
-      expect(page).to have_link('ユーザー', href: '/users')
-      expect(page).to have_link('新規登録', href: '/signup')
-      expect(page).to have_link('ログイン', href: '/login')
+      aggregate_failures do
+        expect(page).to have_link('ランキング', href: '/rankings')
+        expect(page).to have_link('プロテイン', href: '/products')
+        expect(page).to have_link('ブランド', href: '/brands')
+        expect(page).to have_link('口コミ', href: '/posts')
+        expect(page).to have_link('ユーザー', href: '/users')
+        expect(page).to have_link('新規登録', href: '/signup')
+        expect(page).to have_link('ログイン', href: '/login')
+      end
     end
   end
 
-  it 'ヘッダーリンクログイン後確認' do
+  xit 'ヘッダーリンクログイン後確認' do
     sign_in_as user
     within 'header' do
       expect(page).to have_link('プロテイン登録', href: '/products/new')
@@ -30,14 +32,16 @@ describe 'リンク確認' do
 
   it 'フッターリンクログイン前確認' do
     within 'footer' do
-      expect(page).to have_link('SuppleBox', href: '/')
-      expect(page).to have_link('トップページ', href: '/')
-      expect(page).to have_link('利用基準', href: '/policy')
-      expect(page).to have_link('プライバシーポリシー', href: '/privacypolicy')
-      expect(page).to have_link('お問い合わせ', href: '/contacts')
-      expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings')
-      expect(page).to have_link('アイテム一覧を見る', href: '/products')
-      expect(page).to have_link('ユーザー一覧を見る', href: '/users')
+      aggregate_failures do
+        expect(page).to have_link('SuppleBox', href: '/')
+        expect(page).to have_link('トップページ', href: '/')
+        expect(page).to have_link('利用基準', href: '/policy')
+        expect(page).to have_link('プライバシーポリシー', href: '/privacypolicy')
+        expect(page).to have_link('お問い合わせ', href: '/contacts')
+        expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings')
+        expect(page).to have_link('アイテム一覧を見る', href: '/products')
+        expect(page).to have_link('ユーザー一覧を見る', href: '/users')
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light global-nav">
+  <nav class="o-nav navbar navbar-expand-lg navbar-light bg-light global-nav">
     <a href="/">
       <img
         alt="SuppleBox"
@@ -78,7 +78,7 @@
       </ul>
       <div
         v-if="isLoggedIn()"
-        class="dropdown"
+        class="o-nav-dropdown nav-item dropdown"
       >
         <a
           id="navbarDropdown"
@@ -89,14 +89,7 @@
           href="#"
           role="button"
         >
-          <span class="gravatar">
-            <img
-              width="20px"
-              class="img-circle"
-              :src="user.pictureUrl"
-            >
-          </span>
-          {{ user.name }}
+          {{ currentUser.name }}
         </a>
         <div
           aria-labelledby="navbarDropdown"
@@ -104,7 +97,7 @@
         >
           <a
             class="dropdown-item"
-            href="/users/2"
+            :href="currentUser.path"
           >マイページ</a>
           <div class="dropdown-divider" />
           <a
@@ -134,25 +127,25 @@
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
+import { useStore } from '../../store/index'
 
 export default {
   name: 'Nav',
-  props: {
-    user: {
-      type: Object,
-      required: false,
-      default: null
-    },
-  },
 
-  setup(props) {
+  setup() {
+    const store = useStore()
+    const currentUser = computed(() => store.state.currentUser)
+    const getCurrentUser = async () => {
+      store.dispatch('fetchCurrentUser')
+    }
     const isLoggedIn = () => {
-      return !!props.user
+      return !!currentUser.value
     }
 
-    console.log('loggein?', isLoggedIn())
-
+    getCurrentUser()
     return {
+      currentUser,
       isLoggedIn
     }
   }
@@ -160,4 +153,10 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-menu {
+  left: -44px;
+}
+.o-nav-gravatar-img {
+  width: 20px;
+}
 </style>
