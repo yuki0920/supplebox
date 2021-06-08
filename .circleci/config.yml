@@ -163,8 +163,8 @@ workflows:
   monthly-yarn-upgrade:
     triggers:
       - schedule:
-          # UTC記述。毎月JST:7日9時に動作する
-          cron: "0 0 3 * *"
+          # UTC記述。毎月JST:9日9時に動作する
+          cron: "0 0 9 * *"
           filters:
             branches:
               only:
