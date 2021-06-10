@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     image: postgres
@@ -17,7 +17,7 @@ services:
       - 3001:3001
     environment:
       DATABASE_HOST: db
-      BUNDLE_PATH: '/bundle'
+      BUNDLE_PATH: "/bundle"
     tty: true
     stdin_open: true
     volumes:
@@ -30,7 +30,7 @@ services:
     environment:
       API_URL: ./openapi/openapi.yaml
     ports:
-      - '8080:8080'
+      - 8081:8081
 volumes:
   pgdata:
   bundle:
