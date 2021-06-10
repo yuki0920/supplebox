@@ -108,6 +108,14 @@ $ docker-compose run --rm bundle exec rails rspec
 $ docker-compose run --rm bundle exec rails rubocop
 ```
 
+## npm ライブラリインストール
+
+```
+docker-compose --rm web yarn
+```
+
+docker-compose を利用しないとホスト用のライブラリがインストールされてしまい、Docker イメージ上の Linux OS 上で実行できなくなる場合がある。
+
 ## コンテンツ更新手順
 
 1. サイトマップ `config/sitemap.rb` を修正する
