@@ -144,11 +144,13 @@ export default {
 }
 </script>
 
-<style scoped>
-.dropdown-menu {
-  left: -44px;
-}
-.o-nav-gravatar-img {
-  width: 20px;
+<style lang="scss" scoped>
+.o-nav {
+  .dropdown-menu {
+    left: -44px;
+  }
+  .o-nav-gravatar-img {
+    width: 20px;
+  }
 }
 </style>
