@@ -1,4 +1,6 @@
-posts = @posts.map { |post|
+# frozen_string_literal: true
+
+posts = @posts.map do |post|
   {
     title: post.title,
     content: post.content,
@@ -16,9 +18,9 @@ posts = @posts.map { |post|
     product: {
       image_url: post.product.image_url,
       path: products_path(post.product),
-      title: post.product.title,
+      title: post.product.title
     }
   }
-}
+end
 
 {posts: posts}
