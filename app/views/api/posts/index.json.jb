@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+posts = @posts.map do |post|
+  {
+    title: post.title,
+    content: post.content,
+    rate: post.rate,
+    picture_url: post.picture_url,
+    edit_path: edit_post_path(post),
+    created_at: simple_time(post.created_at),
+    user: {
+      picture_url: post.user.picture.url,
+      name: post.user.name,
+      gender: post.user.gender,
+      height: post.user.height,
+      weight: post.user.weight
+    },
+    product: {
+      image_url: post.product.image_url,
+      path: products_path(post.product),
+      title: post.product.title
+    }
+  }
+end
+
+{posts: posts}
