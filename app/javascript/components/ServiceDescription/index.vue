@@ -4,7 +4,7 @@
       <i
         class="o-service-description__icon bi bi-hand-thumbs-up"
       />
-      <h3 class="feature-title">
+      <h3 class="o-service-description__heading">
         リアルな口コミ
       </h3>
       <p>✔	実際の購入者によるリアルな口コミで失敗しないプロテイン選びをサポート</p>
@@ -13,7 +13,7 @@
       <i
         class="o-service-description__icon bi bi-search"
       />
-      <h3 class="feature-title">
+      <h3 class="o-service-description__heading">
         探しやすい
       </h3>
       <p>✔	気になるアイテムをお気に入りランキングや最新の口コミから検索可能</p>
@@ -22,7 +22,7 @@
       <i
         class="o-service-description__icon bi bi-card-image"
       />
-      <h3 class="feature-title">
+      <h3 class="o-service-description__heading">
         見やすいレイアウト
       </h3>
       <p>✔	PCやスマートフォンどちらからでも見やすい設計</p>
@@ -40,6 +40,11 @@ export default {
 .o-service-description {
   &__icon {
     font-size: 40px;
+  }
+  &__heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
   }
 }
 </style>
