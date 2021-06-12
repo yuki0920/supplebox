@@ -13,6 +13,13 @@ module.exports = {
 
   webpackFinal: async (config) => {
     config.resolve.alias['@axios'] = path.resolve(__dirname, '../app/javascript/packs/initializers/axios.js');
+
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
+
     return config;
   },
 }
