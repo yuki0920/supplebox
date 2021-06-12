@@ -75,52 +75,52 @@ export default {
   background-color: white;
   margin: 10px 0;
   padding: 10px 0;
-}
-.o-post-item__user-image {
-  width: 100px;
-}
-.o-post-item__user-profile {
-  font-size: 12px;
-}
-.o-post-item__post {
-  position: relative;
-  display: inline-block;
-  padding: 7px 10px;
-  margin-bottom: 10px;
-  min-width: 120px;
-  width: 100%;
-  font-size: 16px;
-  background: #e3f9e3;
-  border-radius: 15px;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 35px;
-    left: -30px;
-    margin-top: -15px;
-    border: 15px solid transparent;
-    border-right: 15px solid #e3f9e3;
+  &__user-image {
+    width: 100px;
   }
-  p {
-    margin: 0;
-    padding: 0;
+  &__user-profile {
+    font-size: 12px;
   }
-  img {
-    max-width: 40%;
+  &__post {
+    position: relative;
+    display: inline-block;
+    padding: 7px 10px;
     margin-bottom: 10px;
+    min-width: 120px;
+    width: 100%;
+    font-size: 16px;
+    background: #e3f9e3;
+    border-radius: 15px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 35px;
+      left: -30px;
+      margin-top: -15px;
+      border: 15px solid transparent;
+      border-right: 15px solid #e3f9e3;
+    }
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      max-width: 40%;
+      margin-bottom: 10px;
+    }
   }
-}
-.o-post-item__product {
-  border: solid;
-  border-color: #f4f4f4;
-  border-radius: 15px;
-  display: inline-block;
-  padding: 10px;
-  img {
-    max-width: 25%;
-    height: auto;
-    float: left;
-    margin-right: 10px;
+  &__product {
+    border: solid;
+    border-color: #f4f4f4;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 10px;
+    img {
+      max-width: 25%;
+      height: auto;
+      float: left;
+      margin-right: 10px;
+    }
   }
 }
 </style>
