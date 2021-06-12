@@ -7,6 +7,7 @@
           = link_to 'SuppleBoxを始める', signup_path, class: 'btn btn-success btn-lg cover-button'
 #top-page
   = javascript_pack_tag 'top_page'
+  = stylesheet_pack_tag 'top_page'
 
 %h2 お気に入りアイテムランキング
 = render 'products/products', {products: @products, ranking_counts: @ranking_counts }

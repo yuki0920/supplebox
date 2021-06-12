@@ -18,7 +18,6 @@ export default {
     ServiceDescription
   },
   setup() {
-    console.log('Hello')
     return {
     }
   }
