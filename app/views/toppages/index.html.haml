@@ -8,26 +8,6 @@
 #top-page
   = javascript_pack_tag 'top_page'
 
-/ サービス紹介
-.features
-  .container
-    .section-title.text-center
-      %h1.title SuppleBoxとは
-      %h4.title プロテイン選びで失敗したく無い方に向けた、プロテイン特化型の口コミ共有サービスです。
-    .row
-      .col-md-4.col-sm-6.feature.text-center
-        %span.glyphicon.glyphicon-check{"aria-hidden" => "true", style: "font-size: 40px"}
-        %i{class: "bi bi-hand-thumbs-up", style: "font-size: 40px"}
-        %h3.feature-title リアルな口コミ
-        %p ✔	実際の購入者によるリアルな口コミで失敗しないプロテイン選びをサポート
-      .col-md-4.col-sm-6.feature.text-center
-        %i{class: "bi bi-search", style: "font-size: 40px"}
-        %h3.feature-title 探しやすい
-        %p ✔	気になるアイテムをお気に入りランキングや最新の口コミから検索可能
-      .col-md-4.col-sm-6.feature.text-center
-        %i{class: "bi bi-card-image", style: "font-size: 40px"}
-        %h3.feature-title 見やすいレイアウト
-        %p ✔	PCやスマートフォンどちらからでも見やすい設計
 %h2 お気に入りアイテムランキング
 = render 'products/products', {products: @products, ranking_counts: @ranking_counts }
 .text-center
