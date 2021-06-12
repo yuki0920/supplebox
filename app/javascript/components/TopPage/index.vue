@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import ServiceDescription from "./ServiceDescription/index.vue"
+import ServiceDescription from "../ServiceDescription/index.vue"
 export default {
   components: {
     ServiceDescription
