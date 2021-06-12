@@ -1,19 +1,17 @@
-import ProductItem from './index'
+import ProductItem from './index.vue'
 
 export default {
   title: 'Components/ProductItem',
   component: ProductItem,
-  argTypes: {
-    ProductItem: {}
-  },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args) => ({
   components: { ProductItem },
-  template: `<ProductItem
-      :product="product"
-    />`,
+  template:
+    `<ProductItem v-bind="args" />`,
+  setup() {
+    return { args }
+  }
 });
 
 export const Default = Template.bind({})
