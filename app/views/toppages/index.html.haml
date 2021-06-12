@@ -5,6 +5,9 @@
         %h1 プロテイン選びで失敗したくないあなたへ
         - unless logged_in?
           = link_to 'SuppleBoxを始める', signup_path, class: 'btn btn-success btn-lg cover-button'
+#top-page
+  = javascript_pack_tag 'top_page'
+
 / サービス紹介
 .features
   .container
