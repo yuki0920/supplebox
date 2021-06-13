@@ -12,11 +12,13 @@ module Api
           Product.all
         end
 
-      products = products.limit(params[:limit]) if params[:limit].present?
+      products = if params[:limit].present?
+                  products.limit(params[:limit])
+                 else
+                  products.includes(:posts, :likes).page(params[:page])
+                 end
 
-      result = products.includes(:posts, :likes).page(params[:page])
-
-      render json: result, each_serializer: ProductSerializer
+      render json: products, each_serializer: ProductSerializer
     end
 
     def show

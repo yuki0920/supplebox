@@ -28,7 +28,7 @@
             :show-rating="false"
             read-only
           /> -->
-          <small>(口コミ {{ product.post_count }} 件)</small>
+          <small>評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)</small>
         </div>
       </div>
       <div class="card-footer">
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 
 export default {
   name: 'ProductItem',

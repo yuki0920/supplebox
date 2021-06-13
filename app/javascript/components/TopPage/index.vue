@@ -20,6 +20,14 @@
           :product="product"
         />
       </div>
+      <div class="text-center">
+        <a
+          href="/rankings"
+          class="btn btn-success btn-lg"
+        >
+          お気に入りアイテムをもっと見る
+        </a>
+      </div>
     </section>
     <section class="p-toppage__posts-container">
       <h2>
@@ -30,6 +38,14 @@
         :key="post.id"
         :post="post"
       />
+      <div class="text-center">
+        <a
+          href="/posts"
+          class="btn btn-success btn-lg"
+        >
+          最新の口コミをもっと見る
+        </a>
+      </div>
     </section>
   </div>
 </template>
@@ -50,7 +66,7 @@ export default {
   setup() {
     const products = ref([])
     const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products?limit=3')
+      const { data } = await axios.get('/api/products?limit=4')
 
       products.value = data.products
     }

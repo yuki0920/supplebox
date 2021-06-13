@@ -54,12 +54,12 @@
 </template>
 
 <script lang="ts">
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 
 export default {
   name: 'PostItem',
   components: {
-    StarRating
+    // StarRating
   },
   props: {
     post: {
