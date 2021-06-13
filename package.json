@@ -28,7 +28,7 @@
     "webpack-dev-server": "^3.11.1"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook --ci -p 9009",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token v3qurz6te0j",
     "lint": "./node_modules/.bin/eslint --ext .js,.vue app/",
