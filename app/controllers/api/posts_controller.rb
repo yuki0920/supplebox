@@ -9,7 +9,7 @@ module Api
                  Post
                end
 
-      @posts = @posts.includes(:user, :product)
+      @posts = @posts.order(created_at: :desc).includes(:user, :product)
 
       render 'index.json.jb'
     end

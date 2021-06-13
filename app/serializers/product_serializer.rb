@@ -3,7 +3,7 @@
 class ProductSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :title, :image_url, :brand_amazon_name, :product_link, :post_count, :rate, :likes
+  attributes :id, :title, :image_url, :brand_amazon_name, :product_link, :post_count, :rate, :likes
 
   def product_link
     product_path(object)
