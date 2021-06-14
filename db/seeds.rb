@@ -35,7 +35,7 @@ end
 
 # アイテム登録
 30.times do |n|
-  FactoryBot.create!(
+  FactoryBot.create(
     :product,
     title: "NO.#{n}プロテイン",
     url: "sample#{n}@supplebox.jp",
