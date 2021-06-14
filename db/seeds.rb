@@ -48,8 +48,8 @@ users = User.order(:created_at).take(6)
 (1..30).each do |n|
   users.each do |user|
     user.posts.create!(
-      title: Faker::Coffee.origin,
-      content: Faker::Lorem.sentence,
+      title: Faker::Coffee.blend_name,
+      content: Faker::Coffee.notes,
       rate: [1, 2, 3, 4, 5].sample,
       product_id: n,
     )
