@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-return if User.count > 0
+return if User.count.positive?
 
 # ユーザー登録
 User.create!(
