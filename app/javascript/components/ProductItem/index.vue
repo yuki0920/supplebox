@@ -1,6 +1,6 @@
 <template>
   <div class="o-product-item col-md-3 col-sm-4 col-xs-12">
-    <div class="card">
+    <div class="o-product-item__card card">
       <div class="product-header">
         <img
           :alt="product.title"
@@ -57,8 +57,10 @@ export default {
 }
 </script>
 
-<style scoped>
-p {
-  margin: 0
+<style lang="scss" scoped>
+.o-product-item {
+  &__card {
+    margin: 0 6px;
+  }
 }
 </style>

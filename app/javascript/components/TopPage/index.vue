@@ -13,11 +13,12 @@
       <h2>
         お気に入りアイテムランキング
       </h2>
-      <div class="card-deck">
+      <div class="p-toppage__products-deck card-deck">
         <ProductItem
           v-for="product in products"
           :key="product.id"
           :product="product"
+          class="p-toppage__product-item"
         />
       </div>
       <div class="text-center">
@@ -33,11 +34,13 @@
       <h2>
         最新の口コミ
       </h2>
-      <PostItem
-        v-for="post in posts"
-        :key="post.id"
-        :post="post"
-      />
+      <div class="p-toppage__posts">
+        <PostItem
+          v-for="post in posts"
+          :key="post.id"
+          :post="post"
+        />
+      </div>
       <div class="text-center">
         <a
           href="/posts"
@@ -90,8 +93,11 @@ export default {
 
 <style lang="scss" scoped>
 .p-toppage {
-  &__title {
-
+  &__product-item {
+    padding: 0;
+  }
+  &__products-deck, __posts {
+    margin-bottom: 12px
   }
   &__title-annotation {
     font-size: 1.5rem;
