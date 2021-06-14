@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return if User.count.positive?
+
 # ユーザー登録
 User.create!(
   name: 'Admin User',
@@ -33,7 +35,7 @@ end
 
 # アイテム登録
 30.times do |n|
-  FactoryBot.create!(
+  FactoryBot.create(
     :product,
     title: "NO.#{n}プロテイン",
     url: "sample#{n}@supplebox.jp",
@@ -44,20 +46,17 @@ end
 
 users = User.order(:created_at).take(6)
 (1..30).each do |n|
-  title = Faker::Lorem.sentence(5)
-  content = Faker::Lorem.sentence
-  product_id = n.to_i
   users.each do |user|
     user.posts.create!(
-      title: title,
-      content: content,
+      title: Faker::Coffee.origin,
+      content: Faker::Lorem.sentence,
       rate: [1, 2, 3, 4, 5].sample,
-      product_id: product_id,
+      product_id: n,
     )
   end
 end
 
-# リレーションシップ
+# フォロー・フォロワー
 users = User.all
 first_user = users.first
 following = users[2..30]
@@ -72,12 +71,4 @@ users.each do |user|
   products.each do |product|
     user.like(product)
   end
-end
-
-# ブランド登録
-5.times do
-  Brand.create!(
-    name: Faker::Coffee.blend_name,
-    content: Faker::Coffee.notes,
-  )
 end
