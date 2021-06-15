@@ -36,7 +36,7 @@ describe '口コミ投稿機能', type: :system do
       expect(page).to have_content 'テストタイトル' # トップページの口コミ
     end
 
-    it 'トップページに表示されること' do
+    xit 'トップページに表示されること' do
       click_on 'トップページ'
       expect(page).to have_content 'テストタイトル' # トップページの口コミ
     end
