@@ -26,7 +26,7 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr'
   c.hook_into :webmock
-  c.allow_http_connections_when_no_cassette = false
+  c.allow_http_connections_when_no_cassette = true
   c.default_cassette_options = {
     match_requests_on: [:method, VCR.request_matchers.uri_without_param(:Timestamp, :Signature)]
   }

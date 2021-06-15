@@ -13,16 +13,22 @@ services:
     command: bundle exec rails server -p 3001 -b '0.0.0.0'
     depends_on:
       - db
+      - chrome
     ports:
       - 3001:3001
     environment:
       DATABASE_HOST: db
       BUNDLE_PATH: "/bundle"
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
     tty: true
     stdin_open: true
     volumes:
       - .:/myapp:delegated
       - bundle:/bundle
+  chrome:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
   swagger:
     image: swaggerapi/swagger-ui
     volumes:

@@ -47,15 +47,14 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'brakeman'
   gem 'capybara'
   gem 'committee-rails'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'brakeman'
-  gem 'chromedriver-helper'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'selenium-webdriver', '>= 4.0.0.beta4'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :production do

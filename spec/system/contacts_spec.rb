@@ -2,25 +2,22 @@
 
 require 'rails_helper'
 
-describe '問い合わせ機能', type: :system do
+describe '問い合わせ機能', type: :system, js: true do
   include ActiveJob::TestHelper
 
   let(:user) { FactoryBot.create(:user) }
 
-  xit '問い合わせが成功すること' do
+  it '問い合わせが成功すること' do
     sign_in_as user
     visit contacts_path
-    perform_enqueued_jobs do
-      expect {
-        fill_in 'お名前', with: 'テストユーザー'
-        fill_in 'メールアドレス', with: 'test@supplebox.jp'
-        fill_in 'タイトル', with: 'テストタイトル'
-        fill_in 'お問い合わせ内容', with: 'テストコンテント'
-        click_on '送信する'
-      }.to change(Contact, :count).by(1)
 
-      expect(page).to have_content 'お問い合わせを送信しました'
-    end
+    fill_in 'お名前', with: 'テストユーザー'
+    fill_in 'メールアドレス', with: 'test@supplebox.jp'
+    fill_in 'タイトル', with: 'テストタイトル'
+    fill_in 'お問い合わせ内容', with: 'テストコンテント'
+    click_on '送信する'
+
+    expect(page).to have_content 'お問い合わせを送信しました'
 
     mail = ActionMailer::Base.deliveries.last
 
@@ -28,10 +25,13 @@ describe '問い合わせ機能', type: :system do
     expect(mail.body).to include 'テストタイトル'
   end
 
-  xit 'お問い合わせが失敗すること' do
+  it 'お問い合わせが失敗すること' do
     sign_in_as user
     visit contacts_path
-    expect { click_on '送信する' }.to change(Contact, :count).by(0)
+
+    click_on '送信する'
+
     expect(page).to have_content 'お問い合わせの送信に失敗しました'
+    expect(ActionMailer::Base.deliveries).to be_empty
   end
 end

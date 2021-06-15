@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-describe 'リンク確認' do
+describe 'リンク確認', js: true do
   let!(:user) { FactoryBot.create(:user, nickname: '一般ユーザー') }
 
   before do
     visit root_path
   end
 
-  xit 'ヘッダーリンクログイン前確認' do
+  it 'ヘッダーリンクログイン前確認' do
     within 'header' do
       aggregate_failures do
         expect(page).to have_link('ランキング', href: '/rankings')
@@ -22,7 +22,7 @@ describe 'リンク確認' do
     end
   end
 
-  xit 'ヘッダーリンクログイン後確認' do
+  it 'ヘッダーリンクログイン後確認' do
     sign_in_as user
     within 'header' do
       expect(page).to have_link('プロテイン登録', href: '/products/new')

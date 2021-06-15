@@ -105,7 +105,7 @@ $ docker-compose run --rm bundle exec rails rspec
 6. RuboCop を実行する
 
 ```
-$ docker-compose run --rm bundle exec rails rubocop
+$ docker-compose run --rm bundle exec rubocop
 ```
 
 ## npm ライブラリインストール
@@ -155,3 +155,17 @@ http://localhost:9009 で確認可能。
 GitHub Actions によって PUSH の度に自動デプロイしている。
 
 https://www.chromatic.com/builds?appId=600cbad853382200215b7275 で確認可能。
+
+### CircleCI 実行
+
+RSpec を実行する
+
+```
+$ circleci local execute --job rspec
+```
+
+RuboCop を実行する
+
+```
+$ circleci local execute --job rubocop
+```
