@@ -13,9 +13,9 @@ module Api
         end
 
       products = if params[:limit].present?
-                  products.limit(params[:limit])
+                   products.limit(params[:limit])
                  else
-                  products.includes(:posts, :likes).page(params[:page])
+                   products.includes(:posts, :likes).page(params[:page])
                  end
 
       render json: products, each_serializer: ProductSerializer
