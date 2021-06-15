@@ -23,19 +23,19 @@
       <h4 class="mb-3">
         評価: {{ post.rate }} 点 | {{ post.title }}
       </h4>
-      <StarRating
+      <!-- <StarRating
         :increment="0.1"
         :rating="post.rate"
         :star-size="16"
         :show-rating="false"
         read-only
-      />
+      /> -->
       <p>
         {{ post.content }}
       </p>
       <img
         v-if="post.picture_url != null"
-        :src="postpicture_url"
+        :src="post.picture_url"
         class="o-post-item__user-image img-fluid"
       >
     </div>
@@ -54,12 +54,12 @@
 </template>
 
 <script lang="ts">
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 
 export default {
   name: 'PostItem',
   components: {
-    StarRating
+    // StarRating
   },
   props: {
     post: {

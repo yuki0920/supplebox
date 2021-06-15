@@ -143,10 +143,12 @@ http://localhost:8080 で確認可能。
 #### 起動
 
 ```
-$ yarn run storybook
+$ docker-compose run -p 9009:9009 --rm web yarn storybook
 ```
 
-http://localhost:6006 で確認可能。
+http://localhost:9009 で確認可能。
+
+コンテナ上のランタイムで起動し、ポートを手動で設定する。
 
 #### デプロイ
 
