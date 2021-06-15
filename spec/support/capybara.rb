@@ -10,7 +10,7 @@ Capybara.register_driver :remote_chrome do |app|
         'disable-gpu',
         'window-size=1680,1050'
       ]
-    }
+    },
   )
   Capybara::Selenium::Driver.new(app, browser: :remote, url: url, capabilities: capabilities)
 end

@@ -47,9 +47,9 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'brakeman'
   gem 'capybara'
   gem 'committee-rails'
-  gem 'brakeman'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'selenium-webdriver', '>= 4.0.0.beta4'

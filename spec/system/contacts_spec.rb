@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '問い合わせ機能', type: :system, js: :true do
+describe '問い合わせ機能', type: :system, js: true do
   include ActiveJob::TestHelper
 
   let(:user) { FactoryBot.create(:user) }
