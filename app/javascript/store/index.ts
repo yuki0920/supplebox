@@ -2,8 +2,13 @@ import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import axios from '@axios'
 
-export interface State {
-  currentUser: any
+type CurrentUser = {
+  name: string;
+  path: string;
+}
+
+type State = {
+  currentUser: CurrentUser
 }
 
 export const key: InjectionKey<Store<State>> = Symbol()
@@ -13,7 +18,7 @@ export const store = createStore<State>({
     currentUser: null
   },
   mutations: {
-    setCurrentUser(state, user) {
+    setCurrentUser(state, user: CurrentUser | null) {
       state.currentUser = user
     }
   },
