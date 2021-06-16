@@ -3,6 +3,7 @@ import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import axios from '@axios'
 
 type CurrentUser = {
+  id: number,
   name: string;
   path: string;
 }
