@@ -22,6 +22,7 @@ Default.args = {
     path: "/products/2",
     brand_amazon_name: "SAVAS(ザバス)",
     post_count: "6",
-    rate: 3.4
+    rate: 3.4,
+    likes: 12
   }
 }

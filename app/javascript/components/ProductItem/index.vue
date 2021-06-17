@@ -1,19 +1,14 @@
 <template>
   <div class="o-product-item col-md-3 col-sm-4 col-xs-12">
     <div class="o-product-item__card card">
-      <div class="product-header">
+      <div class="o-product-item__header">
         <img
           :alt="product.title"
-          class="card-img-top"
+          class="o-product-item__image card-img-top"
           :src="product.image_url"
         >
-        <rect
-          fill="#868e96"
-          height="100%"
-          width="100%"
-        />
       </div>
-      <div class="card-body">
+      <div class="o-product-item__body  card-body">
         <p class="card-title">
           {{ product.brand_amazon_name }}
         </p>
@@ -61,6 +56,15 @@ export default {
 .o-product-item {
   &__card {
     margin: 0 6px;
+    padding: 12px;
+  }
+  &__image {
+    height: 160px;
+    width: 100%;
+    object-fit: contain;
+  }
+  &__body {
+    padding: 6px;
   }
 }
 </style>
