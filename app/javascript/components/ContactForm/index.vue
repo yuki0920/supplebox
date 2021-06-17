@@ -80,11 +80,6 @@ export default {
   name: 'ContactForm',
   components: { FlashMessage },
   setup() {
-    const message = reactive({
-      isDisplay: false,
-      text: "",
-      type: ""
-    })
     const formData = reactive(
       {
         name: "",
@@ -93,6 +88,11 @@ export default {
         content: ""
       }
     )
+    const message = reactive({
+      isDisplay: false,
+      text: "",
+      type: ""
+    })
     const submitForm = async () => {
       try {
         await axios.post('/api/contacts', {
