@@ -24,8 +24,8 @@ services:
     stdin_open: true
     volumes:
       - .:/myapp:delegated
-      - bundle:/bundle
-      - node_modules:/node_modules
+      - bundle:/bundle:delegated
+      - node_modules:/node_modules:delegated
   chrome:
     image: selenium/standalone-chrome
     ports:
