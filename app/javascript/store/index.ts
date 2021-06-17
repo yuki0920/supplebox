@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
-import axios from '@axios'
+import { DefaultApi } from '@/types/typescript-axios/api'
 
 type CurrentUser = {
   id: number,
@@ -25,7 +25,7 @@ export const store = createStore<State>({
   },
   actions: {
     async fetchCurrentUser(context) {
-      const { data } = await axios.get('/api/sessions/')
+      const { data } = await new DefaultApi().fetchCurrentUser()
       context.commit('setCurrentUser', data.user)
     }
   }

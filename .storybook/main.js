@@ -12,7 +12,7 @@ module.exports = {
   ],
 
   webpackFinal: async (config) => {
-    config.resolve.alias['@axios'] = path.resolve(__dirname, '../app/javascript/packs/initializers/axios.js');
+    config.resolve.alias['@axios'] = path.resolve(__dirname, '../app/javascript/packs/initializers/axios.ts');
 
     config.module.rules.push({
       test: /\.scss$/,

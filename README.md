@@ -31,7 +31,8 @@
 - N+1(Bullet)
 - CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
 - アクセス解析(google-analytics-rails)
-- API スキーマ定義(OpenAPI, committee-rails)
+- API スキーマ定義(OpenAPI Specification, committee-rails)
+- API Client(OpenAPI Generator, typescript-axios)
 - UI 検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
 
 ## 使用機能と技術
@@ -156,7 +157,7 @@ GitHub Actions によって PUSH の度に自動デプロイしている。
 
 https://www.chromatic.com/builds?appId=600cbad853382200215b7275 で確認可能。
 
-### CircleCI 実行
+#### CircleCI 実行
 
 RSpec を実行する
 
@@ -168,4 +169,25 @@ RuboCop を実行する
 
 ```
 $ circleci local execute --job rubocop
+```
+
+### OpenAPI Generator による Client の型生成
+
+#### コマンド
+
+```
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i local/openapi/openapi.yaml \
+  -g typescript-axios \
+  -o local/app/javascript/types/typescript-axios
+```
+
+#### 型生成の問題点
+
+OpenaAPI 定義の server から、型生成のたびに BASE_PATH が書き換えられてしまうので、リクエスト失敗したら確認する。
+
+```diff
+// app/javascript/types/typescript-axios/base.ts
+- export const BASE_PATH = "http://localhost".replace(/\/+$/, "");
++ export const BASE_PATH = ""
 ```

@@ -7,7 +7,7 @@ const vue = require("./loaders/vue")
 const ts = require("./loaders/ts")
 
 environment.config.resolve.alias = {
-  '@axios': path.resolve(__dirname, '../../app/javascript/packs/initializers/axios.js'),
+  '@axios': path.resolve(__dirname, '../../app/javascript/packs/initializers/axios.ts'),
   '@': path.resolve(__dirname, "..", "..", "app/javascript/")
 }
 

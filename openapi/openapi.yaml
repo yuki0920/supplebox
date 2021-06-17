@@ -3,27 +3,26 @@ info:
   title: SuppleBox API Document
   version: 1.0.0
 paths:
-  /api/products/{product_id}:
+  /api/sessions:
     get:
-      tags:
-        - API
-      summary: Get Product
-      parameters:
-        - $ref: '#/components/parameters/product_id'
+      operationId: fetchCurrentUser
+      summary: Get Current User
       responses:
         200:
-          description: get product
+          description: get current user
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/currentUser'
   /api/products:
     get:
-      tags:
-        - API
+      operationId: fetchProducts
       summary: Get and Search Products
       parameters:
-        - $ref: '#/components/parameters/product_id'
+        - in: query
+          name: page number
+          schema:
+            type: integer
       responses:
         200:
           description: get products
@@ -31,17 +30,40 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - products
                 properties:
                   products:
-                    $ref: '#/components/schemas/Products'
-
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/products'
+  /api/products/{id}:
+    get:
+      operationId: fetchProduct
+      summary: Get Product
+      parameters:
+        - in: path
+          name: id
+          description: product id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: get product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
   /api/users:
     get:
-      tags:
-        - API
+      operationId: fetchUsers
       summary: Get Users
       parameters:
-        - $ref: '#/components/parameters/page'
+        - in: query
+          name: page number
+          schema:
+            type: integer
       responses:
         200:
           description: get users
@@ -61,14 +83,24 @@ paths:
                       next:
                         type: string
                   users:
-                    $ref: '#/components/schemas/Users'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/users'
   /api/contacts:
     post:
-      tags:
-        - API
+      operationId: postContact
       summary: Post Contact
       requestBody:
-          $ref: '#/components/requestBodies/contact'
+        description: 問い合わせに必要なパラメータ
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - contact
+              properties:
+                contact:
+                  $ref: '#/components/schemas/contact'
       responses:
         200:
           description: post contact
@@ -83,23 +115,44 @@ paths:
               schema:
                 type: object
 components:
-  parameters:
-    product_id:
-      name: product_id
-      in: path
-      required: true
-      schema:
-        type: integer
-        minimum: 1
-    page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
-        minimum: 1
   schemas:
-    Product:
+    currentUser:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          type: object
+          nullable: true
+          required:
+            - id
+            - name
+            - path
+          properties:
+            id:
+              type: number
+            name:
+              type: string
+            path:
+              type: string
+    products:
+      type: object
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        brand_amazon_name:
+          type: string
+        product_link:
+          type: string
+        post_count:
+          type: integer
+        rate:
+          type: number
+        likes:
+          type: integer
+    product:
       type: object
       # NOTE: required は保留
       properties:
@@ -127,77 +180,45 @@ components:
           type: string
         updated_at:
           type: string
-    Users:
-      type: array
-      items:
-        type: object
-        required:
-          - nickname
-          - user_link
-          - picture_url
-        properties:
-          nickname:
-            type: string
-          gender:
-            type: string
-            nullable: true
-          height:
-            type: string
-            nullable: true
-          weight:
-            type: string
-            nullable: true
-          comment:
-            type: string
-            nullable: true
-          # TODO: links に入れる
-          user_link:
-            type: string
-          picture_url:
-            type: string
-    Products:
-      type: array
-      items:
-        type: object
-        properties:
-          title:
-            type: string
-          image_url:
-            type: string
-          brand_amazon_name:
-            type: string
-          product_link:
-            type: string
-          post_count:
-            type: integer
-          rate:
-            type: number
-          likes:
-            type: integer
-
-  requestBodies:
+    users:
+      type: object
+      required:
+        - nickname
+        - user_link
+        - picture_url
+      properties:
+        nickname:
+          type: string
+        gender:
+          type: string
+          nullable: true
+        height:
+          type: string
+          nullable: true
+        weight:
+          type: string
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+        # TODO: links に入れる
+        user_link:
+          type: string
+        picture_url:
+          type: string
     contact:
-      description: 問い合わせに必要なパラメータ
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - contact
-            properties:
-              contact:
-                type: object
-                required:
-                  - name
-                  - email
-                  - title
-                  - content
-                properties:
-                  name:
-                    type: string
-                  email:
-                    type: string
-                  title:
-                    type: string
-                  content:
-                    type: string
+      type: object
+      required:
+        - name
+        - email
+        - title
+        - content
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        title:
+          type: string
+        content:
+          type: string

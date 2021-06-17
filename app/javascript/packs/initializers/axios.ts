@@ -6,3 +6,4 @@ if (process.env.NODE_ENV !== 'test' && element) {
 }
 
 export default axios
+export { AxiosPromise, AxiosInstance } from 'axios'
