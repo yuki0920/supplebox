@@ -29,26 +29,39 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface Contact {
     /**
      * 
-     * @type {string}
+     * @type {ContactContacts}
      * @memberof Contact
+     */
+    contacts: ContactContacts;
+}
+/**
+ * 
+ * @export
+ * @interface ContactContacts
+ */
+export interface ContactContacts {
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactContacts
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof Contact
+     * @memberof ContactContacts
      */
     email: string;
     /**
      * 
      * @type {string}
-     * @memberof Contact
+     * @memberof ContactContacts
      */
     title: string;
     /**
      * 
      * @type {string}
-     * @memberof Contact
+     * @memberof ContactContacts
      */
     content: string;
 }
@@ -89,19 +102,6 @@ export interface CurrentUserUser {
      * @memberof CurrentUserUser
      */
     path: string;
-}
-/**
- * 
- * @export
- * @interface InlineObject
- */
-export interface InlineObject {
-    /**
-     * 
-     * @type {Contact}
-     * @memberof InlineObject
-     */
-    contact: Contact;
 }
 /**
  * 
@@ -404,11 +404,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Post Contact
-         * @param {InlineObject} [inlineObject] 
+         * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postContact: async (inlineObject?: InlineObject, options: any = {}): Promise<RequestArgs> => {
+        postContact: async (contact?: Contact, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -428,7 +428,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(contact, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -481,12 +481,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Post Contact
-         * @param {InlineObject} [inlineObject] 
+         * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postContact(inlineObject?: InlineObject, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postContact(inlineObject, options);
+        async postContact(contact?: Contact, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postContact(contact, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -532,12 +532,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary Post Contact
-         * @param {InlineObject} [inlineObject] 
+         * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postContact(inlineObject?: InlineObject, options?: any): AxiosPromise<object> {
-            return localVarFp.postContact(inlineObject, options).then((request) => request(axios, basePath));
+        postContact(contact?: Contact, options?: any): AxiosPromise<object> {
+            return localVarFp.postContact(contact, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -588,13 +588,13 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary Post Contact
-     * @param {InlineObject} [inlineObject] 
+     * @param {Contact} [contact] 問い合わせに必要なパラメータ
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public postContact(inlineObject?: InlineObject, options?: any) {
-        return DefaultApiFp(this.configuration).postContact(inlineObject, options).then((request) => request(this.axios, this.basePath));
+    public postContact(contact?: Contact, options?: any) {
+        return DefaultApiFp(this.configuration).postContact(contact, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

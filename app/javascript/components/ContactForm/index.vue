@@ -73,8 +73,8 @@
 
 <script lang="ts">
 import { reactive } from 'vue'
-import axios from '@axios'
 import FlashMessage from '../FlashMessage/index.vue'
+import { DefaultApi } from '@/types/typescript-axios/api'
 
 export default {
   name: 'ContactForm',
@@ -95,13 +95,14 @@ export default {
     })
     const submitForm = async () => {
       try {
-        await axios.post('/api/contacts', {
+        await new DefaultApi().postContact({
+          contacts: {
             name: formData.name,
             email: formData.email,
             title: formData.title,
-            content: formData.content
-          })
-
+            content: formData.content,
+          }
+        })
           message.isDisplay = true
           message.text = "お問い合わせを送信しました"
           message.type = "primary"
