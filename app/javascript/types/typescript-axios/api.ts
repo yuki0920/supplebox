@@ -119,105 +119,6 @@ export interface InlineResponse200 {
 /**
  *
  * @export
- * @interface InlineResponse2001
- */
-export interface InlineResponse2001 {
-    /**
-     *
-     * @type {InlineResponse2001Pagination}
-     * @memberof InlineResponse2001
-     */
-    pagination: InlineResponse2001Pagination;
-    /**
-     *
-     * @type {Array<Users>}
-     * @memberof InlineResponse2001
-     */
-    users: Array<Users>;
-}
-/**
- *
- * @export
- * @interface InlineResponse2001Pagination
- */
-export interface InlineResponse2001Pagination {
-    /**
-     *
-     * @type {string}
-     * @memberof InlineResponse2001Pagination
-     */
-    next: string;
-}
-/**
- *
- * @export
- * @interface Product
- */
-export interface Product {
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    title?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    url?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    image_url?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    asin?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    price?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    brand_amazon_name?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    official_url?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    category_id?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    created_at?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Product
-     */
-    updated_at?: string;
-}
-/**
- *
- * @export
  * @interface Products
  */
 export interface Products {
@@ -264,55 +165,6 @@ export interface Products {
      */
     likes?: number;
 }
-/**
- *
- * @export
- * @interface Users
- */
-export interface Users {
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    nickname: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    gender?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    height?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    weight?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    comment?: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    user_link: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Users
-     */
-    picture_url: string;
-}
 
 /**
  * DefaultApi - axios parameter creator
@@ -352,40 +204,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
-         * @summary Get Product
-         * @param {number} id product id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fetchProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('fetchProduct', 'id', id)
-            const localVarPath = `/api/products/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
          * @summary Get and Search Products
          * @param {number} [pageNumber]
          * @param {*} [options] Override http request option.
@@ -393,41 +211,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          */
         fetchProducts: async (pageNumber?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/products`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (pageNumber !== undefined) {
-                localVarQueryParameter['page number'] = pageNumber;
-            }
-
-
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
-         * @summary Get Users
-         * @param {number} [pageNumber]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fetchUsers: async (pageNumber?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/users`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -510,17 +293,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
-         * @summary Get Product
-         * @param {number} id product id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fetchProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProduct(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         *
          * @summary Get and Search Products
          * @param {number} [pageNumber]
          * @param {*} [options] Override http request option.
@@ -528,17 +300,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async fetchProducts(pageNumber?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(pageNumber, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         *
-         * @summary Get Users
-         * @param {number} [pageNumber]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fetchUsers(pageNumber?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUsers(pageNumber, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -573,16 +334,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          *
-         * @summary Get Product
-         * @param {number} id product id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fetchProduct(id: number, options?: any): AxiosPromise<Product> {
-            return localVarFp.fetchProduct(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
          * @summary Get and Search Products
          * @param {number} [pageNumber]
          * @param {*} [options] Override http request option.
@@ -590,16 +341,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         fetchProducts(pageNumber?: number, options?: any): AxiosPromise<InlineResponse200> {
             return localVarFp.fetchProducts(pageNumber, options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
-         * @summary Get Users
-         * @param {number} [pageNumber]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fetchUsers(pageNumber?: number, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.fetchUsers(pageNumber, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -634,18 +375,6 @@ export class DefaultApi extends BaseAPI {
 
     /**
      *
-     * @summary Get Product
-     * @param {number} id product id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public fetchProduct(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchProduct(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     *
      * @summary Get and Search Products
      * @param {number} [pageNumber]
      * @param {*} [options] Override http request option.
@@ -654,18 +383,6 @@ export class DefaultApi extends BaseAPI {
      */
     public fetchProducts(pageNumber?: number, options?: any) {
         return DefaultApiFp(this.configuration).fetchProducts(pageNumber, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     *
-     * @summary Get Users
-     * @param {number} [pageNumber]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public fetchUsers(pageNumber?: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchUsers(pageNumber, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

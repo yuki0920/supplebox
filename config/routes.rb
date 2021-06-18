@@ -25,9 +25,8 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
 
   namespace :api do
-    resources :products, only: %i(index show)
+    resources :products, only: %i(index)
     resources :posts, only: %i(index)
-    resources :users, only: %i(index)
     resources :contacts, only: %i(create)
     resource :sessions, only: %i(show)
   end

@@ -2,8 +2,6 @@
 
 module Api
   class ProductsController < ApplicationController
-    before_action :set_product, only: %i(show)
-
     def index
       products =
         if params[:q].present?
@@ -19,16 +17,6 @@ module Api
                  end
 
       render json: products, each_serializer: ProductSerializer
-    end
-
-    def show
-      render json: @product
-    end
-
-    private
-
-    def set_product
-      @product = Product.find(params[:id])
     end
   end
 end
