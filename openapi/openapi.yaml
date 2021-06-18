@@ -20,7 +20,11 @@ paths:
       summary: Get and Search Products
       parameters:
         - in: query
-          name: page number
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
           schema:
             type: integer
       responses:
@@ -37,6 +41,29 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/products'
+  /api/posts:
+    get:
+      operationId: fetchPosts
+      summary: Get Products
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        200:
+          description: get posts
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - posts
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/posts'
   /api/contacts:
     post:
       operationId: postContact
@@ -88,6 +115,13 @@ components:
               type: string
     products:
       type: object
+      required:
+        - title
+        - image_url
+        - product_link
+        - post_count
+        - rate
+        - likes
       properties:
         title:
           type: string
@@ -119,3 +153,56 @@ components:
           type: string
         content:
           type: string
+    posts:
+      type: object
+      required:
+        - title
+        - content
+        - rate
+        - edit_path
+        - user
+        - product
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        rate:
+          type: number
+        picture_url:
+          type: string
+          nullable: true
+        edit_path:
+          type: string
+        user:
+          type: object
+          required:
+            - picture_url
+            - name
+          properties:
+            picture_url:
+              type: string
+            name:
+              type: string
+            gender:
+              type: string
+              nullable: true
+            height:
+              type: string
+              nullable: true
+            weight:
+              type: string
+              nullable: true
+        product:
+          type: object
+          required:
+            - image_url
+            - path
+            - title
+          properties:
+            image_url:
+              type: string
+            path:
+              type: string
+            title:
+              type: string
