@@ -5,9 +5,3 @@
   = link_to like_products_user_path(@user), class: "user-nav__item nav-link nav-item #{'active' if current_page?(like_products_user_path(@user))}" do
     お気に入り
     %span.badge= @count_like_products
-  = link_to followings_user_path(@user), class: "user-nav__item nav-link nav-item #{'active' if current_page?(followings_user_path(@user))}" do
-    フォロー
-    %span.badge= @count_followings
-  = link_to followers_user_path(@user), class: "user-nav__item nav-link nav-item #{'active' if current_page?(followers_user_path(@user))}" do
-    フォロワー
-    %span.badge= @count_followers

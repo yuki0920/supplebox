@@ -1,3 +1,0 @@
-= form_for(current_user.relationships.build, remote: true) do |f|
-  %div= hidden_field_tag :follow_id, user.id
-  = f.submit 'フォローする', class: 'btn btn-success'

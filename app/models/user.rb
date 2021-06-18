@@ -44,28 +44,6 @@ class User < ApplicationRecord
     products.include?(product)
   end
 
-  # 　フォロー機能追加用中間テーブル
-  has_many :relationships, dependent: :destroy
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', inverse_of: :user, dependent: :destroy
-  has_many :followers, through: :reverses_of_relationship, source: :user
-
-  # フォロー登録
-  def follow(other_user)
-    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
-  end
-
-  # フォロー削除
-  def unfollow(other_user)
-    relationship = relationships.find_by(follow_id: other_user.id)
-    relationship&.destroy
-  end
-
-  # フォロー判定
-  def following?(other_user)
-    followings.include?(other_user)
-  end
-
   # お気に入り数表示
   def self.ranking
     group(:user.product_id).count(:user.product_id)
