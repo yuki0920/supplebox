@@ -59,6 +59,7 @@ import axios from '@axios'
 import ServiceDescription from "../ServiceDescription/index.vue"
 import ProductItem from '../ProductItem/index.vue'
 import PostItem from '../PostItem/index.vue'
+import { DefaultApi } from '@/types/typescript-axios/api'
 
 export default {
   components: {
@@ -69,7 +70,7 @@ export default {
   setup() {
     const products = ref([])
     const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products?limit=4')
+      const { data } = await new DefaultApi().fetchProducts(null, 4)
 
       products.value = data.products
     }
@@ -77,7 +78,7 @@ export default {
 
     const posts = ref([])
     const fetchPosts = async() => {
-      const { data } = await axios.get('/api/posts?limit=3')
+      const { data } = await new DefaultApi().fetchPosts(3)
 
       posts.value = data.posts
     }
