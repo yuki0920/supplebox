@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "@babel/preset-typescript": "^7.13.0",
-    "@openapitools/openapi-generator-cli": "^2.3.5",
     "@rails/webpacker": "5.2.1",
     "@storybook/cli": "^6.1.15",
     "@types/axios": "^0.14.0",
