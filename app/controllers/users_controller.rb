@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show destroy like_products followings followers]
+  before_action :set_user, only: %i[show destroy like_products]
   before_action :require_user_logged_in, only: %i[edit update destroy]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: :destroy
@@ -55,16 +55,6 @@ class UsersController < ApplicationController
     @products = @user.products.page(params[:page])
     counts(@user)
     @ranking_counts = Product.ranking
-  end
-
-  def followings
-    @followings = @user.followings.page(params[:page])
-    counts(@user)
-  end
-
-  def followers
-    @followers = @user.followers.page(params[:page])
-    counts(@user)
   end
 
   private

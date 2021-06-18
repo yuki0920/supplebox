@@ -104,30 +104,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'follow/unfollow/following?メソッドを検証する場合' do
-    context 'followしていない状態の場合' do
-      it '無効な状態であること' do
-        expect(user.following?(other_user)).to eq false
-      end
-    end
-
-    context 'followした場合' do
-      before do
-        user.follow(other_user)
-      end
-
-      it 'follow状態になること' do
-        expect(other_user.followers).to include user
-        expect(user.following?(other_user)).to eq true
-      end
-
-      it 'unfollowすると無効な状態であること' do
-        user.unfollow(other_user)
-        expect(user.following?(other_user)).to eq false
-      end
-    end
-  end
-
   describe 'like/unlike/like?メソッドを検証する場合' do
     context 'likeしていない状態の場合' do
       it '無効な状態であること' do

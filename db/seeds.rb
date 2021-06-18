@@ -56,14 +56,6 @@ users = User.order(:created_at).take(6)
   end
 end
 
-# フォロー・フォロワー
-users = User.all
-first_user = users.first
-following = users[2..30]
-followers = users[3..20]
-following.each { |followed| first_user.follow(followed) }
-followers.each { |follower| follower.follow(first_user) }
-
 # お気に入り登録
 users = User.order(:created_at).take(6)
 products = Product.all
