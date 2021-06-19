@@ -17,7 +17,7 @@ module Api
     end
 
     def create
-      post = current_user.posts.build(post_params)
+      post = current_user.posts.build(create_post_params)
 
       if post.save
         render json: {message: 'Post created successfully'}
@@ -28,8 +28,12 @@ module Api
 
     private
 
-    def post_params
+    def create_post_params
       params.require(:posts).permit(:product_id, :title, :content, :rate, :picture)
+    end
+
+    def update_post_params
+      params.require(:posts).permit(:title, :content, :rate, :picture)
     end
   end
 end

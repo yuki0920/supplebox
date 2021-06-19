@@ -17,7 +17,7 @@ RSpec.describe '/api/posts', type: :request do
     end
   end
 
-  describe 'Post /api/posts' do
+  describe 'POST /api/posts' do
     let!(:product) { create(:product) }
     let(:headers) { {'Content-Type' => 'multipart/form-data'} }
     let(:picture) { Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg') }
@@ -33,6 +33,26 @@ RSpec.describe '/api/posts', type: :request do
 
       expect(response).to have_http_status :ok
       # assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
+
+  describe 'PUT /api/posts' do
+    let(:user) { create(:user) }
+    let(:product) { create(:product) }
+    let(:post) { create(:post, user: user) }
+    let(:headers) { {'Content-Type' => 'multipart/form-data'} }
+    let(:picture) { Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg') }
+    let(:params) { {posts: {title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
+
+    before do
+      sign_in user
+    end
+
+    it 'リクエストが成功すること' do
+      put "/api/posts/#{post.id}", params: params, headers: headers
+
+      expect(response).to have_http_status :ok
       assert_response_schema_confirm
     end
   end
