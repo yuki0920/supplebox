@@ -25,7 +25,4 @@
       = render 'likes/like_button', product: @product
 / 口コミ一覧
 = render 'posts/posts', posts: @posts, user: @user
-/ 口コミ投稿フォーム
-.p-3
-  %h2.mb-3 口コミ投稿する
-  = render 'posts/new_post', post: @post, product: @product
+= render 'posts/new_post'

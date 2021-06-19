@@ -1,21 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_user_logged_in, only: %i[create edit update destroy]
+  before_action :require_user_logged_in, only: %i[edit update destroy]
   before_action :correct_user, only: %i[edit update]
   before_action :set_post, only: %i[edit update destroy]
-
-  def create
-    @product = Product.find(params[:post][:product_id])
-    @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = '口コミを投稿しました'
-      redirect_to @product
-    else
-      flash.now[:danger] = '口コミの投稿に失敗しました'
-      render 'products/show'
-    end
-  end
 
   def destroy
     return unless @post.destroy

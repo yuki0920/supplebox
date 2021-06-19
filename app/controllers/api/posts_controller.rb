@@ -17,9 +17,13 @@ module Api
     end
 
     def create
-      current_user.posts.create!(post_params)
+      post = current_user.posts.build(post_params)
 
-      render json: {message: 'Post created successfully'}
+      if post.save
+        render json: {message: 'Post created successfully'}
+      else
+        render json: {message: post.errors.full_messages.join('、')}, status: :bad_request
+      end
     end
 
     private
