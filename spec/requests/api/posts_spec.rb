@@ -16,4 +16,24 @@ RSpec.describe '/api/posts', type: :request do
       assert_response_schema_confirm
     end
   end
+
+  describe 'Post /api/posts' do
+    let!(:product) { create(:product) }
+    let(:headers) { {'Content-Type' => 'multipart/form-data'} }
+    let(:picture) { Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg') }
+    let(:params) { {posts: {product_id: product.id, title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
+
+    before do
+      user = create(:user)
+      sign_in user
+    end
+
+    it 'リクエストが成功すること' do
+      post '/api/posts', params: params, headers: headers
+
+      expect(response).to have_http_status :ok
+      # assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
 end
