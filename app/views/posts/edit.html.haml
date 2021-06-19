@@ -1,4 +1,34 @@
 - breadcrumb :edit_post, @post
 .p-3
   %h2.mb-3 口コミ編集フォーム
-  = render 'posts/new_post', post: @post, product: @post.product
+  = form_for @post do |f|
+    = render 'layouts/error_messages', model: f.object
+    = f.hidden_field :product_id, { value: @post.product.id}
+    .form-group.row
+      = f.label :title, 'タイトル ', class:'col-md-3 col-form-label'
+      .col-md-9
+        = f.text_field :title, class: "form-control"
+    #star.form-group.row
+      = f.label :rate,'評価 ', class:'col-md-3 col-form-label'
+      = f.hidden_field :rate, id: :review_star
+      = render 'posts/write_rate'
+    .form-group.row
+      = f.label :content, '口コミ内容 ', class:'col-md-3 col-form-label'
+      .col-md-9
+        = f.text_area :content, class: "form-control", rows: "8", |
+                  placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。       |
+          まずは投稿してみましょう！投稿してから編集もできますよ！'                           |
+    .form-group.row
+      = f.label :picture, '口コミ画像 ', class:'col-md-3 col-form-label'
+      .col-md-9
+        = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'btn'
+    .form-group.row.justify-content-end
+      .col-md-9
+        = f.submit '投稿する', class:"btn btn-success"
+    :javascript
+      $('#post_picture').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+          alert('最大のファイルサイズは5MBです。ファイルサイズを小さくしてください。');
+        }
+      });
