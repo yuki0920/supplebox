@@ -12,6 +12,8 @@ RSpec.describe '/api/posts', type: :request do
       get '/api/posts'
 
       expect(response).to have_http_status :ok
+      assert_request_schema_confirm
+      assert_response_schema_confirm
     end
   end
 end

@@ -21,7 +21,7 @@ module Api
     private
 
     def contact_params
-      params.require(:contact).permit(:title, :content, :user_id, :name, :email)
+      params.require(:contacts).permit(:title, :content, :user_id, :name, :email)
     end
   end
 end
