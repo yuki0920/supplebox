@@ -28,5 +28,4 @@ module Api
       params.require(:posts).permit(:product_id, :title, :content, :rate, :picture)
     end
   end
-
 end

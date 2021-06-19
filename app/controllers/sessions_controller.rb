@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
       # TODO: エンドポイントを分けたい
       format.json do
         if login(email, password)
-          render json: { message: 'Login successfully' }
+          render json: {message: 'Login successfully'}
         else
-          render json: { message: 'Login failed' }, status: :bad_request
+          render json: {message: 'Login failed'}, status: :bad_request
         end
       end
     end

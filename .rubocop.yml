@@ -36,9 +36,7 @@ Metrics/LineLength:
   Max: 130
 
 Metrics/MethodLength:
-  Max: 12
-  Exclude:
-    - 'app/helpers/application_helper.rb'
+  Enabled: false
 
 Naming/VariableName:
   EnforcedStyle: snake_case

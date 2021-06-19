@@ -11,7 +11,7 @@ module LoginSupport
   end
 
   def sign_in(user)
-    params = { session: { email: user.email, password: 'password'} }.to_json
+    params = {session: {email: user.email, password: 'password'}}.to_json
     headers = {'Content-Type' => 'application/json'}
 
     post '/login', headers: headers, params: params
