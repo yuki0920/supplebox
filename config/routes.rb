@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :products, only: %i(index)
-    resources :posts, only: %i(index)
+    resources :posts, only: %i(index create)
     resources :contacts, only: %i(create)
     resource :sessions, only: %i(show)
   end

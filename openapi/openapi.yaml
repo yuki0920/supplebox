@@ -64,6 +64,20 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/posts'
+    post:
+      operationId: createPost
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/post'
+      responses:
+        200:
+          description: create post
+          content:
+            application/json:
+              schema:
+                type: object
   /api/contacts:
     post:
       operationId: postContact
@@ -206,3 +220,27 @@ components:
               type: string
             title:
               type: string
+    post:
+      type: object
+      required:
+        - posts
+      properties:
+        posts:
+          type: object
+          required:
+            - product_id
+            - title
+            - content
+            - rate
+          properties:
+            product_id:
+              type: number
+            title:
+              type: string
+            content:
+              type: string
+            rate:
+              type: number
+            picture:
+              type: string
+              format: binary

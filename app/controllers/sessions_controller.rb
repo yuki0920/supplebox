@@ -6,12 +6,25 @@ class SessionsController < ApplicationController
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if login(email, password)
-      flash[:success] = 'ログインに成功しました。'
-      redirect_back_or @user
-    else
-      flash.now[:danger] = 'ログインに失敗しました。'
-      render 'new'
+    respond_to do |format|
+      format.html do
+        if login(email, password)
+          flash[:success] = 'ログインに成功しました。'
+          redirect_back_or @user
+        else
+          flash.now[:danger] = 'ログインに失敗しました。'
+          render 'new'
+        end
+      end
+
+      # TODO: エンドポイントを分けたい
+      format.json do
+        if login(email, password)
+          render json: {message: 'Login successfully'}
+        else
+          render json: {message: 'Login failed'}, status: :bad_request
+        end
+      end
     end
   end
 

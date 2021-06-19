@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_user_logged_in, only: %i[new create edit update destroy]
+  before_action :require_user_logged_in, only: %i[create edit update destroy]
   before_action :correct_user, only: %i[edit update]
   before_action :set_post, only: %i[edit update destroy]
-
-  def new; end
 
   def create
     @product = Product.find(params[:post][:product_id])
