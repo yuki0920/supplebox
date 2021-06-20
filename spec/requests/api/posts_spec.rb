@@ -56,4 +56,16 @@ RSpec.describe '/api/posts', type: :request do
       assert_response_schema_confirm
     end
   end
+
+  describe 'GET /api/posts/:id' do
+    let(:post) { create(:post) }
+
+    it 'リクエストが成功すること' do
+      get "/api/posts/#{post.id}"
+
+      expect(response).to have_http_status :ok
+      assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
 end

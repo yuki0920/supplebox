@@ -36,6 +36,12 @@ module Api
       end
     end
 
+    def show
+      @post = Post.find(params[:id])
+
+      render 'show.json.jb'
+    end
+
     private
 
     def create_post_params

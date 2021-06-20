@@ -80,9 +80,25 @@ paths:
               schema:
                 type: object
   /api/posts/{id}:
+    get:
+      operationId: getPost
+      summary: Get Posts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: get post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/post'
     put:
       operationId: updatePost
-      summary: Update Products
+      summary: Update Posts
       parameters:
         - in: path
           name: id
@@ -246,9 +262,9 @@ components:
     post:
       type: object
       required:
-        - posts
+        - post
       properties:
-        posts:
+        post:
           type: object
           required:
             - product_id
@@ -267,3 +283,5 @@ components:
             picture:
               type: string
               format: binary
+            picture_url:
+              type: string

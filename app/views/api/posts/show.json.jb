@@ -1,0 +1,9 @@
+{
+  post: {
+    product_id: @post.product_id,
+    title: @post.title,
+    content: @post.content,
+    rate: @post.rate,
+    picture_url: @post.picture_url
+  }
+}
