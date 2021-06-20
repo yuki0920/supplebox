@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import TopPage from '@/components/TopPage/index.vue'
-import { store, key } from '../store/index'
+import TopPage from '@/pages/TopPage/index.vue'
+import { store, key } from '@/store/index'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = createApp(TopPage)

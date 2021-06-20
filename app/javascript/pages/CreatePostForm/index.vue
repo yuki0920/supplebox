@@ -90,7 +90,7 @@
           <input
             type="submit"
             name="commit"
-            value="送信"
+            value="投稿する"
             class="btn btn-success"
           >
         </div>
@@ -101,18 +101,12 @@
 
 <script lang="ts">
 import axios from '@axios'
-import FlashMessage from '../FlashMessage/index.vue'
+import FlashMessage from '@/components/FlashMessage/index.vue'
 
 import { reactive } from 'vue'
 export default {
   name: 'ContactForm',
   components: { FlashMessage },
-  props: {
-    head: {
-      type: String,
-      required: true,
-    },
-  },
   setup() {
     const formInput = reactive({
         title: '',
