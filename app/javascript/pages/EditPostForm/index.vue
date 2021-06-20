@@ -1,5 +1,5 @@
 <template>
-  <div class="p-new-post-form">
+  <div class="p-edit-post-form">
     <FlashMessage
       :is-display="message.isDisplay"
       :message-text="message.text"
@@ -7,7 +7,7 @@
       @change="onChange"
     />
     <PostForm
-      head="口コミを投稿する"
+      head="口コミを編集する"
       :title="title"
       :rate="rate"
       :content="content"
@@ -57,7 +57,7 @@ export default {
       }
     }
     const submitForm = async () => {
-      const productId = location.pathname.split("/").slice(-1)[0]
+      const productId = location.pathname.split("/").slice(-2)[0]
       let formData = new FormData()
       formData.append('post[title]', title.value)
       formData.append('post[rate]', `${rate.value}`)
@@ -67,7 +67,7 @@ export default {
       const config = { headers : { 'content-type': 'multipart/form-data' } }
 
       try {
-        await axios.post('/api/posts', formData, config)
+        await axios.put(`/api/posts/${productId}`, formData, config)
 
         message.isDisplay = true
         message.text = "口コミを送信しました"
@@ -94,5 +94,4 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-
 </style>
