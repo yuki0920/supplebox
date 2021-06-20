@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
-import CreatePostForm from '@/pages/CreatePostForm/index.vue'
+import NewPostForm from '@/pages/NewPostForm/index.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = createApp(CreatePostForm)
+  const app = createApp(NewPostForm)
   app.mount('#post_form')
 })
