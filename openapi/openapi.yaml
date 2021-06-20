@@ -81,7 +81,7 @@ paths:
                 type: object
   /api/posts/{id}:
     get:
-      operationId: getPost
+      operationId: fetchPost
       summary: Get Posts
       parameters:
         - in: path
