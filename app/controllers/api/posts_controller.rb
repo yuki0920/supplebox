@@ -2,7 +2,7 @@
 
 module Api
   class PostsController < ApplicationController
-    before_action :require_user_logged_in, only: %i(create)
+    before_action :require_user_logged_in, only: %i(create update)
 
     def index
       @posts = if params[:limit].present?
@@ -17,7 +17,7 @@ module Api
     end
 
     def create
-      post = current_user.posts.build(post_params)
+      post = current_user.posts.build(create_post_params)
 
       if post.save
         render json: {message: 'Post created successfully'}
@@ -26,10 +26,24 @@ module Api
       end
     end
 
+    def update
+      post = Post.find(params[:id])
+
+      if post.update(update_post_params)
+        render json: {message: 'Post updated successfully'}
+      else
+        render json: {message: post.errors.full_messages.join('、')}, status: :bad_request
+      end
+    end
+
     private
 
-    def post_params
+    def create_post_params
       params.require(:posts).permit(:product_id, :title, :content, :rate, :picture)
+    end
+
+    def update_post_params
+      params.require(:posts).permit(:title, :content, :rate, :picture)
     end
   end
 end

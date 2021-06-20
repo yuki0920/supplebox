@@ -66,6 +66,7 @@ paths:
                       $ref: '#/components/schemas/posts'
     post:
       operationId: createPost
+      summary: Create Products
       requestBody:
         content:
           multipart/form-data:
@@ -74,6 +75,28 @@ paths:
       responses:
         200:
           description: create post
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/posts/{id}:
+    put:
+      operationId: updatePost
+      summary: Update Products
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/post'
+      responses:
+        200:
+          description: update post
           content:
             application/json:
               schema:
