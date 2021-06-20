@@ -50,6 +50,10 @@ paths:
           name: limit
           schema:
             type: integer
+        - in: query
+          name: user_id
+          schema:
+            type: integer
       responses:
         200:
           description: get posts
@@ -98,7 +102,7 @@ paths:
                 $ref: '#/components/schemas/post'
     put:
       operationId: updatePost
-      summary: Update Posts
+      summary: Update Post
       parameters:
         - in: path
           name: id

@@ -5,12 +5,8 @@ module Api
     before_action :require_user_logged_in, only: %i(create update destroy)
 
     def index
-      @posts = if params[:limit].present?
-                 Post.limit(params[:limit])
-               else
-                 Post
-               end
-
+      @posts = params[:limit].present? ? Post.limit(params[:limit]) : Post
+      @posts = @posts.where(user_id: params[:user_id]) if params[:user_id]
       @posts = @posts.order(created_at: :desc).includes(:user, :product)
 
       render 'index.json.jb'
