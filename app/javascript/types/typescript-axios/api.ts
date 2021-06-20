@@ -352,6 +352,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
+         * @summary Delete Post
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePost: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deletePost', 'id', id)
+            const localVarPath = `/api/posts/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get Current User
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -418,10 +452,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          *
          * @summary Get Products
          * @param {number} [limit]
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchPosts: async (limit?: number, options: any = {}): Promise<RequestArgs> => {
+        fetchPosts: async (limit?: number, userId?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/posts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -436,6 +471,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['user_id'] = userId;
             }
 
 
@@ -525,7 +564,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
-         * @summary Update Posts
+         * @summary Update Post
          * @param {number} id
          * @param {PostPost} post
          * @param {*} [options] Override http request option.
@@ -591,6 +630,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @summary Delete Post
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deletePost(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deletePost(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @summary Get Current User
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -614,11 +664,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          *
          * @summary Get Products
          * @param {number} [limit]
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchPosts(limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPosts(limit, options);
+        async fetchPosts(limit?: number, userId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPosts(limit, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -646,7 +697,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
-         * @summary Update Posts
+         * @summary Update Post
          * @param {number} id
          * @param {PostPost} post
          * @param {*} [options] Override http request option.
@@ -678,6 +729,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          *
+         * @summary Delete Post
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePost(id: number, options?: any): AxiosPromise<object> {
+            return localVarFp.deletePost(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @summary Get Current User
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -699,11 +760,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          *
          * @summary Get Products
          * @param {number} [limit]
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchPosts(limit?: number, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.fetchPosts(limit, options).then((request) => request(axios, basePath));
+        fetchPosts(limit?: number, userId?: number, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.fetchPosts(limit, userId, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -728,7 +790,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          *
-         * @summary Update Posts
+         * @summary Update Post
          * @param {number} id
          * @param {PostPost} post
          * @param {*} [options] Override http request option.
@@ -761,6 +823,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      *
+     * @summary Delete Post
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public deletePost(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).deletePost(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
      * @summary Get Current User
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -786,12 +860,13 @@ export class DefaultApi extends BaseAPI {
      *
      * @summary Get Products
      * @param {number} [limit]
+     * @param {number} [userId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public fetchPosts(limit?: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchPosts(limit, options).then((request) => request(this.axios, this.basePath));
+    public fetchPosts(limit?: number, userId?: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchPosts(limit, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -821,7 +896,7 @@ export class DefaultApi extends BaseAPI {
 
     /**
      *
-     * @summary Update Posts
+     * @summary Update Post
      * @param {number} id
      * @param {PostPost} post
      * @param {*} [options] Override http request option.
