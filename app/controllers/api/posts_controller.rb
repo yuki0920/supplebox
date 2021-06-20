@@ -45,11 +45,11 @@ module Api
     private
 
     def create_post_params
-      params.require(:posts).permit(:product_id, :title, :content, :rate, :picture)
+      params.require(:post).permit(:product_id, :title, :content, :rate, :picture)
     end
 
     def update_post_params
-      params.require(:posts).permit(:title, :content, :rate, :picture)
+      params.require(:post).permit(:title, :content, :rate, :picture)
     end
   end
 end

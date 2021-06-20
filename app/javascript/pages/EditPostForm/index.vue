@@ -21,10 +21,11 @@
 import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
+import { DefaultApi } from '@/types/typescript-axios/api'
 
 import { ref, reactive } from 'vue'
 export default {
-  name: 'NewPostForm',
+  name: 'EditPostForm',
   components: { FlashMessage, PostForm },
   setup() {
     const message = reactive({
@@ -56,13 +57,21 @@ export default {
         break
       }
     }
+    const productId = location.pathname.split("/").slice(-2)[0]
+
+    const fetchPost = async (productId) => {
+      const { data } = await new DefaultApi().fetchPost(productId)
+      title.value = data.post.title
+      rate.value = data.post.rate
+      content.value = data.post.content
+    }
+    fetchPost(productId)
+
     const submitForm = async () => {
-      const productId = location.pathname.split("/").slice(-2)[0]
       let formData = new FormData()
       formData.append('post[title]', title.value)
       formData.append('post[rate]', `${rate.value}`)
       formData.append('post[content]', content.value)
-      formData.append('post[product_id]', productId)
       formData.append('post[picture]', picture)
       const config = { headers : { 'content-type': 'multipart/form-data' } }
 
@@ -73,7 +82,7 @@ export default {
         message.text = "口コミを送信しました"
         message.type = "primary"
 
-        location.reload()
+        location.href = `/products/${productId}`
       } catch(error) {
         const { data } = error.response
         message.isDisplay = true
@@ -81,6 +90,7 @@ export default {
         message.type = "danger"
       }
     }
+
     return {
       title,
       rate,
