@@ -2,7 +2,7 @@
 
 module Api
   class PostsController < ApplicationController
-    before_action :require_user_logged_in, only: %i(create update)
+    before_action :require_user_logged_in, only: %i(create update destroy)
 
     def index
       @posts = if params[:limit].present?
@@ -40,6 +40,16 @@ module Api
       @post = Post.find(params[:id])
 
       render 'show.json.jb'
+    end
+
+    def destroy
+      post = Post.find(params[:id])
+
+      return unless post.user == current_user
+
+      post.destroy
+
+      render json: {message: 'Post deleted successfully'}
     end
 
     private

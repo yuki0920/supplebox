@@ -117,6 +117,22 @@ paths:
             application/json:
               schema:
                 type: object
+    delete:
+      operationId: deletePost
+      summary: Delete Post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: delete post
+          content:
+            application/json:
+              schema:
+                type: object
   /api/contacts:
     post:
       operationId: postContact
