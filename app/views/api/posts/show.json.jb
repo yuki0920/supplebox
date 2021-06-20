@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 {
   post: {
     product_id: @post.product_id,

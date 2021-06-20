@@ -21,7 +21,7 @@ RSpec.describe '/api/posts', type: :request do
     let!(:product) { create(:product) }
     let(:headers) { {'Content-Type' => 'multipart/form-data'} }
     let(:picture) { Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg') }
-    let(:params) { {posts: {product_id: product.id, title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
+    let(:params) { {post: {product_id: product.id, title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
 
     before do
       user = create(:user)
@@ -43,7 +43,7 @@ RSpec.describe '/api/posts', type: :request do
     let(:user_post) { create(:post, user: user) }
     let(:headers) { {'Content-Type' => 'multipart/form-data'} }
     let(:picture) { Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg') }
-    let(:params) { {posts: {title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
+    let(:params) { {post: {title: 'タイトル', content: '内容', rate: 3.5, picture: picture}} }
 
     before do
       sign_in user
