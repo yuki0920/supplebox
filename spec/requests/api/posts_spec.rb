@@ -77,7 +77,6 @@ RSpec.describe '/api/posts', type: :request do
       sign_in user
     end
 
-
     it 'リクエストが成功すること' do
       delete "/api/posts/#{user_post.id}"
 
