@@ -1,28 +1,24 @@
 <template>
   <div class="o-post-form">
-    <FlashMessage
-      :is-display="message.isDisplay"
-      :message-text="message.text"
-      :message-type="message.type"
-    />
     <h2
       class="o-post-form__heading mb-3"
     >
-      口コミ投稿する
+      {{ head }}
     </h2>
     <form @submit.prevent="submitForm">
       <div class="form-group row">
         <label
           class="col-md-3 col-form-label"
           for="title"
-        >タイトル </label>
+        >タイトル</label>
         <div class="col-md-9">
           <input
             id="title"
-            v-model="formInput.title"
+            :value="title"
             class="form-control"
             type="text"
             name="title"
+            @input="onChangeTitle"
           >
         </div>
       </div>
@@ -38,11 +34,12 @@
           >
             <input
               :id="`rate_${number}`"
-              v-model="formInput.rate"
+              :checked="number == number"
               type="radio"
               name="rate"
               class="o-post-form__radio form-check-input"
               :value="number"
+              @change="onChangeRate"
             >
             <label
               class="form-check-label"
@@ -65,7 +62,7 @@
             class="btn"
             type="file"
             name="picture"
-            @change="setPicture"
+            @change="onChangePicture"
           >
         </div>
       </div>
@@ -77,11 +74,12 @@
         <div class="col-md-9">
           <textarea
             id="content"
-            v-model="formInput.content"
+            :value="content"
             class="form-control"
             rows="3"
             placeholder="口コミ内容がなくても、タイトルと評価のみで投稿できます。まずは投稿してみましょう！投稿してから編集もできますよ！"
             name="content"
+            @input="onChangeContent"
           />
         </div>
       </div>
@@ -90,7 +88,7 @@
           <input
             type="submit"
             name="commit"
-            value="投稿する"
+            value="送信"
             class="btn btn-success"
           >
         </div>
@@ -100,66 +98,54 @@
 </template>
 
 <script lang="ts">
-import axios from '@axios'
-import FlashMessage from '../FlashMessage/index.vue'
-
-import { reactive } from 'vue'
 export default {
-  name: 'ContactForm',
-  components: { FlashMessage },
-  setup() {
-    const formInput = reactive({
-        title: '',
-        rate: '5',
-        content: ''
-    })
-
+  name: 'PostForm',
+  props: {
+    head: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: [String, Number],
+      required: true,
+    },
+    rate: {
+      type: Number,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props, context) {
+    const onChangeTitle = (e) => {
+      context.emit('change', {type: 'title',payload: e.target.value})
+    }
+    const onChangeRate = (e) => {
+      context.emit('change', {type: 'rate',payload: e.target.value})
+    }
+    const onChangeContent = (e) => {
+      context.emit('change', {type: 'content',payload: e.target.value})
+    }
     let picture
-    const setPicture = (e) => {
+    const onChangePicture = (e) => {
       e.preventDefault()
       picture = e.target.files[0]
+
+      context.emit('change', {type: 'picture',payload: picture})
     }
 
-    const message = reactive({
-      isDisplay: false,
-      text: '',
-      type: ''
-    })
-
-    const submitForm = async () => {
-      const productId = location.pathname.split("/").slice(-1)[0]
-      let formData = new FormData()
-      formData.append('posts[title]', formInput.title)
-      formData.append('posts[rate]', formInput.rate)
-      formData.append('posts[content]', formInput.content)
-      formData.append('posts[product_id]', productId)
-      formData.append('posts[picture]', picture)
-      const config = { headers : { 'content-type': 'multipart/form-data' } }
-
-      try {
-        await axios.post('/api/posts', formData, config)
-
-        message.isDisplay = true
-        message.text = "口コミを送信しました"
-        message.type = "primary"
-
-        formInput.title = ''
-        formInput.rate = ''
-        formInput.content = ''
-
-        location.reload()
-      } catch(error) {
-        const { data } = error.response
-        message.isDisplay = true
-        message.text = `口コミの送信に失敗しました 「${data.message}」`
-        message.type = "danger"
-      }
+    const submitForm = (_e) => {
+      context.emit('submitForm')
     }
+
     return {
-      message,
-      formInput,
-      setPicture,
-      submitForm
+      submitForm,
+      onChangeTitle,
+      onChangeRate,
+      onChangeContent,
+      onChangePicture,
     }
   }
 }

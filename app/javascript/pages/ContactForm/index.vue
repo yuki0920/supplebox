@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { reactive } from 'vue'
-import FlashMessage from '../FlashMessage/index.vue'
+import FlashMessage from '@/components/FlashMessage/index.vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
 
 export default {
