@@ -229,13 +229,17 @@ components:
     posts:
       type: object
       required:
+        - id
         - title
         - content
         - rate
+        - is_owner
         - edit_path
         - user
         - product
       properties:
+        id:
+          type: number
         title:
           type: string
         content:
@@ -245,6 +249,8 @@ components:
         picture_url:
           type: string
           nullable: true
+        is_owner:
+          type: boolean
         edit_path:
           type: string
         user:

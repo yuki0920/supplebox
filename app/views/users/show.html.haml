@@ -1,11 +1,9 @@
 - breadcrumb :show_user, @user
 / ユーザープロフィール
-= render 'users/user_profile', user: @user
+= render 'user_profile', user: @user
 .col-md-12
   / ユーザーナビバー
-  = render 'users/user_nav', user: @user
+  = render 'user_nav', user: @user
   / 口コミ一覧
-  = render 'posts/posts', posts: @posts
-  / ページネーション
-  = paginate @posts
-  = page_entries_info @posts
+  #user-posts
+    = javascript_pack_tag 'user_posts'

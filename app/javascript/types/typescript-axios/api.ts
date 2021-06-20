@@ -150,6 +150,12 @@ export interface Post {
 export interface Posts {
     /**
      *
+     * @type {number}
+     * @memberof Posts
+     */
+    id: number;
+    /**
+     *
      * @type {string}
      * @memberof Posts
      */
@@ -172,6 +178,12 @@ export interface Posts {
      * @memberof Posts
      */
     picture_url?: string | null;
+    /**
+     *
+     * @type {boolean}
+     * @memberof Posts
+     */
+    is_owner: boolean;
     /**
      *
      * @type {string}
