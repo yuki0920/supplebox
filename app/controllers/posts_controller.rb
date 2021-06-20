@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_user_logged_in, only: %i[edit update destroy]
-  before_action :correct_user, only: %i[edit update]
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :require_user_logged_in, only: %i[edit destroy]
+  before_action :correct_user, only: %i[edit]
+  before_action :set_post, only: %i[edit destroy]
 
   def destroy
     return unless @post.destroy
@@ -13,16 +13,6 @@ class PostsController < ApplicationController
   end
 
   def edit; end
-
-  def update
-    if @post.update(post_params)
-      flash[:success] = '口コミを更新しました'
-      redirect_to @post.product
-    else
-      flash.now[:danger] = '口コミの編集に失敗しました'
-      render :edit
-    end
-  end
 
   def index
     @q = Post.ransack(params[:q])

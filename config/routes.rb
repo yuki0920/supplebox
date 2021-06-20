@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show new create edit update destroy]
-  resources :posts, only: %i[destroy show edit update index]
+  resources :posts, only: %i[destroy show edit index]
   resources :likes, only: %i[create destroy]
 
   namespace :api do
