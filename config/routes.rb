@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show new create edit update destroy]
-  resources :posts, only: %i[destroy show edit update index]
+  resources :posts, only: %i[destroy show edit index]
   resources :likes, only: %i[create destroy]
 
   namespace :api do
     resources :products, only: %i(index)
-    resources :posts, only: %i(index create update show)
+    resources :posts, only: %i(index create update show destroy)
     resources :contacts, only: %i(create)
     resource :sessions, only: %i(show)
   end

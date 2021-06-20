@@ -68,4 +68,21 @@ RSpec.describe '/api/posts', type: :request do
       assert_response_schema_confirm
     end
   end
+
+  describe 'Delete /api/posts/:id' do
+    let(:user) { create(:user) }
+    let(:user_post) { create(:post, user: user) }
+
+    before do
+      sign_in user
+    end
+
+    it 'リクエストが成功すること' do
+      delete "/api/posts/#{user_post.id}"
+
+      expect(response).to have_http_status :ok
+      assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
 end
