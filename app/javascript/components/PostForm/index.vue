@@ -34,7 +34,7 @@
           >
             <input
               :id="`rate_${number}`"
-              :checked="number == number"
+              :checked="number == rate"
               type="radio"
               name="rate"
               class="o-post-form__radio form-check-input"
