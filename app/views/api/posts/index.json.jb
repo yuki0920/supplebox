@@ -2,10 +2,12 @@
 
 posts = @posts.map do |post|
   {
+    id: post.id,
     title: post.title,
     content: post.content,
     rate: post.rate,
     picture_url: post.picture.presence && asset_path(post.picture_url),
+    is_owner: post.user == current_user,
     edit_path: edit_post_path(post),
     created_at: simple_time(post.created_at),
     user: {

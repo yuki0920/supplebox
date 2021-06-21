@@ -17,10 +17,12 @@ const Template = (args) => ({
 export const Default = Template.bind({})
 Default.args = {
   post: {
+    id: 1,
     title: 'テストタイトル',
     content: 'テスト口コミ内容',
     rate: 2.0,
     picture_url: null,
+    is_owner: true,
     edit_path: 'https://example.com',
     created_at: "2021/01/11 12:00",
     user: {
