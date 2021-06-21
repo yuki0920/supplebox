@@ -124,6 +124,12 @@ export interface InlineResponse200 {
 export interface InlineResponse2001 {
     /**
      *
+     * @type {number}
+     * @memberof InlineResponse2001
+     */
+    total_pages: number;
+    /**
+     *
      * @type {Array<Posts>}
      * @memberof InlineResponse2001
      */
@@ -339,7 +345,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
@@ -354,7 +360,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             localVarRequestOptions.data = localVarFormParams;
 
             return {
@@ -381,7 +387,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -389,7 +395,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -411,7 +417,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -419,7 +425,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -445,7 +451,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -453,7 +459,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -463,12 +469,17 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          *
          * @summary Get Products
-         * @param {number} [limit]
+         * @param {number} per per page
+         * @param {number} page next page
          * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchPosts: async (limit?: number, userId?: number, options: any = {}): Promise<RequestArgs> => {
+        fetchPosts: async (per: number, page: number, userId?: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'per' is not null or undefined
+            assertParamExists('fetchPosts', 'per', per)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('fetchPosts', 'page', page)
             const localVarPath = `/api/posts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -477,12 +488,16 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
+            if (per !== undefined) {
+                localVarQueryParameter['per'] = per;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             if (userId !== undefined) {
@@ -493,7 +508,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -503,12 +518,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          *
          * @summary Get and Search Products
-         * @param {number} [page]
+         * @param {number} [nextPage]
          * @param {number} [limit]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts: async (page?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
+        fetchProducts: async (nextPage?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/products`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -517,12 +532,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
+            if (nextPage !== undefined) {
+                localVarQueryParameter['next_page'] = nextPage;
             }
 
             if (limit !== undefined) {
@@ -533,7 +548,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -556,7 +571,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -566,7 +581,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             localVarRequestOptions.data = serializeDataIfNeeded(contact, localVarRequestOptions, configuration)
 
             return {
@@ -596,7 +611,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
@@ -611,7 +626,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             localVarRequestOptions.data = localVarFormParams;
 
             return {
@@ -626,7 +641,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
  * DefaultApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function(configuration?: Configuration) {
+export const DefaultApiFp = function (configuration?: Configuration) {
     const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
     return {
         /**
@@ -675,25 +690,26 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          *
          * @summary Get Products
-         * @param {number} [limit]
+         * @param {number} per per page
+         * @param {number} page next page
          * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchPosts(limit?: number, userId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPosts(limit, userId, options);
+        async fetchPosts(per: number, page: number, userId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPosts(per, page, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          *
          * @summary Get and Search Products
-         * @param {number} [page]
+         * @param {number} [nextPage]
          * @param {number} [limit]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchProducts(page?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(page, limit, options);
+        async fetchProducts(nextPage?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(nextPage, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -771,24 +787,25 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          *
          * @summary Get Products
-         * @param {number} [limit]
+         * @param {number} per per page
+         * @param {number} page next page
          * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchPosts(limit?: number, userId?: number, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.fetchPosts(limit, userId, options).then((request) => request(axios, basePath));
+        fetchPosts(per: number, page: number, userId?: number, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.fetchPosts(per, page, userId, options).then((request) => request(axios, basePath));
         },
         /**
          *
          * @summary Get and Search Products
-         * @param {number} [page]
+         * @param {number} [nextPage]
          * @param {number} [limit]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts(page?: number, limit?: number, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.fetchProducts(page, limit, options).then((request) => request(axios, basePath));
+        fetchProducts(nextPage?: number, limit?: number, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.fetchProducts(nextPage, limit, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -871,27 +888,28 @@ export class DefaultApi extends BaseAPI {
     /**
      *
      * @summary Get Products
-     * @param {number} [limit]
+     * @param {number} per per page
+     * @param {number} page next page
      * @param {number} [userId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public fetchPosts(limit?: number, userId?: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchPosts(limit, userId, options).then((request) => request(this.axios, this.basePath));
+    public fetchPosts(per: number, page: number, userId?: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchPosts(per, page, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary Get and Search Products
-     * @param {number} [page]
+     * @param {number} [nextPage]
      * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public fetchProducts(page?: number, limit?: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchProducts(page, limit, options).then((request) => request(this.axios, this.basePath));
+    public fetchProducts(nextPage?: number, limit?: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchProducts(nextPage, limit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
