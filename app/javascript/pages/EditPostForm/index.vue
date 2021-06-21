@@ -12,7 +12,7 @@
       :rate="rate"
       :content="content"
       @change="onChange"
-      @submitForm="submitForm"
+      @submit="submitForm"
     />
   </div>
 </template>

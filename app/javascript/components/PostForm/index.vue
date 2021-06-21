@@ -5,7 +5,7 @@
     >
       {{ head }}
     </h2>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="submit">
       <div class="form-group row">
         <label
           class="col-md-3 col-form-label"
@@ -118,6 +118,7 @@ export default {
       required: true,
     },
   },
+  emits: ['change', 'submit'],
   setup(props, context) {
     const onChangeTitle = (e) => {
       context.emit('change', {type: 'title',payload: e.target.value})
@@ -136,12 +137,12 @@ export default {
       context.emit('change', {type: 'picture',payload: picture})
     }
 
-    const submitForm = (_e) => {
-      context.emit('submitForm')
+    const submit = (_e) => {
+      context.emit('submit')
     }
 
     return {
-      submitForm,
+      submit,
       onChangeTitle,
       onChangeRate,
       onChangeContent,

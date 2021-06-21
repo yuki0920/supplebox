@@ -20,6 +20,8 @@
     "@storybook/addon-essentials": "^6.3.0-beta.4",
     "@storybook/addon-links": "^6.3.0-beta.4",
     "@storybook/vue3": "^6.3.0-beta.4",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-loader": "^8.2.2",
@@ -32,8 +34,8 @@
     "storybook": "start-storybook --ci -p 9009",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token v3qurz6te0j",
-    "lint": "./node_modules/.bin/eslint --ext .js,.vue app/",
-    "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.vue app/",
+    "lint": "./node_modules/.bin/eslint --ext .js,.ts,.vue, app/",
+    "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.ts,.vue app/",
     "generate-client": "openapi-generator-cli generate -g typescript -i ./openapi/openapi.yaml -o ./app/javascript/types/typescript"
   }
 }
