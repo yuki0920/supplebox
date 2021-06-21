@@ -1,5 +1,5 @@
 <template>
-  <div class=" o-post-item row posts">
+  <div class="o-post-item row posts">
     <div class="o-post-item__user col-md-2">
       <a :href="post.user.path">
         <img
@@ -50,11 +50,22 @@
         </p>
       </a>
     </div>
+    <div
+      v-if="post.is_owner"
+      class="o-post-item__edit-button col-md-12 edit-button"
+    >
+      <a
+        class="btn btn-success"
+        :href="`/posts/${post.id}/edit`"
+      >口コミを編集</a>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 // import StarRating from 'vue-star-rating'
+import { PropType } from 'vue'
+import { Posts } from '@/types/typescript-axios/api'
 
 export default {
   name: 'PostItem',
@@ -63,10 +74,12 @@ export default {
   },
   props: {
     post: {
-      type: Object,
+      type: Object as PropType<Posts>,
       required: true
     }
   },
+  setup() {
+  }
 }
 </script>
 
