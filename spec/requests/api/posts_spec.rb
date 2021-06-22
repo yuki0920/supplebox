@@ -9,7 +9,7 @@ RSpec.describe '/api/posts', type: :request do
     end
 
     it 'リクエストが成功すること' do
-      get '/api/posts'
+      get '/api/posts?per=3&page=1'
 
       expect(response).to have_http_status :ok
       assert_request_schema_confirm

@@ -25,4 +25,4 @@ posts = @posts.map do |post|
   }
 end
 
-{posts: posts}
+{total_pages: @posts.total_pages, posts: posts}
