@@ -13961,6 +13961,11 @@ vue@^3.0.0, vue@^3.0.11:
     "@vue/runtime-dom" "3.1.1"
     "@vue/shared" "3.1.1"
 
+vuetify@3.0.0-alpha.6:
+  version "3.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.0.0-alpha.6.tgz#26c7eecd8e1648767fd8284e2d3944e1df41294c"
+  integrity sha512-6JkWZiCS7CdTM2dWc43vgWFvTH4FdJG5cyrjv8NqG+46NmGHvyeWH3DYhne6hQM6rk4vtlN1IdYqVr5ZHFxBng==
+
 vuex@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.1.tgz#e83c541d6f31173969efabb2c5d1c465b682887e"
