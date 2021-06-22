@@ -1,7 +1,9 @@
 <template>
   <div class="p-toppage">
     <section class="p-toppage__title-container">
-      <h1 class="p-toppage__title">SuppleBoxとは</h1>
+      <h1 class="p-toppage__title">
+        SuppleBoxとは
+      </h1>
       <p class="p-toppage__title-annotation">
         プロテイン選びで失敗したく無い方に向けた、プロテイン特化型の口コミ共有サービスです。
       </p>
@@ -18,7 +20,10 @@
         />
       </div>
       <div class="text-center">
-        <a href="/rankings" class="btn btn-success btn-lg">
+        <a
+          href="/rankings"
+          class="btn btn-success btn-lg"
+        >
           お気に入りアイテムをもっと見る
         </a>
       </div>
@@ -26,10 +31,17 @@
     <section class="p-toppage__posts-container">
       <h2>最新の口コミ</h2>
       <div class="p-toppage__posts">
-        <PostItem v-for="post in posts" :key="post.id" :post="post" />
+        <PostItem
+          v-for="post in posts"
+          :key="post.id"
+          :post="post"
+        />
       </div>
       <div class="text-center">
-        <a href="/posts" class="btn btn-success btn-lg">
+        <a
+          href="/posts"
+          class="btn btn-success btn-lg"
+        >
           最新の口コミをもっと見る
         </a>
       </div>
