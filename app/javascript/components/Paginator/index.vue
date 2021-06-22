@@ -1,14 +1,20 @@
 <template>
   <nav class="o-paginator">
     <ul class="pagination">
-      <li class="page-item">
+      <li
+        v-if="currentPage > 1"
+        class=" page-item"
+      >
         <a
           class="page-link text-success"
           href="javascript:void(0)"
           @click="prev"
         >前へ</a>
       </li>
-      <li class="page-item">
+      <li
+        v-if="currentPage < totalPages"
+        class=" page-item"
+      >
         <a
           class="page-link text-success"
           href="javascript:void(0)"
@@ -50,6 +56,7 @@ export default {
     }
 
     return {
+      currentPage,
       prev,
       next
     }

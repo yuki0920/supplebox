@@ -2,12 +2,11 @@
 
 require 'rails_helper'
 
-describe '口コミ投稿機能', type: :system do
+describe '口コミ投稿機能', type: :system, js: true do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user, nickname: 'その他ユーザー') }
   let(:product) { FactoryBot.create(:product) }
   let!(:post) { FactoryBot.create(:post, user: user, product: product, content: '一般の口コミ') }
-  let!(:other_post) { FactoryBot.create(:post, content: 'その他の口コミ') }
 
   describe '新規作成機能' do
     # 星評価の選択ができないため保留
@@ -26,7 +25,7 @@ describe '口コミ投稿機能', type: :system do
     end
   end
 
-  describe '一覧表示機能', js: true do
+  describe '一覧表示機能' do
     before do
       sign_in_as user
     end
@@ -44,28 +43,6 @@ describe '口コミ投稿機能', type: :system do
     it 'ユーザー詳細ページに表示されること' do
       visit user_path(user)
       expect(page).to have_content 'テストタイトル' # ユーザープロフィールの口コミ
-    end
-  end
-
-  describe '一覧検索機能' do
-    context '一致する口コミが存在する場合' do
-      it '口コミが表示されること' do
-        visit posts_path
-        fill_in 'q_title_or_content_or_product_title_cont', with: post.content
-        click_on '口コミを検索'
-        expect(page).to have_content post.content
-        expect(page).to_not have_content other_post.content
-      end
-    end
-
-    context '一致する口コミが存在しない場合' do
-      it '口コミが表示されないこと' do
-        visit posts_path
-        fill_in 'q_title_or_content_or_product_title_cont', with: '架空の口コミ'
-        click_on '口コミを検索'
-        expect(page).to_not have_content post.content
-        expect(page).to_not have_content other_post.content
-      end
     end
   end
 
