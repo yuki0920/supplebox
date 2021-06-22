@@ -1,7 +1,11 @@
 <template>
   <div class="p-toppage">
     <div class="p-toppage__posts">
-      <PostItem v-for="post in posts" :key="post.id" :post="post" />
+      <PostItem
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+      />
     </div>
   </div>
 </template>
