@@ -1,13 +1,4 @@
 - breadcrumb :posts
-%h2 最新の口コミ
-/ 口コミ検索
-.row.justify-content-center
-  = search_form_for @q, class:'form-inline' do |f|
-    .form-group
-      = f.text_field :title_or_content_or_product_title_cont, class: 'form-control', placeholder: "口コミ内容やアイテム名を入力", size: 40
-    = f.submit '口コミを検索', class: "btn btn-success"
-/ 口コミ一覧
-= render 'posts/posts', posts: @posts
-/ ページネーション
-= paginate @posts
-= page_entries_info @posts
+
+#post_index
+  = javascript_pack_tag 'post_index'
