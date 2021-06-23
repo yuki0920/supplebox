@@ -47,12 +47,13 @@ describe '口コミ投稿機能', type: :system, js: true do
   end
 
   describe '削除機能' do
-    # TODO: 編集ページで削除できるようにする
     xit '口コミを削除できること' do
       sign_in_as user
+      visit edit_post_path(post)
+      click_on '口コミを削除する'
+
       visit user_path(user)
-      expect { click_on '口コミを削除' }.to change { Post.count }.by(-1)
-      expect(page).to have_content '口コミを削除しました'
+      expect(page).not_to have_content post.content
     end
   end
 
