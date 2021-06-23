@@ -29,7 +29,7 @@ export default {
     Paginator,
   },
   setup() {
-    const posts = ref([]);
+    const posts = ref([])
     const totalPages = ref(1)
 
     const load = async(page = 1) => {

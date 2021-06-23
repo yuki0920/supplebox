@@ -1,5 +1,10 @@
 <template>
-  <div class="p-new-post-form">
+  <div class="p-product-detail">
+    <PostItem
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+    />
     <FlashMessage
       :is-display="message.isDisplay"
       :message-text="message.text"
@@ -21,12 +26,28 @@
 import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
-
+import PostItem from "@/components/PostItem/index.vue"
 import { ref, reactive } from 'vue'
+import { DefaultApi } from "@/types/typescript-axios/api"
+
 export default {
-  name: 'NewPostForm',
-  components: { FlashMessage, PostForm },
+  name: 'ProductDetail',
+  components: { PostItem, FlashMessage, PostForm },
+
   setup() {
+    const productId = parseInt(location.pathname.split("/").slice(-1)[0])
+
+    // 口コミ一覧ロジック
+    const posts = ref([])
+    const fetchPosts = async() => {
+      const {data} = await new DefaultApi().fetchPosts(24, 1, undefined, productId)
+      console.log('data', data)
+      posts.value = data.posts
+      console.log(posts.value)
+    }
+    fetchPosts()
+
+    // 口コミ投稿ロジック
     const message = reactive({
       isDisplay: false,
       text: '',
@@ -56,8 +77,8 @@ export default {
         break
       }
     }
+
     const submitForm = async () => {
-      const productId = location.pathname.split("/").slice(-1)[0]
       let formData = new FormData()
       formData.append('post[title]', title.value)
       formData.append('post[rate]', `${rate.value}`)
@@ -82,6 +103,7 @@ export default {
       }
     }
     return {
+      posts,
       title,
       rate,
       content,

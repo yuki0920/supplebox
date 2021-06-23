@@ -19,7 +19,7 @@ posts = @posts.map do |post|
     },
     product: {
       image_url: asset_path(post.product.image_url),
-      path: products_path(post.product),
+      path: product_path(post.product),
       title: post.product.title
     }
   }

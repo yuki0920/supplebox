@@ -63,6 +63,11 @@ paths:
           name: user_id
           schema:
             type: integer
+        - in: query
+          required: false
+          name: product_id
+          schema:
+            type: integer
       responses:
         200:
           description: get posts
