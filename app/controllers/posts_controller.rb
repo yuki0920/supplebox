@@ -1,16 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_user_logged_in, only: %i[edit destroy]
+  before_action :require_user_logged_in, only: %i[edit]
   before_action :correct_user, only: %i[edit]
-  before_action :set_post, only: %i[edit destroy]
-
-  def destroy
-    return unless @post.destroy
-
-    flash[:success] = '口コミを削除しました'
-    redirect_back(fallback_location: root_path)
-  end
+  before_action :set_post, only: %i[edit]
 
   def edit; end
 
