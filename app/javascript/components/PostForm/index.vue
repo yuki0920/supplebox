@@ -124,7 +124,8 @@ export default {
     },
     postId: {
       type: Number,
-      required: true,
+      required: false,
+      default: 0
     },
     title: {
       type: String,
