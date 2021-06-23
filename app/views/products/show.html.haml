@@ -23,6 +23,6 @@
       = link_to 'Amazonで詳しく見る', @product.url.html_safe, target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-warning'
 
       = render 'likes/like_button', product: @product
-/ 口コミ一覧
-= render 'posts/posts', posts: @posts, user: @user
-= render 'posts/new_post'
+/ 口コミ投稿 & 口コミ一覧
+#product_detail
+  = javascript_pack_tag 'product_detail'

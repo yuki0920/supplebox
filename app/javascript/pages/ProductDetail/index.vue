@@ -1,5 +1,5 @@
 <template>
-  <div class="p-new-post-form">
+  <div class="p-product-detail">
     <FlashMessage
       :is-display="message.isDisplay"
       :message-text="message.text"
@@ -24,7 +24,7 @@ import PostForm from '@/components/PostForm/index.vue'
 
 import { ref, reactive } from 'vue'
 export default {
-  name: 'NewPostForm',
+  name: 'ProductDetail',
   components: { FlashMessage, PostForm },
   setup() {
     const message = reactive({
