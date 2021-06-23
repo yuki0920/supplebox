@@ -78,13 +78,13 @@ export default {
       const config = { headers : { 'content-type': 'multipart/form-data' } }
 
       try {
-        await axios.put(`/api/posts/${productId}`, formData, config)
+        await axios.put(`/api/posts/${postId}`, formData, config)
 
         message.isDisplay = true
         message.text = "口コミを送信しました"
         message.type = "primary"
 
-        location.href = `/products/${productId}`
+        location.href = `/products/${postId}`
       } catch(error) {
         const { data } = error.response
         message.isDisplay = true
