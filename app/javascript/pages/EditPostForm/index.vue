@@ -7,7 +7,9 @@
       @change="onChange"
     />
     <PostForm
+      :is-edit="true"
       head="口コミを編集する"
+      :post-id="postId"
       :title="title"
       :rate="rate"
       :content="content"
@@ -57,15 +59,15 @@ export default {
         break
       }
     }
-    const productId = location.pathname.split("/").slice(-2)[0]
+    const postId = location.pathname.split("/").slice(-2)[0]
 
-    const fetchPost = async (productId) => {
-      const { data } = await new DefaultApi().fetchPost(productId)
+    const fetchPost = async (postId) => {
+      const { data } = await new DefaultApi().fetchPost(postId)
       title.value = data.post.title
       rate.value = data.post.rate
       content.value = data.post.content
     }
-    fetchPost(productId)
+    fetchPost(postId)
 
     const submitForm = async () => {
       let formData = new FormData()
@@ -92,6 +94,7 @@ export default {
     }
 
     return {
+      postId,
       title,
       rate,
       content,
