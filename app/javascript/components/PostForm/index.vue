@@ -94,19 +94,40 @@
         </div>
       </div>
     </form>
+    <div
+      v-if="isEdit"
+      class="col-md-9"
+    >
+      <a
+        href="javascript:void(0)"
+        class="btn btn-light"
+        @click="deletePost"
+      >口コミを削除する</a>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { DefaultApi } from '@/types/typescript-axios/api'
+
 export default {
   name: 'PostForm',
   props: {
+    isEdit: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     head: {
       type: String,
       required: true,
     },
+    postId: {
+      type: Number,
+      required: true,
+    },
     title: {
-      type: [String, Number],
+      type: String,
       required: true,
     },
     rate: {
@@ -141,7 +162,15 @@ export default {
       context.emit('submit')
     }
 
+    // TODO: イベントの流れ的には、親コンポーネントで実行したい
+    const deletePost = async () => {
+      await new DefaultApi().deletePost(props.postId)
+
+      history.back()
+    }
+
     return {
+      deletePost,
       submit,
       onChangeTitle,
       onChangeRate,
