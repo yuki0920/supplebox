@@ -11,14 +11,10 @@
     </section>
     <section class="p-toppage__products-container">
       <h2>お気に入りアイテムランキング</h2>
-      <div class="p-toppage__products-deck card-deck">
-        <ProductItem
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
-          class="p-toppage__product-item"
-        />
-      </div>
+      <ProductItems
+        :products="products"
+        class="p-toppage__products"
+      />
       <div class="text-center">
         <a
           href="/rankings"
@@ -52,14 +48,15 @@
 <script lang="ts">
 import { ref } from "vue";
 import ServiceDescription from "@/components/ServiceDescription/index.vue";
-import ProductItem from "@/components/ProductItem/index.vue";
+import ProductItems from "@/components/ProductItems/index.vue";
 import PostItem from "@/components/PostItem/index.vue";
 import { DefaultApi } from "@/types/typescript-axios/api";
 
 export default {
+  name: 'TopPage',
   components: {
     ServiceDescription,
-    ProductItem,
+    ProductItems,
     PostItem,
   },
   setup() {
@@ -89,12 +86,9 @@ export default {
 
 <style lang="scss" scoped>
 .p-toppage {
-  &__product-item {
-    padding: 0;
-  }
-  &__products-deck,
-  __posts {
-    margin-bottom: 12px;
+  &__products,
+  &__posts {
+    margin-bottom: 12px
   }
   &__title-annotation {
     font-size: 1.5rem;
