@@ -10,15 +10,10 @@ RSpec.describe '/api/products', type: :request do
     end
 
     it 'スキーマ定義とAPIの挙動が同じであること' do
-      get '/api/products'
+      get '/api/products?per=3&page=1'
 
-      assert_schema_conform
-    end
-
-    it 'スキーマ定義とAPIの挙動が同じであること' do
-      get '/api/products?page=2'
-
-      assert_schema_conform
+      assert_request_schema_confirm
+      assert_response_schema_confirm
     end
 
     it '検索条件に合致したレスポンスを返却すること' do

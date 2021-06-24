@@ -20,13 +20,29 @@ paths:
       summary: Get and Search Products
       parameters:
         - in: query
+          name: per
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+        - in: query
           name: next_page
           schema:
             type: integer
         - in: query
-          name: limit
+          name: q
+          description: For Product Search API
           schema:
-            type: integer
+            type: string
+        - in: query
+          name: keyword
+          description: For Amazon Product API
+          schema:
+            type: string
       responses:
         200:
           description: get products

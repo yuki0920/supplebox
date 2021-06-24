@@ -5,7 +5,7 @@ module Api
     before_action :require_user_logged_in, only: %i(create update destroy)
 
     def index
-      @posts = params[:user_id] ? Post.where(user_id: params[:user_id]) : Post
+      @posts = params[:user_id] ? Post.where(user_id: params[:user_id]) : Post.all
       @posts = @posts.where(product_id: params[:product_id]) if params[:product_id]
       @posts = @posts.page(params[:page]).per(params[:per])
       @posts = @posts.order(created_at: :desc).includes(:user, :product)
