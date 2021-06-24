@@ -24,6 +24,11 @@ describe 'アイテムお気に入り登録機能' do
       click_on 'お気に入り登録'
     end
 
+    it 'お気に入りしたアイテムがランキングに表示されている' do
+      visit rankings_path
+      expect(page).to have_content product.title
+    end
+
     xit 'お気に入りしたアイテムがトップページに表示されている', js: true do
       visit root_path
       expect(page).to have_content product.title
