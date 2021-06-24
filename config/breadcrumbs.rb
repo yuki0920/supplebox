@@ -4,16 +4,9 @@ crumb :root do
   link 'Home', root_path
 end
 
-# user#index
-crumb :users do
-  link 'ユーザー一覧', users_path
-  parent :root
-end
-
 # user#show
 crumb :show_user do |user|
   link "@#{user.nickname}", user
-  parent :users
 end
 
 # user#edit
@@ -25,7 +18,6 @@ end
 # user#new
 crumb :new_user do
   link '新規登録', signup_path
-  parent :users
 end
 
 # product#index
@@ -69,12 +61,6 @@ end
 crumb :edit_post do |post|
   link '編集', edit_post_path(post)
   parent :posts
-end
-
-# ranking#like
-crumb :ranking_like do
-  link 'お気に入りランキング', rankings_path
-  parent :root
 end
 
 # login

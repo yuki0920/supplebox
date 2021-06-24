@@ -9,10 +9,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'policy', to: 'toppages#policy'
   get 'privacypolicy', to: 'toppages#privacypolicy'
-  get 'rankings', to: 'rankings#like'
   get 'contacts', to: 'contacts#new'
   get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/supplebox/sitemaps/sitemap.xml.gz')
-  resources :users, only: %i[show create index edit update destroy] do
+  resources :users, only: %i[show create edit update destroy] do
     member do
       get :like_products
     end
