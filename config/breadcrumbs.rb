@@ -4,12 +4,6 @@ crumb :root do
   link 'Home', root_path
 end
 
-# user#index
-crumb :users do
-  link 'ユーザー一覧', users_path
-  parent :root
-end
-
 # user#show
 crumb :show_user do |user|
   link "@#{user.nickname}", user

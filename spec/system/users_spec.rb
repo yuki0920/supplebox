@@ -64,37 +64,6 @@ describe 'ユーザー登録機能', type: :system do
     end
   end
 
-  describe '一覧表示機能' do
-    it 'ログイン状態に関わらずユーザーが表示されること' do
-      visit users_path
-      expect(page).to have_content '一般ユーザー'
-      click_link '一般ユーザー'
-      expect(page).to have_content '一般ユーザー'
-    end
-  end
-
-  describe '一覧検索機能' do
-    context '一致するユーザー名が存在する場合' do
-      it 'ユーザー名が表示されること' do
-        visit users_path
-        fill_in 'q_name_or_nickname_cont', with: user.nickname
-        click_on 'ユーザーを検索'
-        expect(page).to have_content user.nickname
-        expect(page).to_not have_content other_user.nickname
-      end
-    end
-
-    context '一致するユーザー名が存在しない場合' do
-      it 'ユーザー名が表示されないこと' do
-        visit users_path
-        fill_in 'q_name_or_nickname_cont', with: '架空のユーザー'
-        click_on 'ユーザーを検索'
-        expect(page).to_not have_content user.name
-        expect(page).to_not have_content other_user.name
-      end
-    end
-  end
-
   describe '詳細表示機能' do
     it 'ログイン状態に関わらずユーザーが表示されること' do
       visit user_path(user)
