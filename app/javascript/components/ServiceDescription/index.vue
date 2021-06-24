@@ -16,7 +16,7 @@
       <h3 class="o-service-description__heading">
         探しやすい
       </h3>
-      <p>✔	気になるアイテムをお気に入りランキングや最新の口コミから検索可能</p>
+      <p>✔	気になるアイテムをアイテム一覧や最新の口コミから検索可能</p>
     </div>
     <div class="col-md-4 col-sm-6 feature text-center">
       <i

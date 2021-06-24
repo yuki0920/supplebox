@@ -12,7 +12,6 @@ describe 'リンク確認', js: true do
   it 'ヘッダーリンクログイン前確認' do
     within 'header' do
       aggregate_failures do
-        expect(page).to have_link('ランキング', href: '/rankings')
         expect(page).to have_link('プロテイン', href: '/products')
         expect(page).to have_link('口コミ', href: '/posts')
         expect(page).to have_link('新規登録', href: '/signup')
@@ -36,7 +35,6 @@ describe 'リンク確認', js: true do
         expect(page).to have_link('利用基準', href: '/policy')
         expect(page).to have_link('プライバシーポリシー', href: '/privacypolicy')
         expect(page).to have_link('お問い合わせ', href: '/contacts')
-        expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings')
         expect(page).to have_link('アイテム一覧を見る', href: '/products')
       end
     end

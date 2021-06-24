@@ -28,14 +28,6 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              href="/rankings"
-            >
-              ランキング
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
               href="/products"
             >
               プロテイン
