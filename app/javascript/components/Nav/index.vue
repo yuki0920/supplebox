@@ -49,14 +49,6 @@
               口コミ
             </a>
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="/users"
-            >
-              ユーザー
-            </a>
-          </li>
           <li
             v-if="isLoggedIn"
             class="nav-item"

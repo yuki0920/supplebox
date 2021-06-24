@@ -15,7 +15,6 @@ describe 'リンク確認', js: true do
         expect(page).to have_link('ランキング', href: '/rankings')
         expect(page).to have_link('プロテイン', href: '/products')
         expect(page).to have_link('口コミ', href: '/posts')
-        expect(page).to have_link('ユーザー', href: '/users')
         expect(page).to have_link('新規登録', href: '/signup')
         expect(page).to have_link('ログイン', href: '/login')
       end
@@ -39,7 +38,6 @@ describe 'リンク確認', js: true do
         expect(page).to have_link('お問い合わせ', href: '/contacts')
         expect(page).to have_link('人気アイテムランキングを見る', href: '/rankings')
         expect(page).to have_link('アイテム一覧を見る', href: '/products')
-        expect(page).to have_link('ユーザー一覧を見る', href: '/users')
       end
     end
   end
