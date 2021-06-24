@@ -38,6 +38,25 @@ paths:
           description: For Product Search API
           schema:
             type: string
+      responses:
+        200:
+          description: get products
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - products
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/products"
+  /api/products/new:
+    get:
+      operationId: searchProductsFromAmazon
+      summary: Search Products From Amazon
+      parameters:
         - in: query
           name: keyword
           description: For Amazon Product API
