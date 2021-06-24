@@ -29,8 +29,7 @@ describe 'リンク確認', js: true do
         expect(page).to have_link('利用基準', href: '/policy')
         expect(page).to have_link('プライバシーポリシー', href: '/privacypolicy')
         expect(page).to have_link('お問い合わせ', href: '/contacts')
-        expect(page).to have_link('プロテイン一覧を見る', href: '/products')
-        expect(page).to have_link('プロテインを登録する', href: '/products/new')
+        expect(page).to have_link('アイテム一覧を見る', href: '/products')
       end
     end
   end
