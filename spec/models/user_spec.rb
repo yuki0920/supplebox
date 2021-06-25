@@ -113,7 +113,7 @@ RSpec.describe User, type: :model do
 
     context 'likeした場合' do
       before do
-        user.like(product)
+        user.like!(product)
       end
 
       it 'like状態であること' do
@@ -127,7 +127,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'unlikeすると無効な状態であること' do
-        user.unlike(product)
+        user.unlike!(product)
         expect(user.like?(product)).to eq false
       end
     end

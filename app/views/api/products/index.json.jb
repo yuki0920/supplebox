@@ -10,7 +10,7 @@ products = @products.map do |product|
     post_count: product.posts.size,
     rate: product.posts.present? ? (product.posts.pluck(:rate).sum / product.posts.size).round(1) : 0,
     likes: product.likes.size,
-    is_likes: current_user&.like(product)
+    is_likes: current_user&.like?(product)
   }
 end
 

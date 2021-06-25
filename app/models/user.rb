@@ -28,18 +28,16 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :products, through: :likes
 
-  # お気に入り追加
-  def like(product)
-    likes.find_or_create_by(product_id: product.id)
+  def like!(product)
+    likes.create!(product_id: product.id)
   end
 
-  # お気に入り削除
-  def unlike(product)
-    like = likes.find_by(product_id: product.id)
-    like&.destroy
+  def unlike!(product)
+    like = likes.find_by!(product_id: product.id)
+
+    like.destroy
   end
 
-  # お気に入り登録判定
   def like?(product)
     products.include?(product)
   end
