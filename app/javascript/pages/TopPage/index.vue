@@ -17,7 +17,7 @@
       />
       <div class="text-center">
         <a
-          href="/rankings"
+          href="/products"
           class="btn btn-success btn-lg"
         >
           お気に入りアイテムをもっと見る

@@ -30,7 +30,4 @@
                       = submit_tag '登録', class: 'btn btn-outline-success'
             .card-footer
               %small.text-muted.text-center
-                - if controller_name == 'rankings'
-                  = index + 1
-                  位
                 = "#{ranking_counts[product.id]} Likes"

@@ -63,12 +63,6 @@ crumb :edit_post do |post|
   parent :posts
 end
 
-# ranking#like
-crumb :ranking_like do
-  link 'お気に入りランキング', rankings_path
-  parent :root
-end
-
 # login
 crumb :login do
   link 'ログイン', login_path
