@@ -10,7 +10,7 @@
       <ServiceDescription />
     </section>
     <section class="p-toppage__products-container">
-      <h2>お気に入りアイテムランキング</h2>
+      <h2>アイテム一覧</h2>
       <div class="p-toppage__products-deck card-deck">
         <ProductItem
           v-for="product in products"
@@ -21,7 +21,7 @@
       </div>
       <div class="text-center">
         <a
-          href="/rankings"
+          href="/products"
           class="btn btn-success btn-lg"
         >
           お気に入りアイテムをもっと見る

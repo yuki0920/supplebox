@@ -26,7 +26,6 @@ SitemapGenerator::Sitemap.create do
     add product_path(product), lastmod: product.updated_at
   end
 
-  add rankings_path, changefreq: 'daily'
   add posts_path, changefreq: 'daily'
   add contacts_path
   add privacypolicy_path
