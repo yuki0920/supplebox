@@ -14,12 +14,12 @@ const Template = (args) => ({
   }
 });
 
-export const NotLogin = Template.bind({})
-NotLogin.args = {
+export const Default = Template.bind({})
+Default.args = {
   product: {
     title: "明治 ザバス ウェイトダウン ヨーグルト風味",
     image_url: "https://images-fe.ssl-images-amazon.com/images/I/51MRScMCrKL.jpg",
-    path: "/products/2",
+    product_link: "/products/2",
     brand_amazon_name: "SAVAS(ザバス)",
     post_count: "6",
     rate: 3.4,
@@ -28,11 +28,20 @@ NotLogin.args = {
   }
 }
 
-export const Login = Template.bind({})
-Login.args = {
+export const LoginLiked = Template.bind({})
+LoginLiked.args = {
   product: {
-    ...NotLogin.args.product,
+    ...Default.args.product,
     is_likes: true
+  },
+  isLogin: true,
+}
+
+export const LoginNotLiked = Template.bind({})
+LoginNotLiked.args = {
+  product: {
+    ...Default.args.product,
+    is_likes: false
   },
   isLogin: true,
 }

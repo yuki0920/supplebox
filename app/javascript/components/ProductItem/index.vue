@@ -9,12 +9,9 @@
         >
       </div>
       <div class="o-product-item__body  card-body">
-        <p class="card-title">
-          {{ product.brand_amazon_name }}
-        </p>
-        <p class="card-text">
-          <a :href="product.product_link">{{ product.title }}</a>
-        </p>
+        {{ product.brand_amazon_name }}
+        <br>
+        <a :href="product.product_link">{{ product.title }}</a>
         <div class="star">
           <small>評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)</small>
         </div>
