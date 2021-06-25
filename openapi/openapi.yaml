@@ -75,7 +75,7 @@ paths:
                   products:
                     type: array
                     items:
-                      $ref: "#/components/schemas/products"
+                      $ref: "#/components/schemas/searchProducts"
   /api/posts:
     get:
       operationId: fetchPosts
@@ -236,13 +236,17 @@ components:
     products:
       type: object
       required:
+        - id
         - title
         - image_url
+        - brand_amazon_name
         - product_link
         - post_count
         - rate
         - likes
       properties:
+        id:
+          type: number
         title:
           type: string
         image_url:
@@ -257,6 +261,27 @@ components:
           type: number
         likes:
           type: integer
+    searchProducts:
+      type: object
+      required:
+        - id
+        - title
+        - image_url
+        - brand_amazon_name
+        - product_link
+      properties:
+        id:
+          type: number
+          nullable: true
+        title:
+          type: string
+        image_url:
+          type: string
+        brand_amazon_name:
+          type: string
+        product_link:
+          type: string
+          nullable: true
     contact:
       type: object
       required:

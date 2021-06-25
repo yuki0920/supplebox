@@ -12,4 +12,4 @@ products = @products.map {|product|
   }
 }
 
-{ total_pages: @products&.total_pages, products: @products }
+{ total_pages: @products&.total_pages, products: products }
