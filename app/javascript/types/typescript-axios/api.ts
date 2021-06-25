@@ -632,6 +632,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
+         * @summary Like Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        likeProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('likeProduct', 'id', id)
+            const localVarPath = `/api/products/{id}/like`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Post Contact
          * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
@@ -687,6 +721,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (keyword !== undefined) {
                 localVarQueryParameter['keyword'] = keyword;
             }
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Unlike Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unlikeProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('unlikeProduct', 'id', id)
+            const localVarPath = `/api/products/{id}/like`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
 
@@ -827,6 +895,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @summary Like Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async likeProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.likeProduct(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @summary Post Contact
          * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
@@ -845,6 +924,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async searchProductsFromAmazon(keyword?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchProductsFromAmazon(keyword, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @summary Unlike Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unlikeProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unlikeProduct(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -936,6 +1026,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          *
+         * @summary Like Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        likeProduct(id: number, options?: any): AxiosPromise<object> {
+            return localVarFp.likeProduct(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @summary Post Contact
          * @param {Contact} [contact] 問い合わせに必要なパラメータ
          * @param {*} [options] Override http request option.
@@ -953,6 +1053,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         searchProductsFromAmazon(keyword?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return localVarFp.searchProductsFromAmazon(keyword, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Unlike Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unlikeProduct(id: number, options?: any): AxiosPromise<object> {
+            return localVarFp.unlikeProduct(id, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1054,6 +1164,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      *
+     * @summary Like Product
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public likeProduct(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).likeProduct(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
      * @summary Post Contact
      * @param {Contact} [contact] 問い合わせに必要なパラメータ
      * @param {*} [options] Override http request option.
@@ -1074,6 +1196,18 @@ export class DefaultApi extends BaseAPI {
      */
     public searchProductsFromAmazon(keyword?: string, options?: any) {
         return DefaultApiFp(this.configuration).searchProductsFromAmazon(keyword, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Unlike Product
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public unlikeProduct(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).unlikeProduct(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
