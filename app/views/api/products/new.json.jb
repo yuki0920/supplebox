@@ -1,11 +1,13 @@
-products = @products.map {|product|
+# frozen_string_literal: true
+
+products = @products.map do |product|
   {
     id: product.id,
     title: product.title,
     image_url: product.image_url,
     brand_amazon_name: product.brand_amazon_name,
-    product_link: product.persisted? ? product_path(product) : nil,
+    product_link: product.persisted? ? product_path(product) : nil
   }
-}
+end
 
-{ products: products }
+{products: products}

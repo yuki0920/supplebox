@@ -1,4 +1,6 @@
-products = @products.map {|product|
+# frozen_string_literal: true
+
+products = @products.map do |product|
   {
     id: product.id,
     title: product.title,
@@ -6,10 +8,10 @@ products = @products.map {|product|
     brand_amazon_name: product.brand_amazon_name,
     product_link: product_path(product),
     post_count: product.posts.size,
-    rate: product.posts.present? ? ((product.posts.pluck(:rate).sum / product.posts.size).round(1)) : 0,
+    rate: product.posts.present? ? (product.posts.pluck(:rate).sum / product.posts.size).round(1) : 0,
     likes: product.likes.size,
-    is_likes: current_user&.like(product),
+    is_likes: current_user&.like(product)
   }
-}
+end
 
-{ total_pages: @products&.total_pages, products: products }
+{total_pages: @products&.total_pages, products: products}
