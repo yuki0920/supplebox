@@ -11,7 +11,7 @@ describe 'アイテム登録機能', type: :system do
   describe '検索機能' do
     it 'アイテムを検索し登録できること' do
       sign_in_as user
-      VCR.insert_cassette('system/api_response', match_requests_on: [Vacuum::Matcher]) do
+      VCR.insert_cassette('system/products/new', match_requests_on: [Vacuum::Matcher]) do
         visit new_product_path
         fill_in 'keyword', with: 'プロテイン'
         click_on 'アイテムを検索'

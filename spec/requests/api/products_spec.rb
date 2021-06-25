@@ -34,11 +34,13 @@ RSpec.describe '/api/products', type: :request do
     end
 
     it 'スキーマ定義とAPIの挙動が同じであること' do
-      query = URI.encode_www_form(keyword: 'プロテイン')
-      get "/api/products/new?#{query}"
+      VCR.insert_cassette('requests/api/products/new', match_requests_on: [Vacuum::Matcher]) do
+        query = URI.encode_www_form(keyword: 'プロテイン')
+        get "/api/products/new?#{query}"
 
-      assert_request_schema_confirm
-      assert_response_schema_confirm
+        assert_request_schema_confirm
+        assert_response_schema_confirm
+      end
     end
   end
 end
