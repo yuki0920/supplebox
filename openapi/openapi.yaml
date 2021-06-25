@@ -20,13 +20,24 @@ paths:
       summary: Get and Search Products
       parameters:
         - in: query
+          name: per
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+        - in: query
           name: next_page
           schema:
             type: integer
         - in: query
-          name: limit
+          name: q
+          description: For Product Search API
           schema:
-            type: integer
+            type: string
       responses:
         200:
           description: get products
@@ -41,6 +52,30 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/products"
+  /api/products/new:
+    get:
+      operationId: searchProductsFromAmazon
+      summary: Search Products From Amazon
+      parameters:
+        - in: query
+          name: keyword
+          description: For Amazon Product API
+          schema:
+            type: string
+      responses:
+        200:
+          description: get products
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - products
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/searchProducts"
   /api/posts:
     get:
       operationId: fetchPosts
@@ -201,13 +236,17 @@ components:
     products:
       type: object
       required:
+        - id
         - title
         - image_url
+        - brand_amazon_name
         - product_link
         - post_count
         - rate
         - likes
       properties:
+        id:
+          type: number
         title:
           type: string
         image_url:
@@ -222,6 +261,27 @@ components:
           type: number
         likes:
           type: integer
+    searchProducts:
+      type: object
+      required:
+        - id
+        - title
+        - image_url
+        - brand_amazon_name
+        - product_link
+      properties:
+        id:
+          type: number
+          nullable: true
+        title:
+          type: string
+        image_url:
+          type: string
+        brand_amazon_name:
+          type: string
+        product_link:
+          type: string
+          nullable: true
     contact:
       type: object
       required:

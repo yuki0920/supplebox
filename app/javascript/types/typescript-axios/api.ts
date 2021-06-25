@@ -124,14 +124,27 @@ export interface InlineResponse200 {
 export interface InlineResponse2001 {
     /**
      *
-     * @type {number}
+     * @type {Array<SearchProducts>}
      * @memberof InlineResponse2001
+     */
+    products: Array<SearchProducts>;
+}
+/**
+ *
+ * @export
+ * @interface InlineResponse2002
+ */
+export interface InlineResponse2002 {
+    /**
+     *
+     * @type {number}
+     * @memberof InlineResponse2002
      */
     total_pages: number;
     /**
      *
      * @type {Array<Posts>}
-     * @memberof InlineResponse2001
+     * @memberof InlineResponse2002
      */
     posts: Array<Posts>;
 }
@@ -279,6 +292,12 @@ export interface PostsUser {
 export interface Products {
     /**
      *
+     * @type {number}
+     * @memberof Products
+     */
+    id: number;
+    /**
+     *
      * @type {string}
      * @memberof Products
      */
@@ -294,7 +313,7 @@ export interface Products {
      * @type {string}
      * @memberof Products
      */
-    brand_amazon_name?: string;
+    brand_amazon_name: string;
     /**
      *
      * @type {string}
@@ -319,6 +338,43 @@ export interface Products {
      * @memberof Products
      */
     likes: number;
+}
+/**
+ *
+ * @export
+ * @interface SearchProducts
+ */
+export interface SearchProducts {
+    /**
+     *
+     * @type {number}
+     * @memberof SearchProducts
+     */
+    id: number | null;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    title: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    image_url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    brand_amazon_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    product_link: string | null;
 }
 
 /**
@@ -523,12 +579,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          *
          * @summary Get and Search Products
+         * @param {number} per
+         * @param {number} page
          * @param {number} [nextPage]
-         * @param {number} [limit]
+         * @param {string} [q] For Product Search API
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts: async (nextPage?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
+        fetchProducts: async (per: number, page: number, nextPage?: number, q?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'per' is not null or undefined
+            assertParamExists('fetchProducts', 'per', per)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('fetchProducts', 'page', page)
             const localVarPath = `/api/products`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -541,12 +603,20 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (per !== undefined) {
+                localVarQueryParameter['per'] = per;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
             if (nextPage !== undefined) {
                 localVarQueryParameter['next_page'] = nextPage;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
+            if (q !== undefined) {
+                localVarQueryParameter['q'] = q;
             }
 
 
@@ -588,6 +658,41 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(contact, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Search Products From Amazon
+         * @param {string} [keyword] For Amazon Product API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchProductsFromAmazon: async (keyword?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/products/new`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (keyword !== undefined) {
+                localVarQueryParameter['keyword'] = keyword;
+            }
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -702,20 +807,22 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchPosts(per, page, userId, productId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          *
          * @summary Get and Search Products
+         * @param {number} per
+         * @param {number} page
          * @param {number} [nextPage]
-         * @param {number} [limit]
+         * @param {string} [q] For Product Search API
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchProducts(nextPage?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(nextPage, limit, options);
+        async fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(per, page, nextPage, q, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -727,6 +834,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async postContact(contact?: Contact, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postContact(contact, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @summary Search Products From Amazon
+         * @param {string} [keyword] For Amazon Product API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchProductsFromAmazon(keyword?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchProductsFromAmazon(keyword, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -800,19 +918,21 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any): AxiosPromise<InlineResponse2001> {
+        fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.fetchPosts(per, page, userId, productId, options).then((request) => request(axios, basePath));
         },
         /**
          *
          * @summary Get and Search Products
+         * @param {number} per
+         * @param {number} page
          * @param {number} [nextPage]
-         * @param {number} [limit]
+         * @param {string} [q] For Product Search API
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts(nextPage?: number, limit?: number, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.fetchProducts(nextPage, limit, options).then((request) => request(axios, basePath));
+        fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.fetchProducts(per, page, nextPage, q, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -823,6 +943,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         postContact(contact?: Contact, options?: any): AxiosPromise<object> {
             return localVarFp.postContact(contact, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Search Products From Amazon
+         * @param {string} [keyword] For Amazon Product API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchProductsFromAmazon(keyword?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.searchProductsFromAmazon(keyword, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -910,14 +1040,16 @@ export class DefaultApi extends BaseAPI {
     /**
      *
      * @summary Get and Search Products
+     * @param {number} per
+     * @param {number} page
      * @param {number} [nextPage]
-     * @param {number} [limit]
+     * @param {string} [q] For Product Search API
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public fetchProducts(nextPage?: number, limit?: number, options?: any) {
-        return DefaultApiFp(this.configuration).fetchProducts(nextPage, limit, options).then((request) => request(this.axios, this.basePath));
+    public fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any) {
+        return DefaultApiFp(this.configuration).fetchProducts(per, page, nextPage, q, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -930,6 +1062,18 @@ export class DefaultApi extends BaseAPI {
      */
     public postContact(contact?: Contact, options?: any) {
         return DefaultApiFp(this.configuration).postContact(contact, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Search Products From Amazon
+     * @param {string} [keyword] For Amazon Product API
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public searchProductsFromAmazon(keyword?: string, options?: any) {
+        return DefaultApiFp(this.configuration).searchProductsFromAmazon(keyword, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
