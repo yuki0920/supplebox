@@ -62,7 +62,7 @@ export default {
   setup() {
     const products = ref([]);
     const fetchProducts = async () => {
-      const { data } = await new DefaultApi().fetchProducts(null, 4);
+      const { data } = await new DefaultApi().fetchProducts(4, 1);
 
       products.value = data.products;
     };
