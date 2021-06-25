@@ -16,37 +16,50 @@
           <a :href="product.product_link">{{ product.title }}</a>
         </p>
         <div class="star">
-          <!-- <StarRating
-            :increment="0.1"
-            :rating="0"
-            :star-size="14"
-            :show-rating="false"
-            read-only
-          /> -->
           <small>評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)</small>
         </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted text-center">
-          {{ product.likes }} Likes
-        </small>
+      <div
+        v-if="isLogin"
+        class="o-product-item__like-button-container"
+      >
+        <a
+          v-if="product.is_likes"
+          class="o-product-item__like-button btn btn-success"
+          href="javascript:void(0)"
+          @click="like(product.id)"
+        >お気に入り登録中</a>
+        <a
+          v-else
+          class="o-product-item__like-button btn btn-outline-success"
+          href="javascript:void(0)"
+          @click="like(product.id)"
+        >お気に入り登録する</a>
       </div>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted text-center">
+        {{ product.likes }} Likes
+      </small>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-// import StarRating from 'vue-star-rating'
 
 export default {
   name: 'ProductItem',
   components: {
-    // StarRating
   },
   props: {
     product: {
       type: Object,
       required: true
+    },
+    isLogin: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 }
@@ -65,6 +78,10 @@ export default {
   }
   &__body {
     padding: 6px;
+  }
+  &__like-button {
+    font-size: 0.8em;
+    display: block;
   }
 }
 </style>
