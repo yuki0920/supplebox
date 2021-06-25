@@ -5,7 +5,7 @@ class LikesController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    current_user.like(@product)
+    current_user.like!(@product)
     respond_to do |format|
       format.html do
         flash[:success] = 'お気に入り登録をしました。'
@@ -17,7 +17,7 @@ class LikesController < ApplicationController
 
   def destroy
     @product = Product.find(params[:product_id])
-    current_user.unlike(@product)
+    current_user.unlike!(@product)
     respond_to do |format|
       format.html do
         flash[:success] = 'お気に入り登録を解除しました。'

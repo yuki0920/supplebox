@@ -212,6 +212,39 @@ paths:
             application/json:
               schema:
                 type: object
+  /api/products/{product_id}/like:
+    post:
+      operationId: likeProduct
+      summary: Like Product
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Liked the product
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: unlikeProduct
+      summary: Unlike Product
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Unliked the product
+          content:
+            application/json:
+              schema:
+                type: object
 components:
   schemas:
     currentUser:
