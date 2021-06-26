@@ -4,8 +4,7 @@ class ProductsController < ApplicationController
   before_action :require_user_logged_in, only: %i[new]
   before_action :set_product, only: %i[show]
 
-  def new
-  end
+  def new; end
 
   def show
     @post = Post.new
