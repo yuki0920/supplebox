@@ -19,6 +19,12 @@ module Api
       render 'index.json.jb'
     end
 
+    def show
+      @product = Product.find(params[:id])
+
+      render 'show.json.jb'
+    end
+
     def new
       @products = Product.build_with_items(params[:keyword])
 

@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+{
+  product: {
+    id: @product.id,
+    title: @product.title,
+    image_url: @product.image_url,
+    brand_amazon_name: @product.brand_amazon_name,
+    price: number_with_delimiter(@product.price),
+    is_liked: current_user&.like?(@product)
+  }
+}

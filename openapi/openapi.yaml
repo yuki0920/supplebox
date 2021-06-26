@@ -55,6 +55,7 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/products"
+
     post:
       operationId: createProduct
       summary: Create Product
@@ -95,6 +96,23 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/searchProducts"
+  /api/products/{id}:
+    get:
+      operationId: fetchProduct
+      summary: Get Product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: get product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/product"
   /api/posts:
     get:
       operationId: fetchPosts
@@ -313,6 +331,34 @@ components:
           type: number
         likes:
           type: integer
+    product:
+      type: object
+      required:
+        - product
+      properties:
+        product:
+          type: object
+          required:
+            - id
+            - title
+            - image_url
+            - brand_amazon_name
+            - price
+            - is_liked
+          properties:
+            id:
+              type: number
+            title:
+              type: string
+            image_url:
+              type: string
+            brand_amazon_name:
+              type: string
+            price:
+              type: string
+            is_liked:
+              type: boolean
+              nullable: true
     searchProducts:
       type: object
       required:
