@@ -27,20 +27,11 @@
         v-if="isLoggedIn"
         class="o-product-item__button-container"
       >
-        <template v-if="!isNewPage">
-          <a
-            v-if="isLiked"
-            class="o-product-item__button btn btn-success"
-            href="javascript:void(0)"
-            @click="unlike(product.id)"
-          >お気に入り登録中</a>
-          <a
-            v-else
-            class="o-product-item__button btn btn-outline-success"
-            href="javascript:void(0)"
-            @click="like(product.id)"
-          >お気に入り登録する</a>
-        </template>
+        <LikeButton
+          v-if="!isNewPage"
+          :product-id="product.id"
+          :is-liked="product.is_likes"
+        />
         <template v-else>
           <a
             v-if="isCreated"
@@ -58,9 +49,12 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
+import LikeButton from '@/components/LikeButton/index.vue'
+
 export default {
   name: 'ProductItem',
   components: {
+    LikeButton
   },
   props: {
     product: {
@@ -79,17 +73,6 @@ export default {
     }
   },
   setup(props) {
-    const isLiked = ref(props.product.is_likes)
-
-    const like = async(id: number) => {
-      await new DefaultApi().likeProduct(id)
-      isLiked.value = !isLiked.value
-    }
-    const unlike = async(id: number) => {
-      await new DefaultApi().unlikeProduct(id)
-      isLiked.value = !isLiked.value
-    }
-
     const isCreated = ref(props.product.id === null)
     const create = async() => {
       const params = { product: {
@@ -105,10 +88,7 @@ export default {
       isCreated.value = !isCreated.value
     }
     return {
-      isLiked,
       isCreated,
-      like,
-      unlike,
       create
     }
   }
