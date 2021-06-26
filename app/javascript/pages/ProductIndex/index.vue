@@ -49,6 +49,7 @@ export default {
     Paginator,
   },
   setup() {
+    // TODO: 共通化したい
     const store = useStore()
     const getCurrentUser = async () => {
       store.dispatch('fetchCurrentUser')

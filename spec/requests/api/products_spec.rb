@@ -26,6 +26,17 @@ RSpec.describe '/api/products', type: :request do
     end
   end
 
+  describe 'GET /api/products/:id' do
+    let(:product) { create(:product) }
+
+    it 'スキーマ定義とAPIの挙動が同じであること' do
+      get "/api/products/#{product.id}"
+
+      assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
+
   describe 'GET /api/products/new' do
     before do
       user = create(:user)

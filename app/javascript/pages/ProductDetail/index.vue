@@ -1,5 +1,9 @@
 <template>
   <div class="p-product-detail">
+    <ProductSummary
+      :product="product"
+      :is-logged-in="isLoggedIn"
+    />
     <PostItem
       v-for="post in posts"
       :key="post.id"
@@ -25,17 +29,37 @@
 <script lang="ts">
 import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
+import ProductSummary from '@/components/ProductSummary/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
+import { useStore } from '@/store'
 import { DefaultApi } from "@/types/typescript-axios/api"
 
 export default {
   name: 'ProductDetail',
-  components: { PostItem, FlashMessage, PostForm },
+  components: { ProductSummary, PostItem, FlashMessage, PostForm },
 
   setup() {
+    // ユーザーログイン情報取得
+    // TODO: 共通化したい
+    const store = useStore()
+    const getCurrentUser = async () => {
+      store.dispatch('fetchCurrentUser')
+    }
+    getCurrentUser()
+    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+
     const productId = parseInt(location.pathname.split("/").slice(-1)[0])
+
+    // 商品取得ロジック
+    const product = ref({})
+    const fetchProduct = async() => {
+      const {data} = await new DefaultApi().fetchProduct(productId)
+
+      product.value = data.product
+    }
+    fetchProduct()
 
     // 口コミ一覧ロジック
     const posts = ref([])
@@ -103,6 +127,8 @@ export default {
       }
     }
     return {
+      isLoggedIn,
+      product,
       posts,
       title,
       rate,

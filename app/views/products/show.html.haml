@@ -1,28 +1,5 @@
 - set_meta_tags title: @product.title, description: "#{@product.title}の口コミです。", keywords: "#{@product.title},味,口コミ,評判,レビュー,おいしい,おすすめ"
 - breadcrumb :show_product, @product
-/ アイテム情報
-%h2 アイテム詳細情報
-.row
-  .col-md-4
-    .product_detail.card.mb-3
-      %img{alt: "", src: "#{@product.image_url}"}/
-  .col-md-8
-    %h4= @product.title
-    %table.table
-      %tbody
-        %tr
-          %th 価格
-          %td
-            ¥#{number_with_delimiter(@product.price)}
-        %tr
-          %th ブランド
-          %td
-            = @product.brand_amazon_name
-    .buttons.text-center
-      = link_to '楽天で詳しく見る', 'https://hb.afl.rakuten.co.jp/hgc/169cb48b.e76a4cfb.169cb48c.b496683c/?pc=http://search.rakuten.co.jp/search/mall?sitem=#{@product.brand_amazon_name}+プロテイン&m=http://m.rakuten.co.jp/', target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-danger'
-      = link_to 'Amazonで詳しく見る', @product.url.html_safe, target: '_blank', rel: 'noopener', class: 'btn btn-lg btn-outline-warning'
 
-      = render 'likes/like_button', product: @product
-/ 口コミ投稿 & 口コミ一覧
 #product_detail
   = javascript_pack_tag 'product_detail'

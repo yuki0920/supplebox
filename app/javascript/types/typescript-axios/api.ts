@@ -349,6 +349,62 @@ export interface PostsUser {
 /**
  *
  * @export
+ * @interface Product
+ */
+export interface Product {
+    /**
+     *
+     * @type {ProductProduct}
+     * @memberof Product
+     */
+    product: ProductProduct;
+}
+/**
+ *
+ * @export
+ * @interface ProductProduct
+ */
+export interface ProductProduct {
+    /**
+     *
+     * @type {number}
+     * @memberof ProductProduct
+     */
+    id: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ProductProduct
+     */
+    title: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProductProduct
+     */
+    image_url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProductProduct
+     */
+    brand_amazon_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProductProduct
+     */
+    price: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ProductProduct
+     */
+    is_liked: boolean | null;
+}
+/**
+ *
+ * @export
  * @interface Products
  */
 export interface Products {
@@ -692,6 +748,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
+         * @summary Get Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('fetchProduct', 'id', id)
+            const localVarPath = `/api/products/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get and Search Products
          * @param {number} per
          * @param {number} page
@@ -1006,6 +1096,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @summary Get Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProduct(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @summary Get and Search Products
          * @param {number} per
          * @param {number} page
@@ -1145,6 +1246,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any): AxiosPromise<InlineResponse2002> {
             return localVarFp.fetchPosts(per, page, userId, productId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Get Product
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchProduct(id: number, options?: any): AxiosPromise<Product> {
+            return localVarFp.fetchProduct(id, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1292,6 +1403,18 @@ export class DefaultApi extends BaseAPI {
      */
     public fetchPosts(per: number, page: number, userId?: number, productId?: number, options?: any) {
         return DefaultApiFp(this.configuration).fetchPosts(per, page, userId, productId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Get Product
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public fetchProduct(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchProduct(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
