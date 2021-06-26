@@ -18,6 +18,11 @@ export const store = createStore<State>({
   state: {
     currentUser: null
   },
+  getters: {
+    isLoggedIn(state) {
+      return state.currentUser !== null
+    }
+  },
   mutations: {
     setCurrentUser(state, user: CurrentUser | null) {
       state.currentUser = user

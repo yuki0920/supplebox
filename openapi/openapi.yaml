@@ -52,6 +52,22 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/products"
+    post:
+      operationId: createProduct
+      summary: Create Product
+      requestBody:
+        description: プロテイン登録に必要なパラメーター
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createProduct"
+      responses:
+        200:
+          description: create product
+          content:
+            application/json:
+              schema:
+                type: object
   /api/products/new:
     get:
       operationId: searchProductsFromAmazon
@@ -302,6 +318,9 @@ components:
         - image_url
         - brand_amazon_name
         - product_link
+        - url
+        - asin
+        - price
       properties:
         id:
           type: number
@@ -315,6 +334,39 @@ components:
         product_link:
           type: string
           nullable: true
+        url:
+          type: string
+        asin:
+          type: string
+        price:
+          type: number
+    createProduct:
+      type: object
+      required:
+        - product
+      properties:
+        product:
+          type: object
+          required:
+            - title
+            - image_url
+            - brand_amazon_name
+            - url
+            - asin
+            - price
+          properties:
+            title:
+              type: string
+            image_url:
+              type: string
+            brand_amazon_name:
+              type: string
+            url:
+              type: string
+            asin:
+              type: string
+            price:
+              type: number
     contact:
       type: object
       required:

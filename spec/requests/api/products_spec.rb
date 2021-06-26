@@ -43,4 +43,16 @@ RSpec.describe '/api/products', type: :request do
       end
     end
   end
+
+  describe 'POST /api/products' do
+    let(:headers) { {'Content-Type' => 'application/json'} }
+    let(:params) { {product: attributes_for(:product)}.to_json }
+
+    it 'スキーマ定義とAPIの挙動が同じであること' do
+      post '/api/products', params: params, headers: headers
+
+      assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
 end

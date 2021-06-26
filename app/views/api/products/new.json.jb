@@ -6,7 +6,10 @@ products = @products.map do |product|
     title: product.title,
     image_url: product.image_url,
     brand_amazon_name: product.brand_amazon_name,
-    product_link: product.persisted? ? product_path(product) : nil
+    product_link: product.persisted? ? product_path(product) : nil,
+    url: product.url,
+    asin: product.asin,
+    price: product.price
   }
 end
 

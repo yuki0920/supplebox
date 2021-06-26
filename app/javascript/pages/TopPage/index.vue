@@ -12,6 +12,7 @@
     <section class="p-toppage__products-container">
       <h2>お気に入りアイテムランキング</h2>
       <ProductItems
+        :is-logged-in="isLoggedIn"
         :products="products"
         class="p-toppage__products"
       />
@@ -46,11 +47,12 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
-import ServiceDescription from "@/components/ServiceDescription/index.vue";
-import ProductItems from "@/components/ProductItems/index.vue";
-import PostItem from "@/components/PostItem/index.vue";
-import { DefaultApi } from "@/types/typescript-axios/api";
+import { ref, computed } from "vue"
+import { useStore } from '@/store'
+import ServiceDescription from "@/components/ServiceDescription/index.vue"
+import ProductItems from "@/components/ProductItems/index.vue"
+import PostItem from "@/components/PostItem/index.vue"
+import { DefaultApi } from "@/types/typescript-axios/api"
 
 export default {
   name: 'TopPage',
@@ -60,28 +62,36 @@ export default {
     PostItem,
   },
   setup() {
-    const products = ref([]);
+    const store = useStore()
+    const getCurrentUser = async () => {
+      store.dispatch('fetchCurrentUser')
+    }
+    getCurrentUser()
+    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+
+    const products = ref([])
     const fetchProducts = async () => {
-      const { data } = await new DefaultApi().fetchProducts(4, 1);
+      const { data } = await new DefaultApi().fetchProducts(4, 1)
 
-      products.value = data.products;
-    };
-    fetchProducts();
+      products.value = data.products
+    }
+    fetchProducts()
 
-    const posts = ref([]);
+    const posts = ref([])
     const fetchPosts = async () => {
-      const { data } = await new DefaultApi().fetchPosts(3, 1);
+      const { data } = await new DefaultApi().fetchPosts(3, 1)
 
-      posts.value = data.posts;
-    };
-    fetchPosts();
+      posts.value = data.posts
+    }
+    fetchPosts()
 
     return {
+      isLoggedIn,
       products,
       posts,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

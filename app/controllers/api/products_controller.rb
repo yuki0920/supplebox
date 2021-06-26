@@ -22,5 +22,19 @@ module Api
 
       render 'new.json.jb'
     end
+
+    def create
+      product = Product.new(product_params)
+
+      product.save!
+
+      render json: {message: 'Product has been created successfully'}
+    end
+
+    private
+
+    def product_params
+      params.require(:product).permit(:title, :url, :image_url, :asin, :price, :brand_amazon_name)
+    end
   end
 end

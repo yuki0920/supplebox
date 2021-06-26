@@ -68,6 +68,62 @@ export interface ContactContacts {
 /**
  *
  * @export
+ * @interface CreateProduct
+ */
+export interface CreateProduct {
+    /**
+     *
+     * @type {CreateProductProduct}
+     * @memberof CreateProduct
+     */
+    product: CreateProductProduct;
+}
+/**
+ *
+ * @export
+ * @interface CreateProductProduct
+ */
+export interface CreateProductProduct {
+    /**
+     *
+     * @type {string}
+     * @memberof CreateProductProduct
+     */
+    title: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateProductProduct
+     */
+    image_url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateProductProduct
+     */
+    brand_amazon_name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateProductProduct
+     */
+    url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateProductProduct
+     */
+    asin: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CreateProductProduct
+     */
+    price: number;
+}
+/**
+ *
+ * @export
  * @interface CurrentUser
  */
 export interface CurrentUser {
@@ -375,6 +431,24 @@ export interface SearchProducts {
      * @memberof SearchProducts
      */
     product_link: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchProducts
+     */
+    asin: string;
+    /**
+     *
+     * @type {number}
+     * @memberof SearchProducts
+     */
+    price: number;
 }
 
 /**
@@ -418,6 +492,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Create Product
+         * @param {CreateProduct} [createProduct] プロテイン登録に必要なパラメーター
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createProduct: async (createProduct?: CreateProduct, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/products`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createProduct, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -633,15 +741,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          *
          * @summary Like Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        likeProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('likeProduct', 'id', id)
-            const localVarPath = `/api/products/{id}/like`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        likeProduct: async (productId: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('likeProduct', 'productId', productId)
+            const localVarPath = `/api/products/{product_id}/like`
+                .replace(`{${"product_id"}}`, encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -736,15 +844,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          *
          * @summary Unlike Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unlikeProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('unlikeProduct', 'id', id)
-            const localVarPath = `/api/products/{id}/like`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        unlikeProduct: async (productId: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('unlikeProduct', 'productId', productId)
+            const localVarPath = `/api/products/{product_id}/like`
+                .replace(`{${"product_id"}}`, encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -835,6 +943,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @summary Create Product
+         * @param {CreateProduct} [createProduct] プロテイン登録に必要なパラメーター
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createProduct(createProduct?: CreateProduct, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createProduct(createProduct, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @summary Delete Post
          * @param {number} id
          * @param {*} [options] Override http request option.
@@ -896,12 +1015,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          *
          * @summary Like Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async likeProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.likeProduct(id, options);
+        async likeProduct(productId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.likeProduct(productId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -929,12 +1048,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          *
          * @summary Unlike Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unlikeProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.unlikeProduct(id, options);
+        async unlikeProduct(productId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unlikeProduct(productId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -968,6 +1087,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         createPost(post: PostPost, options?: any): AxiosPromise<object> {
             return localVarFp.createPost(post, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Create Product
+         * @param {CreateProduct} [createProduct] プロテイン登録に必要なパラメーター
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createProduct(createProduct?: CreateProduct, options?: any): AxiosPromise<object> {
+            return localVarFp.createProduct(createProduct, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1027,12 +1156,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          *
          * @summary Like Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        likeProduct(id: number, options?: any): AxiosPromise<object> {
-            return localVarFp.likeProduct(id, options).then((request) => request(axios, basePath));
+        likeProduct(productId: number, options?: any): AxiosPromise<object> {
+            return localVarFp.likeProduct(productId, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1057,12 +1186,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          *
          * @summary Unlike Product
-         * @param {number} id
+         * @param {number} productId
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unlikeProduct(id: number, options?: any): AxiosPromise<object> {
-            return localVarFp.unlikeProduct(id, options).then((request) => request(axios, basePath));
+        unlikeProduct(productId: number, options?: any): AxiosPromise<object> {
+            return localVarFp.unlikeProduct(productId, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1095,6 +1224,18 @@ export class DefaultApi extends BaseAPI {
      */
     public createPost(post: PostPost, options?: any) {
         return DefaultApiFp(this.configuration).createPost(post, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Create Product
+     * @param {CreateProduct} [createProduct] プロテイン登録に必要なパラメーター
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public createProduct(createProduct?: CreateProduct, options?: any) {
+        return DefaultApiFp(this.configuration).createProduct(createProduct, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1165,13 +1306,13 @@ export class DefaultApi extends BaseAPI {
     /**
      *
      * @summary Like Product
-     * @param {number} id
+     * @param {number} productId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public likeProduct(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).likeProduct(id, options).then((request) => request(this.axios, this.basePath));
+    public likeProduct(productId: number, options?: any) {
+        return DefaultApiFp(this.configuration).likeProduct(productId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1201,13 +1342,13 @@ export class DefaultApi extends BaseAPI {
     /**
      *
      * @summary Unlike Product
-     * @param {number} id
+     * @param {number} productId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public unlikeProduct(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).unlikeProduct(id, options).then((request) => request(this.axios, this.basePath));
+    public unlikeProduct(productId: number, options?: any) {
+        return DefaultApiFp(this.configuration).unlikeProduct(productId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

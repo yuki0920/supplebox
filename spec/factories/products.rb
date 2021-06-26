@@ -9,6 +9,5 @@ FactoryBot.define do
     sequence(:asin) { |n| "TESTPRODUCT#{n}" }
     price { 100 }
     brand_amazon_name { 'テストブランド' }
-    official_url { 'official_url' }
   end
 end
