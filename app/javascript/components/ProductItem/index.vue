@@ -12,37 +12,51 @@
         {{ product.brand_amazon_name }}
         <br>
         <a :href="product.product_link">{{ product.title }}</a>
-        <div class="star">
-          <small>評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)</small>
+        <div
+          v-if="!isNewPage"
+          class="o-product-item__rate"
+        >
+          <small>
+            評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)
+            <br>
+            お気に入り登録 {{ product.likes }} 人
+          </small>
         </div>
       </div>
       <div
-        v-if="isLogin"
-        class="o-product-item__like-button-container"
+        v-if="isLoggedIn"
+        class="o-product-item__button-container"
       >
-        <a
-          v-if="product.is_likes"
-          class="o-product-item__like-button btn btn-success"
-          href="javascript:void(0)"
-          @click="like(product.id)"
-        >お気に入り登録中</a>
-        <a
-          v-else
-          class="o-product-item__like-button btn btn-outline-success"
-          href="javascript:void(0)"
-          @click="like(product.id)"
-        >お気に入り登録する</a>
+        <template v-if="!isNewPage">
+          <a
+            v-if="product.is_likes"
+            class="o-product-item__button btn btn-success"
+            href="javascript:void(0)"
+            @click="unlike(product.id)"
+          >お気に入り登録中</a>
+          <a
+            v-else
+            class="o-product-item__button btn btn-outline-success"
+            href="javascript:void(0)"
+            @click="like(product.id)"
+          >お気に入り登録する</a>
+        </template>
+        <template v-else>
+          <a
+            v-if="product.id === null"
+            class="o-product-item__button btn btn-success"
+            href="javascript:void(0)"
+            @click="create"
+          >プロテインを登録する</a>
+          <span v-else>登録済み</span>
+        </template>
       </div>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted text-center">
-        {{ product.likes }} Likes
-      </small>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { DefaultApi } from '@/types/typescript-axios/api'
 
 export default {
   name: 'ProductItem',
@@ -53,12 +67,42 @@ export default {
       type: Object,
       required: true
     },
-    isLogin: {
+    isLoggedIn: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isNewPage: {
       type: Boolean,
       required: false,
       default: false
     }
   },
+  setup(props) {
+    const like = async(id: number) => {
+      await new DefaultApi().likeProduct(id)
+    }
+    const unlike = async(id: number) => {
+      await new DefaultApi().unlikeProduct(id)
+    }
+    const create = async() => {
+      const params = { product: {
+          title: props.product.title,
+          url: props.product.url,
+          image_url: props.product.image_url,
+          asin: props.product.asin,
+          price: props.product.price,
+          brand_amazon_name: props.product.brand_amazon_name
+        }
+      }
+      await new DefaultApi().createProduct(params)
+    }
+    return {
+      like,
+      unlike,
+      create
+    }
+  }
 }
 </script>
 
@@ -76,7 +120,7 @@ export default {
   &__body {
     padding: 6px;
   }
-  &__like-button {
+  &__button {
     font-size: 0.8em;
     display: block;
   }

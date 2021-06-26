@@ -28,7 +28,7 @@ module Api
 
       product.save!
 
-      render json: { message: 'Product has been created successfully'}
+      render json: {message: 'Product has been created successfully'}
     end
 
     private

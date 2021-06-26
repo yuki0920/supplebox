@@ -3,6 +3,7 @@
     <ProductItem
       v-for="product in products"
       :key="product.id"
+      :is-logged-in="isLoggedIn"
       :product="product"
       class="o-product-items__item"
     />
@@ -18,6 +19,11 @@ export default {
     ProductItem,
   },
   props: {
+    isLoggedIn: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     products: {
       type: Array,
       required: true
