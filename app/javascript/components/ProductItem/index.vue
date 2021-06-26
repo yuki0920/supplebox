@@ -19,7 +19,7 @@
           <small>
             評価: {{ product.rate }} (口コミ {{ product.post_count }} 件)
             <br>
-            お気に入り登録 {{ product.likes }} 人
+            お気に入り登録: {{ product.likes }} 人
           </small>
         </div>
       </div>
@@ -29,7 +29,7 @@
       >
         <template v-if="!isNewPage">
           <a
-            v-if="product.is_likes"
+            v-if="isLiked"
             class="o-product-item__button btn btn-success"
             href="javascript:void(0)"
             @click="unlike(product.id)"
@@ -43,7 +43,7 @@
         </template>
         <template v-else>
           <a
-            v-if="product.id === null"
+            v-if="isCreated"
             class="o-product-item__button btn btn-success"
             href="javascript:void(0)"
             @click="create"
@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
-
 export default {
   name: 'ProductItem',
   components: {
@@ -79,12 +79,18 @@ export default {
     }
   },
   setup(props) {
+    const isLiked = ref(props.product.is_likes)
+
     const like = async(id: number) => {
       await new DefaultApi().likeProduct(id)
+      isLiked.value = !isLiked.value
     }
     const unlike = async(id: number) => {
       await new DefaultApi().unlikeProduct(id)
+      isLiked.value = !isLiked.value
     }
+
+    const isCreated = ref(props.product.id === null)
     const create = async() => {
       const params = { product: {
           title: props.product.title,
@@ -96,8 +102,11 @@ export default {
         }
       }
       await new DefaultApi().createProduct(params)
+      isCreated.value = !isCreated.value
     }
     return {
+      isLiked,
+      isCreated,
       like,
       unlike,
       create
