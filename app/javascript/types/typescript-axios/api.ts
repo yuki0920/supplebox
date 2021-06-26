@@ -167,6 +167,12 @@ export interface CurrentUserUser {
 export interface InlineResponse200 {
     /**
      *
+     * @type {number}
+     * @memberof InlineResponse200
+     */
+    total_pages: number;
+    /**
+     *
      * @type {Array<Products>}
      * @memberof InlineResponse200
      */
@@ -689,12 +695,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get and Search Products
          * @param {number} per
          * @param {number} page
-         * @param {number} [nextPage]
          * @param {string} [q] For Product Search API
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts: async (per: number, page: number, nextPage?: number, q?: string, options: any = {}): Promise<RequestArgs> => {
+        fetchProducts: async (per: number, page: number, q?: string, userId?: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'per' is not null or undefined
             assertParamExists('fetchProducts', 'per', per)
             // verify required parameter 'page' is not null or undefined
@@ -719,12 +725,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['page'] = page;
             }
 
-            if (nextPage !== undefined) {
-                localVarQueryParameter['next_page'] = nextPage;
-            }
-
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['user_id'] = userId;
             }
 
 
@@ -1003,13 +1009,13 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @summary Get and Search Products
          * @param {number} per
          * @param {number} page
-         * @param {number} [nextPage]
          * @param {string} [q] For Product Search API
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(per, page, nextPage, q, options);
+        async fetchProducts(per: number, page: number, q?: string, userId?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchProducts(per, page, q, userId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1145,13 +1151,13 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @summary Get and Search Products
          * @param {number} per
          * @param {number} page
-         * @param {number} [nextPage]
          * @param {string} [q] For Product Search API
+         * @param {number} [userId]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.fetchProducts(per, page, nextPage, q, options).then((request) => request(axios, basePath));
+        fetchProducts(per: number, page: number, q?: string, userId?: number, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.fetchProducts(per, page, q, userId, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1293,14 +1299,14 @@ export class DefaultApi extends BaseAPI {
      * @summary Get and Search Products
      * @param {number} per
      * @param {number} page
-     * @param {number} [nextPage]
      * @param {string} [q] For Product Search API
+     * @param {number} [userId]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public fetchProducts(per: number, page: number, nextPage?: number, q?: string, options?: any) {
-        return DefaultApiFp(this.configuration).fetchProducts(per, page, nextPage, q, options).then((request) => request(this.axios, this.basePath));
+    public fetchProducts(per: number, page: number, q?: string, userId?: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchProducts(per, page, q, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

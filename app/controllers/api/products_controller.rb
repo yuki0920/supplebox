@@ -8,6 +8,8 @@ module Api
       @products =
         if params[:q].present?
           Product.where(['title LIKE ?', "%#{params[:q]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:q]}%"]))
+        elsif params[:user_id].present?
+          User.find(params[:user_id]).products
         else
           Product
         end
