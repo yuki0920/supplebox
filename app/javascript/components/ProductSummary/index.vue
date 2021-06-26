@@ -6,7 +6,7 @@
         <div class="product_detail card mb-3">
           <img
             alt=""
-            src="/assets/default.png"
+            :src="product.image_url"
           >
         </div>
       </div>
@@ -16,7 +16,7 @@
             <tr>
               <th>価格</th>
               <td>
-                {{ product.title }}
+                ¥ {{ product.price }}
               </td>
             </tr>
             <tr>
@@ -27,21 +27,22 @@
             </tr>
           </tbody>
         </table>
-        <div class="buttons text-center">
+        <div class="o-product-summary__buttons">
           <a
             target="_blank"
             rel="noopener"
-            class="btn btn-lg btn-outline-danger"
-            :href="`https://hb.afl.rakuten.co.jp/hgc/169cb48b.e76a4cfb.169cb48c.b496683c/?pc=http://search.rakuten.co.jp/search/mall?sitem=${product.brand_amazon_name}+プロテイン`"
-          >楽天で詳しく見る</a>
-          <a
-            target="_blank"
-            rel="noopener"
-            class="btn btn-lg btn-outline-warning"
+            class="o-product-summary__button btn btn-outline-secondary"
             :href="product.url"
           >Amazonで詳しく見る</a>
+          <a
+            target="_blank"
+            rel="noopener"
+            class="o-product-summary__button btn btn-outline-danger"
+            :href="`https://hb.afl.rakuten.co.jp/hgc/169cb48b.e76a4cfb.169cb48c.b496683c/?pc=http://search.rakuten.co.jp/search/mall?sitem=${product.brand_amazon_name}+プロテイン`"
+          >楽天で詳しく見る</a>
           <LikeButton
-            v-if="LoggedIn"
+            v-if="isLoggedIn"
+            class="o-product-summary__button"
             :product-id="product.id"
             :is-liked="product.is_likes"
           />
@@ -69,11 +70,6 @@ export default {
       required: false,
       default: false
     },
-    isNewPage: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
   },
   setup(props) {
     return {
@@ -84,5 +80,9 @@ export default {
 
 <style lang="scss" scoped>
 .o-product-summary {
+  &__button {
+    display: block;
+    margin-bottom: .5em;
+  }
 }
 </style>

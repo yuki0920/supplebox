@@ -1,6 +1,6 @@
 <template>
   <a
-    v-if="isLiked"
+    v-if="nowLiked"
     class="o-like-buttonm btn btn-success"
     href="javascript:void(0)"
     @click="unlike"

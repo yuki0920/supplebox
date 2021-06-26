@@ -7,40 +7,35 @@ describe 'アイテムお気に入り登録機能', type: :system, js: true do
   let!(:product) { FactoryBot.create(:product, title: 'お気に入りアイテム') }
 
   context 'お気に入り登録していない場合' do
-    it 'お気に入り登録できる' do
+    before do
       sign_in_as user
+    end
+
+    xit 'お気に入りに追加したアイテムがトップページに表示されている' do
       visit product_path(product)
-      expect {
-        click_on 'お気に入り登録'
-      }.to change { Like.count }.by(+1)
-      expect(page).to have_content 'お気に入り登録をしました。'
+      click_on 'お気に入り登録する'
+
+      expect(page).to have_content 'お気に入り登録中'
+
+      visit root_path
+      expect(page).to have_content product.title
     end
   end
 
   context 'お気に入り登録している場合' do
     before do
       sign_in_as user
+      user.like!(product)
+    end
+
+    xit 'お気に入りを解除ししたアイテムがトップページに表示されていない' do
       visit product_path(product)
+      click_on 'お気に入り登録中'
 
-      click_on 'お気に入り登録'
-    end
+      expect(page).to have_content 'お気に入り登録する'
 
-    it 'お気に入りしたアイテムがトップページに表示されている' do
       visit root_path
-      expect(page).to have_content product.title
-    end
-
-    xit 'お気に入りしたアイテムがユーザープロフィールに表示されている' do
-      visit like_products_user_path(user)
-
-      expect(page).to have_content product.title
-    end
-
-    it 'お気に入り登録を解除できる' do
-      expect {
-        click_on 'お気に入り登録中'
-      }.to change { Like.count }.by(-1)
-      expect(page).to have_content 'お気に入り登録を解除しました。'
+      expect(page).not_to have_content product.title
     end
   end
 end
