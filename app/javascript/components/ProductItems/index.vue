@@ -3,6 +3,7 @@
     <ProductItem
       v-for="product in products"
       :key="product.id"
+      :is-new-page="isNewPage"
       :is-logged-in="isLoggedIn"
       :product="product"
       class="o-product-items__item"
@@ -19,6 +20,11 @@ export default {
     ProductItem,
   },
   props: {
+    isNewPage: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isLoggedIn: {
       type: Boolean,
       required: false,

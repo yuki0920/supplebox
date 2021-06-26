@@ -39,12 +39,6 @@ crumb :show_product do |product|
   parent :products
 end
 
-# product#edit
-crumb :edit_product do |product|
-  link '編集', edit_product_path(product)
-  parent :show_product, product
-end
-
 # product#new
 crumb :new_product do
   link 'アイテム登録', new_product_path
