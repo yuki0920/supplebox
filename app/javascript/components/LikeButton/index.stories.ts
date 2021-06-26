@@ -25,17 +25,3 @@ Unlike.args = {
   productId: 1,
   isLiked: true,
 }
-
-export const LargeLike = Template.bind({})
-LargeLike.args = {
-  productId: 1,
-  isLiked: false,
-  isLarge: true,
-}
-
-export const LargeUnlike = Template.bind({})
-LargeUnlike.args = {
-  productId: 1,
-  isLiked: false,
-  isLarge: true,
-}
