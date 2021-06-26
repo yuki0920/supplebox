@@ -30,14 +30,14 @@ paths:
           schema:
             type: integer
         - in: query
-          name: next_page
-          schema:
-            type: integer
-        - in: query
           name: q
           description: For Product Search API
           schema:
             type: string
+        - in: query
+          name: user_id
+          schema:
+            type: integer
       responses:
         200:
           description: get products
@@ -46,8 +46,11 @@ paths:
               schema:
                 type: object
                 required:
+                  - total_pages
                   - products
                 properties:
+                  total_pages:
+                    type: number
                   products:
                     type: array
                     items:
