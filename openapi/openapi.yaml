@@ -14,6 +14,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/currentUser"
+    post:
+      operationId: login
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
+      responses:
+        200:
+          description: Logged in User
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: logout
+      summary: Log out
+      responses:
+        200:
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                type: object
   /api/products:
     get:
       operationId: fetchProducts
@@ -282,6 +307,55 @@ paths:
             application/json:
               schema:
                 type: object
+  /api/users:
+    post:
+      operationId: createPost
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/newUser"
+      responses:
+        200:
+          description: Created user
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/users/{id}:
+    get:
+      operationId: fetchUser
+      summary: Fetch User
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+    put:
+      operationId: updateUser
+      summary: Update User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/editUser"
+      responses:
+        200:
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                type: object
+
 components:
   schemas:
     currentUser:
@@ -524,4 +598,94 @@ components:
               type: string
               format: binary
             picture_url:
+              type: string
+    newUser:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          type: object
+          required:
+            - name
+            - email
+            - password
+            - password_confirmation
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            password_confirmation:
+              type: string
+    editUser:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          type: object
+          required:
+            - picture
+            - name
+            - gender
+            - height
+            - weight
+          properties:
+            picture:
+              type: string
+            name:
+              type: string
+            gender:
+              type: string
+              nullable: true
+            height:
+              type: string
+              nullable: true
+            weight:
+              type: string
+              nullable: true
+    user:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          type: object
+          required:
+            - picture_url
+            - name
+            - gender
+            - height
+            - weight
+          properties:
+            picture_url:
+              type: string
+            name:
+              type: string
+            gender:
+              type: string
+              nullable: true
+            height:
+              type: string
+              nullable: true
+            weight:
+              type: string
+              nullable: true
+    login:
+      type: object
+      required:
+        - session
+      properties:
+        user:
+          type: object
+          required:
+            - email
+            - password
+          properties:
+            name:
+              type: string
+            password:
               type: string
