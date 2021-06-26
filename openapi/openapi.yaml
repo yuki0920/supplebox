@@ -342,6 +342,7 @@ components:
             - id
             - title
             - image_url
+            - url
             - brand_amazon_name
             - price
             - is_liked
@@ -351,6 +352,8 @@ components:
             title:
               type: string
             image_url:
+              type: string
+            url:
               type: string
             brand_amazon_name:
               type: string
