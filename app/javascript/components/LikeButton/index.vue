@@ -28,7 +28,12 @@ export default {
     isLiked: {
       type: Boolean,
       required: true,
-    }
+    },
+    isLarge: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
   },
   setup(props) {
     const nowLiked = ref(props.isLiked)
@@ -53,7 +58,6 @@ export default {
 
 <style lang="scss" scoped>
 .o-product-item {
-// 大きさによって変える
   &__button {
     font-size: 0.8em;
     display: block;
