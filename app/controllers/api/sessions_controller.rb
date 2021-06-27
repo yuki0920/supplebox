@@ -24,6 +24,14 @@ module Api
       render json: {message: 'Logged out successfully'}
     end
 
+    def test_user
+      @user = User.find_by(email: 'test@supplebox.jp')
+
+      session[:user_id] = @user.id
+
+      render json: {message: 'Logged in as test user'}
+    end
+
     private
 
     def login(email, password)
