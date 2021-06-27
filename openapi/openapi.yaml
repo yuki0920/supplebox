@@ -309,7 +309,7 @@ paths:
                 type: object
   /api/users:
     post:
-      operationId: createPost
+      operationId: createUser
       summary: Create User
       requestBody:
         content:
@@ -343,6 +343,12 @@ paths:
     put:
       operationId: updateUser
       summary: Update User
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -355,7 +361,6 @@ paths:
             application/json:
               schema:
                 type: object
-
 components:
   schemas:
     currentUser:

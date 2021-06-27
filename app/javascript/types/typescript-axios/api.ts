@@ -213,6 +213,82 @@ export interface InlineResponse2002 {
 /**
  *
  * @export
+ * @interface Login
+ */
+export interface Login {
+    /**
+     *
+     * @type {LoginUser}
+     * @memberof Login
+     */
+    user?: LoginUser;
+}
+/**
+ *
+ * @export
+ * @interface LoginUser
+ */
+export interface LoginUser {
+    /**
+     *
+     * @type {string}
+     * @memberof LoginUser
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof LoginUser
+     */
+    password: string;
+}
+/**
+ *
+ * @export
+ * @interface NewUser
+ */
+export interface NewUser {
+    /**
+     *
+     * @type {NewUserUser}
+     * @memberof NewUser
+     */
+    user: NewUserUser;
+}
+/**
+ *
+ * @export
+ * @interface NewUserUser
+ */
+export interface NewUserUser {
+    /**
+     *
+     * @type {string}
+     * @memberof NewUserUser
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof NewUserUser
+     */
+    email: string;
+    /**
+     *
+     * @type {string}
+     * @memberof NewUserUser
+     */
+    password: string;
+    /**
+     *
+     * @type {string}
+     * @memberof NewUserUser
+     */
+    password_confirmation: string;
+}
+/**
+ *
+ * @export
  * @interface Post
  */
 export interface Post {
@@ -388,6 +464,12 @@ export interface ProductProduct {
      * @type {string}
      * @memberof ProductProduct
      */
+    url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ProductProduct
+     */
     brand_amazon_name: string;
     /**
      *
@@ -512,6 +594,56 @@ export interface SearchProducts {
      */
     price: number;
 }
+/**
+ *
+ * @export
+ * @interface User
+ */
+export interface User {
+    /**
+     *
+     * @type {UserUser}
+     * @memberof User
+     */
+    user: UserUser;
+}
+/**
+ *
+ * @export
+ * @interface UserUser
+ */
+export interface UserUser {
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    picture_url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    gender: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    height: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    weight: string | null;
+}
 
 /**
  * DefaultApi - axios parameter creator
@@ -588,6 +720,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(createProduct, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Create User
+         * @param {NewUser} [newUser]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createUser: async (newUser?: NewUser, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(newUser, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -836,6 +1002,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          *
+         * @summary Fetch User
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('fetchUser', 'id', id)
+            const localVarPath = `/api/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Like Product
          * @param {number} productId
          * @param {*} [options] Override http request option.
@@ -854,6 +1054,70 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Login
+         * @param {Login} [login]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        login: async (login?: Login, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(login, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Log out
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -1016,6 +1280,51 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         *
+         * @summary Update User
+         * @param {number} id
+         * @param {EditUserUser} user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser: async (id: number, user: EditUserUser, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateUser', 'id', id)
+            // verify required parameter 'user' is not null or undefined
+            assertParamExists('updateUser', 'user', user)
+            const localVarPath = `/api/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+
+            if (user !== undefined) {
+                localVarFormParams.append('user', new Blob([JSON.stringify(user)], { type: "application/json", }));
+            }
+
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1046,6 +1355,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async createProduct(createProduct?: CreateProduct, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createProduct(createProduct, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @summary Create User
+         * @param {NewUser} [newUser]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createUser(newUser?: NewUser, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createUser(newUser, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1121,6 +1441,17 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          *
+         * @summary Fetch User
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async fetchUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchUser(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
          * @summary Like Product
          * @param {number} productId
          * @param {*} [options] Override http request option.
@@ -1128,6 +1459,27 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async likeProduct(productId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.likeProduct(productId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @summary Login
+         * @param {Login} [login]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async login(login?: Login, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.login(login, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         *
+         * @summary Log out
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async logout(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logout(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1175,6 +1527,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updatePost(id, post, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         *
+         * @summary Update User
+         * @param {number} id
+         * @param {EditUserUser} user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateUser(id: number, user: EditUserUser, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUser(id, user, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -1204,6 +1568,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         createProduct(createProduct?: CreateProduct, options?: any): AxiosPromise<object> {
             return localVarFp.createProduct(createProduct, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Create User
+         * @param {NewUser} [newUser]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createUser(newUser?: NewUser, options?: any): AxiosPromise<object> {
+            return localVarFp.createUser(newUser, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1272,6 +1646,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          *
+         * @summary Fetch User
+         * @param {number} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        fetchUser(id: number, options?: any): AxiosPromise<User> {
+            return localVarFp.fetchUser(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @summary Like Product
          * @param {number} productId
          * @param {*} [options] Override http request option.
@@ -1279,6 +1663,25 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         likeProduct(productId: number, options?: any): AxiosPromise<object> {
             return localVarFp.likeProduct(productId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Login
+         * @param {Login} [login]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        login(login?: Login, options?: any): AxiosPromise<object> {
+            return localVarFp.login(login, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @summary Log out
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout(options?: any): AxiosPromise<object> {
+            return localVarFp.logout(options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1321,6 +1724,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         updatePost(id: number, post: PostPost, options?: any): AxiosPromise<object> {
             return localVarFp.updatePost(id, post, options).then((request) => request(axios, basePath));
         },
+        /**
+         *
+         * @summary Update User
+         * @param {number} id
+         * @param {EditUserUser} user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUser(id: number, user: EditUserUser, options?: any): AxiosPromise<object> {
+            return localVarFp.updateUser(id, user, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -1353,6 +1767,18 @@ export class DefaultApi extends BaseAPI {
      */
     public createProduct(createProduct?: CreateProduct, options?: any) {
         return DefaultApiFp(this.configuration).createProduct(createProduct, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Create User
+     * @param {NewUser} [newUser]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public createUser(newUser?: NewUser, options?: any) {
+        return DefaultApiFp(this.configuration).createUser(newUser, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1434,6 +1860,18 @@ export class DefaultApi extends BaseAPI {
 
     /**
      *
+     * @summary Fetch User
+     * @param {number} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public fetchUser(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).fetchUser(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
      * @summary Like Product
      * @param {number} productId
      * @param {*} [options] Override http request option.
@@ -1442,6 +1880,29 @@ export class DefaultApi extends BaseAPI {
      */
     public likeProduct(productId: number, options?: any) {
         return DefaultApiFp(this.configuration).likeProduct(productId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Login
+     * @param {Login} [login]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public login(login?: Login, options?: any) {
+        return DefaultApiFp(this.configuration).login(login, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Log out
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public logout(options?: any) {
+        return DefaultApiFp(this.configuration).logout(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1491,5 +1952,18 @@ export class DefaultApi extends BaseAPI {
      */
     public updatePost(id: number, post: PostPost, options?: any) {
         return DefaultApiFp(this.configuration).updatePost(id, post, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary Update User
+     * @param {number} id
+     * @param {EditUserUser} user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public updateUser(id: number, user: EditUserUser, options?: any) {
+        return DefaultApiFp(this.configuration).updateUser(id, user, options).then((request) => request(this.axios, this.basePath));
     }
 }
