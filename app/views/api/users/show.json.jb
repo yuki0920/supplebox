@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+{
+  user: {
+    picture_url: @user.picture_url,
+    name: @user.name,
+    gender: @user.gender,
+    height: @user.height,
+    weight: @user.weight
+  }
+}
