@@ -46,7 +46,6 @@
 - サイトマップ(sitemap_generator, Heroku Scheduler)
 - メタタグ(meta-tags)
 - パンくずリスト(gretel)
-- 星評価機能(jQuery Raty)
 - デザイン(Bootstrap, Sass)
 - 認証(Gem を使わず実装)
 - アイテム関連(お気に入り登録)
