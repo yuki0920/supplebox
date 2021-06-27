@@ -39,6 +39,17 @@ paths:
             application/json:
               schema:
                 type: object
+  /api/sessions/test_user:
+    post:
+      operationId: loginAsTestUser
+      summary: Login as test user
+      responses:
+        200:
+          description: logedin as test user
+          content:
+            application/json:
+              schema:
+                type: object
   /api/products:
     get:
       operationId: fetchProducts

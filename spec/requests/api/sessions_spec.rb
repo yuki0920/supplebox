@@ -49,4 +49,18 @@ RSpec.describe '/api/sessions', type: :request do
       assert_response_schema_confirm
     end
   end
+
+  describe 'GET /api/sessions/test_user' do
+    before do
+      create(:user, email: 'test@supplebox.jp', password: 'testsupple', password_confirmation: 'testsupple')
+    end
+
+    it 'スキーマどおりであること' do
+      post '/api/sessions/test_user'
+
+      expect(response).to have_http_status :ok
+      assert_request_schema_confirm
+      assert_response_schema_confirm
+    end
+  end
 end

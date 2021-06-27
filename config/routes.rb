@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
     resources :posts, only: %i(index create update show destroy)
     resources :contacts, only: %i(create)
-    resource :sessions, only: %i(show create destroy)
+    resource :sessions, only: %i(show create destroy) do
+      post 'test_user', on: :collection
+    end
   end
 end
