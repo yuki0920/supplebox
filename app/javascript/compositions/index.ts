@@ -13,3 +13,11 @@ export const useCurrentUser = () => {
 
   return { currentUser, isLoggedIn }
 }
+
+export const useSessions = () => {
+  const loginAsTestUser = async () => {
+    const { user } = await new DefaultApi().loginAsTestUser()
+    location.href = `/users/${user.id}`
+  }
+  return { loginAsTestUser }
+}

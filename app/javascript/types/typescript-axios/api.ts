@@ -152,12 +152,6 @@ export interface CurrentUserUser {
      * @memberof CurrentUserUser
      */
     name: string;
-    /**
-     *
-     * @type {string}
-     * @memberof CurrentUserUser
-     */
-    path: string;
 }
 /**
  *
@@ -1498,7 +1492,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async login(login?: Login, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async login(login?: Login, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.login(login, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1508,7 +1502,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async loginAsTestUser(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async loginAsTestUser(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CurrentUser>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.loginAsTestUser(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1711,7 +1705,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        login(login?: Login, options?: any): AxiosPromise<object> {
+        login(login?: Login, options?: any): AxiosPromise<CurrentUser> {
             return localVarFp.login(login, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1720,7 +1714,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        loginAsTestUser(options?: any): AxiosPromise<object> {
+        loginAsTestUser(options?: any): AxiosPromise<CurrentUser> {
             return localVarFp.loginAsTestUser(options).then((request) => request(axios, basePath));
         },
         /**

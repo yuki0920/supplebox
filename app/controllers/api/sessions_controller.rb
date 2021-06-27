@@ -3,16 +3,18 @@
 module Api
   class SessionsController < ApplicationController
     def show
-      user = current_user ? {id: current_user.id, name: current_user.name, path: user_path(current_user)} : nil
-
-      render json: {user: user}
+      if current_user
+        render 'show.json.jb'
+      else
+        render json: {user:  nil}
+      end
     end
 
     def create
       email = params[:session][:email].downcase
       password = params[:session][:password]
       if login(email, password)
-        render json: {message: 'Login successfully'}
+        render 'show.json.jb'
       else
         render json: {message: 'Login failed'}, status: :bad_request
       end
@@ -29,7 +31,7 @@ module Api
 
       session[:user_id] = @user.id
 
-      render json: {message: 'Logged in as test user'}
+      render 'show.json.jb'
     end
 
     private
