@@ -41,10 +41,7 @@
               口コミ
             </a>
           </li>
-          <li
-            v-if="isLoggedIn"
-            class="nav-item"
-          >
+          <li class="nav-item">
             <a
               class="nav-link"
               href="/products/new"
@@ -54,7 +51,7 @@
           </li>
         </ul>
         <div
-          v-if="isLoggedIn()"
+          v-if="isLoggedIn"
           class="o-nav-dropdown nav-item dropdown"
         >
           <a
@@ -105,23 +102,13 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
-import { useStore } from '@/store'
+import { useCurrentUser } from '@/compositions'
 
 export default {
   name: 'Nav',
-
   setup() {
-    const store = useStore()
-    const currentUser = computed(() => store.state.currentUser)
-    const getCurrentUser = async () => {
-      store.dispatch('fetchCurrentUser')
-    }
-    const isLoggedIn = () => {
-      return !!currentUser.value
-    }
+    const { currentUser, isLoggedIn } = useCurrentUser()
 
-    getCurrentUser()
     return {
       currentUser,
       isLoggedIn

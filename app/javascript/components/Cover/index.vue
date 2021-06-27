@@ -20,22 +20,11 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
-import { useStore } from '../../store/index'
+import { useCurrentUser } from '@/compositions'
 
 export default {
   setup() {
-    console.log('Hello')
-    const store = useStore()
-    const currentUser = computed(() => store.state.currentUser)
-    const getCurrentUser = async () => {
-      store.dispatch('fetchCurrentUser')
-    }
-    const isLoggedIn = () => {
-      return !!currentUser.value
-    }
-
-    getCurrentUser()
+    const { isLoggedIn} = useCurrentUser()
     return {
       isLoggedIn
     }

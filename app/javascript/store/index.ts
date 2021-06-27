@@ -1,3 +1,4 @@
+// NOTE: CompositionAPI導入によってstoreは使っていないのでサンプル
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import { DefaultApi } from '@/types/typescript-axios/api'
@@ -39,3 +40,9 @@ export const store = createStore<State>({
 export function useStore() {
   return baseUseStore(key)
 }
+
+// NOTE: SFC側の記述例
+  // import { useStore } from 'vuex'
+  // import { computed} from 'vue'
+  // store = new useStore()
+  // const currentUser = computed(() => store.state.currentUser)
