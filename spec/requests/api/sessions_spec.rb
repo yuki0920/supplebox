@@ -42,7 +42,7 @@ RSpec.describe '/api/sessions', type: :request do
     end
 
     it 'スキーマ通りであること' do
-      delete "/api/sessions"
+      delete '/api/sessions'
 
       expect(response).to have_http_status :ok
       assert_request_schema_confirm

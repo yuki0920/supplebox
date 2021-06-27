@@ -35,12 +35,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ニックネームを検証する場合' do
-    it 'ニックネームが無いと無効な状態であること' do
-      user.nickname = nil
-      user.valid?
-      expect(user.errors[:nickname]).to include('を入力してください')
-    end
-
     it 'ニックネームが50文字なら有効な状態であること' do
       user.nickname = 'a' * 50
       user.valid?
