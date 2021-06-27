@@ -32,23 +32,16 @@ import FlashMessage from '@/components/FlashMessage/index.vue'
 import ProductSummary from '@/components/ProductSummary/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
-import { ref, reactive, computed } from 'vue'
-import { useStore } from '@/store'
+import { ref, reactive } from 'vue'
 import { DefaultApi } from "@/types/typescript-axios/api"
+import { useCurrentUser } from '@/compositions'
 
 export default {
   name: 'ProductDetail',
   components: { ProductSummary, PostItem, FlashMessage, PostForm },
 
   setup() {
-    // ユーザーログイン情報取得
-    // TODO: 共通化したい
-    const store = useStore()
-    const getCurrentUser = async () => {
-      store.dispatch('fetchCurrentUser')
-    }
-    getCurrentUser()
-    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+    const { isLoggedIn } = useCurrentUser()
 
     const productId = parseInt(location.pathname.split("/").slice(-1)[0])
 

@@ -36,11 +36,11 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from "vue"
-import { useStore } from '@/store'
+import { ref } from "vue"
 import ProductItems from "@/components/ProductItems/index.vue"
 import Paginator from "@/components/Paginator/index.vue"
 import { DefaultApi } from "@/types/typescript-axios/api"
+import { useCurrentUser } from '@/compositions/'
 
 export default {
   name: 'NewProduct',
@@ -49,13 +49,7 @@ export default {
     Paginator,
   },
   setup() {
-    // TODO: 共通化したい
-    const store = useStore()
-    const getCurrentUser = async () => {
-      store.dispatch('fetchCurrentUser')
-    }
-    getCurrentUser()
-    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+    const { isLoggedIn } = useCurrentUser()
 
     const keyword = ref('')
     const products = ref([])

@@ -47,12 +47,12 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from "vue"
-import { useStore } from '@/store'
+import { ref } from "vue"
 import ServiceDescription from "@/components/ServiceDescription/index.vue"
 import ProductItems from "@/components/ProductItems/index.vue"
 import PostItem from "@/components/PostItem/index.vue"
 import { DefaultApi } from "@/types/typescript-axios/api"
+import { useCurrentUser } from '@/compositions'
 
 export default {
   name: 'TopPage',
@@ -62,12 +62,7 @@ export default {
     PostItem,
   },
   setup() {
-    const store = useStore()
-    const getCurrentUser = async () => {
-      store.dispatch('fetchCurrentUser')
-    }
-    getCurrentUser()
-    const isLoggedIn = computed(() => store.getters.isLoggedIn)
+    const { isLoggedIn } = useCurrentUser()
 
     const products = ref([])
     const fetchProducts = async () => {
