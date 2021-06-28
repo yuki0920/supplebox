@@ -16,8 +16,8 @@ export const useCurrentUser = () => {
 
 export const useSessions = () => {
   const loginAsTestUser = async () => {
-    const { user } = await new DefaultApi().loginAsTestUser()
-    location.href = `/users/${user.id}`
+    const { data } = await new DefaultApi().loginAsTestUser()
+    location.href = `/users/${data.user.id}`
   }
   return { loginAsTestUser }
 }

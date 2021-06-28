@@ -85,6 +85,13 @@
         <div v-else>
           <a
             class="global-nav__button btn btn-outline-success"
+            href="javascript:void(0)"
+            @click="loginAsTestUser"
+          >
+            テストアカウントでログイン
+          </a>
+          <a
+            class="global-nav__button btn btn-outline-success"
             href="/signup"
           >
             新規登録
@@ -102,14 +109,16 @@
 </template>
 
 <script lang="ts">
-import { useCurrentUser } from '@/compositions'
+import { useCurrentUser, useSessions } from '@/compositions'
 
 export default {
   name: 'Nav',
   setup() {
     const { currentUser, isLoggedIn } = useCurrentUser()
+    const { loginAsTestUser } = useSessions()
 
     return {
+      loginAsTestUser,
       currentUser,
       isLoggedIn
     }

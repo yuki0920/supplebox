@@ -6,7 +6,7 @@ module Api
       if current_user
         render 'show.json.jb'
       else
-        render json: {user:  nil}
+        render json: {user: nil}
       end
     end
 
