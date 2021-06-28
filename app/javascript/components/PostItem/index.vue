@@ -16,7 +16,7 @@
         {{ post.user.weight }}
       </p>
     </div>
-    <div class="o-post-item__post col-md-6 mb-3">
+    <div class="o-post-item__post col-md-6">
       <p>
         {{ post.created_at }}
       </p>
@@ -98,7 +98,6 @@ export default {
     position: relative;
     display: inline-block;
     padding: 7px 10px;
-    margin-bottom: 10px;
     min-width: 120px;
     width: 100%;
     font-size: 16px;
