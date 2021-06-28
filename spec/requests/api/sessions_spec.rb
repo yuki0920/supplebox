@@ -55,7 +55,7 @@ RSpec.describe '/api/sessions', type: :request do
       create(:user, email: 'test@supplebox.jp', password: 'testsupple', password_confirmation: 'testsupple')
     end
 
-    it 'スキーマどおりであること' do
+    it 'スキーマ通りであること' do
       post '/api/sessions/test_user'
 
       expect(response).to have_http_status :ok

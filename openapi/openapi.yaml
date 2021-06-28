@@ -28,7 +28,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/currentUser"
     delete:
       operationId: logout
       summary: Log out
@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/currentUser"
   /api/products:
     get:
       operationId: fetchProducts
@@ -385,13 +385,10 @@ components:
           required:
             - id
             - name
-            - path
           properties:
             id:
               type: number
             name:
-              type: string
-            path:
               type: string
     products:
       type: object
