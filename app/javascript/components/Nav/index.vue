@@ -83,13 +83,13 @@
           </div>
         </div>
         <div v-else>
-          <a
+          <button
             class="global-nav__button btn btn-outline-success"
-            href="javascript:void(0)"
+            type="button"
             @click="loginAsTestUser"
           >
             テストアカウントでログイン
-          </a>
+          </button>
           <a
             class="global-nav__button btn btn-outline-success"
             href="/signup"
