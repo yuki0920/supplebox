@@ -6,7 +6,7 @@ end
 
 # user#show
 crumb :show_user do |user|
-  link "@#{user.nickname}", user
+  link "@#{user.name}", user
 end
 
 # user#edit

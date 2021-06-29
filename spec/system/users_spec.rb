@@ -9,19 +9,16 @@ describe 'ユーザー登録機能', type: :system, js: true do
 
   describe '新規作成機能' do
     it '新しいユーザーを作成できること' do
-      expect do
-        visit root_path
-        # click_link '新規登録'
-        visit signup_path
-        fill_in 'ユーザー名', with: 'TestUser'
-        fill_in 'ニックネーム', with: 'テストユーザー'
-        fill_in 'メールアドレス', with: 'tester@supplebox.jp'
-        fill_in 'パスワード', with: 'password'
-        fill_in 'パスワード（確認）', with: 'password'
-        click_on '登録する'
-      end.to change { User.count }.by(+1)
-      expect(page).to have_content 'ユーザを登録しました。'
-      expect(page).to have_content 'テストユーザー'
+      visit root_path
+      click_link '新規登録'
+
+      fill_in 'ユーザー名', with: 'TestUser'
+      fill_in 'メールアドレス', with: 'tester@supplebox.jp'
+      fill_in 'パスワード', with: 'password'
+      fill_in 'パスワード(確認)', with: 'password'
+      click_on '登録する'
+
+      expect(page).to have_content 'プロフィールを編集する'
     end
   end
 
