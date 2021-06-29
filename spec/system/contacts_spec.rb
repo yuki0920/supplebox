@@ -17,7 +17,7 @@ describe '問い合わせ機能', type: :system, js: true do
     fill_in 'お問い合わせ内容', with: 'テストコンテント'
     click_on '送信する'
 
-    expect(page).to have_content 'お問い合わせを送信しました'
+    expect(page).to have_content 'お問い合わせに成功しました'
 
     mail = ActionMailer::Base.deliveries.last
 
@@ -31,7 +31,7 @@ describe '問い合わせ機能', type: :system, js: true do
 
     click_on '送信する'
 
-    expect(page).to have_content 'お問い合わせの送信に失敗しました'
+    expect(page).to have_content 'お問い合わせに失敗しました'
     expect(ActionMailer::Base.deliveries).to be_empty
   end
 end

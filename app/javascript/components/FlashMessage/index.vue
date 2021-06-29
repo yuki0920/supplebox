@@ -1,41 +1,57 @@
 <template>
   <div
-    v-if="isDisplay"
-    :class="flashClass()"
+    v-if="isShow"
+    :class="flashClass"
     role="alert"
   >
-    {{ messageText }}
+    {{ title }}{{ description }}
   </div>
 </template>
 
 <script lang="ts">
+import { computed, watch } from 'vue'
 
 export default {
   name: 'FlashMessage',
   props: {
-    isDisplay: {
+    title: {
+      type: String,
+      required: true,
+    },
+    isShow: {
       type: Boolean,
       required: true
     },
-    messageText: {
-      type: String,
-      required: false,
-      default: null
-    },
-    messageType: {
-      type: String,
+    isSuccess: {
+      type: Boolean,
       required: false,
       default: null
     },
   },
+  emits: ['flash-message'],
+  setup(props, context) {
+    watch(
+      () => props.isShow,
+      (now, _) => {
+        if (now === true) {
+          setTimeout(() => {
+            context.emit('flash-message', {isShow: false})
+          }, 3000)
+        }
+      }
+    )
 
-  setup(props) {
-    const flashClass = () => {
-      return `alert alert-${props.messageType}`
-    }
+    const flashClass = computed(() => {
+      return props.isSuccess ? 'alert alert-primary' : 'alert alert-danger'
+    })
+
+    const description = computed(()=> {
+      return props.isSuccess ? 'に成功しました' : 'に失敗しました'
+    })
 
     return {
       flashClass,
+      description,
     }
   }
 }

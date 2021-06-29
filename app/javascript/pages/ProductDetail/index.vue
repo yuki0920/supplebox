@@ -10,10 +10,10 @@
       :post="post"
     />
     <FlashMessage
-      :is-display="message.isDisplay"
-      :message-text="message.text"
-      :message-type="message.type"
-      @change="onChange"
+      title="口コミ投稿"
+      :is-show="messageIsShow"
+      :is-success="messageIsSuccess"
+      @flash-message="onFlashMessage"
     />
     <PostForm
       head="口コミを投稿する"
@@ -34,7 +34,7 @@ import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
 import { ref, reactive } from 'vue'
 import { DefaultApi } from "@/types/typescript-axios/api"
-import { useCurrentUser } from '@/compositions'
+import { useCurrentUser, useFlashMessage } from '@/compositions'
 
 export default {
   name: 'ProductDetail',
@@ -65,12 +65,6 @@ export default {
     fetchPosts()
 
     // 口コミ投稿ロジック
-    const message = reactive({
-      isDisplay: false,
-      text: '',
-      type: ''
-    })
-
     const title = ref('')
     const rate = ref(3)
     const content = ref('')
@@ -95,28 +89,24 @@ export default {
       }
     }
 
+    const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
     const submitForm = async () => {
       let formData = new FormData()
       formData.append('post[title]', title.value)
       formData.append('post[rate]', `${rate.value}`)
       formData.append('post[content]', content.value)
-      formData.append('post[product_id]', productId)
+      formData.append('post[product_id]', String(productId))
       formData.append('post[picture]', picture)
       const config = { headers : { 'content-type': 'multipart/form-data' } }
 
       try {
         await axios.post('/api/posts', formData, config)
-
-        message.isDisplay = true
-        message.text = "口コミを送信しました"
-        message.type = "primary"
-
+        // TODO reloadせずにpostsに追加したい
         location.reload()
+
+        onFlashMessage({isShow: true, isSuccess: true})
       } catch(error) {
-        const { data } = error.response
-        message.isDisplay = true
-        message.text = `口コミの送信に失敗しました 「${data.message}」`
-        message.type = "danger"
+        onFlashMessage({isShow: true, isSuccess: false})
       }
     }
     return {
@@ -126,7 +116,9 @@ export default {
       title,
       rate,
       content,
-      message,
+      messageIsShow,
+      messageIsSuccess,
+      onFlashMessage,
       onChange,
       submitForm
     }

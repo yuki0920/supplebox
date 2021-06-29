@@ -1,9 +1,10 @@
 <template>
   <div class="contact">
     <FlashMessage
-      :is-display="message.isDisplay"
-      :message-text="message.text"
-      :message-type="message.type"
+      title="お問い合わせ"
+      :is-show="messageIsShow"
+      :is-success="messageIsSuccess"
+      @flash-message="onFlashMessage"
     />
     <h1>お問い合わせ</h1>
     <p>お気軽にお問い合わせください!</p>
@@ -73,6 +74,7 @@
 
 <script lang="ts">
 import { reactive } from 'vue'
+import { useFlashMessage } from '@/compositions'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
 
@@ -88,11 +90,8 @@ export default {
         content: ""
       }
     )
-    const message = reactive({
-      isDisplay: false,
-      text: "",
-      type: ""
-    })
+
+    const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
     const submitForm = async () => {
       try {
         await new DefaultApi().postContact({
@@ -103,20 +102,18 @@ export default {
             content: formData.content,
           }
         })
-          message.isDisplay = true
-          message.text = "お問い合わせを送信しました"
-          message.type = "primary"
+        onFlashMessage({isShow: true, isSuccess: true})
       } catch(error) {
-        const { data } = error.response
-          message.isDisplay = true
-          message.text = `お問い合わせの送信に失敗しました 「${data.message}」`
-          message.type = "danger"
+        onFlashMessage({isShow: true, isSuccess: false})
       }
     }
+
     return {
-      message,
       formData,
-      submitForm
+      submitForm,
+      messageIsShow,
+      messageIsSuccess,
+      onFlashMessage
     }
   }
 }

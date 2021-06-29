@@ -21,3 +21,14 @@ export const useSessions = () => {
   }
   return { loginAsTestUser }
 }
+
+export const useFlashMessage = () => {
+  const messageIsShow = ref(false)
+  const messageIsSuccess = ref(false)
+  const onFlashMessage = ({isShow, isSuccess = false}: {isShow: boolean, isSuccess: boolean}) => {
+    messageIsShow.value = isShow
+    messageIsSuccess.value = isSuccess
+  }
+
+  return { messageIsShow, messageIsSuccess, onFlashMessage }
+}
