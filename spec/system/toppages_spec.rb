@@ -16,7 +16,7 @@ describe 'リンク確認', js: true do
         expect(page).to have_link('口コミ', href: '/posts')
         expect(page).to have_link('新規登録', href: '/signup')
         expect(page).to have_link('ログイン', href: '/login')
-        expect(page).to have_link('テストアカウントでログイン')
+        expect(page).to have_button('テストアカウントでログイン')
         expect(page).to have_link('プロテイン登録', href: '/products/new')
       end
     end
