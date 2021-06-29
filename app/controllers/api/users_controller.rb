@@ -11,12 +11,12 @@ module Api
     end
 
     def create
-      user = User.new(new_user_params)
+      @user = User.new(new_user_params)
 
-      if user.save
-        session[:user_id] = user.id
+      if @user.save
+        session[:user_id] = @user.id
 
-        render json: {message: 'Logged in successfully'}
+        render 'show.json.jb'
       else
         render json: {message: 'Log in failure'}, status: :bad_request
       end

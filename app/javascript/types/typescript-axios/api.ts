@@ -609,6 +609,12 @@ export interface User {
 export interface UserUser {
     /**
      *
+     * @type {number}
+     * @memberof UserUser
+     */
+    id: number;
+    /**
+     *
      * @type {string}
      * @memberof UserUser
      */
@@ -1388,7 +1394,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createUser(newUser?: NewUser, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async createUser(newUser?: NewUser, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createUser(newUser, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1610,7 +1616,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createUser(newUser?: NewUser, options?: any): AxiosPromise<object> {
+        createUser(newUser?: NewUser, options?: any): AxiosPromise<User> {
             return localVarFp.createUser(newUser, options).then((request) => request(axios, basePath));
         },
         /**
