@@ -333,7 +333,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/user"
   /api/users/{id}:
     get:
       operationId: fetchUser
@@ -668,12 +668,15 @@ components:
         user:
           type: object
           required:
+            - id
             - picture_url
             - name
             - gender
             - height
             - weight
           properties:
+            id:
+              type: number
             picture_url:
               type: string
             name:
