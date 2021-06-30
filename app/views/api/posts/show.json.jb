@@ -6,6 +6,6 @@
     title: @post.title,
     content: @post.content,
     rate: @post.rate,
-    picture_url: @post.picture_url
+    picture_url: @post.picture_url && asset_path(@post.picture_url)
   }
 }
