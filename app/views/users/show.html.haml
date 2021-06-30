@@ -1,6 +1,7 @@
 - breadcrumb :show_user, @user
 / ユーザープロフィール
-= render 'user_profile', user: @user
+#user_profile
+  = javascript_pack_tag 'user_profile'
 .col-md-12
   / ユーザーナビバー
   = render 'user_nav', user: @user

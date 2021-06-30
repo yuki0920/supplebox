@@ -24,7 +24,7 @@ import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { useFlashMessage } from '@/compositions'
 
 export default {

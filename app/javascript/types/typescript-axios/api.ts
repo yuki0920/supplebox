@@ -337,12 +337,6 @@ export interface Posts {
     is_owner: boolean;
     /**
      *
-     * @type {string}
-     * @memberof Posts
-     */
-    edit_path: string;
-    /**
-     *
      * @type {PostsUser}
      * @memberof Posts
      */
@@ -362,16 +356,16 @@ export interface Posts {
 export interface PostsProduct {
     /**
      *
-     * @type {string}
+     * @type {number}
      * @memberof PostsProduct
      */
-    image_url: string;
+    id: number;
     /**
      *
      * @type {string}
      * @memberof PostsProduct
      */
-    path: string;
+    image_url: string;
     /**
      *
      * @type {string}
@@ -385,6 +379,12 @@ export interface PostsProduct {
  * @interface PostsUser
  */
 export interface PostsUser {
+    /**
+     *
+     * @type {number}
+     * @memberof PostsUser
+     */
+    id: number;
     /**
      *
      * @type {string}
@@ -402,19 +402,19 @@ export interface PostsUser {
      * @type {string}
      * @memberof PostsUser
      */
-    gender?: string | null;
+    gender: string | null;
     /**
      *
      * @type {string}
      * @memberof PostsUser
      */
-    height?: string | null;
+    height: string | null;
     /**
      *
      * @type {string}
      * @memberof PostsUser
      */
-    weight?: string | null;
+    weight: string | null;
 }
 /**
  *
@@ -596,53 +596,10 @@ export interface SearchProducts {
 export interface User {
     /**
      *
-     * @type {UserUser}
+     * @type {PostsUser}
      * @memberof User
      */
-    user: UserUser;
-}
-/**
- *
- * @export
- * @interface UserUser
- */
-export interface UserUser {
-    /**
-     *
-     * @type {number}
-     * @memberof UserUser
-     */
-    id: number;
-    /**
-     *
-     * @type {string}
-     * @memberof UserUser
-     */
-    picture_url: string;
-    /**
-     *
-     * @type {string}
-     * @memberof UserUser
-     */
-    name: string;
-    /**
-     *
-     * @type {string}
-     * @memberof UserUser
-     */
-    gender: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof UserUser
-     */
-    height: string | null;
-    /**
-     *
-     * @type {string}
-     * @memberof UserUser
-     */
-    weight: string | null;
+    user: PostsUser;
 }
 
 /**

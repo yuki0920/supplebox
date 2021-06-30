@@ -3,10 +3,11 @@
 {
   user: {
     id: @user.id,
-    picture_url: @user.picture_url,
+    picture_url: asset_path(@user.picture_url),
     name: @user.name,
     gender: @user.gender,
     height: @user.height,
-    weight: @user.weight
+    weight: @user.weight,
+    comment: @user.comment
   }
 }

@@ -2,7 +2,7 @@ import { ref, onMounted } from 'vue'
 import { DefaultApi, CurrentUserUser as CurrentUser } from '@/types/typescript-axios/api'
 
 export const useCurrentUser = () => {
-  const currentUser = ref<CurrentUser>(null)
+  const currentUser = ref(null)
   const isLoggedIn = ref(false)
   onMounted(async () => {
       const { data } = await new DefaultApi().fetchCurrentUser()

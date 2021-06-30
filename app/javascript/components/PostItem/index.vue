@@ -1,7 +1,7 @@
 <template>
   <div class="o-post-item row posts">
     <div class="o-post-item__user col-md-2">
-      <a :href="post.user.path">
+      <a :href="`users/${post.user.id}`">
         <img
           :src="post.user.picture_url"
           class="o-post-item__user-image"
@@ -23,13 +23,6 @@
       <h4 class="mb-3">
         評価: {{ post.rate }} 点 | {{ post.title }}
       </h4>
-      <!-- <StarRating
-        :increment="0.1"
-        :rating="post.rate"
-        :star-size="16"
-        :show-rating="false"
-        read-only
-      /> -->
       <p>
         {{ post.content }}
       </p>
@@ -40,7 +33,7 @@
       >
     </div>
     <div class="o-post-item__product col-md-4">
-      <a :href="post.product.path">
+      <a :href="`/products/${post.product.id}`">
         <img
           :src="post.product.image_url"
           class="o-post-item__product-image"
@@ -63,15 +56,11 @@
 </template>
 
 <script lang="ts">
-// import StarRating from 'vue-star-rating'
 import { PropType } from 'vue'
 import { Posts } from '@/types/typescript-axios/api'
 
 export default {
   name: 'PostItem',
-  components: {
-    // StarRating
-  },
   props: {
     post: {
       type: Object as PropType<Posts>,

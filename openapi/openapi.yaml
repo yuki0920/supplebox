@@ -535,7 +535,6 @@ components:
         - content
         - rate
         - is_owner
-        - edit_path
         - user
         - product
       properties:
@@ -552,14 +551,18 @@ components:
           nullable: true
         is_owner:
           type: boolean
-        edit_path:
-          type: string
         user:
           type: object
           required:
+            - id
             - picture_url
             - name
+            - gender
+            - height
+            - weight
           properties:
+            id:
+              type: number
             picture_url:
               type: string
             name:
@@ -576,13 +579,13 @@ components:
         product:
           type: object
           required:
+            - id
             - image_url
-            - path
             - title
           properties:
+            id:
+              type: number
             image_url:
-              type: string
-            path:
               type: string
             title:
               type: string
