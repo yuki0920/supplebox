@@ -71,7 +71,7 @@
           >
             <a
               class="dropdown-item"
-              :href="currentUser.path"
+              :href="`/users/${currentUser.id}`"
             >マイページ</a>
             <div class="dropdown-divider" />
             <a

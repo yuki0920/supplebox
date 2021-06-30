@@ -8,9 +8,9 @@ posts = @posts.map do |post|
     rate: post.rate,
     picture_url: post.picture.presence && asset_path(post.picture_url),
     is_owner: post.user == current_user,
-    edit_path: edit_post_path(post),
     created_at: simple_time(post.created_at),
     user: {
+      id: post.user.id,
       picture_url: asset_path(post.user.picture.url),
       name: post.user.name,
       gender: post.user.gender,
@@ -18,8 +18,8 @@ posts = @posts.map do |post|
       weight: post.user.weight
     },
     product: {
+      id: post.product.id,
       image_url: asset_path(post.product.image_url),
-      path: product_path(post.product),
       title: post.product.title
     }
   }
