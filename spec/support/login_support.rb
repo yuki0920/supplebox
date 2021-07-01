@@ -8,6 +8,7 @@ module LoginSupport
 
     expect(page).to have_button 'ログイン'
     click_button 'ログイン'
+    expect(page).to have_content 'プロフィール'
   end
 
   def sign_in(user)

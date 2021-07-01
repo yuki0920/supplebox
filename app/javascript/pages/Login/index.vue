@@ -34,14 +34,15 @@
                   name="session[password]"
                 >
               </div>
-              <div class="login">
+              <div>
                 <input
                   type="submit"
                   value="ログイン"
                   class="btn btn-success btn-block"
                 >
               </div>
-            </form><p>
+            </form>
+            <p>
               アカウントをお持ちでない方はこちらから<a href="/signup">新規登録</a>してください
               <br>
               試しに使ってみたい方は

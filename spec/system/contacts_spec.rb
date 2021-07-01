@@ -9,7 +9,8 @@ describe '問い合わせ機能', type: :system, js: true do
 
   it '問い合わせが成功すること' do
     sign_in_as user
-    visit contacts_path
+
+    click_link 'お問い合わせ'
 
     fill_in 'お名前', with: 'テストユーザー'
     fill_in 'メールアドレス', with: 'test@supplebox.jp'
@@ -27,7 +28,8 @@ describe '問い合わせ機能', type: :system, js: true do
 
   it 'お問い合わせが失敗すること' do
     sign_in_as user
-    visit contacts_path
+
+    click_link 'お問い合わせ'
 
     click_on '送信する'
 
