@@ -1,32 +1,31 @@
 <template>
   <div class="o-cover">
-    <cover>
-      <cover-inner>
-        <cover-contents>
-          <h1>
-            プロテイン選びで失敗したくないあなたへ
-          </h1>
-          <a
-            v-if="!isLoggedIn"
-            class="o-cover__link btn btn-success"
-            href="/signup"
-          >
-            SuppleBoxを始める
-          </a>
-        </cover-contents>
-      </cover-inner>
-    </cover>
+    <div class="o-cover__inner">
+      <div class="o-cover__contents">
+        <h1 class="o-cover__head">
+          プロテイン選びで
+          <br>
+          失敗したくないあなたへ
+        </h1>
+        <a
+          v-if="!isLoggedIn"
+          class="o-cover__link btn btn-success"
+          href="/signup"
+        >
+          SuppleBoxを始める
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { useCurrentUser } from '@/compositions'
 
 export default {
-  setup() {
-    const { isLoggedIn} = useCurrentUser()
-    return {
-      isLoggedIn
+  props: {
+    isLoggedIn: {
+      type: Boolean,
+      required: true
     }
   }
 }
@@ -38,32 +37,35 @@ export default {
   margin-bottom: 20px;
   width: 100%;
   height: auto;
-  background: url("/images/cover-bg.jpg") center center no-repeat;
+  background: url("https://supplebox.jp/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
-  .cover-inner {
+  &__inner {
     height: 100%;
     margin: auto;
     display: table;
-    .cover-contents {
+    &__contents {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
       position: relative;
-      h1 {
-        margin: 0 0 20px 0;
-        padding: 3em 0;
-        color: white;
-        font-weight: bold;
-        letter-spacing: 0.15em;
-        font-size: 6vw;
-        text-shadow:
-          black 1px 1px 0px, black -1px 1px 0px,
-          black 1px -1px 0px, black -1px -1px 0px;
-      }
     }
   }
   &__link {
+    text-align: center;
+    display: block;
     margin-bottom: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin: 0 0 20px 0;
+    padding: 3em 0;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    font-size: 4em;
+    text-shadow:
+      black 1px 1px 0px, black -1px 1px 0px,
+      black 1px -1px 0px, black -1px -1px 0px;
   }
 }
 </style>
