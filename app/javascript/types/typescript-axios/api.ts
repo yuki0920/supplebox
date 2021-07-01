@@ -212,27 +212,27 @@ export interface InlineResponse2002 {
 export interface Login {
     /**
      *
-     * @type {LoginUser}
+     * @type {LoginSession}
      * @memberof Login
      */
-    user?: LoginUser;
+    session: LoginSession;
 }
 /**
  *
  * @export
- * @interface LoginUser
+ * @interface LoginSession
  */
-export interface LoginUser {
+export interface LoginSession {
     /**
      *
      * @type {string}
-     * @memberof LoginUser
+     * @memberof LoginSession
      */
-    name?: string;
+    email: string;
     /**
      *
      * @type {string}
-     * @memberof LoginUser
+     * @memberof LoginSession
      */
     password: string;
 }

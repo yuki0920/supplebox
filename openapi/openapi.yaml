@@ -698,13 +698,13 @@ components:
       required:
         - session
       properties:
-        user:
+        session:
           type: object
           required:
             - email
             - password
           properties:
-            name:
+            email:
               type: string
             password:
               type: string
