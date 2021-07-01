@@ -15,7 +15,7 @@ module LoginSupport
     params = {session: {email: user.email, password: 'password'}}.to_json
     headers = {'Content-Type' => 'application/json'}
 
-    post '/login', headers: headers, params: params
+    post '/api/sessions', headers: headers, params: params
   end
 end
 

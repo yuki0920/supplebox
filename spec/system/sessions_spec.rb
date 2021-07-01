@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'セッション管理機能', type: :system, js: true do
   before do
-    create(:user, email: 'test@supplebox.jp',password: 'password')
+    create(:user, email: 'test@supplebox.jp', password: 'password')
   end
 
   it '登録済みユーザーがログインとログアウトできること' do
