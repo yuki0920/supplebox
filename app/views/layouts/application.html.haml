@@ -16,7 +16,9 @@
     = analytics_init if Rails.env.production?
   %body
     = render 'layouts/navbar'
-    = yield :cover
+    - if controller_name == 'toppages'
+      #cover
+        = javascript_pack_tag 'cover'
     .container
       = render 'layouts/flash_messages'
       %p= breadcrumbs separator: " &rsaquo; "
