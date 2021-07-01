@@ -58,7 +58,7 @@
             id="navbarDropdown"
             aria-expanded="false"
             aria-haspopup="true"
-            class="nav-link dropdown-toggle"
+            class="dropdown-toggle"
             data-toggle="dropdown"
             href="#"
             role="button"
@@ -67,37 +67,35 @@
           </a>
           <div
             aria-labelledby="navbarDropdown"
-            class="dropdown-menu"
+            class="dropdown-item__dropdown-menu dropdown-menu"
           >
             <a
               class="dropdown-item"
               :href="`/users/${currentUser.id}`"
             >マイページ</a>
             <div class="dropdown-divider" />
-            <a
-              class="dropdown-item"
-              rel="nofollow"
-              data-method="delete"
-              href="/logout"
-            >ログアウト</a>
+            <span
+              class="o-nav__dropdown-item dropdown-item"
+              @click="logout"
+            >ログアウト</span>
           </div>
         </div>
         <div v-else>
           <button
-            class="global-nav__button btn btn-outline-success"
+            class="o-nav__button btn btn-outline-success"
             type="button"
             @click="loginAsTestUser"
           >
             テストアカウントでログイン
           </button>
           <a
-            class="global-nav__button btn btn-outline-success"
+            class="o-nav__button btn btn-outline-success"
             href="/signup"
           >
             新規登録
           </a>
           <a
-            class="global-nav__button btn btn-outline-success"
+            class="o-nav__button btn btn-outline-success"
             href="/login"
           >
             ログイン
@@ -115,12 +113,13 @@ export default {
   name: 'Nav',
   setup() {
     const { currentUser, isLoggedIn } = useCurrentUser()
-    const { loginAsTestUser } = useSessions()
+    const { loginAsTestUser, logout } = useSessions()
 
     return {
       loginAsTestUser,
       currentUser,
-      isLoggedIn
+      isLoggedIn,
+      logout
     }
   }
 }
@@ -131,8 +130,14 @@ export default {
   .dropdown-menu {
     left: -44px;
   }
+  .dropdown-item {
+    cursor: pointer;
+  }
   .o-nav-gravatar-img {
     width: 20px;
+  }
+  &__button {
+    margin-right: 4px;
   }
 }
 </style>

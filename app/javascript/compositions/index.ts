@@ -19,7 +19,11 @@ export const useSessions = () => {
     const { data } = await new DefaultApi().loginAsTestUser()
     location.href = `/users/${data.user.id}`
   }
-  return { loginAsTestUser }
+  const logout = async () => {
+    await new DefaultApi().logout()
+    location.href = '/'
+  }
+  return { loginAsTestUser, logout }
 }
 
 export const useFlashMessage = () => {
