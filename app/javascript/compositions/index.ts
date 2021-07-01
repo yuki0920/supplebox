@@ -25,9 +25,12 @@ export const useSessions = () => {
 export const useFlashMessage = () => {
   const messageIsShow = ref(false)
   const messageIsSuccess = ref(false)
-  const onFlashMessage = ({isShow, isSuccess = false}: {isShow: boolean, isSuccess: boolean}) => {
-    messageIsShow.value = isShow
+  const onFlashMessage = async({isSuccess = false}: {isSuccess: boolean}) => {
+    messageIsShow.value = true
     messageIsSuccess.value = isSuccess
+
+    await new Promise(resolve => setTimeout(resolve, 3000))
+    messageIsShow.value = false
   }
 
   return { messageIsShow, messageIsSuccess, onFlashMessage }
