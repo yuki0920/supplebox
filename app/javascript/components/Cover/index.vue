@@ -20,13 +20,14 @@
 </template>
 
 <script lang="ts">
+import { useCurrentUser } from '@/compositions'
 
 export default {
-  props: {
-    isLoggedIn: {
-      type: Boolean,
-      required: true
-    }
+  name: 'Cover',
+  setup() {
+    const { isLoggedIn} = useCurrentUser()
+
+    return { isLoggedIn }
   }
 }
 </script>
@@ -37,7 +38,7 @@ export default {
   margin-bottom: 20px;
   width: 100%;
   height: auto;
-  background: url("https://supplebox.jp/images/cover-bg.jpg") center center no-repeat;
+  background: url("/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
   &__inner {
     height: 100%;
