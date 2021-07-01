@@ -1,7 +1,7 @@
 <template>
   <div class="p-edit-post-form">
     <FlashMessage
-      title="口コミ投稿"
+      title="口コミ編集"
       :is-show="messageIsShow"
       :is-success="messageIsSuccess"
       @flash-message="onFlashMessage"
@@ -76,11 +76,11 @@ export default {
 
       try {
         await axios.put(`/api/posts/${postId}`, formData, config)
-        await onFlashMessage({isShow: true, isSuccess: true})
+        await onFlashMessage({isSuccess: true})
 
         location.href = `/products/${productId}`
       } catch(error) {
-        onFlashMessage({isShow: true, isSuccess: false})
+        await onFlashMessage({isSuccess: false})
       }
     }
 

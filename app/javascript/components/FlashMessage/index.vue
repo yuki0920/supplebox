@@ -30,17 +30,6 @@ export default {
   },
   emits: ['flash-message'],
   setup(props, context) {
-    watch(
-      () => props.isShow,
-      (now, _) => {
-        if (now === true) {
-          setTimeout(() => {
-            context.emit('flash-message', {isShow: false})
-          }, 3000)
-        }
-      }
-    )
-
     const flashClass = computed(() => {
       return props.isSuccess ? 'alert alert-primary' : 'alert alert-danger'
     })

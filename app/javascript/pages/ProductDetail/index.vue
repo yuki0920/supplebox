@@ -104,9 +104,9 @@ export default {
         // TODO reloadせずにpostsに追加したい
         location.reload()
 
-        onFlashMessage({isShow: true, isSuccess: true})
+        await onFlashMessage({isSuccess: true})
       } catch(error) {
-        onFlashMessage({isShow: true, isSuccess: false})
+        await onFlashMessage({isSuccess: false})
       }
     }
     return {
