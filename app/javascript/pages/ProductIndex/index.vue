@@ -1,6 +1,6 @@
 <template>
   <div class="p-product-index">
-    <h2>プロテインをを検索する</h2>
+    <h2>プロテインを検索する</h2>
     <form
       class="p-product-index__form form-inline"
       @submit.prevent="load"
