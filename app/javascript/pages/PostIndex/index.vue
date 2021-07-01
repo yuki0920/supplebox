@@ -33,7 +33,7 @@ export default {
     const totalPages = ref(1)
 
     const load = async(page = 1) => {
-      const {data} = await new DefaultApi().fetchPosts(12, page)
+      const {data} = await new DefaultApi().fetchPosts(8, page)
 
       posts.value = data.posts
       totalPages.value = data.total_pages
