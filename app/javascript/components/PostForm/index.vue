@@ -159,7 +159,7 @@ export default {
       context.emit('change', {type: 'picture',payload: picture})
     }
 
-    const submit = (_e) => {
+    const submit = () => {
       context.emit('submit')
     }
 
