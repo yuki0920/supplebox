@@ -596,10 +596,59 @@ export interface SearchProducts {
 export interface User {
     /**
      *
-     * @type {PostsUser}
+     * @type {UserUser}
      * @memberof User
      */
-    user: PostsUser;
+    user: UserUser;
+}
+/**
+ *
+ * @export
+ * @interface UserUser
+ */
+export interface UserUser {
+    /**
+     *
+     * @type {number}
+     * @memberof UserUser
+     */
+    id: number;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    picture_url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    gender: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    height: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    weight: string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof UserUser
+     */
+    comment: string | null;
 }
 
 /**
