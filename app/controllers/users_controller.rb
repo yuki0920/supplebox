@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show destroy like_products]
-  before_action :require_user_logged_in, only: %i[edit update destroy]
+  before_action :set_user, only: %i[show like_products]
+  before_action :require_user_logged_in, only: %i[edit update]
   before_action :correct_user, only: %i[edit update]
-  before_action :admin_user, only: :destroy
 
   def show
     @posts = Post.includes(:user, :product).where(user_id: @user.id).page(params[:page])
@@ -13,18 +12,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id # 新規登録時にログイン状態になる
-      flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
-    else
-      flash.now[:danger] = 'ユーザの登録に失敗しました。'
-      render :new
-    end
   end
 
   def edit; end
@@ -37,13 +24,6 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'プロフィールの更新に失敗しました'
       render :edit
     end
-  end
-
-  def destroy
-    return unless @user.destroy
-
-    flash[:success] = 'アカウントを削除しました。またのご利用をお待ちしております。'
-    redirect_to root_url
   end
 
   def like_products

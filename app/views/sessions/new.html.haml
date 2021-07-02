@@ -1,29 +1,4 @@
 - breadcrumb :login
-.row.justify-content-center
-  .col-xs-offset-2.col-xs-8.col-md-offset-3.col-md-6
-    .card
-      .card-header ログイン
-      .card-body
-        = form_for(:session, url: login_path) do |f|
-          .form-group
-            = f.label :email, 'メールアドレス'
-            = f.email_field :email, class: 'form-control'
-          .form-group
-            = f.label :password, 'パスワード'
-            = f.password_field :password, class: 'form-control'
-          .login
-            = f.submit 'ログイン', class: 'login-button btn btn-success btn-block'
-        %p
-          アカウントをお持ちでない方はこちらから#{link_to '新規登録', signup_path}してください
-  / テストユーザー用
-.row.justify-content-center
-  .col-xs-offset-2.col-xs-8.col-md-offset-3.col-md-6
-    .card
-      .card-header テストアカウント
-      .card-body
-        .form-group
-          %label メールアドレス
-          %p test@supplebox.jp
-        .form-group
-          %label パスワード
-          %p testsupple
+
+#login
+  = javascript_pack_tag 'login'
