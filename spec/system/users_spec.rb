@@ -29,7 +29,7 @@ describe 'ユーザー登録機能', type: :system, js: true do
       attach_file 'プロフィール画像', 'spec/images/test_normal_image.jpg'
       fill_in '自己紹介', with: 'こんにちは.'
       click_on '更新する'
-      expect(page).to have_content 'プロフィールを更新しました'
+      expect(page).to have_content 'プロフィールの編集に成功しました'
     end
 
     it '他のユーザーの編集ページにはアクセスできないこと' do

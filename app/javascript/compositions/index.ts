@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { DefaultApi, CurrentUserUser as CurrentUser } from '@/types/typescript-axios/api'
 
 export const useCurrentUser = () => {
@@ -38,4 +38,19 @@ export const useFlashMessage = () => {
   }
 
   return { messageIsShow, messageIsSuccess, onFlashMessage }
+}
+
+export const useUser = ({ id }: { id: number }) => {
+  const user = reactive({name: null, gender: null, height: null, weight: null, comment: null, pictureUrl: null})
+  onMounted(async() => {
+    const { data } = await new DefaultApi().fetchUser(id)
+    user.name = data.user.name
+    user.gender =  data.user.gender
+    user.height = data.user.height
+    user.weight = data.user.weight
+    user.comment = data.user.comment
+    user.pictureUrl = data.user.picture_url
+  })
+
+  return { user }
 }

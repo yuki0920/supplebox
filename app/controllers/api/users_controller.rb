@@ -41,7 +41,7 @@ module Api
     end
 
     def edit_user_params
-      params.require(:user).permit(:name, :gender, :height, :weight, :picture)
+      params.require(:user).permit(:name, :gender, :height, :weight, :comment, :picture)
     end
   end
 end

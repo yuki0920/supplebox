@@ -649,6 +649,7 @@ components:
             - gender
             - height
             - weight
+            - comment
           properties:
             picture:
               type: string
@@ -661,6 +662,9 @@ components:
               type: string
               nullable: true
             weight:
+              type: string
+              nullable: true
+            comment:
               type: string
               nullable: true
     user:
@@ -677,6 +681,7 @@ components:
             - gender
             - height
             - weight
+            - comment
           properties:
             id:
               type: number
@@ -691,6 +696,9 @@ components:
               type: string
               nullable: true
             weight:
+              type: string
+              nullable: true
+            comment:
               type: string
               nullable: true
     login:
