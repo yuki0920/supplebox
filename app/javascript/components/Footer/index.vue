@@ -51,12 +51,6 @@
 
 export default {
   name: 'Footer',
-  props: {
-    isLoggedIn: {
-      type: Boolean,
-      required: true
-    }
-  }
 }
 </script>
 
