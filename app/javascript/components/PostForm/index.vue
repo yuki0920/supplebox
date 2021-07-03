@@ -124,15 +124,18 @@ export default {
     },
     title: {
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
     rate: {
       type: Number,
-      required: true,
+      required: false,
+      default: null,
     },
     content: {
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
   },
   emits: ['change', 'submit', 'deletePost'],

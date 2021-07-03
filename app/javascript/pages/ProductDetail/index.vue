@@ -33,25 +33,17 @@ import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
 import { ref } from 'vue'
 import { DefaultApi } from "@/types/typescript-axios/api"
-import { useCurrentUser, useFlashMessage, usePost } from '@/compositions'
+import { useCurrentUser, useFlashMessage, usePost, useProduct } from '@/compositions'
 
 export default {
   name: 'ProductDetail',
   components: { ProductSummary, PostItem, FlashMessage, PostForm },
 
   setup() {
-    const { isLoggedIn } = useCurrentUser()
-
     const productId = parseInt(location.pathname.split("/").slice(-1)[0])
-
-    // 商品取得ロジック
-    const product = ref({})
-    const fetchProduct = async() => {
-      const {data} = await new DefaultApi().fetchProduct(productId)
-
-      product.value = data.product
-    }
-    fetchProduct()
+    const { isLoggedIn } = useCurrentUser()
+    const { fetchProduct, product } = useProduct()
+    fetchProduct({ id: productId })
 
     // 口コミ一覧ロジック
     const posts = ref([])

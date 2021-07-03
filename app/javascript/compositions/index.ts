@@ -58,7 +58,9 @@ export const useUser = ({ id }: { id: number }) => {
 }
 
 export const usePost = ({ productId }) => {
-  const post = reactive({ title: null, rate: null, content: null, picture: null})
+  type postParams = { title: string, rate: string, content: string, picture: File, pictureUrl: string}
+  const post = reactive<postParams>({ title: null, rate: null, content: null, picture: null, pictureUrl: null })
+
   const onChange = ({type, payload}) => {
     switch(type) {
     case 'title':
@@ -102,4 +104,15 @@ export const usePost = ({ productId }) => {
   }
 
   return { post, onChange, createPost, deletePost }
+}
+
+export const useProduct = () => {
+  const product = ref(null)
+  const fetchProduct = async ({ id }: { id: number }) => {
+    const {data} = await new DefaultApi().fetchProduct(id)
+
+    product.value = data.product
+  }
+
+  return { fetchProduct, product }
 }
