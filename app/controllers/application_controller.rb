@@ -30,9 +30,4 @@ class ApplicationController < ActionController::Base
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end
-
-  def counts(user)
-    @count_posts = user.posts.count
-    @count_like_products = user.products.count
-  end
 end
