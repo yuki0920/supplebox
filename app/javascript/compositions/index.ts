@@ -1,6 +1,6 @@
 import axios from '@axios'
 import { ref, reactive, onMounted } from 'vue'
-import { DefaultApi, CurrentUserUser as CurrentUser } from '@/types/typescript-axios/api'
+import { DefaultApi } from '@/types/typescript-axios/api'
 const formDataConfig = { headers: { 'content-type': 'multipart/form-data' } }
 
 export const useCurrentUser = () => {
@@ -57,9 +57,9 @@ export const useUser = ({ id }: { id: number }) => {
   return { user }
 }
 
-export const usePost = ({ productId }) => {
-  type postParams = { title: string, rate: string, content: string, picture: File, pictureUrl: string}
-  const post = reactive<postParams>({ title: null, rate: null, content: null, picture: null, pictureUrl: null })
+export const usePost = () => {
+  type postParams = { title: string, rate: string, content: string, picture: File, pictureUrl: string, productId: number}
+  const post = reactive<postParams>({ title: null, rate: null, content: null, picture: null, pictureUrl: null, productId: null })
 
   const onChange = ({type, payload}) => {
     switch(type) {
@@ -86,13 +86,26 @@ export const usePost = ({ productId }) => {
     data.append('post[rate]', post.rate)
     data.append('post[content]', post.content)
     data.append('post[picture]', post.picture)
-    data.append('post[product_id]', productId)
+    data.append('post[product_id]', String(post.productId))
 
     return data
   }
 
+  const fetchPost = async ({ id }: { id: number }) => {
+    const { data } = await new DefaultApi().fetchPost(id)
+    post.title = data.post.title
+    post.rate = data.post.rate
+    post.content = data.post.content
+    post.productId = data.post.product_id
+  }
+
+
   const createPost = async() => {
     return await axios.post('/api/posts', formData(), formDataConfig)
+  }
+
+  const updatePost = async ({ id }: { id: number }) => {
+    return await axios.put(`/api/posts/${id}`, formData(), formDataConfig)
   }
 
   const deletePost = async ({ id }: { id: number }) => {
@@ -103,7 +116,7 @@ export const usePost = ({ productId }) => {
     }
   }
 
-  return { post, onChange, createPost, deletePost }
+  return { post, onChange, fetchPost, createPost, updatePost, deletePost }
 }
 
 export const useProduct = () => {
