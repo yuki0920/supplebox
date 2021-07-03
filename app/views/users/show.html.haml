@@ -1,10 +1,7 @@
-- breadcrumb :show_user, @user
-/ ユーザープロフィール
+- breadcrumb :show_user
 #user_profile
   = javascript_pack_tag 'user_profile'
 .col-md-12
-  / ユーザーナビバー
   = render 'user_nav', user: @user
-  / 口コミ一覧
   #user-posts
     = javascript_pack_tag 'user_posts'
