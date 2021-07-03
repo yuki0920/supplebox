@@ -1,6 +1,7 @@
 <template>
   <div class="p-product-detail">
     <ProductSummary
+      v-if="product !== null"
       :product="product"
       :is-logged-in="isLoggedIn"
     />
