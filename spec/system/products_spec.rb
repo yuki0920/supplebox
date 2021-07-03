@@ -37,7 +37,7 @@ describe 'アイテム登録機能', type: :system, js: true do
 
     it 'ユーザーはアイテム一覧を閲覧できること' do
       visit products_path
-      expect(page).to have_content 'Home › アイテム一覧'
+      expect(page).to have_content 'Home › プロテイン一覧'
       expect(page).to have_selector '.pagination'
       # NOTE: CI環境でだけ落ちる
       # Product.page.each do |product|

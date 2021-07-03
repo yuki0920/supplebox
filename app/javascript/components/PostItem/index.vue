@@ -1,7 +1,7 @@
 <template>
   <div class="o-post-item row posts">
     <div class="o-post-item__user col-md-2">
-      <a :href="`users/${post.user.id}`">
+      <a :href="`/users/${post.user.id}`">
         <img
           :src="post.user.picture_url"
           class="o-post-item__user-image"
