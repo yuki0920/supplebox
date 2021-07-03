@@ -17,8 +17,8 @@
 
 ## 環境
 
-- サーバーサイド(Ruby 3.0.0, Rails 6.1.0)
-- フロントエンド(JavaScript, Vue.js, jQuery)
+- サーバーサイド(Ruby 3.0, Rails 6.1)
+- フロントエンド(TypeScript 4.5, Vue.js 4.3 ※Composition API利用)
 - 本番環境インフラ(Heroku)
 - 開発開発(Docker, Docker Compose)
 - データベース(PostgreSQL)
@@ -29,15 +29,15 @@
 - カバレッジ計測(SimpleCov)
 - 静的解析(RuboCop, Brakeman, ESLint)
 - N+1(Bullet)
-- CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
+- CI/CD(CircleCI, Heroku Pipeline)
 - アクセス解析(google-analytics-rails)
 - API スキーマ定義(OpenAPI Specification, committee-rails)
-- API Client(OpenAPI Generator, typescript-axios)
-- UI 検証(StoryBook & Chromatic) https://www.chromatic.com/builds?appId=600cbad853382200215b7275
+- API クライアント生成(OpenAPI Generator, typescript-axios)
+- UI 検証(StoryBook,  Chromatic) デプロイ済みコンポーネント https://www.chromatic.com/builds?appId=600cbad853382200215b7275
 
 ## 使用機能と技術
 
-- フロントエンド(Vuejs 3, Composition API, TypeScript)
+- フロントエンド(TypeScript, Vuejs 3 ※Composition API)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer, ActiveJob)
@@ -66,7 +66,7 @@
 - [Rails で AmazonAPI を使ってみよう！ - Qiita](https://qiita.com/yuki_0920/items/7e7e9dcd955fed777bc1)
 - [Docker の環境構築で`could not connect to server: Connection refused`のエラーが出た時の対処法 - Qiita](https://qiita.com/yuki_0920/items/84e2ca260bfe13cf3072)
 - [Heroku でデプロイに失敗するときの対処法(Ruby app detected されない問題) - Qiita](https://qiita.com/yuki_0920/items/b1065777edf090351052)
-- [Rails×Vue.js(2 系)×Webpacker のアプリの Vue 2 -> 3 アップデートと TypeScript 導入の手順 - Qiita](https://qiita.com/yuki_0920/items/2eab16aadbe2f3a8d73e)
+- [【Rails×Vue.js×Webpacker】|Vue2系から3系のアップデートとTypeScript 導入の手順 - Qiita](https://qiita.com/yuki_0920/items/2eab16aadbe2f3a8d73e)
 
 ## 環境構築手順
 
