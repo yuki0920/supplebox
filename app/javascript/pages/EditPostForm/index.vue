@@ -15,6 +15,7 @@
       :content="content"
       @change="onChange"
       @submit="submitForm"
+      @deletePost="deletePost({ id: postId})"
     />
   </div>
 </template>
@@ -25,7 +26,7 @@ import FlashMessage from '@/components/FlashMessage/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
 import { ref } from 'vue'
-import { useFlashMessage } from '@/compositions'
+import { useFlashMessage, usePost } from '@/compositions'
 
 export default {
   name: 'EditPostForm',
@@ -54,7 +55,7 @@ export default {
         break
       }
     }
-    const postId = location.pathname.split("/").slice(-2)[0]
+    const postId: number = parseInt(location.pathname.split("/").slice(-2)[0])
     let productId: string
     const fetchPost = async (postId) => {
       const { data } = await new DefaultApi().fetchPost(postId)
@@ -84,6 +85,8 @@ export default {
       }
     }
 
+    const { deletePost } = usePost({ productId: productId })
+
     return {
       postId,
       title,
@@ -93,7 +96,8 @@ export default {
       messageIsSuccess,
       onFlashMessage,
       onChange,
-      submitForm
+      submitForm,
+      deletePost,
     }
   }
 }

@@ -122,26 +122,24 @@ export default {
       type: String,
       required: true,
     },
-    postId: {
-      type: Number,
-      required: false,
-      default: 0
-    },
     title: {
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
     rate: {
       type: Number,
-      required: true,
+      required: false,
+      default: null,
     },
     content: {
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
   },
-  emits: ['change', 'submit'],
-  setup(props, context) {
+  emits: ['change', 'submit', 'deletePost'],
+  setup(_props, context) {
     const onChangeTitle = (e) => {
       context.emit('change', {type: 'title',payload: e.target.value})
     }
@@ -164,10 +162,8 @@ export default {
     }
 
     // TODO: イベントの流れ的には、親コンポーネントで実行したい
-    const deletePost = async () => {
-      await new DefaultApi().deletePost(props.postId)
-
-      history.back()
+    const deletePost = () => {
+      context.emit('deletePost')
     }
 
     return {
