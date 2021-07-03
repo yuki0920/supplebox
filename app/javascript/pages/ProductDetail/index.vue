@@ -32,7 +32,7 @@ import FlashMessage from '@/components/FlashMessage/index.vue'
 import ProductSummary from '@/components/ProductSummary/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { DefaultApi } from "@/types/typescript-axios/api"
 import { useCurrentUser, useFlashMessage } from '@/compositions'
 

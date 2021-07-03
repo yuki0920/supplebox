@@ -54,3 +54,15 @@ export const useUser = ({ id }: { id: number }) => {
 
   return { user }
 }
+
+export const usePost = ({ id }: { id: number }) => {
+  const deletePost = async () => {
+    if (window.confirm('口コミを削除してもよろしいですか?')) {
+      await new DefaultApi().deletePost(id)
+
+      history.back()
+    }
+  }
+
+  return { deletePost }
+}
