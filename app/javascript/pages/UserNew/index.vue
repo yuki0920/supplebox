@@ -12,7 +12,7 @@
                 <label for="user_name">ユーザー名</label>
                 <input
                   id="user_name"
-                  v-model="name"
+                  v-model="user.name"
                   class="form-control"
                   type="text"
                   name="user[name]"
@@ -22,7 +22,7 @@
                 <label for="user_email">メールアドレス</label>
                 <input
                   id="user_email"
-                  v-model="email"
+                  v-model="user.email"
                   class="form-control"
                   type="email"
                   name="user[email]"
@@ -32,7 +32,7 @@
                 <label for="user_password">パスワード</label>
                 <input
                   id="user_password"
-                  v-model="password"
+                  v-model="user.password"
                   class="form-control"
                   type="password"
                   name="user[password]"
@@ -42,7 +42,7 @@
                 <label for="user_password_confirmation">パスワード(確認)</label>
                 <input
                   id="user_password_confirmation"
-                  v-model="password_confirmation"
+                  v-model="user.password_confirmation"
                   class="form-control"
                   type="password"
                   name="user[password_confirmation]"
@@ -67,34 +67,28 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import { DefaultApi } from '@/types/typescript-axios/api'
+import { reactive } from 'vue'
+import { DefaultApi, NewUserUser as userParams } from '@/types/typescript-axios/api'
 
 export default {
   name: 'UserNew',
   setup() {
-    const name = ref('')
-    const email = ref('')
-    const password = ref('')
-    const password_confirmation = ref('')
+    const user = reactive<userParams>({name: null, email: null, password: null, password_confirmation: null})
 
     const submitForm = async() => {
       const {data}  = await new DefaultApi().createUser({
         user: {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-          password_confirmation: password_confirmation.value
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          password_confirmation: user.password_confirmation,
         }
       })
 
       location.href = `/users/${data.user.id}`
     }
     return {
-      name,
-      email,
-      password,
-      password_confirmation,
+      user,
       submitForm,
     }
   }
