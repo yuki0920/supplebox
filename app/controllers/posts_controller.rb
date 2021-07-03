@@ -5,8 +5,8 @@ class PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
-
-    redirect_to posts_path unless @post
+  rescue ActiveRecord::RecordNotFound
+    redirect_to posts_path
   end
 
   def index; end
