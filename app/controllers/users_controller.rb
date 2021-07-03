@@ -5,12 +5,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to(current_user) unless @user == current_user
   end
 
   def new; end
 
-  def edit; end
+  def edit
+    user = User.find(params[:id])
+    redirect_to(current_user) unless user == current_user
+  end
 
-  def like_products; end
+  def like_products
+    @user = User.find(params[:id])
+  end
 end
