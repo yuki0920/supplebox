@@ -18,7 +18,6 @@ class User < ApplicationRecord
   validates :comment, length: {maximum: 100}
   mount_uploader :picture, AvatarUploader
 
-
   def like!(product)
     likes.create!(product_id: product.id)
   end
