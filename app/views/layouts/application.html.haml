@@ -15,12 +15,14 @@
     / GoogleAnalytics
     = analytics_init if Rails.env.production?
   %body
-    = render 'layouts/navbar'
-    - if controller_name == 'toppages'
+    #navigation
+      = javascript_pack_tag 'navigation'
+    - if controller_name == 'toppages' && action_name == 'index'
       #cover
         = javascript_pack_tag 'cover'
     .container
       = render 'layouts/flash_messages'
       %p= breadcrumbs separator: " &rsaquo; "
       = yield
-    = render 'layouts/footer'
+    #footer
+      = javascript_pack_tag 'footer'
