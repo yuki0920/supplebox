@@ -44,7 +44,7 @@
             v-if="isLoggedIn"
             class="o-product-summary__button"
             :product-id="product.id"
-            :is-liked="product.is_likes"
+            :is-liked="product.is_liked"
           />
         </div>
       </div>

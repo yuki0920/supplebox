@@ -9,89 +9,45 @@
     <PostForm
       :is-edit="true"
       head="口コミを編集する"
-      :post-id="postId"
-      :title="title"
-      :rate="rate"
-      :content="content"
+      :title="post.title"
+      :rate="post.rate"
+      :content="post.content"
       @change="onChange"
       @submit="submitForm"
-      @deletePost="deletePost({ id: postId})"
+      @deletePost="deletePost({ id: postId })"
     />
   </div>
 </template>
 
 <script lang="ts">
-import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
-import { DefaultApi } from '@/types/typescript-axios/api'
-import { ref } from 'vue'
 import { useFlashMessage, usePost } from '@/compositions'
 
 export default {
   name: 'EditPostForm',
   components: { FlashMessage, PostForm },
   setup() {
-    const title = ref('')
-    const rate = ref(3)
-    const content = ref('')
-    let picture
-
-    const onChange = ({type, payload}) => {
-      switch(type) {
-      case 'title':
-        title.value = payload
-        break
-      case 'rate':
-        rate.value = payload
-        break
-      case 'content':
-        content.value = payload
-        break
-      case 'picture':
-        picture = payload
-        break
-      default:
-        break
-      }
-    }
     const postId: number = parseInt(location.pathname.split("/").slice(-2)[0])
-    let productId: string
-    const fetchPost = async (postId) => {
-      const { data } = await new DefaultApi().fetchPost(postId)
-      title.value = data.post.title
-      rate.value = data.post.rate
-      content.value = data.post.content
-      productId = data.post.product_id
-    }
-    fetchPost(postId)
+    const { post, onChange, fetchPost, updatePost, deletePost } = usePost()
+
+    fetchPost({ id: postId })
 
     const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
     const submitForm = async () => {
-      let formData = new FormData()
-      formData.append('post[title]', title.value)
-      formData.append('post[rate]', `${rate.value}`)
-      formData.append('post[content]', content.value)
-      formData.append('post[picture]', picture)
-      const config = { headers : { 'content-type': 'multipart/form-data' } }
-
       try {
-        await axios.put(`/api/posts/${postId}`, formData, config)
+        await updatePost({ id: postId })
         await onFlashMessage({isSuccess: true})
 
-        location.href = `/products/${productId}`
+        location.href = `/products/${post.productId}`
       } catch(error) {
         await onFlashMessage({isSuccess: false})
       }
     }
 
-    const { deletePost } = usePost({ productId: productId })
-
     return {
       postId,
-      title,
-      rate,
-      content,
+      post,
       messageIsShow,
       messageIsSuccess,
       onFlashMessage,

@@ -1,6 +1,7 @@
 <template>
   <div class="p-product-detail">
     <ProductSummary
+      v-if="product !== null"
       :product="product"
       :is-logged-in="isLoggedIn"
     />
@@ -54,9 +55,9 @@ export default {
     fetchPosts()
 
     // 口コミ投稿ロジック
-    const { post, onChange, createPost } = usePost({ productId: String(productId) })
+    const { post, onChange, createPost } = usePost()
+    post.productId = productId
     const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
-
     const submitForm = async () => {
       try {
         await createPost()
@@ -67,6 +68,7 @@ export default {
         await onFlashMessage({isSuccess: false})
       }
     }
+
     return {
       isLoggedIn,
       product,
