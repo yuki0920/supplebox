@@ -25,7 +25,7 @@ describe 'ユーザー登録機能', type: :system, js: true do
   describe '編集機能' do
     it 'プロフィールを編集出来ること' do
       sign_in_as user
-      visit edit_user_path(user)
+      click_link 'プロフィールを編集する'
       attach_file 'プロフィール画像', 'spec/images/test_normal_image.jpg'
       fill_in '自己紹介', with: 'こんにちは.'
       click_on '更新する'
