@@ -5,14 +5,14 @@ crumb :root do
 end
 
 # user#show
-crumb :show_user do |user|
-  link "@#{user.name}", user
+crumb :show_user do
+  link 'プロフィール'
 end
 
 # user#edit
-crumb :edit_user do |user|
-  link 'プロフィール編集', edit_user_path(user)
-  parent :show_user, user
+crumb :edit_user do
+  link 'プロフィール編集'
+  parent :show_user
 end
 
 # user#new
@@ -21,32 +21,32 @@ crumb :new_user do
 end
 
 # product#index
-crumb :products do |query_params = nil|
-  link 'アイテム一覧', query_params ? products_path(query_params) : products_path
+crumb :products do
+  link 'プロテイン一覧'
   parent :root
 end
 
 # product#show
-crumb :show_product do |product|
-  link product.title.to_s, product
+crumb :show_product do
+  link 'プロテイン詳細'
   parent :products
 end
 
 # product#new
 crumb :new_product do
-  link 'アイテム登録', new_product_path
+  link 'プロテイン登録', new_product_path
   parent :products
 end
 
 # post#index
 crumb :posts do
-  link 'アイテム一覧', posts_path
+  link '口コミ一覧', posts_path
   parent :root
 end
 
 # post#edit
-crumb :edit_post do |post|
-  link '編集', edit_post_path(post)
+crumb :edit_post do
+  link '編集'
   parent :posts
 end
 
