@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # ユーザー登録用
+  has_secure_password
+  has_many :posts, dependent: :destroy
+  has_many :contacts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :products, through: :likes
+
   before_save { email.downcase! }
   validates :name, presence: true, length: {maximum: 50}
   validates :nickname, length: {maximum: 50}
@@ -13,20 +18,6 @@ class User < ApplicationRecord
   validates :comment, length: {maximum: 100}
   mount_uploader :picture, AvatarUploader
 
-  has_secure_password
-
-  # ページネーションの表示件数追加
-  paginates_per 9
-
-  # 口コミ投稿との関連付け
-  has_many :posts, dependent: :destroy
-
-  # お問い合わせとの関連付け
-  has_many :contacts, dependent: :destroy
-
-  # お気に入り機能追加用中間テーブル追加
-  has_many :likes, dependent: :destroy
-  has_many :products, through: :likes
 
   def like!(product)
     likes.create!(product_id: product.id)
@@ -40,10 +31,5 @@ class User < ApplicationRecord
 
   def like?(product)
     products.include?(product)
-  end
-
-  # お気に入り数表示
-  def self.ranking
-    group(:user.product_id).count(:user.product_id)
   end
 end
