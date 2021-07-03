@@ -15,7 +15,7 @@
       :content="content"
       @change="onChange"
       @submit="submitForm"
-      @deletePost="deletePost(postId)"
+      @deletePost="deletePost({ id: postId})"
     />
   </div>
 </template>
@@ -85,7 +85,7 @@ export default {
       }
     }
 
-    const { deletePost } = usePost()
+    const { deletePost } = usePost({ productId: productId })
 
     return {
       postId,

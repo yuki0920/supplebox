@@ -1,5 +1,7 @@
+import axios from '@axios'
 import { ref, reactive, onMounted } from 'vue'
 import { DefaultApi, CurrentUserUser as CurrentUser } from '@/types/typescript-axios/api'
+const formDataConfig = { headers: { 'content-type': 'multipart/form-data' } }
 
 export const useCurrentUser = () => {
   const currentUser = ref(null)
@@ -55,8 +57,43 @@ export const useUser = ({ id }: { id: number }) => {
   return { user }
 }
 
-export const usePost = ({ id }: { id: number }) => {
-  const deletePost = async () => {
+export const usePost = ({ productId }) => {
+  const post = reactive({ title: null, rate: null, content: null, picture: null})
+  const onChange = ({type, payload}) => {
+    switch(type) {
+    case 'title':
+      post.title = payload
+      break
+    case 'rate':
+      post.rate = payload
+      break
+    case 'content':
+      post.content = payload
+      break
+    case 'picture':
+      post.picture = payload
+      break
+    default:
+      break
+    }
+  }
+
+  const formData = () => {
+    const data = new FormData()
+    data.append('post[title]', post.title)
+    data.append('post[rate]', post.rate)
+    data.append('post[content]', post.content)
+    data.append('post[picture]', post.picture)
+    data.append('post[product_id]', productId)
+
+    return data
+  }
+
+  const createPost = async() => {
+    return await axios.post('/api/posts', formData(), formDataConfig)
+  }
+
+  const deletePost = async ({ id }: { id: number }) => {
     if (window.confirm('口コミを削除してもよろしいですか?')) {
       await new DefaultApi().deletePost(id)
 
@@ -64,5 +101,5 @@ export const usePost = ({ id }: { id: number }) => {
     }
   }
 
-  return { deletePost }
+  return { post, onChange, createPost, deletePost }
 }

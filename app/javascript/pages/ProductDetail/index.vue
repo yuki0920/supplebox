@@ -17,9 +17,9 @@
     />
     <PostForm
       head="口コミを投稿する"
-      :title="title"
-      :rate="rate"
-      :content="content"
+      :title="post.title"
+      :rate="post.rate"
+      :content="post.content"
       @change="onChange"
       @submit="submitForm"
     />
@@ -27,14 +27,13 @@
 </template>
 
 <script lang="ts">
-import axios from '@axios'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import ProductSummary from '@/components/ProductSummary/index.vue'
 import PostForm from '@/components/PostForm/index.vue'
 import PostItem from "@/components/PostItem/index.vue"
 import { ref } from 'vue'
 import { DefaultApi } from "@/types/typescript-axios/api"
-import { useCurrentUser, useFlashMessage } from '@/compositions'
+import { useCurrentUser, useFlashMessage, usePost } from '@/compositions'
 
 export default {
   name: 'ProductDetail',
@@ -58,53 +57,20 @@ export default {
     const posts = ref([])
     const fetchPosts = async() => {
       const {data} = await new DefaultApi().fetchPosts(24, 1, undefined, productId)
-      console.log('data', data)
       posts.value = data.posts
-      console.log(posts.value)
     }
     fetchPosts()
 
     // 口コミ投稿ロジック
-    const title = ref('')
-    const rate = ref(3)
-    const content = ref('')
-    let picture
-
-    const onChange = ({type, payload}) => {
-      switch(type) {
-      case 'title':
-        title.value = payload
-        break
-      case 'rate':
-        rate.value = payload
-        break
-      case 'content':
-        content.value = payload
-        break
-      case 'picture':
-        picture = payload
-        break
-      default:
-        break
-      }
-    }
-
+    const { post, onChange, createPost } = usePost({ productId: String(productId) })
     const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
+
     const submitForm = async () => {
-      let formData = new FormData()
-      formData.append('post[title]', title.value)
-      formData.append('post[rate]', `${rate.value}`)
-      formData.append('post[content]', content.value)
-      formData.append('post[product_id]', String(productId))
-      formData.append('post[picture]', picture)
-      const config = { headers : { 'content-type': 'multipart/form-data' } }
-
       try {
-        await axios.post('/api/posts', formData, config)
-        // TODO reloadせずにpostsに追加したい
-        location.reload()
-
+        await createPost()
         await onFlashMessage({isSuccess: true})
+
+        location.reload()
       } catch(error) {
         await onFlashMessage({isSuccess: false})
       }
@@ -113,9 +79,7 @@ export default {
       isLoggedIn,
       product,
       posts,
-      title,
-      rate,
-      content,
+      post,
       messageIsShow,
       messageIsSuccess,
       onFlashMessage,
