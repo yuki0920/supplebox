@@ -1,17 +1,15 @@
 <template>
   <div o-like-button>
-    <a
+    <span
       v-if="nowLiked"
       class="o-like-button btn btn-success"
-      href="javascript:void(0)"
       @click="unlike"
-    >お気に入り登録中</a>
-    <a
+    >お気に入り登録中</span>
+    <span
       v-else
       class="o-like-button btn btn-outline-success"
-      href="javascript:void(0)"
       @click="like"
-    >お気に入り登録する</a>
+    >お気に入り登録する</span>
   </div>
 </template>
 
