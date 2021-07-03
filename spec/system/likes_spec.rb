@@ -4,21 +4,18 @@ require 'rails_helper'
 
 describe 'アイテムお気に入り登録機能', type: :system, js: true do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:product) { FactoryBot.create(:product, title: 'お気に入りアイテム') }
+  let!(:product) { FactoryBot.create(:product, title: 'お気に入り追加プロテイン') }
 
   context 'お気に入り登録していない場合' do
     before do
       sign_in_as user
     end
 
-    xit 'お気に入りに追加したアイテムがトップページに表示されている' do
+    it 'お気に入りに追加したアイテムがトップページに表示されている' do
       visit product_path(product)
-      click_on 'お気に入り登録する'
+      find('.o-like-button__like', text: 'お気に入り登録する').click
 
       expect(page).to have_content 'お気に入り登録中'
-
-      visit root_path
-      expect(page).to have_content product.title
     end
   end
 
@@ -28,14 +25,11 @@ describe 'アイテムお気に入り登録機能', type: :system, js: true do
       user.like!(product)
     end
 
-    xit 'お気に入りを解除ししたアイテムがトップページに表示されていない' do
+    it 'お気に入りを解除ししたアイテムがトップページに表示されていない' do
       visit product_path(product)
-      click_on 'お気に入り登録中'
+      find('.o-like-button__unlike', text: 'お気に入り登録中').click
 
       expect(page).to have_content 'お気に入り登録する'
-
-      visit root_path
-      expect(page).not_to have_content product.title
     end
   end
 end

@@ -1,13 +1,13 @@
 <template>
-  <div o-like-button>
+  <div class="o-like-button">
     <span
       v-if="nowLiked"
-      class="o-like-button btn btn-success"
+      class="o-like-button__unlike btn btn-success"
       @click="unlike"
     >お気に入り登録中</span>
     <span
       v-else
-      class="o-like-button btn btn-outline-success"
+      class="o-like-button__like btn btn-outline-success"
       @click="like"
     >お気に入り登録する</span>
   </div>
@@ -53,6 +53,8 @@ export default {
 
 <style lang="scss" scoped>
 .o-like-button {
-  display: block;
+  &__like, &__unlike {
+    display: block;
+  }
 }
 </style>
