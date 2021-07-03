@@ -1,5 +1,5 @@
 <template>
-  <div class="p-new-user">
+  <div class="p-user-new">
     <div class="row justify-content-center">
       <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
         <div class="card">
@@ -71,7 +71,7 @@ import { ref } from 'vue'
 import { DefaultApi } from '@/types/typescript-axios/api'
 
 export default {
-  name: 'NewUser',
+  name: 'UserNew',
   setup() {
     const name = ref('')
     const email = ref('')
