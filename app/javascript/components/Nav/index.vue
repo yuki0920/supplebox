@@ -128,7 +128,7 @@ export default {
 <style lang="scss" scoped>
 .o-nav {
   .dropdown-menu {
-    left: -44px;
+    left: -60px;
   }
   .dropdown-item {
     cursor: pointer;
