@@ -61,6 +61,6 @@ users = User.order(:created_at).take(6)
 products = Product.all
 users.each do |user|
   products.each do |product|
-    user.like(product)
+    user.like!(product)
   end
 end
