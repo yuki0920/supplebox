@@ -156,6 +156,19 @@ export interface CurrentUserUser {
 /**
  *
  * @export
+ * @interface ErrorResponse
+ */
+export interface ErrorResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof ErrorResponse
+     */
+    errors: string;
+}
+/**
+ *
+ * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
