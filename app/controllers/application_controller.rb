@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  include SessionsHelper
 
   # before_filter :ensure_domain
   # FQDN = 'supplebox.jp'
@@ -22,11 +23,12 @@ class ApplicationController < ActionController::Base
     redirect_to login_url
   end
 
-  include SessionsHelper
+  def render_errors(object)
+    render json: {errors: object.errors.full_messages.join('、')}, status: :bad_request
+  end
 
   private
 
-  # 管理者かどうか確認
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end
