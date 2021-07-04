@@ -20,7 +20,7 @@ RSpec.describe '/api/users', type: :request do
 
     context 'パラメーターが正常な場合' do
       it 'スキーマ定義とAPIの挙動が同じであること' do
-        post '/api/users', params: { user: valid_params }.to_json, headers: {'Content-Type' => 'application/json'}
+        post '/api/users', params: {user: valid_params}.to_json, headers: {'Content-Type' => 'application/json'}
 
         expect(response).to have_http_status :ok
         assert_request_schema_confirm
@@ -32,12 +32,11 @@ RSpec.describe '/api/users', type: :request do
       let(:invalid_params) { valid_params.merge(password: 'valid', password_confirmation: 'invalid') }
 
       it 'スキーマ定義とAPIの挙動が同じであること' do
-        post '/api/users', params: { user: invalid_params }.to_json, headers: {'Content-Type' => 'application/json'}
+        post '/api/users', params: {user: invalid_params}.to_json, headers: {'Content-Type' => 'application/json'}
 
         expect(response).to have_http_status :bad_request
         assert_request_schema_confirm
         assert_response_schema_confirm
-
       end
     end
   end
