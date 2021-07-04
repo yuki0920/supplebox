@@ -40,27 +40,6 @@ describe 'ユーザー登録機能', type: :system, js: true do
     end
   end
 
-  describe '削除機能' do
-    xit '管理者ユーザーは一般ユーザーのアカウントを削除できること' do
-      sign_in_as admin_user
-      visit user_path(user)
-      expect do
-        click_on 'アカウントを削除する'
-      end.to change { User.count }.by(-1)
-      expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
-    end
-
-    it '管理者ユーザーは管理者ユーザーのアカウントを削除できないこと' do
-      sign_in_as admin_user
-      expect(page).to_not have_content 'アカウントを削除する'
-    end
-
-    it '一般ユーザーはアカウントを削除できないこと' do
-      sign_in_as user
-      expect(page).to_not have_content 'アカウントを削除する'
-    end
-  end
-
   describe '詳細表示機能' do
     it 'ログイン状態に関わらずユーザーが表示されること' do
       visit user_path(user)
