@@ -1,5 +1,6 @@
 <template>
-  <div class="p-product-index">
+  <div class="p-user-products col-md-12">
+    <UserNav />
     <ProductItems
       v-if="products.length > 1"
       :is-logged-in="true"
@@ -11,12 +12,14 @@
 <script lang="ts">
 import { ref } from "vue"
 import ProductItems from "@/components/ProductItems/index.vue"
+import UserNav from "@/components/UserNav/index.vue"
 import { DefaultApi } from "@/types/typescript-axios/api"
 
 export default {
   name: 'UserProducts',
   components: {
     ProductItems,
+    UserNav,
   },
   setup() {
     const products = ref([])
