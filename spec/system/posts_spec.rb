@@ -87,7 +87,7 @@ describe '口コミ投稿機能', type: :system, js: true do
       sign_in_as other_user
 
       visit edit_post_path(post)
-      expect(page).to_not have_content '口コミ編集フォーム'
+      expect(page).not_to have_content '口コミ編集フォーム'
       expect(page).to have_content '最新の口コミ'
     end
   end

@@ -10,7 +10,7 @@ RSpec.describe ContactMailer, type: :mailer do
            title: 'テストタイトル',
            content: 'テストコンテント')
   end
-  let(:mail) { ContactMailer.creation_email(contact) }
+  let(:mail) { described_class.creation_email(contact) }
 
   describe '#creation_email' do
     it 'Subject 定型文になること' do

@@ -16,7 +16,7 @@ describe 'アイテム登録機能', type: :system, js: true do
         fill_in 'keyword', with: 'プロテイン'
         click_on 'アイテムを検索'
         expect(page).to have_content '口コミ評価'
-        expect { click_on 'アイテム登録', match: :first }.to change { Product.count }.by(1)
+        expect { click_on 'アイテム登録', match: :first }.to change(Product, :count).by(1)
         expect(page).to have_content 'アイテムを登録しました'
       end
     end
