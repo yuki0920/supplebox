@@ -18,7 +18,7 @@
 ## 環境
 
 - サーバーサイド(Ruby 3.0, Rails 6.1)
-- フロントエンド(TypeScript 4.5, Vue.js 4.3 ※Composition API利用)
+- フロントエンド(TypeScript 4.5, Vue.js 3.1 ※Composition API利用)
 - 本番環境インフラ(Heroku)
 - 開発開発(Docker, Docker Compose)
 - データベース(PostgreSQL)
