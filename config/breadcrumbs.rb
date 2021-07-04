@@ -9,6 +9,11 @@ crumb :show_user do
   link 'プロフィール'
 end
 
+# user#like_products
+crumb :like_products do
+  link 'お気に入りプロテイン一覧'
+end
+
 # user#edit
 crumb :edit_user do
   link 'プロフィール編集'

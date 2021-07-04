@@ -59,7 +59,7 @@ export default {
   name: 'UserProfile',
   setup() {
     const user = ref(null)
-    const userId = parseInt(location.pathname.split('/').slice(-1)[0])
+    const userId = parseInt(location.pathname.split('/')[2])
     const fetchUser = async() => {
       const {data} = await new DefaultApi().fetchUser(userId)
       user.value = data.user
