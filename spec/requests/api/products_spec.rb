@@ -57,13 +57,29 @@ RSpec.describe '/api/products', type: :request do
 
   describe 'POST /api/products' do
     let(:headers) { {'Content-Type' => 'application/json'} }
-    let(:params) { {product: attributes_for(:product)}.to_json }
 
-    it 'スキーマ定義とAPIの挙動が同じであること' do
-      post '/api/products', params: params, headers: headers
+    context 'パラメーターが正常な場合' do
+      let(:params) { {product: attributes_for(:product)}.to_json }
 
-      assert_request_schema_confirm
-      assert_response_schema_confirm
+      it 'スキーマ定義とAPIの挙動が同じであること' do
+        post '/api/products', params: params, headers: headers
+
+        expect(response).to have_http_status :ok
+        assert_request_schema_confirm
+        assert_response_schema_confirm
+      end
+    end
+
+    context 'パラメーターが不正な場合' do
+      let(:params) { {product: attributes_for(:product).merge(url: '')}.to_json }
+
+      it 'スキーマ定義とAPIの挙動が同じであること' do
+        post '/api/products', params: params, headers: headers
+
+        expect(response).to have_http_status :bad_request
+        assert_request_schema_confirm
+        assert_response_schema_confirm
+      end
     end
   end
 end

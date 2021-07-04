@@ -16,13 +16,29 @@ RSpec.describe '/api/users', type: :request do
   end
 
   describe 'POST /api/users' do
-    it 'スキーマ通りであること' do
-      params = {user: {name: 'test', email: 'test@example.com', password: 'password', password_confirmation: 'password'}}
-      post '/api/users', params: params.to_json, headers: {'Content-Type' => 'application/json'}
+    let(:valid_params) { {name: 'test', email: 'test@example.com', password: 'password', password_confirmation: 'password'} }
 
-      expect(response).to have_http_status :ok
-      assert_request_schema_confirm
-      assert_response_schema_confirm
+    context 'パラメーターが正常な場合' do
+      it 'スキーマ定義とAPIの挙動が同じであること' do
+        post '/api/users', params: { user: valid_params }.to_json, headers: {'Content-Type' => 'application/json'}
+
+        expect(response).to have_http_status :ok
+        assert_request_schema_confirm
+        assert_response_schema_confirm
+      end
+    end
+
+    context 'パラメーターが不正な場合' do
+      let(:invalid_params) { valid_params.merge(password: 'valid', password_confirmation: 'invalid') }
+
+      it 'スキーマ定義とAPIの挙動が同じであること' do
+        post '/api/users', params: { user: invalid_params }.to_json, headers: {'Content-Type' => 'application/json'}
+
+        expect(response).to have_http_status :bad_request
+        assert_request_schema_confirm
+        assert_response_schema_confirm
+
+      end
     end
   end
 
