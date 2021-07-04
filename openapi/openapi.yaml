@@ -108,6 +108,12 @@ paths:
             application/json:
               schema:
                 type: object
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorResponse"
   /api/products/new:
     get:
       operationId: searchProductsFromAmazon
@@ -284,7 +290,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/errorResponse"
   /api/products/{product_id}/like:
     post:
       operationId: likeProduct
@@ -334,6 +340,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/user"
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorResponse"
   /api/users/{id}:
     get:
       operationId: fetchUser
@@ -351,6 +363,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/user"
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorResponse"
     put:
       operationId: updateUser
       summary: Update User
@@ -716,3 +734,10 @@ components:
               type: string
             password:
               type: string
+    errorResponse:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: string

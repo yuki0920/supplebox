@@ -34,9 +34,11 @@ module Api
     def create
       product = Product.new(product_params)
 
-      product.save!
-
-      render json: {message: 'Product has been created successfully'}
+      if product.save
+        render json: {message: 'Product has been created successfully'}
+      else
+        render_errors(product)
+      end
     end
 
     private

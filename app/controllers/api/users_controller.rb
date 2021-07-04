@@ -18,7 +18,7 @@ module Api
 
         render 'show.json.jb'
       else
-        render json: {message: 'Log in failure'}, status: :bad_request
+        render_errors(@user)
       end
     end
 
@@ -30,7 +30,7 @@ module Api
       if user.update(edit_user_params)
         render json: {message: 'Updated successfully'}
       else
-        render json: {message: 'Update failure'}, status: :bad_request
+        render json: {message: user.errors.full_messages.join('、')}, status: :bad_request
       end
     end
 

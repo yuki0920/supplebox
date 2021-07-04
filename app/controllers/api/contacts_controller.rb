@@ -3,18 +3,18 @@
 module Api
   class ContactsController < ApplicationController
     def create
-      @contact = if current_user
-                   current_user.contacts.build(contact_params)
-                 else
-                   Contact.new(contact_params)
-                 end
+      contact = if current_user
+                  current_user.contacts.build(contact_params)
+                else
+                  Contact.new(contact_params)
+                end
 
-      if @contact.save
-        ContactMailer.creation_email(@contact).deliver_now
+      if contact.save
+        ContactMailer.creation_email(contact).deliver_now
 
         render json: {}, status: :ok
       else
-        render json: {message: @contact.errors.full_messages.join('、')}, status: :bad_request
+        render_errors(contact)
       end
     end
 

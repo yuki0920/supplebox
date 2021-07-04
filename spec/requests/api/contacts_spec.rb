@@ -30,6 +30,7 @@ RSpec.describe '/api/contacts', type: :request do
       post '/api/contacts', params: params, headers: headers
 
       assert_response_schema_confirm
+      assert_response_schema_confirm
     end
 
     it '400 が返ること' do
