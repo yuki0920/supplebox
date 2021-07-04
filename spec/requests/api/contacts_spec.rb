@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe '/api/contacts', type: :request do
   let(:headers) { {'Content-Type' => 'application/json'} }
+
   describe 'POST /api/contacts' do
     context 'リクエストの形式が正しい場合' do
       let(:params) { {contacts: {name: '名前', email: 'test@example.com', title: 'タイトル', content: '内容'}}.to_json }
@@ -18,7 +19,7 @@ RSpec.describe '/api/contacts', type: :request do
       it '200 が返ること' do
         post '/api/contacts', params: params, headers: headers
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -36,7 +37,7 @@ RSpec.describe '/api/contacts', type: :request do
     it '400 が返ること' do
       post '/api/contacts', params: params, headers: headers
 
-      expect(response).to have_http_status(400)
+      expect(response).to have_http_status(:bad_request)
     end
   end
 end

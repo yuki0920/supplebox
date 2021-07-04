@@ -1,8 +1,11 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
   NewCops: enable
 
   Exclude:
@@ -22,6 +25,9 @@ AllCops:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+Layout/LineLength:
+  Max: 130
+
 Metrics/AbcSize:
   Enabled: false
 
@@ -31,9 +37,6 @@ Metrics/BlockLength:
     - 'config/environments/production.rb'
     - 'config/routes.rb'
     - 'spec/**/*.rb'
-
-Metrics/LineLength:
-  Max: 130
 
 Metrics/MethodLength:
   Enabled: false

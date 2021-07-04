@@ -41,6 +41,7 @@ group :development do
   gem 'bullet'
   gem 'listen'
   gem 'rubocop-rails'
+  gem 'rubocop-rspec'
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'

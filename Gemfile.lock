@@ -1439,6 +1439,9 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
+    rubocop-rspec (2.4.0)
+      rubocop (~> 1.0)
+      rubocop-ast (>= 1.1.0)
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.2)
       ffi (~> 1.12)
@@ -1565,6 +1568,7 @@ DEPENDENCIES
   ransack
   rspec-rails
   rubocop-rails
+  rubocop-rspec
   sass-rails
   selenium-webdriver (>= 4.0.0.beta4)
   simplecov
