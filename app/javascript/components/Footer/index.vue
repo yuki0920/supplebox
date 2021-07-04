@@ -26,10 +26,13 @@
           <div class="col-md-3 col-sm-4 col-md-push-3">
             <ul class="o-footer__list">
               <li class="o-footer__list-item">
-                <a href="/products">アイテム一覧を見る</a>
+                <a href="/products">プロテイン一覧を見る</a>
               </li>
               <li class="o-footer__list-item">
-                <a href="/products/new">アイテムを登録する</a>
+                <a href="/posts">口コミ一覧を見る</a>
+              </li>
+              <li class="o-footer__list-item">
+                <a href="/products/new">プロテインを登録する</a>
               </li>
             </ul>
           </div>

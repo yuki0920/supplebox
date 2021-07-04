@@ -49,6 +49,14 @@
               プロテイン登録
             </a>
           </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="/contacts"
+            >
+              問い合わせ
+            </a>
+          </li>
         </ul>
         <div
           v-if="isLoggedIn"
