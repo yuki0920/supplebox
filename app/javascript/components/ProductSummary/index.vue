@@ -31,18 +31,18 @@
           <a
             target="_blank"
             rel="noopener"
-            class="o-product-summary__button btn btn-outline-secondary"
+            class="o-product-summary__button btn btn-outline-secondary d-block mb-1"
             :href="product.url"
           >Amazonで詳しく見る</a>
           <a
             target="_blank"
             rel="noopener"
-            class="o-product-summary__button btn btn-outline-danger"
+            class="o-product-summary__button btn btn-outline-danger d-block mb-1"
             :href="`https://hb.afl.rakuten.co.jp/hgc/169cb48b.e76a4cfb.169cb48c.b496683c/?pc=http://search.rakuten.co.jp/search/mall?sitem=${product.brand_amazon_name}+プロテイン`"
           >楽天で詳しく見る</a>
           <LikeButton
             v-if="isLoggedIn"
-            class="o-product-summary__button"
+            class="o-product-summary__button d-block mb-1"
             :product-id="product.id"
             :is-liked="product.is_liked"
           />
@@ -79,10 +79,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.o-product-summary {
-  &__button {
-    display: block;
-    margin-bottom: .5em;
-  }
-}
 </style>

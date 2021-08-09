@@ -1,15 +1,15 @@
 <template>
-  <div class="o-cover">
-    <div class="o-cover__inner">
-      <div class="o-cover__contents">
-        <h1 class="o-cover__head">
-          プロテイン選びで
-          <br>
-          失敗したくないあなたへ
-        </h1>
+  <div class="o-cover jumbotron w-100">
+    <div class="o-cover__inner container d-flex flex-column h-100">
+      <h1 class="display-3 text-white font-weight-bold d-3">
+        プロテイン選びで
+        <br>
+        失敗したくないあなたへ
+      </h1>
+      <div class="o-cover__link d-flex justify-content-center">
         <a
           v-if="!isLoggedIn"
-          class="o-cover__link btn btn-success"
+          class="btn btn-success"
           href="/signup"
         >
           SuppleBoxを始める
@@ -34,36 +34,14 @@ export default {
 
 <style lang="scss" scoped>
 .o-cover {
-  margin-top: -20px;
-  margin-bottom: 20px;
-  width: 100%;
-  height: auto;
   background: url("/images/cover-bg.jpg") center center no-repeat;
   background-size: cover;
   &__inner {
     height: 100%;
     margin: auto;
-    display: table;
-    &__contents {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      position: relative;
-    }
-  }
-  &__link {
-    text-align: center;
-    display: block;
-    margin-bottom: 20px;
   }
   h1 {
-    text-align: center;
-    margin: 0 0 20px 0;
-    padding: 3em 0;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 0.15em;
-    font-size: 4em;
+    font-size: 2.5em;
     text-shadow:
       black 1px 1px 0px, black -1px 1px 0px,
       black 1px -1px 0px, black -1px -1px 0px;
