@@ -1,10 +1,10 @@
 <template>
-  <footer class="o-footer">
+  <footer class="o-footer mt-3 py-4">
     <div class="o-footer__content">
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-4 col-md-push-3">
-            <ul class="o-footer__list">
+            <ul class="o-footer__list p-0 m-0">
               <li class="o-footer__list-item">
                 <a href="/">トップページ</a>
               </li>
@@ -14,7 +14,7 @@
             </ul>
           </div>
           <div class="col-md-3 col-sm-4 col-md-push-3">
-            <ul class="o-footer__list">
+            <ul class="o-footer__list p-0 m-0">
               <li class="o-footer__list-item">
                 <a href="/privacypolicy">プライバシーポリシー</a>
               </li>
@@ -24,7 +24,7 @@
             </ul>
           </div>
           <div class="col-md-3 col-sm-4 col-md-push-3">
-            <ul class="o-footer__list">
+            <ul class="o-footer__list p-0 m-0">
               <li class="o-footer__list-item">
                 <a href="/products">プロテイン一覧を見る</a>
               </li>
@@ -38,7 +38,11 @@
           </div>
           <div class="col-md-3 col-sm-12 col-md-pull-9">
             <div class="o-footer__logo">
-              <a href="/">SuppleBox</a>
+              <a href="/">
+                <h5>
+                  SuppleBox
+                </h5>
+              </a>
             </div>
             <p>
               <small>© 2019-2021. All Rights Reserved.</small>
@@ -59,15 +63,11 @@ export default {
 
 <style lang="scss" scoped>
 .o-footer {
-  padding: 4em 0;
   background: #323a45;
   color: #878c93;
-  bottom: 0;
-  font-weight: 300;
-  p {
-    display: block;
-  }
+
   a {
+    text-decoration: none;
     color: #9a9fa5;
     &:hover, &:active, &:focus {
       color: #4fd2c2;
@@ -77,8 +77,6 @@ export default {
     list-style-type: none;
   }
   &__list {
-    padding: 0;
-    margin: 0;
     &__item {
       list-style: none;
       padding: 0;
@@ -87,19 +85,9 @@ export default {
     }
   }
   &__logo {
-    display: block;
-    float: left;
-    width: 100%;
-    margin-bottom: 10px;
     a {
-      font-size: 20px;
-      letter-spacing: 2px;
-      color: #ccc;
-      float: left;
-      padding: 7px 10px 7px 12px;
       &:hover, &:active, &:focus{
         color: white;
-        text-decoration: none;
       }
     }
   }
