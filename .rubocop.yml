@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-rails
   - rubocop-rspec
@@ -78,3 +76,18 @@ Rails/UniqueValidationWithoutIndex:
 
 Rails/EnvironmentVariableAccess:
   AllowReads: true
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
