@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'リンク確認', js: true do
+describe 'リンク確認', type: :system, js: true do
   let!(:user) { FactoryBot.create(:user, nickname: '一般ユーザー') }
 
   before do
