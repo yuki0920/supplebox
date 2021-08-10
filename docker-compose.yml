@@ -20,6 +20,7 @@ services:
       DATABASE_HOST: db
       BUNDLE_PATH: "/bundle"
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+      FRONT_DOMAIN: "localhost:$FRONT_PORT"
     tty: true
     stdin_open: true
     volumes:
