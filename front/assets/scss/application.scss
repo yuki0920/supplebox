@@ -1,0 +1,34 @@
+$green: #4fd2c2;
+$light_gray: #ddd;
+$dark_gray: #f2f2f2;
+$success_green: #5cb85c;
+$success_light_green: #4cae4c;
+$warning_yellow: #f0ad4e;
+$danger_red: #d9534f;
+
+body {
+  background: $dark_gray;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 1.375rem;
+}
+h2 {
+  font-size: 1.25rem;
+}
+h3 {
+  font-size: 1.125rem;
+}
+h4, h5, h6 {
+  font-size: 1rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+}

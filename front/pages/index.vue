@@ -1,9 +1,28 @@
 <template>
-  <Tutorial />
+  <div class="sample">
+    <ul>
+      <li>{{ value }} is example value</li>
+      <li>{{ value }} is example value</li>
+      <li>{{ value }} is example value</li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 
-export default Vue.extend({})
+export default defineComponent({
+  setup () {
+    const value = ref('sample')
+
+    return {
+      value
+    }
+  }
+})
 </script>
+<style lang="scss" scoped>
+.sample {
+  font-size: 2rem;
+}
+</style>
