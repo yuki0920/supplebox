@@ -10,7 +10,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
   web:
     build: .
-    command: bundle exec rails server -p 3001 -b '0.0.0.0'
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     depends_on:
       - db
       - chrome
@@ -21,6 +21,7 @@ services:
       BUNDLE_PATH: "/bundle"
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
       FRONT_DOMAIN: "localhost:$FRONT_PORT"
+      API_URL: "http://localhost:$API_PORT"
     tty: true
     stdin_open: true
     volumes:

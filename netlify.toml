@@ -1,0 +1,7 @@
+[build]
+  base = "front/"
+  publish = "dist/"
+[build.environment]
+  YARN_FLAGS = "--no-ignore-optional"
+  NODE_VERSION = "14.17.3"
+  API_URL = "https://supplebox.jp"

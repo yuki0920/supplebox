@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def api_asset_path(asset_url)
+    if Rails.env.production?
+      asset_path(asset_url)
+    else
+      "#{ENV.fetch('API_URL', 'http://localhost:3001')}/#{asset_path(asset_url)}"
+    end
+  end
+
   # 日時をスラッシュ区切りで表示するメソッド
   def simple_time(time)
     time.strftime('%Y/%m/%d %H:%M')

@@ -88,3 +88,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+types/typescript-axios/*
+!types/typescript-axios/api.ts
+!types/typescript-axios/index.ts

@@ -51,7 +51,19 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.API_URL
+    baseURL: process.env.API_URL,
+    credentials: true
+  },
+
+  bootstrapVue: {
+    componentPlugins: [
+      'NavbarPlugin'
+    ],
+    components: [
+      'BIHandThumbsUp',
+      'BISearch',
+      'BICardImage'
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

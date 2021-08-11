@@ -3,7 +3,7 @@
 {
   user: {
     id: @user.id,
-    picture_url: asset_path(@user.picture_url),
+    picture_url: api_asset_path(@user.picture.url),
     name: @user.name,
     gender: @user.gender,
     height: @user.height,
