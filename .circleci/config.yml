@@ -105,7 +105,7 @@ jobs:
       - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
       - run: git config user.name "yuki0920"
       - run: git add Gemfile Gemfile.lock
-      - run: git commit -am 'This Month Bundle update'
+      - run: git commit -am "Bundle update ${date '+%Y-%m'}"
       - run: git push origin bundle-update-$CIRCLE_BUILD_NUM
       - run:
           name: Create a pull request
@@ -135,7 +135,7 @@ jobs:
       - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
       - run: git config user.name "yuki0920"
       - run: git add package.json yarn.lock
-      - run: git commit -am 'This Month Yarn upgrade'
+      - run: git commit -am  "Yarn upgrade ${date '+%Y-%m'}"
       - run: git push origin yarn-upgrade-$CIRCLE_BUILD_NUM
       - run:
           name: Create a pull request
