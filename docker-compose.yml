@@ -10,12 +10,12 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
   web:
     build: .
-    command: bundle exec rails server -p 3001 -b '0.0.0.0'
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     depends_on:
       - db
       - chrome
     ports:
-      - 3001:3001
+      - "$API_PORT:$CONTAINER_PORT"
     environment:
       DATABASE_HOST: db
       BUNDLE_PATH: "/bundle"
