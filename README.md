@@ -92,7 +92,7 @@ $ docker-compose up
 4. データベースをセットアップする
 
 ```
-$ docker-compose exec rails bundle exec rails db:create db:migrate db:seed
+$ docker-compose exec rails bundle exec rails db:reset db:seed
 ```
 
 5. RSpec を実行する
