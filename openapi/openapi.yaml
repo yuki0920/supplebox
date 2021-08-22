@@ -4,16 +4,6 @@ info:
   version: 1.0.0
 paths:
   /api/sessions:
-    get:
-      operationId: fetchCurrentUser
-      summary: Get Current User
-      responses:
-        200:
-          description: get current user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/currentUser"
     post:
       operationId: login
       summary: Login
@@ -21,16 +11,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/login"
+              $ref: "#/components/schemas/CreateSessionParams"
       responses:
         200:
           description: Logged in User
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/currentUser"
+                $ref: "#/components/schemas/GetCurrentUserResponse"
+    get:
+      operationId: GetCurrentUser
+      summary: Get Current User
+      responses:
+        200:
+          description: Get current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCurrentUserResponse"
     delete:
-      operationId: logout
+      operationId: deleteSession
       summary: Log out
       responses:
         200:
@@ -41,7 +41,7 @@ paths:
                 type: object
   /api/sessions/test_user:
     post:
-      operationId: loginAsTestUser
+      operationId: CreateSessionAsTestUser
       summary: Login as test user
       responses:
         200:
@@ -49,10 +49,76 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/currentUser"
+                $ref: "#/components/schemas/GetCurrentUserResponse"
+  /api/users:
+    post:
+      operationId: CreateUser
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserParams"
+      responses:
+        200:
+          description: Created user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserResponse"
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/users/{id}:
+    get:
+      operationId: GetUser
+      summary: Get User
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Putd user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserResponse"
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    put:
+      operationId: PutUser
+      summary: Put User
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PutUserParams"
+      responses:
+        200:
+          description: Putd user
+          content:
+            application/json:
+              schema:
+                type: object
   /api/products:
     get:
-      operationId: fetchProducts
+      operationId: GetProducts
       summary: Get and Search Products
       parameters:
         - in: query
@@ -76,34 +142,24 @@ paths:
             type: integer
       responses:
         200:
-          description: get products
+          description: Get products
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - total_pages
-                  - products
-                properties:
-                  total_pages:
-                    type: number
-                  products:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/products"
+                $ref: "#/components/schemas/GetProductsResponse"
 
     post:
-      operationId: createProduct
+      operationId: CreateProduct
       summary: Create Product
       requestBody:
         description: プロテイン登録に必要なパラメーター
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/createProduct"
+              $ref: "#/components/schemas/CreateProductParams"
       responses:
         200:
-          description: create product
+          description: Create product
           content:
             application/json:
               schema:
@@ -113,10 +169,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/errorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
   /api/products/new:
     get:
-      operationId: searchProductsFromAmazon
+      operationId: SearchProductsFromAmazon
       summary: Search Products From Amazon
       parameters:
         - in: query
@@ -126,21 +182,14 @@ paths:
             type: string
       responses:
         200:
-          description: get products
+          description: Get products
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - products
-                properties:
-                  products:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/searchProducts"
+                $ref: "#/components/schemas/SearchProductsResponse"
   /api/products/{id}:
     get:
-      operationId: fetchProduct
+      operationId: GetProduct
       summary: Get Product
       parameters:
         - in: path
@@ -150,15 +199,15 @@ paths:
             type: integer
       responses:
         200:
-          description: get product
+          description: Get product
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/product"
+                $ref: "#/components/schemas/GetProductResponse"
   /api/posts:
     get:
-      operationId: fetchPosts
-      summary: Get Products
+      operationId: GetPosts
+      summary: Get Posts
       parameters:
         - in: query
           name: per
@@ -173,50 +222,38 @@ paths:
           schema:
             type: integer
         - in: query
-          required: false
           name: user_id
           schema:
             type: integer
         - in: query
-          required: false
           name: product_id
           schema:
             type: integer
       responses:
         200:
-          description: get posts
+          description: Get posts
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - total_pages
-                  - posts
-                properties:
-                  total_pages:
-                    type: number
-                  posts:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/posts"
+                $ref: "#/components/schemas/GetPostsResponse"
     post:
-      operationId: createPost
+      operationId: CreatePost
       summary: Create Products
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/post"
+              $ref: "#/components/schemas/CreatePostParams"
       responses:
         200:
-          description: create post
+          description: Create post
           content:
             application/json:
               schema:
                 type: object
   /api/posts/{id}:
     get:
-      operationId: fetchPost
+      operationId: GetPost
       summary: Get Posts
       parameters:
         - in: path
@@ -226,14 +263,14 @@ paths:
             type: integer
       responses:
         200:
-          description: get post
+          description: Get post
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/post"
+                $ref: "#/components/schemas/GetPostResponse"
     put:
-      operationId: updatePost
-      summary: Update Post
+      operationId: PutPost
+      summary: Put Post
       parameters:
         - in: path
           name: id
@@ -244,10 +281,10 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/post"
+              $ref: "#/components/schemas/CreatePostParams"
       responses:
         200:
-          description: update post
+          description: Put post
           content:
             application/json:
               schema:
@@ -268,29 +305,6 @@ paths:
             application/json:
               schema:
                 type: object
-  /api/contacts:
-    post:
-      operationId: postContact
-      summary: Post Contact
-      requestBody:
-        description: 問い合わせに必要なパラメータ
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/contact"
-      responses:
-        200:
-          description: post contact
-          content:
-            application/json:
-              schema:
-                type: object
-        400:
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/errorResponse"
   /api/products/{product_id}/like:
     post:
       operationId: likeProduct
@@ -324,91 +338,194 @@ paths:
             application/json:
               schema:
                 type: object
-  /api/users:
+  /api/contacts:
     post:
-      operationId: createUser
-      summary: Create User
+      operationId: postContact
+      summary: Post Contact
       requestBody:
+        description: 問い合わせに必要なパラメータ
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/newUser"
+              $ref: "#/components/schemas/CreateContactParams"
       responses:
         200:
-          description: Created user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/user"
-        400:
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/errorResponse"
-  /api/users/{id}:
-    get:
-      operationId: fetchUser
-      summary: Fetch User
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-      responses:
-        200:
-          description: Updated user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/user"
-        400:
-          description: invalid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/errorResponse"
-    put:
-      operationId: updateUser
-      summary: Update User
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: "#/components/schemas/editUser"
-      responses:
-        200:
-          description: Updated user
+          description: post contact
           content:
             application/json:
               schema:
                 type: object
+        400:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
-    currentUser:
+    # common
+    ErrorResponse:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: string
+
+    # sessions
+    CreateSessionParams:
+      type: object
+      required:
+        - session
+      properties:
+        session:
+          $ref: "#/components/schemas/CreateSessionParamsResource"
+          type: object
+          required:
+            - email
+            - password
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+    CreateSessionParamsResource:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    GetCurrentUserResponse:
       type: object
       required:
         - user
       properties:
         user:
-          type: object
+          $ref: "#/components/schemas/GetCurrentUserResponseResource"
+    GetCurrentUserResponseResource:
+      type: object
+      nullable: true
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    CreateUserParams:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          $ref: "#/components/schemas/CreateUserParamsResource"
+    CreateUserParamsResource:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - password_confirmation
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        password_confirmation:
+          type: string
+    GetUserResponse:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          $ref: "#/components/schemas/GetUserResponseResource"
+    GetUserResponseResource:
+      type: object
+      required:
+        - id
+        - picture_url
+        - name
+        - gender
+        - height
+        - weight
+        - comment
+      properties:
+        id:
+          type: number
+        picture_url:
+          type: string
+        name:
+          type: string
+        gender:
+          type: string
           nullable: true
-          required:
-            - id
-            - name
-          properties:
-            id:
-              type: number
-            name:
-              type: string
-    products:
+        height:
+          type: string
+          nullable: true
+        weight:
+          type: string
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+    PutUserParams:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          $ref: "#/components/schemas/PutUserParamsResource"
+    PutUserParamsResource:
+      type: object
+      required:
+        - picture
+        - name
+        - gender
+        - height
+        - weight
+        - comment
+      properties:
+        picture:
+          type: string
+        name:
+          type: string
+        gender:
+          type: string
+          nullable: true
+        height:
+          type: string
+          nullable: true
+        weight:
+          type: string
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+
+    # products
+    GetProductsResponse:
+      type: object
+      required:
+        - total_pages
+        - products
+      properties:
+        total_pages:
+          type: number
+        products:
+          $ref: "#/components/schemas/GetProductsResponseResource"
+    GetProductsResponseResource:
+      type: array
+      items:
+        $ref: "#/components/schemas/GetProductsResponseResourceEach"
+    GetProductsResponseResourceEach:
       type: object
       required:
         - id
@@ -436,38 +553,47 @@ components:
           type: number
         likes:
           type: integer
-    product:
+    CreateProductParams:
       type: object
       required:
         - product
       properties:
         product:
-          type: object
-          required:
-            - id
-            - title
-            - image_url
-            - url
-            - brand_amazon_name
-            - price
-            - is_liked
-          properties:
-            id:
-              type: number
-            title:
-              type: string
-            image_url:
-              type: string
-            url:
-              type: string
-            brand_amazon_name:
-              type: string
-            price:
-              type: string
-            is_liked:
-              type: boolean
-              nullable: true
-    searchProducts:
+          $ref: "#/components/schemas/CreateProductParamsResource"
+    CreateProductParamsResource:
+      type: object
+      required:
+        - title
+        - image_url
+        - brand_amazon_name
+        - url
+        - asin
+        - price
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        brand_amazon_name:
+          type: string
+        url:
+          type: string
+        asin:
+          type: string
+        price:
+          type: number
+    SearchProductsResponse:
+      type: object
+      required:
+        - products
+      properties:
+        products:
+          $ref: "#/components/schemas/SearchProductsResponseResource"
+    SearchProductsResponseResource:
+      type: array
+      items:
+        $ref: "#/components/schemas/SearchProductsResponseResourceEach"
+    SearchProductsResponseResourceEach:
       type: object
       required:
         - id
@@ -497,55 +623,56 @@ components:
           type: string
         price:
           type: number
-    createProduct:
+    GetProductResponse:
       type: object
       required:
         - product
       properties:
         product:
-          type: object
-          required:
-            - title
-            - image_url
-            - brand_amazon_name
-            - url
-            - asin
-            - price
-          properties:
-            title:
-              type: string
-            image_url:
-              type: string
-            brand_amazon_name:
-              type: string
-            url:
-              type: string
-            asin:
-              type: string
-            price:
-              type: number
-    contact:
+          $ref: "#/components/schemas/GetProductResponseResource"
+    GetProductResponseResource:
       type: object
       required:
-        - contacts
+        - id
+        - title
+        - image_url
+        - url
+        - brand_amazon_name
+        - price
+        - is_liked
       properties:
-        contacts:
-          type: object
-          required:
-            - name
-            - email
-            - title
-            - content
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-            title:
-              type: string
-            content:
-              type: string
-    posts:
+        id:
+          type: number
+        title:
+          type: string
+        image_url:
+          type: string
+        url:
+          type: string
+        brand_amazon_name:
+          type: string
+        price:
+          type: string
+        is_liked:
+          type: boolean
+          nullable: true
+
+    # posts
+    GetPostsResponse:
+      type: object
+      required:
+        - total_pages
+        - posts
+      properties:
+        total_pages:
+          type: number
+        posts:
+          $ref: "#/components/schemas/GetPostsResponseResource"
+    GetPostsResponseResource:
+        type: array
+        items:
+          $ref: "#/components/schemas/GetPostsResponseResourceEach"
+    GetPostsResponseResourceEach:
       type: object
       required:
         - id
@@ -607,137 +734,84 @@ components:
               type: string
             title:
               type: string
-    post:
+    CreatePostParams:
       type: object
       required:
         - post
       properties:
         post:
-          type: object
-          required:
-            - product_id
-            - title
-            - content
-            - rate
-          properties:
-            product_id:
-              type: number
-            title:
-              type: string
-            content:
-              type: string
-            rate:
-              type: number
-            picture:
-              type: string
-              format: binary
-            picture_url:
-              type: string
-    newUser:
+          $ref: "#/components/schemas/CreatePostParamsResource"
+    CreatePostParamsResource:
       type: object
       required:
-        - user
+        - product_id
+        - title
+        - content
+        - rate
       properties:
-        user:
-          type: object
-          required:
-            - name
-            - email
-            - password
-            - password_confirmation
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-            password:
-              type: string
-            password_confirmation:
-              type: string
-    editUser:
+        product_id:
+          type: number
+        title:
+          type: string
+        content:
+          type: string
+        rate:
+          type: number
+        picture:
+          type: string
+          format: binary
+        picture_url:
+          type: string
+    GetPostResponse:
       type: object
       required:
-        - user
+        - post
       properties:
-        user:
-          type: object
-          required:
-            - picture
-            - name
-            - gender
-            - height
-            - weight
-            - comment
-          properties:
-            picture:
-              type: string
-            name:
-              type: string
-            gender:
-              type: string
-              nullable: true
-            height:
-              type: string
-              nullable: true
-            weight:
-              type: string
-              nullable: true
-            comment:
-              type: string
-              nullable: true
-    user:
+        post:
+          $ref: "#/components/schemas/GetPostResponseResource"
+    GetPostResponseResource:
       type: object
       required:
-        - user
+        - product_id
+        - title
+        - content
+        - rate
       properties:
-        user:
-          type: object
-          required:
-            - id
-            - picture_url
-            - name
-            - gender
-            - height
-            - weight
-            - comment
-          properties:
-            id:
-              type: number
-            picture_url:
-              type: string
-            name:
-              type: string
-            gender:
-              type: string
-              nullable: true
-            height:
-              type: string
-              nullable: true
-            weight:
-              type: string
-              nullable: true
-            comment:
-              type: string
-              nullable: true
-    login:
+        product_id:
+          type: number
+        title:
+          type: string
+        content:
+          type: string
+        rate:
+          type: number
+        picture:
+          type: string
+          format: binary
+        picture_url:
+          type: string
+
+    # contacts
+    CreateContactParams:
       type: object
       required:
-        - session
+        - contacts
       properties:
-        session:
-          type: object
-          required:
-            - email
-            - password
-          properties:
-            email:
-              type: string
-            password:
-              type: string
-    errorResponse:
+        contacts:
+          $ref: "#/components/schemas/CreateContactParamsResource"
+    CreateContactParamsResource:
       type: object
       required:
-        - errors
+        - name
+        - email
+        - title
+        - content
       properties:
-        errors:
+        name:
+          type: string
+        email:
+          type: string
+        title:
+          type: string
+        content:
           type: string

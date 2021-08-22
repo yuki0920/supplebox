@@ -92,7 +92,7 @@ $ docker-compose up
 4. データベースをセットアップする
 
 ```
-$ docker-compose exec rails bundle exec rails db:create db:migrate db:seed
+$ docker-compose run --rm web bundle exec rails db:create db:migrate db:seed
 ```
 
 5. RSpec を実行する
@@ -123,17 +123,7 @@ docker-compose を利用しないとホスト用のライブラリがインス�
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -i local/openapi/openapi.yaml \
   -g typescript-axios \
-  -o local/app/javascript/types/typescript-axios
-```
-
-### 型生成の問題点
-
-OpenaAPI 定義の server から、型生成のたびに BASE_PATH が書き換えられてしまうので、リクエスト失敗したら確認する。
-
-```diff
-// app/javascript/types/typescript-axios/base.ts
-- export const BASE_PATH = "http://localhost".replace(/\/+$/, "");
-+ export const BASE_PATH = ""
+  -o local/front/types/typescript-axios
 ```
 
 ## コンテンツ更新手順
