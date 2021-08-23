@@ -21,9 +21,6 @@
             <b-nav-item to="/products/new">
               プロテイン登録
             </b-nav-item>
-            <b-nav-item to="/contacts">
-              問い合わせ
-            </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <template v-if="isLoggedIn && currentUser !== null">
