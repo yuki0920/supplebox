@@ -3,27 +3,27 @@
     <div class="o-footer__content">
       <div class="container">
         <div class="row">
-          <div class="col-md-3 col-sm-4 col-md-push-3">
+          <div class="col-md-3 col-sm-4 col-md-push-3 mt-sm-2">
             <nuxt-link to="/terms_of_use">
               利用基準
             </nuxt-link>
           </div>
-          <div class="col-md-3 col-sm-4 col-md-push-3">
+          <div class="col-md-3 col-sm-4 col-md-push-3 mt-sm-2">
             <nuxt-link to="/privacy_policy">
               プライバシーポリシー
             </nuxt-link>
           </div>
-          <div class="col-md-3 col-sm-4 col-md-push-3">
+          <div class="col-md-3 col-sm-4 col-md-push-3 mt-sm-2">
             <nuxt-link to="/contacts">
               お問い合わせ
             </nuxt-link>
           </div>
-          <div class="col-md-3 col-sm-12 col-md-pull-9">
+          <div class="col-md-3 col-sm-12 col-md-pull-3">
             <div class="o-footer__logo">
               <nuxt-link to="/">
-                <h5 class="m-0">
+                <p class="m-0">
                   SuppleBox
-                </h5>
+                </p>
               </nuxt-link>
               <small>© 2019-2021. All Rights Reserved.</small>
             </div>

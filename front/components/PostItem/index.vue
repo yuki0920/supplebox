@@ -33,7 +33,7 @@
       >
     </div>
     <div class="o-post-item__product col-md-4">
-      <a :href="`/products/${post.product.id}`">
+      <nuxt-link :to="`/products/${post.product.id}`">
         <img
           :src="post.product.image_url"
           class="o-post-item__product-image"
@@ -41,7 +41,7 @@
         <p>
           {{ post.product.title }}
         </p>
-      </a>
+      </nuxt-link>
     </div>
     <div
       v-if="post.is_owner"
