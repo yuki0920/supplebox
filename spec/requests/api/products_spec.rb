@@ -17,8 +17,8 @@ RSpec.describe '/api/products', type: :request do
     end
 
     it '検索条件に合致したレスポンスを返却すること' do
-      query = URI.encode_www_form(q: 'プロテイン')
-      get "/api/products?per=3&page=1&#{query}"
+      keyword = URI.encode_www_form(keyword: 'プロテイン')
+      get "/api/products?per=3&page=1&#{keyword}"
 
       products = JSON.parse(response.body).to_h['products']
 

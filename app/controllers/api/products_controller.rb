@@ -6,15 +6,16 @@ module Api
 
     def index
       @products =
-        if params[:q].present?
-          Product.where(['title LIKE ?', "%#{params[:q]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:q]}%"]))
+        if params[:keyword].present?
+          Product.where(['title LIKE ?',
+                         "%#{params[:keyword]}%"]).or(Product.where(['brand_amazon_name LIKE ?', "%#{params[:keyword]}%"]))
         elsif params[:user_id].present?
           User.find(params[:user_id]).products
         else
           Product
         end
 
-      @products = @products.page(params[:page]).per(params[:per]).includes(:posts, :likes)
+      @products = @products.includes(:posts, :likes).page(params[:page]).per(params[:per])
 
       render 'index.json.jb'
     end

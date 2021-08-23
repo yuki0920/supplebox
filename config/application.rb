@@ -36,5 +36,9 @@ module Supplebox
 
     # 認証トークンをremoteフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    # Cookieを処理する
+    config.middleware.use ActionDispatch::Cookies
+    config.action_controller.allow_forgery_protection = false
   end
 end

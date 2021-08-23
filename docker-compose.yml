@@ -20,6 +20,8 @@ services:
       DATABASE_HOST: db
       BUNDLE_PATH: "/bundle"
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+      FRONT_DOMAIN: "localhost:$FRONT_PORT"
+      API_URL: "http://localhost:$API_PORT"
     tty: true
     stdin_open: true
     volumes:
@@ -39,6 +41,20 @@ services:
     ports:
       # NOTE: ホストからは8081で接続する
       - 8081:8080
+  front:
+    build:
+      context: ./front
+      args:
+        WORKDIR: $WORKDIR
+        CONTAINER_PORT: $CONTAINER_PORT
+        API_URL: "http://localhost:$API_PORT"
+    command: yarn run dev
+    volumes:
+      - ./front:/$WORKDIR
+    ports:
+      - "$FRONT_PORT:$CONTAINER_PORT"
+    depends_on:
+      - web
 volumes:
   pgdata:
   bundle:
