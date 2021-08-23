@@ -22,14 +22,13 @@ export default defineComponent({
     const userId = useId()
     const { user } = useUser()
     const { posts, getPosts } = usePosts()
-    onMounted(async () => {
-      await getPosts({ user_id: userId })
-    })
-
     const { currentUser } = useCurrentUser()
     const isCurrentUser = ref(false)
 
-    isCurrentUser.value = currentUser !== undefined && (userId === currentUser.value?.id)
+    onMounted(async () => {
+      await getPosts({ user_id: userId })
+      isCurrentUser.value = currentUser !== undefined && (userId === currentUser.value?.id)
+    })
 
     return {
       user,

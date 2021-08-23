@@ -21,19 +21,18 @@
             <b-nav-item to="/products/new">
               プロテイン登録
             </b-nav-item>
-            <b-nav-item to="/contacts">
-              問い合わせ
-            </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown v-if="isLoggedIn" :text="currentUser.name" right>
-              <b-dropdown-item :to="`/users/${currentUser.id}`">
-                マイページ
-              </b-dropdown-item>
-              <b-dropdown-item @click="logout">
-                ログアウト
-              </b-dropdown-item>
-            </b-nav-item-dropdown>
+            <template v-if="isLoggedIn && currentUser !== null">
+              <b-nav-item-dropdown :text="currentUser.name" right>
+                <b-dropdown-item :to="`/users/${currentUser.id}`">
+                  マイページ
+                </b-dropdown-item>
+                <b-dropdown-item @click="logout">
+                  ログアウト
+                </b-dropdown-item>
+              </b-nav-item-dropdown>
+            </template>
             <template v-else>
               <b-nav-item @click="loginAsTestUser">
                 テストアカウントでログイン

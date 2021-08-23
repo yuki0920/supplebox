@@ -36,8 +36,7 @@
                 {{ user.comment || '-' }}
               </td>
             </tr>
-            <!-- <tr v-if="isCurrentUser"> -->
-            <tr>
+            <tr v-if="isCurrentUser">
               <th>編集</th>
               <td>
                 <nuxt-link :to="`/users/${user.id}/edit`">

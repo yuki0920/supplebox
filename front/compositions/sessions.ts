@@ -1,8 +1,9 @@
-import { ref, useContext } from '@nuxtjs/composition-api'
+import { ref, useContext, useRouter } from '@nuxtjs/composition-api'
 import { GetCurrentUserResponse } from '@/types/typescript-axios'
 
 export const useSession = () => {
   const { $axios } = useContext()
+  const router = useRouter()
   const email = ref('')
   const password = ref('')
 
@@ -13,7 +14,7 @@ export const useSession = () => {
     const { data }: { data: GetCurrentUserResponse } = await createSessionAsTestUser()
 
     if (data.user !== null) {
-      location.href = `/users/${data.user.id}`
+      location.href = '/'
     }
   }
 
