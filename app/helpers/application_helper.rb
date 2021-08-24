@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def api_asset_path(asset_url)
-    if Rails.env.production?
+  def api_asset_path(object)
+    if Rails.env.production? && object.picture.file
       asset_path(asset_url)
     else
-      "#{ENV.fetch('API_URL', 'http://localhost:3001')}/#{asset_path(asset_url)}"
+      "#{ENV.fetch('API_URL', 'http://localhost:3001')}/#{asset_path(object.picture_url)}"
     end
   end
 
