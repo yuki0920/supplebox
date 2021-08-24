@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, useRouter } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import FlashMessage from '@/components/FlashMessage/index.vue'
 import { useFlashMessage, useSession } from '@/compositions'
 import { GetCurrentUserResponse } from '@/types/typescript-axios'
@@ -74,20 +74,16 @@ export default defineComponent({
   name: 'Login',
   components: { FlashMessage },
   setup () {
-    const router = useRouter()
-    const email = ref('')
-    const password = ref('')
-
     const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
 
-    const { loginAsTestUser, createSession } = useSession()
+    const { email, password, loginAsTestUser, createSession } = useSession()
     const submitForm = async () => {
       try {
         const { data }: { data: GetCurrentUserResponse } = await createSession()
         if (!data.user) { throw new Error('User is not found') }
 
         onFlashMessage({ isSuccess: true })
-        router.push(`/users/${data.user.id}`)
+        location.href = '/'
       } catch (error) {
         onFlashMessage({ isSuccess: false })
       }

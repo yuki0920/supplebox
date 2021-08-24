@@ -1,9 +1,8 @@
-import { ref, useContext, useRouter } from '@nuxtjs/composition-api'
+import { ref, useContext } from '@nuxtjs/composition-api'
 import { GetCurrentUserResponse } from '@/types/typescript-axios'
 
 export const useSession = () => {
   const { $axios } = useContext()
-  const router = useRouter()
   const email = ref('')
   const password = ref('')
 
@@ -27,10 +26,9 @@ export const useSession = () => {
   }
 
   const createSession = () => {
-    return $axios.post('/api/sessions',
-      { session: { email: email.value, password: password.value } }
-    )
+    const params = { session: { email: email.value, password: password.value } }
+    return $axios.post('/api/sessions', params)
   }
 
-  return { createSession, loginAsTestUser, logout }
+  return { email, password, createSession, loginAsTestUser, logout }
 }
