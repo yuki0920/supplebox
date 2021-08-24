@@ -146,14 +146,7 @@ export default defineComponent({
   setup () {
     const router = useRouter()
     const userId = useId()
-    const { user, updateUser } = useUser()
-
-    // TODO: 画像投稿できるようにする
-    // let picture: File
-    const onChangePicture = (e: any) => {
-      e.preventDefault()
-      // picture = e.target.files[0]
-    }
+    const { user, onChangePicture, updateUser } = useUser()
 
     const { messageIsShow, messageIsSuccess, onFlashMessage } = useFlashMessage()
     const submitForm = async () => {

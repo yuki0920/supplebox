@@ -29,6 +29,11 @@ export const useUser = () => {
     user.picture_url = data.user.picture_url
   })
 
+  const onChangePicture = (e: any) => {
+    e.preventDefault()
+    user.picture = e.target.files[0]
+  }
+
   const formData = () => {
     const data = new FormData()
     data.append('user[name]', user.name)
@@ -45,7 +50,7 @@ export const useUser = () => {
     return $axios.put(`/api/users/${id}`, formData(), formDataConfig)
   }
 
-  return { user, updateUser }
+  return { user, onChangePicture, updateUser }
 }
 
 type currentUser = GetCurrentUserResponseResource | null
