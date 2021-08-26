@@ -19,7 +19,6 @@ services:
     environment:
       DATABASE_HOST: db
       BUNDLE_PATH: "/bundle"
-      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
       FRONT_DOMAIN: "localhost:$FRONT_PORT"
       API_URL: "http://localhost:$API_PORT"
     tty: true
