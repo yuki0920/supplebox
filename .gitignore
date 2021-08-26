@@ -79,10 +79,11 @@ public/sitemap.xml.gz
 # 失敗したテストの記録
 /spec/tmp
 
+# ローカルアップロード
+/public/uploads
+
 TODO
 
-/public/packs
-/public/packs-test
 /node_modules
 /yarn-error.log
 yarn-debug.log*

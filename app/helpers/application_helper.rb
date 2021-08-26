@@ -2,10 +2,11 @@
 
 module ApplicationHelper
   def api_asset_path(object)
+    asset_path = asset_path(object.picture_url)
     if Rails.env.production? && object.picture.file
-      asset_path(asset_url)
+      asset_path
     else
-      "#{ENV.fetch('API_URL', 'http://localhost:3001')}/#{asset_path(object.picture_url)}"
+      File.join(ENV.fetch('API_URL', 'http://localhost:3001'), asset_path)
     end
   end
 
