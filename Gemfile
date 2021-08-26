@@ -29,15 +29,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
-  gem 'pry-doc'
   gem 'pry-rails'
   gem 'vcr'
   gem 'webmock'
 end
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'bullet'
   gem 'listen'
   gem 'rubocop-rails'
@@ -49,13 +46,9 @@ end
 
 group :test do
   gem 'brakeman'
-  gem 'capybara'
   gem 'committee-rails'
-  gem 'launchy'
   gem 'rspec-rails'
-  gem 'selenium-webdriver', '>= 4.0.0.beta4'
   gem 'simplecov', require: false
-  gem 'webdrivers'
 end
 
 group :production do
