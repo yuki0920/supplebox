@@ -37,15 +37,18 @@
 
 ## 使用機能と技術
 
-- フロントエンド(TypeScript, Nuxt.js)
+### API
+
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer, ActiveJob)
 - アイテム情報取得(Amazon Product API, vacuum)
-- サイトマップ(sitemap_generator, Heroku Scheduler)
+- 認証(bcrypt)
+
+### フロント
+- サイトマップ(nuxtjs/sitemap)
 - SEO(vue-meta)
 - デザイン(BootstrapVue, Sass)
-- 認証(bcrypt)
 
 ## プロモーション
 
