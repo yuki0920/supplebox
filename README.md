@@ -15,40 +15,40 @@
 パスワード:test
 ```
 
-## 環境
+## 技術構成
 
-- サーバーサイド(Ruby 3.0, Rails 6.1)
-- フロントエンド(TypeScript 4.5, Vue.js 3.1 ※Composition API利用)
-- 本番環境インフラ(Heroku)
+- API(Ruby 3.0, Rails 6.1)
+- APIインフラ(Heroku)
+- フロントエンド(TypeScript 4.5, Nuxt.js 2.15 ※Composition API利用)
+- ホスティング(Netlify)
 - 開発開発(Docker, Docker Compose)
 - データベース(PostgreSQL)
 
 ## テスト・解析
 
-- 単体・統合テスト(RSpec, Capybara)
+- APIテスト(RSpec)
 - カバレッジ計測(SimpleCov)
 - 静的解析(RuboCop, Brakeman, ESLint)
 - N+1(Bullet)
 - CI/CD(CircleCI, Heroku Pipeline)
-- アクセス解析(google-analytics-rails)
 - API スキーマ定義(OpenAPI Specification, committee-rails)
 - API クライアント生成(OpenAPI Generator, typescript-axios)
-- UI 検証(StoryBook,  Chromatic) デプロイ済みコンポーネント https://www.chromatic.com/builds?appId=600cbad853382200215b7275
+- アクセス解析(nuxt/google-analytics)
 
 ## 使用機能と技術
 
-- フロントエンド(TypeScript, Vuejs 3 ※Composition API)
+### API
+
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - お問い合わせメール送信(ActionMailer, ActiveJob)
 - アイテム情報取得(Amazon Product API, vacuum)
-- 検索(ransack)
-- サイトマップ(sitemap_generator, Heroku Scheduler)
-- メタタグ(meta-tags)
-- パンくずリスト(gretel)
-- デザイン(Bootstrap, Sass)
 - 認証(bcrypt)
-- アイテム関連(お気に入り登録)
+
+### フロント
+- サイトマップ(nuxtjs/sitemap)
+- SEO(vue-meta)
+- デザイン(BootstrapVue, Sass)
 
 ## プロモーション
 
@@ -79,7 +79,7 @@ $ docker-compose build
 2. Bundle Install
 
 ```
-$ docker-compose run --rm bundle install
+$ docker-compose run --rm web bundle install
 ```
 
 3. コンテナを起動する
@@ -126,20 +126,6 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
   -o local/front/types/typescript-axios
 ```
 
-## コンテンツ更新手順
-
-1. サイトマップ `config/sitemap.rb` を修正する
-
-修正後 GitHub へ Push
-
-2. Heroku インタンス上のサイトマップを更新する
-
-```
-$ heroku run rails sitemap:refresh
-```
-
-定期的なサイトマップ更新は HerokuScheduler でやっている
-
 ## その他
 
 ### Swagger 起動
@@ -148,25 +134,7 @@ docker-compose で起動している
 
 http://localhost:8080 で確認可能。
 
-### StoryBook
-
-#### 起動
-
-```
-$ docker-compose run -p 9009:9009 --rm web yarn storybook
-```
-
-http://localhost:9009 で確認可能。
-
-コンテナ上のランタイムで起動し、ポートを手動で設定する。
-
-#### デプロイ
-
-GitHub Actions によって PUSH の度に自動デプロイしている。
-
-https://www.chromatic.com/builds?appId=600cbad853382200215b7275 で確認可能。
-
-#### CircleCI 実行
+### ローカル上のCircleCI 実行
 
 RSpec を実行する
 

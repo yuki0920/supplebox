@@ -20,7 +20,7 @@
       <div class="text-center">
         <nuxt-link
           to="/products"
-          class="btn btn-success btn-lg"
+          class="btn btn-success"
         >
           お気に入りアイテムをもっと見る
         </nuxt-link>
@@ -38,7 +38,7 @@
       <div class="text-center">
         <nuxt-link
           to="/posts"
-          class="btn btn-success btn-lg"
+          class="btn btn-success"
         >
           最新の口コミをもっと見る
         </nuxt-link>
