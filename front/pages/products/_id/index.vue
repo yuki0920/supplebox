@@ -6,9 +6,9 @@
       :is-logged-in="isLoggedIn"
     />
     <PostItem
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
+      v-for="postItem in posts"
+      :key="postItem.id"
+      :post="postItem"
     />
     <FlashMessage
       title="口コミ投稿"
