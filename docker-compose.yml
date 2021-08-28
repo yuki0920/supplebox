@@ -13,7 +13,6 @@ services:
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     depends_on:
       - db
-      - chrome
     ports:
       - "$API_PORT:$CONTAINER_PORT"
     environment:
@@ -27,10 +26,6 @@ services:
       - .:/myapp:delegated
       - bundle:/bundle:delegated
       - node_modules:/node_modules:delegated
-  chrome:
-    image: selenium/standalone-chrome
-    ports:
-      - 4444:4444
   swagger:
     image: swaggerapi/swagger-ui
     volumes:
