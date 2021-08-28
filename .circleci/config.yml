@@ -28,7 +28,6 @@ jobs:
             - ./node_modules
       - run: bundle exec rails db:create RAILS_ENV=test
       - run: bundle exec rails db:schema:load RAILS_ENV=test
-      - run: bundle exec bin/webpack
       - run:
           name: RSpec
           command: bundle exec rspec
@@ -62,24 +61,24 @@ jobs:
           name: RuboCop
           command: bundle exec rubocop
 
-  eslint:
-    docker:
-      - image: circleci/ruby:3.0.0-node-browsers
-    steps:
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - checkout
-      - run: yarn install
-      - save_cache:
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-      - run:
-          name: eslint
-          command: yarn run lint
+  # eslint:
+  #   docker:
+  #     - image: circleci/ruby:3.0.0-node-browsers
+  #   steps:
+  #     - restore_cache:
+  #         keys:
+  #           - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
+  #           - v1-dependencies-{{ checksum "yarn.lock" }}
+  #           - v1-dependencies-
+  #     - checkout
+  #     - run: yarn install
+  #     - save_cache:
+  #         key: v1-dependencies-{{ checksum "yarn.lock" }}
+  #         paths:
+  #           - node_modules
+  #     - run:
+  #         name: eslint
+  #         command: yarn run lint
 
   bundle_update:
     docker:
@@ -112,42 +111,42 @@ jobs:
               --data "{\"title\": \"今月のbundle-update\", \"head\": \"handsshare:bundle-update-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
               https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 
-  yarn_upgrade:
-    docker:
-      - image: circleci/ruby:3.0.0-node-browsers
-    steps:
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - checkout
-      - run: yarn install
-      - run: yarn upgrade
-      - save_cache:
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-      - run: git checkout -b yarn-upgrade-$CIRCLE_BUILD_NUM
-      - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
-      - run: git config user.name "yuki0920"
-      - run: git add package.json yarn.lock
-      - run: git commit -am  "Yarn upgrade ${date '+%Y-%m'}"
-      - run: git push origin yarn-upgrade-$CIRCLE_BUILD_NUM
-      - run:
-          name: Create a pull request
-          command: |
-            curl \
-              --header "Accept: application/vnd.github.v3+json" \
-              --data "{\"title\": \"今月のyarn-upgrade\", \"head\": \"handsshare:yarn-upgrade-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
-              https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
+  # yarn_upgrade:
+  #   docker:
+  #     - image: circleci/ruby:3.0.0-node-browsers
+  #   steps:
+  #     - restore_cache:
+  #         keys:
+  #           - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
+  #           - v1-dependencies-{{ checksum "yarn.lock" }}
+  #           - v1-dependencies-
+  #     - checkout
+  #     - run: yarn install
+  #     - run: yarn upgrade
+  #     - save_cache:
+  #         key: v1-dependencies-{{ checksum "yarn.lock" }}
+  #         paths:
+  #           - node_modules
+  #     - run: git checkout -b yarn-upgrade-$CIRCLE_BUILD_NUM
+  #     - run: git config user.email ${GITHUB_EMAIL_ADDRESS}
+  #     - run: git config user.name "yuki0920"
+  #     - run: git add package.json yarn.lock
+  #     - run: git commit -am  "Yarn upgrade ${date '+%Y-%m'}"
+  #     - run: git push origin yarn-upgrade-$CIRCLE_BUILD_NUM
+  #     - run:
+  #         name: Create a pull request
+  #         command: |
+  #           curl \
+  #             --header "Accept: application/vnd.github.v3+json" \
+  #             --data "{\"title\": \"今月のyarn-upgrade\", \"head\": \"handsshare:yarn-upgrade-$CIRCLE_BUILD_NUM\", \"base\":\"master\" }" \
+  #             https://api.github.com/repos/yuki0920/supplebox/pulls?access_token=${GITHUB_ACCESS_TOKEN}
 workflows:
   version: 2
   rspec_and_rubocop_and_eslint:
     jobs:
       - rspec
       - rubocop
-      - eslint
+      # - eslint
   monthly-bundle-update:
     triggers:
       - schedule:
@@ -159,13 +158,13 @@ workflows:
                 - master
     jobs:
       - bundle_update
-  monthly-yarn-upgrade:
-    triggers:
-      - schedule:
-          cron: "0 9 1 * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - yarn_upgrade
+  # monthly-yarn-upgrade:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0 9 1 * *"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #   jobs:
+  #     - yarn_upgrade
