@@ -1,6 +1,6 @@
 <template>
-  <div class="o-service-description row">
-    <div class="col-md-4 col-sm-6 feature text-center">
+  <div class="o-service-description row mb-0">
+    <div class="col-md-4 col-sm-6 text-center">
       <!-- TODO: iconを表示する -->
       <!-- <BIconHandThumbsUp /> -->
       <h3 class="o-service-description__heading font-weight-bold mb-1">
@@ -8,14 +8,14 @@
       </h3>
       <p>✔  実際の購入者によるリアルな口コミで失敗しないプロテイン選びをサポート</p>
     </div>
-    <div class="col-md-4 col-sm-6 feature text-center">
+    <div class="col-md-4 col-sm-6 text-center">
       <!-- <BIconSearch /> -->
       <h3 class="o-service-description__heading font-weight-bold mb-1">
         探しやすい
       </h3>
       <p>✔  気になるアイテムをアイテム一覧や最新の口コミから検索可能</p>
     </div>
-    <div class="col-md-4 col-sm-6 feature text-center">
+    <div class="col-md-4 col-sm-6 text-center">
       <!-- <BIconCardImage /> -->
       <h3 class="o-service-description__heading font-weight-bold mb-1">
         見やすいレイアウト

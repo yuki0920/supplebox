@@ -1,6 +1,8 @@
 <template>
   <div class="p-terms-of-user">
-    <h2>SuppleBox利用規約</h2>
+    <h1 class="text-center">
+      SuppleBox利用規約
+    </h1>
     <p>
       この規約は、SuppleBox（以下「本サービス」）をご利用頂く際の取扱いにつき定めるものです。本規約に同意した上で本サービスをご利用ください。
     </p>

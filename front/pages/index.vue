@@ -5,13 +5,15 @@
       <h1 class="p-toppage__title text-center mb-3">
         SuppleBoxとは
       </h1>
-      <h2 class="p-toppage__title-annotation  text-center mb-2">
+      <p class="p-toppage__title-annotation text-center mb-3">
         プロテイン選びで失敗したく無い方に向けた、プロテイン特化型の口コミ共有サービスです。
-      </h2>
+      </p>
       <ServiceDescription />
     </section>
-    <section class="p-toppage__products-container">
-      <h2>お気に入りアイテムランキング</h2>
+    <section class="p-toppage__products-container mb-4">
+      <h2 class="text-center">
+        お気に入りアイテムランキング
+      </h2>
       <ProductItems
         :is-logged-in="isLoggedIn"
         :products="products"
@@ -26,8 +28,10 @@
         </nuxt-link>
       </div>
     </section>
-    <section class="p-toppage__posts-container">
-      <h2>最新の口コミ</h2>
+    <section class="p-toppage__posts-container mb-3">
+      <h2 class="text-center">
+        最新の口コミ
+      </h2>
       <div class="p-toppage__posts mb-1">
         <PostItem
           v-for="post in posts"
