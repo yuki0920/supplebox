@@ -1,5 +1,5 @@
 <template>
-  <footer class="o-footer mt-3 py-3">
+  <footer class="o-footer fixed-bottom mt-3 py-2">
     <div class="o-footer__content">
       <div class="container">
         <div class="row">
