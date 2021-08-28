@@ -1,6 +1,8 @@
 <template>
   <div class="p-product-index">
-    <h2>プロテインを検索する</h2>
+    <h1 class="text-center">
+      プロテインを検索する
+    </h1>
     <form
       class="p-product-index__form form-inline justify-content-center mb-1"
       @submit.prevent="load(1)"

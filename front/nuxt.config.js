@@ -60,9 +60,9 @@ export default {
       'NavbarPlugin'
     ],
     components: [
-      'BIHandThumbsUp',
-      'BISearch',
-      'BICardImage'
+      'BIconHandThumbsUp',
+      'BIconSearch',
+      'BIconCardImage'
     ]
   },
 

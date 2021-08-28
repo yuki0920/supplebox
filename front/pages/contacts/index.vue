@@ -6,7 +6,9 @@
       :is-success="messageIsSuccess"
       @flash-message="onFlashMessage"
     />
-    <h1>お問い合わせ</h1>
+    <h1 class="text-center">
+      お問い合わせ
+    </h1>
     <p>お気軽にお問い合わせください!</p>
     <form @submit.prevent="submitForm">
       <div class="form-group row">

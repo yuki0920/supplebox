@@ -1,6 +1,8 @@
 <template>
   <div class="p-post-index">
-    <h2>最新の口コミ</h2>
+    <h1 class="text-center">
+      最新の口コミ
+    </h1>
     <Paginator
       :total-pages="totalPages"
       @page-changed="load($event)"

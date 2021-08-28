@@ -1,6 +1,8 @@
 <template>
   <div v-if="user" class="o-user-profile">
-    <h2>{{ user.name }}さんのプロフィール</h2>
+    <h1 class="text-center">
+      {{ user.name }}さんのプロフィール
+    </h1>
     <div class="row">
       <div class="col-md-4">
         <div class="product_detail card mb-3">
