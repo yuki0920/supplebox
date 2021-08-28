@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :product do
     sequence(:title) { |n| "テストアイテム#{n}" }
-    url { 'testproduct@supplebox.jp' }
+    url { 'testproduct@supplebox.tokyo' }
     # NOTE: amazonの画像のURL
     image_url { 'http://example.com' }
     sequence(:asin) { |n| "TESTPRODUCT#{n}" }

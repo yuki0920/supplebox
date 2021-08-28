@@ -6,7 +6,7 @@
 
 「プロテイン選びで失敗したくない」方に向けたプロテイン特化型口コミ共有サービスです。
 
-<https://supplebox.jp/>
+<https://supplebox.tokyo/>
 
 ## デモアカウント
 
