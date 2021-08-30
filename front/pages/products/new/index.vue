@@ -1,6 +1,8 @@
 <template>
   <div class="p-new-product">
-    <h2>アイテムを登録する</h2>
+    <h2 class="text-center">
+      アイテムを登録する
+    </h2>
     <form
       class="p-new-product__form form-inline justify-content-center mb-1"
       @submit.prevent="searchNewProducts"

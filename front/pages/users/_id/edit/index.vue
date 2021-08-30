@@ -1,8 +1,8 @@
 <template>
-  <div class="p-user-edit p-3">
-    <h2 class="mb-3">
+  <div class="p-user-edit">
+    <h1 class="mb-3 text-center">
       プロフィールを編集する
-    </h2>
+    </h1>
     <FlashMessage
       title="プロフィールの編集"
       :is-show="messageIsShow"
