@@ -2,8 +2,6 @@
 
 module Api
   class ProductsController < ApplicationController
-    before_action :require_user_logged_in, only: %i(new)
-
     def index
       @products =
         if params[:keyword].present?
