@@ -30,24 +30,24 @@
 - カバレッジ計測(SimpleCov)
 - 静的解析(RuboCop, Brakeman, ESLint)
 - N+1(Bullet)
-- CI/CD(CircleCI, Heroku Pipeline)
-- API スキーマ定義(OpenAPI Specification, committee-rails)
-- API クライアント生成(OpenAPI Generator, typescript-axios)
+- CI/CD(CircleCI, GitHub Actions, Heroku Pipeline)
+- API スキーマ定義(OpenAPI Specification, Committee::Rails)
+- API クライアント生成(OpenAPI Generator)
 - アクセス解析(nuxt/google-analytics)
 
 ## 使用機能と技術
 
 ### API
 
-- 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
-- ページネーション(kaminari)
-- お問い合わせメール送信(ActionMailer, ActiveJob)
-- アイテム情報取得(Amazon Product API, vacuum)
+- 画像アップロード(Amason S3, CarrierWave)
+- ページネーション(Kaminari)
+- 問い合わせメール送信(ActionMailer)
+- アイテム情報取得(Amazon Product Advertising API)
 - 認証(bcrypt)
 
 ### フロント
 - サイトマップ(nuxtjs/sitemap)
-- SEO(vue-meta)
+- SEO(Vue Meta)
 - デザイン(BootstrapVue, Sass)
 
 ## プロモーション
@@ -82,50 +82,36 @@ $ docker-compose build
 $ docker-compose run --rm web bundle install
 ```
 
-3. コンテナを起動する
-   データベースセットアップ前にコンテナを起動していないとデータベースのセットアップコマンドが失敗する
-
-```
-$ docker-compose up
-```
-
-4. データベースをセットアップする
+3. データベースをセットアップする
 
 ```
 $ docker-compose run --rm web bundle exec rails db:reset db:seed
 ```
 
-5. RSpec を実行する
-
-```
-$ docker-compose run --rm bundle exec rails rspec
-```
-
-6. RuboCop を実行する
-
-```
-$ docker-compose run --rm bundle exec rubocop
-```
-
-## npm ライブラリインストール
+4. npm ライブラリインストール
 
 ```
 docker-compose --rm web yarn
 ```
 
-docker-compose を利用しないとホスト用のライブラリがインストールされてしまい、Docker イメージ上の Linux OS 上で実行できなくなる場合がある。
 
-## OpenAPI Generator による Client の型生成
-
-### コマンド
+5. コンテナを起動する
 
 ```
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
-  -i local/openapi/openapi.yaml \
-  -g typescript-axios \
-  -o local/front/types/typescript-axios
+$ docker-compose up
 ```
 
+6. RSpec を実行する
+
+```
+$ docker-compose run --rm bundle exec rspec
+```
+
+7. RuboCop を実行する
+
+```
+$ docker-compose run --rm bundle exec rubocop
+```
 ## その他
 
 ### Swagger 起動
@@ -133,6 +119,15 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
 docker-compose で起動している
 
 http://localhost:8080 で確認可能。
+
+### OpenAPI Generator による Client の型生成
+
+```
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+  -i local/openapi/openapi.yaml \
+  -g typescript-axios \
+  -o local/front/types/typescript-axios
+```
 
 ### ローカル上のCircleCI 実行
 
