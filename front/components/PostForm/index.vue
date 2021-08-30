@@ -161,7 +161,6 @@ export default defineComponent({
       context.emit('submit')
     }
 
-    // TODO: イベントの流れ的には、親コンポーネントで実行したい
     const deletePost = () => {
       context.emit('deletePost')
     }

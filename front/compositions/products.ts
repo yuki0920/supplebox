@@ -2,7 +2,6 @@ import { ref, useContext } from '@nuxtjs/composition-api'
 import { GetProductResponse, GetProductResponseResource, GetProductsResponse, GetProductsResponseResourceEach, SearchProductsResponse, SearchProductsResponseResourceEach } from '@/types/typescript-axios'
 import { useId } from '@/compositions'
 
-// TODO: productとproductsのロジックを分割する
 export const useProduct = () => {
   const { $axios } = useContext()
 
@@ -37,7 +36,6 @@ export const useProducts = () => {
     if (user_id) { params.user_id = user_id }
     if (keyword) { params.keyword = keyword }
 
-    // TODO: パラメーター通りのレスポンスになるようにする
     const { data }: { data: GetProductsResponse } = await $axios.get('/api/products', { params })
 
     products.value = data.products

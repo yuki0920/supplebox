@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-// TODO: sessionのロード完了後にレンダリングする
 import { defineComponent } from '@nuxtjs/composition-api'
 import { useCurrentUser } from '@/compositions'
 

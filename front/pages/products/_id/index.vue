@@ -53,8 +53,6 @@ export default defineComponent({
       try {
         await createPost()
         await onFlashMessage({ isSuccess: true })
-
-        // TODO: 投稿リストのDOMに追加する
       } catch (error) {
         await onFlashMessage({ isSuccess: false })
       }
