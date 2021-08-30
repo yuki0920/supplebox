@@ -8,6 +8,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'SuppleBox',
+    titleTemplate: '%s | プロテイン口コミサイト',
     htmlAttrs: {
       lang: 'ja'
     },

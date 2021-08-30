@@ -52,12 +52,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
-import { useCurrentUser, useProducts, usePosts } from '@/compositions'
+import { defineComponent, onMounted, useMeta } from '@nuxtjs/composition-api'
+import { useCurrentUser, useProducts, usePosts, useMetaTags } from '@/compositions'
 
 export default defineComponent({
   name: 'TopPage',
   setup () {
+    const { title, meta } = useMeta()
+    title.value = 'トップ'
+    meta.value = useMetaTags('トップ')
+
     const { isLoggedIn } = useCurrentUser()
     const { products, getProducts } = useProducts()
     const { posts, getPosts } = usePosts()
@@ -72,7 +76,8 @@ export default defineComponent({
       products,
       posts
     }
-  }
+  },
+  head: {}
 })
 </script>
 
