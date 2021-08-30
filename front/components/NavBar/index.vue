@@ -6,7 +6,7 @@
           <img
             alt="SuppleBox"
             height="30"
-            src="https://supplebox.jp/images/logo.png"
+            src="https://supplebox.herokuapp.com/images/logo.png"
           >
         </nuxt-link>
         <b-navbar-toggle target="nav-collapse" />

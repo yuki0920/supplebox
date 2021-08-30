@@ -39,15 +39,15 @@ RSpec.describe Contact, type: :model do
     end
 
     it 'メールアドレスに@が含まれていないなら無効な状態であること' do
-      user = FactoryBot.build(:contact, email: 'supplebox.jp')
+      user = FactoryBot.build(:contact, email: 'supplebox.tokyo')
       user.valid?
       expect(user.errors[:email]).to include('は不正な値です')
     end
 
     it 'メールアドレスが保存される前に小文字に変換されること' do
-      user = FactoryBot.build(:contact, email: 'TESTADD@supplebox.jp')
+      user = FactoryBot.build(:contact, email: 'TESTADD@supplebox.tokyo')
       user.save
-      expect(user.email).to eq 'testadd@supplebox.jp'
+      expect(user.email).to eq 'testadd@supplebox.tokyo'
     end
   end
 end

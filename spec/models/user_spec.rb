@@ -56,22 +56,22 @@ RSpec.describe User, type: :model do
     end
 
     it '重複したメールアドレスなら無効な状態であること' do
-      FactoryBot.create(:user, email: 'tester@supplebox.jp')
-      user.email = 'tester@supplebox.jp'
+      FactoryBot.create(:user, email: 'tester@supplebox.tokyo')
+      user.email = 'tester@supplebox.tokyo'
       user.valid?
       expect(user.errors[:email]).to include('はすでに存在します')
     end
 
     it 'メールアドレスに@が含まれていないなら無効な状態であること' do
-      user.email = 'supplebox.jp'
+      user.email = 'supplebox.tokyo'
       user.valid?
       expect(user.errors[:email]).to include('は不正な値です')
     end
 
     it 'メールアドレスが保存される前に小文字に変換されること' do
-      user.email = 'TESTADD@supplebox.jp'
+      user.email = 'TESTADD@supplebox.tokyo'
       user.save
-      expect(user.email).to eq 'testadd@supplebox.jp'
+      expect(user.email).to eq 'testadd@supplebox.tokyo'
     end
   end
 

@@ -6,7 +6,7 @@ RSpec.describe ContactMailer, type: :mailer do
   let(:contact) do
     create(:contact,
            name: 'TestUser',
-           email: 'test@supplebox.jp',
+           email: 'test@supplebox.tokyo',
            title: 'テストタイトル',
            content: 'テストコンテント')
   end
@@ -18,7 +18,7 @@ RSpec.describe ContactMailer, type: :mailer do
     end
 
     it 'To が問い合わせした人のメールアドレスになること' do
-      expect(mail.to).to eq ['test@supplebox.jp']
+      expect(mail.to).to eq ['test@supplebox.tokyo']
     end
 
     it 'From が管理用メールアドレスになること' do

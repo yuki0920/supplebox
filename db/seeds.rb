@@ -38,7 +38,7 @@ end
   FactoryBot.create(
     :product,
     title: "NO.#{n}プロテイン",
-    url: "sample#{n}@supplebox.jp",
+    url: "sample#{n}@supplebox.tokyo",
     image_url: '/assets/default.png',
     asin: "code#{n}",
   )

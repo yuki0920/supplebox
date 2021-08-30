@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   # before_filter :ensure_domain
-  # FQDN = 'supplebox.jp'
+  # FQDN = 'supplebox.tokyo'
 
   # redirect correct server from herokuapp domain for SEO
   # def ensure_domain
