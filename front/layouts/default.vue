@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="default-layout d-flex flex-column">
     <NavBar :is-logged-in="isLoggedIn" class="mb-3" />
     <div class="container">
       <Nuxt />
     </div>
-    <FooterBar />
+    <FooterBar class="mt-auto" />
   </div>
 </template>
 
@@ -24,4 +24,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
+.default-layout {
+  min-height: 100vh;
+}
 </style>
