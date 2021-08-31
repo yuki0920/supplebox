@@ -1,0 +1,15 @@
+name: Jest
+on: [push]
+jobs:
+  lint:
+    name: Run jest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - uses: actions/checkout@v2
+      - name: yarn install
+        run: yarn install
+      - name: run jest
+        run: yarn jest
