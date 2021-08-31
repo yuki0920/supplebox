@@ -27,7 +27,6 @@
 <script lang="ts">
 import { defineComponent, ref, SetupContext, watch } from '@nuxtjs/composition-api'
 
-// TODO: Bootstrapのpaginatorコンポーネントに置き換える
 export default defineComponent({
   name: 'Paginator',
   props: {

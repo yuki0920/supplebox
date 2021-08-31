@@ -3,7 +3,6 @@ import { GetPostResponse, GetPostsResponseResourceEach } from '@/types/typescrip
 import { useId } from '@/compositions'
 const formDataConfig = { headers: { 'content-type': 'multipart/form-data' } }
 
-// TODO: usePostのリファクタリング CRUDごとに分割する
 export const usePost = () => {
   const { $axios } = useContext()
   const router = useRouter()

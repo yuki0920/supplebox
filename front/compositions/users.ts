@@ -3,7 +3,6 @@ import { GetCurrentUserResponse, GetCurrentUserResponseResource } from '@/types/
 import { useId } from '@/compositions'
 const formDataConfig = { headers: { 'content-type': 'multipart/form-data' } }
 
-// TODO: ユーザーのプロパティと投稿用のパラメーターを分離する
 /* eslint-disable camelcase */
 type userParams = { id: number, name: string, gender: string, height: string, weight: string, comment: string, picture: File | string, picture_url: string }
 export const useUser = () => {
@@ -16,7 +15,6 @@ export const useUser = () => {
     return $axios.get(`/api/users/${userId}`)
   }
 
-  // TODO: レスポンスの型定義をする
   onMounted(async () => {
     const { data }: { data: any } = await getUser()
 
