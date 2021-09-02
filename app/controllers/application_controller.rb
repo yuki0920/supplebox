@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# NOTE: セッションを扱うため ActionController::API を継承していない
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
