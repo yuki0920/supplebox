@@ -16,6 +16,9 @@
       :total-pages="totalPages"
       @page-changed="load($event)"
     />
+    <div class="overflow-auto">
+      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" use-router />
+    </div>
   </div>
 </template>
 
@@ -34,10 +37,15 @@ export default defineComponent({
       await load()
     })
 
+    const linkGen = (pageNum: number) => {
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    }
+
     return {
       load,
       posts,
-      totalPages
+      totalPages,
+      linkGen
     }
   }
 })

@@ -58,7 +58,8 @@ export default {
 
   bootstrapVue: {
     componentPlugins: [
-      'NavbarPlugin'
+      'NavbarPlugin',
+      'PaginationNavPlugin'
     ],
     components: [
       'BIconHandThumbsUp',
