@@ -1,29 +1,21 @@
-FROM ruby:3.0.0 AS nodejs
+FROM ruby:3.0.2-alpine
 
-WORKDIR /tmp
+ARG WORKDIR
 
-# install node
-RUN curl -LO https://nodejs.org/dist/v12.22.1/node-v12.22.1-linux-x64.tar.xz
-RUN tar xvf node-v12.22.1-linux-x64.tar.xz
-RUN mv node-v12.22.1-linux-x64 node
+ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc g++ libc-dev nodejs tzdata postgresql-dev postgresql git less shared-mime-info imagemagick" \
+    DEV_PACKAGES="build-base curl-dev" \
+    HOME=/${WORKDIR} \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo
 
-FROM ruby:3.0.0
+WORKDIR ${WORKDIR}
 
-# copy node from installed node
-COPY --from=nodejs /tmp/node /opt/node
-ENV PATH /opt/node/bin:$PATH
+COPY Gemfile* ./
 
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential libpq-dev \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache ${RUNTIME_PACKAGES} && \
+    apk add --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
+    apk del build-dependencies
 
-# install yarn
-RUN apt-get install apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y yarn
-
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-RUN gem install bundler:2.0.2
-COPY . /myapp
+COPY . .

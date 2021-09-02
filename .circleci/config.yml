@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   rspec:
     docker:
-      - image: circleci/ruby:3.0.0-node-browsers
+      - image: circleci/ruby:3.0.2
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: 127.0.0.1
@@ -16,9 +16,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-      - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -33,7 +31,7 @@ jobs:
 
   rubocop:
     docker:
-      - image: circleci/ruby:3.0.0-node-browsers
+      - image: circleci/ruby:3.0.2
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: 127.0.0.1
@@ -48,9 +46,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-      - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -62,15 +58,13 @@ jobs:
 
   bundle_update:
     docker:
-      - image: circleci/ruby:3.0.0-node-browsers
+      - image: circleci/ruby:3.0.2
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
-      - run: gem install bundler:2.0.2
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: bundle update
       - save_cache:
