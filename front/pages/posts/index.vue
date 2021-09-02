@@ -3,18 +3,10 @@
     <h1 class="text-center">
       最新の口コミ
     </h1>
-    <Paginator
-      :total-pages="totalPages"
-      @page-changed="load($event)"
-    />
     <PostItem
       v-for="post in posts"
       :key="post.id"
       :post="post"
-    />
-    <Paginator
-      :total-pages="totalPages"
-      @page-changed="load($event)"
     />
     <div class="overflow-auto">
       <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" use-router />
@@ -23,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, useRouter } from '@nuxtjs/composition-api'
 import { usePosts } from '@/compositions'
 
 export default defineComponent({
@@ -40,6 +32,15 @@ export default defineComponent({
     const linkGen = (pageNum: number) => {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
     }
+
+    const router = useRouter()
+    router.beforeEach((to, from, next) => {
+      if (to.name === 'posts' && from.name === 'posts' && (typeof to.query.page === 'string' || to.query.page === undefined)) {
+        load(parseInt(to.query.page, 10) || 1)
+        scrollTo(0, 0)
+      }
+      next()
+    })
 
     return {
       load,
