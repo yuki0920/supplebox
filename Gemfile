@@ -49,10 +49,8 @@ end
 
 group :production do
   gem 'fog-aws'
-  gem 'google-analytics-rails'
 end
 
-gem 'aws-sdk'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'factory_bot_rails'
@@ -63,5 +61,4 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'rack-cors'
 gem 'rails_same_site_cookie'
-gem 'sitemap_generator'
 gem 'vacuum'
