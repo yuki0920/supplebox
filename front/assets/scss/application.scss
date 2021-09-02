@@ -32,3 +32,16 @@ a {
   color: $green;
   text-decoration: none;
 }
+
+.pagination {
+  li > a,
+  li > a:focus,
+  li > a:hover{
+    color: $success_green
+  }
+
+  .page-item.active > .page-link {
+    border-color: #dee2e6;
+    background-color: $success_green;
+  }
+}

@@ -21,24 +21,19 @@
         class="btn btn-success"
       >
     </form>
-    <Paginator
-      :total-pages="totalPages"
-      @page-changed="load($event)"
-    />
     <ProductItems
       v-if="products.length > 1"
       :is-logged-in="isLoggedIn"
       :products="products"
     />
-    <Paginator
-      :total-pages="totalPages"
-      @page-changed="load($event)"
-    />
+    <div class="overflow-auto">
+      <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" use-router />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref, useRouter } from '@nuxtjs/composition-api'
 import { useCurrentUser, useProducts } from '@/compositions'
 
 export default defineComponent({
@@ -56,12 +51,27 @@ export default defineComponent({
       await load()
     })
 
+    const linkGen = (pageNum: number) => {
+      const queryParams = pageNum === 1 ? '?' : `?page=${pageNum}`
+      return keyword.value ? `${queryParams}?keyword=${keyword.value}` : queryParams
+    }
+
+    const router = useRouter()
+    router.beforeEach((to, from, next) => {
+      if (to.name === from.name && (typeof to.query.page === 'string' || to.query.page === undefined)) {
+        load(parseInt(to.query.page, 10) || 1)
+        scrollTo(0, 0)
+      }
+      next()
+    })
+
     return {
       isLoggedIn,
       totalPages,
       load,
       keyword,
-      products
+      products,
+      linkGen
     }
   }
 })
