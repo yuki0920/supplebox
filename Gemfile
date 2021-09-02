@@ -11,8 +11,6 @@ gem 'rails', '< 7.0'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
@@ -37,7 +35,6 @@ group :development do
   gem 'rubocop-rspec'
   gem 'spring'
   gem 'spring-watcher-listen'
-  gem 'web-console'
 end
 
 group :test do
