@@ -5,13 +5,13 @@
       <h1 class="p-toppage__title text-center mb-3">
         SuppleBoxとは
       </h1>
-      <p class="p-toppage__title-annotation text-center mb-3">
+      <p class="p-toppage__title-annotation text-center mb-4">
         プロテイン選びで失敗したく無い方に向けた、プロテイン特化型の口コミ共有サービスです。
       </p>
       <ServiceDescription />
     </section>
     <section class="p-toppage__products-container mb-4">
-      <h2 class="text-center">
+      <h2 class="text-center mb-3">
         お気に入りアイテムランキング
       </h2>
       <ProductItems
@@ -29,7 +29,7 @@
       </div>
     </section>
     <section class="p-toppage__posts-container mb-3">
-      <h2 class="text-center">
+      <h2 class="text-center mb-3">
         最新の口コミ
       </h2>
       <div class="p-toppage__posts mb-1">

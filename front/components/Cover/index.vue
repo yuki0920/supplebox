@@ -35,6 +35,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .o-cover {
+  padding: 8rem 2rem;
   background: url("~assets/images/cover.jpg") center center no-repeat;
   background-size: cover;
   &__inner {
