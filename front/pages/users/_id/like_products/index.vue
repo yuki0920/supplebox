@@ -1,6 +1,6 @@
 <template>
   <div v-if="user">
-    <UserProfile :user="user" />
+    <UserProfile :is-current-user="isCurrentUser" :user="user" />
     <div class="p-user-products col-md-12">
       <UserNav />
       <ProductItems
