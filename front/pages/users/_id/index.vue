@@ -8,12 +8,15 @@
         :key="post.id"
         :post="post"
       />
+      <div class="overflow-auto">
+        <b-pagination-nav :link-gen="linkGen" :number-of-pages="totalPages" use-router />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted } from '@nuxtjs/composition-api'
+import { ref, defineComponent, onMounted, useRouter } from '@nuxtjs/composition-api'
 import { useCurrentUser, useUser, usePosts, useId } from '@/compositions'
 
 export default defineComponent({
@@ -21,19 +24,38 @@ export default defineComponent({
   setup () {
     const userId = useId()
     const { user } = useUser()
-    const { posts, getPosts } = usePosts()
+    const { posts, totalPages, getPosts } = usePosts()
     const { currentUser } = useCurrentUser()
     const isCurrentUser = ref(false)
 
+    const load = async (page = 1) => {
+      await getPosts({ per: 8, page, user_id: userId })
+    }
+
     onMounted(async () => {
-      await getPosts({ user_id: userId })
+      await load()
       isCurrentUser.value = currentUser !== undefined && (userId === currentUser.value?.id)
     })
+
+    const router = useRouter()
+    router.beforeEach((to, from, next) => {
+      if (to.name === 'users' && from.name === 'users' && (typeof to.query.page === 'string' || to.query.page === undefined)) {
+        load(parseInt(to.query.page, 10) || 1)
+        scrollTo(0, 0)
+      }
+      next()
+    })
+
+    const linkGen = (pageNum: number) => {
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    }
 
     return {
       user,
       isCurrentUser,
-      posts
+      posts,
+      totalPages,
+      linkGen
     }
   }
 })
