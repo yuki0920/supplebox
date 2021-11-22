@@ -4,7 +4,6 @@ updates:
     directory: "./front"
     schedule:
       interval: "monthly"
-  # - package-ecosystem: "bundler"
-  #   directory: "./api"
-  #   schedule:
-  #     interval: "monthly"
+  - package-ecosystem: "bundler"
+    schedule:
+      interval: "monthly"
