@@ -65,10 +65,10 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.after_initialize do
-    Bullet.enable = true # Bulletプラグインを有効
-    Bullet.alert = true # JavaScriptでの通知
-    Bullet.bullet_logger = true # log/bullet.logへの出力
-    Bullet.console = true # ブラウザのコンソールログに記録
-    Bullet.rails_logger = true # Railsログに出力
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
   end
 end
