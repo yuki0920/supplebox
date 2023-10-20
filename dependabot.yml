@@ -4,6 +4,10 @@ updates:
     directory: "./front"
     schedule:
       interval: "weekly"
+    groups:
+      dependencies:
   - package-ecosystem: "bundler"
     schedule:
       interval: "weekly"
+    groups:
+      dependencies:
