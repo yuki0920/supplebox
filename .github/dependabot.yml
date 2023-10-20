@@ -6,8 +6,12 @@ updates:
       interval: "weekly"
     groups:
       dependencies:
+        patterns:
+          - "*"
   - package-ecosystem: "bundler"
     schedule:
       interval: "weekly"
     groups:
       dependencies:
+        patterns:
+          - "*"
